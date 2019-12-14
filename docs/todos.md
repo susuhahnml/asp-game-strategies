@@ -3,16 +3,26 @@ Workflow to-do\'s
 
 ### Urgent
 
-1.  make nicer visualizations with more symmetric faces
+1.  **TODO** add bibtex to docs (ilasp, clingo, etc.), add
+    authors, make pretty repository with clear goals
 
-2.  add better documentation to show functionalities
+2.  **TODO** transfer issues to GitHub
 
-3.  add ilasp processing pipeline to init.sh, check if possible to
+3.  add better documentation to show functionalities
+
+4.  make nicer visualizations with more symmetric faces
+
+5.  add ilasp processing pipeline to init.sh, check if possible to
     publish ilasp exec
 
-4.  add pipeline to download ilasp from github link
+6.  add pipeline to download ilasp from github link
 
-5.  reformat spacings in all code
+7.  reformat spacings in all code
+
+8.  provide proper dependency information, either download binaries
+    directly or install via package manager
+
+9.  put ilasp binary in correct location depending on clingo location
 
 ### Minimax algorithm
 
