@@ -1,0 +1,35 @@
+** Workflow to-do's
+
+*** Urgent
+***** make nicer visualizations with more symmetric faces
+***** add better documentation to show functionalities
+***** add ilasp processing pipeline to init.sh, check if possible to publish ilasp exec
+***** add pipeline to download ilasp from github link
+***** reformat spacings in all code
+
+*** Minimax algorithm
+***** TODO extend game to nim
+***** TODO check single branch of tree for consistency
+***** check if possible to use reverse level iterator without list conversion
+
+*** Monte-carlo tree search
+***** investigate theory and implement in code to approximate minimax tree
+***** show that minimax and monte-carlo trees converge in practice
+
+*** Optimizations
+***** add parallelization to all scripts, linear time reduction
+***** add further symmetries to reduce search space; extra overhead to search for level-symmetries
+***** time gained in linear symmetry searched, time saved in greater than linear reduced number of leaves due to branching factor
+      
+*** Presentation
+***** TODO once done, make modular and separate classes for compacter representation
+***** TODO add script to convert into state-wise tree with pretty ansi for easier visualization of some branches
+***** TODO possibly merge visualization into single tree pipeline for less overhead, reduce overall tree visits
+***** publish separate repository for minimax/monte-carlo game approach using python and later pipe into asp framework, resume visualization techniques later on and see how monte carlo approach can work, try abstracting to nim
+***** save graphs as images, dotfiles and pickles to binary which can be used later
+
+*** Long-term goals
+***** build efficient mini-max algorithm and integrate alpha-beta pruning
+***** integrate monte-carlo tree search to auto-generate good and bad examples for ilasp
+***** show that monte-carlo approach can approximate minimax tree
+***** integrate this approach with asp/ilasp to provide bravely ordered samples for complex games
