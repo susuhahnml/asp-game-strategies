@@ -1,6 +1,6 @@
-# Game strategies in ASP (clingo) :clubs: :game_die:
+## Game strategies in ASP :clubs: :game_die:
 
-## Overview
+### Overview
 
 This project involves the creation of a framework for learning strategies for games.
 
@@ -10,7 +10,7 @@ The game play and search for examples is done using [clingo](https://potassco.or
 
 The idea for this project is mainly based on the paper ["Learning weak constraints"](https://www.imperial.ac.uk/media/imperial-college/faculty-of-engineering/computing/public/1718-ug-projects/Elliot-Greenwood-Learning-Player-Strategies-using-Weak-Constraints.pdf) by *Elliot Greenwood*, and further inspired by the [work](https://github.com/921kiyo/symbolic-rl) of *Kiyohito Kunii* in learning hard constraints via inductive logic programming . We will explore some of the proposed future work ideas proposed by these authors while reimplementing the the overall frameworks. 
 
-## Methodologies
+### Methodologies
 
 As a main example we use the mathematical strategy game called [Nim](https://en.wikipedia.org/wiki/Nim). This game has a wining strategy which we attempt to learn using this framework. Furthermore, we will attempt to cross-model the simple game of [tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe), as an extension to our framework.
 
@@ -18,11 +18,11 @@ To represent the game encoding we will use the [Game Description Language (GDL)]
 
 Information on our source code and workflow can be found in the [src](/src) directory.
 
-## Development
+### Development
 
 A comprehensive changelog can be found [here](/docs/todos.md)
 
-## Key citations
+### Citations
 
 1. Gebser, Kaminski, Kaufmann and Schaub, 2019 (Clingo)
 
@@ -50,7 +50,7 @@ A comprehensive changelog can be found [here](/docs/todos.md)
 }
 ```
 
-## Authors
+### Authors
 
 Susana Hahn, Atreya Shankar
 
