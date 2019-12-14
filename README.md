@@ -24,7 +24,7 @@ A comprehensive changelog can be found [here](/docs/todos.md)
 
 ### Citations
 
-1. Gebser, Kaminski, Kaufmann and Schaub, 2019 (Clingo)
+Gebser, Kaminski, Kaufmann and Schaub, 2019 (Clingo)
 
 ```
 @article{gebser2019multi,
@@ -39,13 +39,13 @@ A comprehensive changelog can be found [here](/docs/todos.md)
 }
 ```
 
-2. Law, Russo and Broda, 2015 (ILASP system)
+Law, Russo and Broda, 2015 (ILASP)
 
 ```
 @misc {ILASP_system,
-  author = "Law, Mark and Russo, Alessandra and Broda, Krysia",
-  title  = "The {ILASP} system for learning Answer Set Programs",
-  year   = "2015",
+  author="Law, Mark and Russo, Alessandra and Broda, Krysia",
+  title="The {ILASP} system for learning Answer Set Programs",
+  year="2015",
   howpublished={\url{www.ilasp.com}}
 }
 ```

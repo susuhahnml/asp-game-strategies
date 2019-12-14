@@ -10,9 +10,3 @@ match = simulate_match(nim_url,
     {"name":"random"}
 
 ])
-
-
-
-
-
-
