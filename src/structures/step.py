@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from .action import *
 from py_utils.clingo_utils import *
+
 class Step:
 
     def __init__(self,state,action,time_step):
@@ -7,10 +11,10 @@ class Step:
         self.action = action
         self.time_step = time_step
         self.score = None
-         
+
     def fluents_to_asp_syntax(self):
         return fluents_to_asp_syntax(self.state.fluents,self.time_step)
-    
+
     def action_to_asp_syntax(self):
         return action_to_asp_syntax(self.action,self.time_step)
 
@@ -50,7 +54,7 @@ class Step:
     def ascii(self):
         s = self.state.game_def.step_to_ascii(self)
         return s
-    
+
     @property
     def ascii_score(self):
         if(self.score):

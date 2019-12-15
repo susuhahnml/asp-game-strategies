@@ -3,34 +3,32 @@ Workflow to-do\'s
 
 ### Urgent
 
-1.  **TODO** add bibtex to docs (ilasp, clingo, etc.), add
-    authors, make pretty repository with clear goals
+1.  **TODO** reformat spacings in all code, think about
+    adding numbers to TOC, add documentation to all missing files in
+    dir-tree, fix init.py issues
 
-2.  **TODO** transfer issues to GitHub
+2.  **TODO** after cleaning up document -\> work on actual
+    cleaning code process
 
-3.  add better documentation to show functionalities
+3.  **TODO** put all game backgrounds in single location
+    which get referenced -\> make simplest possible configuration for
+    repository
 
-4.  make nicer visualizations with more symmetric faces
+4.  **TODO** make document with all goals and objectives
+    visualized
 
-5.  add ilasp processing pipeline to init.sh, check if possible to
-    publish ilasp exec
+5.  **TODO** transfer issues from Gitlab to GitHub
 
-6.  add pipeline to download ilasp from github link
+6.  **TODO** add better documentation to show functionalities
+    with table
 
-7.  reformat spacings in all code
-
-8.  provide proper dependency information, either download binaries
-    directly or install via package manager
-
-9.  put ilasp binary in correct location depending on clingo location
+7.  make nicer visualizations with more symmetric faces
 
 ### Minimax algorithm
 
 1.  **TODO** extend game to nim
 
-2.  **TODO** check single branch of tree for consistency
-
-3.  check if possible to use reverse level iterator without list
+2.  check if possible to use reverse level iterator without list
     conversion
 
 ### Monte-carlo tree search

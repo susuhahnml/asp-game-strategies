@@ -1,10 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import time
 from py_utils import *
 from structures import *
 from players.min_max_asp.min_max_asp import *
 from game_definitions.game_def import GameNimDef
-nim = GameNimDef()
 from structures.tree import Tree
+
+nim = GameNimDef()
 
 def test_match_time():
     initial = 'holds(has(1,2),0). holds(has(2,2),0). holds(has(3,0),0). holds(control(a),0).'
@@ -32,5 +36,3 @@ def test_match_time_good():
 #     print("\n--- %s seconds learning ---" % (time.time() - start_time))
 #     # assert(minmax_match.goals["a"] == 1)
 #     # min_max_tree.print_in_file("test_minmax_not_learning.png")
-
-

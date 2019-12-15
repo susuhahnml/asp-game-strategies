@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from players.players import *
 from .clingo_utils import *
 from .colors import *
 from structures.game import *
 from structures.match import *
-
 
 """
 Call it with the path to the game definition
@@ -21,19 +23,16 @@ paths:
 
 depth:
     - n: Generate until depth n or terminal state reached
-
 """
+
 def simulate_match(game_def, player_config, depth=None, debug=False):
     # TODO check options other than default
-    
     players = [conf_to_player(player_config[0]),conf_to_player(player_config[1])]
-
     state = StateExpanded.from_game_def(game_def,
                       game_def.initial,
                       strategy = players[0].strategy)
     match = Match([])
     time_step = 0
-
     continue_depth = True if depth==None else time_step<depth
     if debug: print("\n--------------- Simulating match ----------------")
     if debug: print("a: {}\nb: {}\n".format(players[0].__class__.__name__,players[1].__class__.__name__))
@@ -48,7 +47,6 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
     match.add_step(Step(state,None,time_step))
     if debug: print(match)
     return match
-
 
 def conf_to_player(config):
     config = defaultdict(lambda: None,config)

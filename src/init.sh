@@ -7,7 +7,7 @@ if [ $ans == "y" ]; then
     cp ../hooks/pre-commit.sample ../.git/hooks/pre-commit
 fi
 
-read -rep "download and decompress clingo binaries into  /bin/clingo? (y/n): " ans
+read -rep "download and decompress clingo binaries into ./bin/clingo? (y/n): " ans
 if [ $ans == "y" ]; then
     # check os; download and decompress respective binary
     os=$(uname -s)

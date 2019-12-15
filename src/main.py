@@ -8,5 +8,4 @@ match = simulate_match(nim_url,
     # {"name":"human"}
     {"name":"random"},
     {"name":"random"}
-
 ])

@@ -1,8 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from py_utils import *
 from structures import *
 from players import *
 from game_definitions.game_def import GameNimDef
+
 nim = GameNimDef()
+
 def test_match():
     match = simulate_match(nim,
     [

@@ -1,16 +1,18 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from collections import defaultdict
 from .state import *
 from .action import *
 from structures.step import *
 
 class Match:
-
     def __init__(self,steps):
         self.steps = steps
-    
+
     def add_step(self, step):
         self.steps.append(step)
-    
+
     @classmethod
     def from_time_model(cls, model, game_def, main_player = None):
         atoms = model.symbols(atoms=True)
@@ -23,11 +25,9 @@ class Match:
                     continue
                 else:
                     fluent_steps[time]['fluents'].append(a.arguments[0])
-
             elif(a.name=="does"):
                 time = a.arguments[2].number
                 fluent_steps[time]['action'] = a
-        
         fluent_steps = dict(fluent_steps)
         steps = []
         for i in range(len(fluent_steps)):
@@ -39,7 +39,6 @@ class Match:
                 action = Action(fluent_steps[i]['action'].arguments[0].name,fluent_steps[i]['action'].arguments[1])
             step = Step(state,action,i)
             steps.append(step)
-        
         steps[-1].state.is_terminal = True
         steps[-1].set_score_player(main_player)
         return cls(steps)
@@ -62,5 +61,3 @@ class Match:
                 s+="{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,bcolors.ENDC)
             s+=bcolors.ENDC
         return s
-
-    

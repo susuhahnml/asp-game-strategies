@@ -1,10 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import numpy as np
+from .step import Step
 from py_utils.clingo_utils import  *
 from py_utils.colors import *
 from collections import defaultdict
-import numpy as np
 from structures.action import *
 from game_definitions.game_def import *
-from .step import Step
+
 class State:
     """
     A class used to represent a State on the game
@@ -27,11 +31,10 @@ class State:
         self.control = [f.arguments[0].name for f in fluents if f.name=='control'][0]
         self.game_def = game_def
 
-    
-    """
-    Gets a string with all fluents for printing
-    """
     def get_fluents_string(self):
+        """
+        Gets a string with all fluents for printing
+        """
         f = self.fluents_str
         f.sort()
         f_s = "\n\t".join(f)
@@ -78,28 +81,28 @@ class StateExpanded(State):
     """
     def __init__(self, legal_actions, fluents, goals, game_def, is_terminal):
         super().__init__(fluents,goals,is_terminal,game_def)
-        self.legal_actions = legal_actions         
-    
-    """
-    Creates a State from a model without considering the actions
-    """
+        self.legal_actions = legal_actions
+
     @classmethod
     def from_model(cls, model,game_def):
+        """
+        Creates a State from a model without considering the actions
+        """
         atoms = model.symbols(atoms=True)
         is_terminal = model.contains(clingo.Function("terminal", []))
         fluents = [a.arguments[0] for a in atoms if a.name=='true']
         goals = [a for a in atoms if a.name=='goal']
         return cls([],fluents,goals,is_terminal,game_def)
 
-    """
-    Obtains the answer sets from clingo and transforms them into a state
-    Args:
-        game_def: The definition of the game
-        strategy: Optional Path to file with an strategy
-        current_fluents: A string with all fluents true in the state in clingo syntax
-    """
     @classmethod
     def from_game_def(cls, game_def, current_fluents, strategy=None):
+        """
+        Obtains the answer sets from clingo and transforms them into a state
+        Args:
+            game_def: The definition of the game
+            strategy: Optional Path to file with an strategy
+            current_fluents: A string with all fluents true in the state in clingo syntax
+        """
         ctl = clingo.Control("0")
         # Check if it can load from grounded atoms gotten from AS
         ctl.load(game_def.background)
@@ -110,49 +113,45 @@ class StateExpanded(State):
         if(strategy):
             ctl.load(strategy)
         ctl.ground([("base", [])], context=Context())
-        
         with ctl.solve(yield_=True) as handle:
             state = None
             has_initialized = False
             for model in handle:
                 if not has_initialized:
                     state = StateExpanded.from_model(model,game_def)
-                    has_initialized = True                
+                    has_initialized = True
                 state.add_action_from_clingo_model(model)
             state.legal_actions_to_idx = {symbol_str(a.action):i for i,a in enumerate(state.legal_actions)}
             return state
 
-    """
-    Gets the next state when performing the action
-    Args:
-        action: The action to perform type Action
-        game_path: Path to the game folder
-        strategy: Optional strategy path
-    """
     def get_next(self, action, strategy_path = None):
+        """
+        Gets the next state when performing the action
+        Args:
+            action: The action to perform type Action
+            game_path: Path to the game folder
+            strategy: Optional strategy path
+        """
         return StateExpanded.from_game_def(self.game_def,
                       current_fluents = fluents_to_asp_syntax(action.next_fluents), strategy=strategy_path )
 
-        
-
-    """
-    Obtains a list with all legal actions as strings
-    """
     def get_symbol_legal_actions(self):
+        """
+        Obtains a list with all legal actions as strings
+        """
         return [symbol_str(a.action) for a in self.legal_actions]
 
-
-    """
-    Adds an action to the state from a model
-    Params:
-        model: The clingo answer set
-    """
     def add_action_from_clingo_model(self, model): 
+        """
+        Adds an action to the state from a model
+        Params:
+            model: The clingo answer set
+        """
         atoms = model.symbols(atoms=True)
         does = [a for a in atoms if a.name=='does']
         if(len(does)==0):
             #Ignoring model without action
-            return 
+            return
         else:
             assert len(does) == 1, "Multiple actions {} not supported".format(len(does))
             action = does[0]
@@ -162,19 +161,19 @@ class StateExpanded(State):
             action_class = ActionExpanded(player,action.arguments[1],next_fluents,cost)
             self.legal_actions.append(action_class)
             return
-    
-    """
-    Obtains the clingo action from a given string name. If the action is not legal the
-    method returns None.
-    Args:
-        action_str: The string representing the action
-    """
+
     def get_legal_action_from_str(self, action_str):
+        """
+        Obtains the clingo action from a given string name. If the action is not legal the
+        method returns None.
+        Args:
+            action_str: The string representing the action
+        """
         if action_str in self.legal_actions_to_idx:
             return self.legal_actions[self.legal_actions_to_idx[action_str]]
         else:
             return None
-    
+
     def __str_detail__(self):
         f = self.get_fluents_string()
         a = "\n".join(["{}:{}".format(i,str(a)[2:]) for i,a in enumerate(self.legal_actions)])
@@ -188,9 +187,8 @@ class StateExpanded(State):
             s+= "  *TERMINAL STATE*\n"
         s+="""
         ****** LEGAL ACTIONS ******
-{}
+        {}
         """.format(a)
-
         s+="===================================\n"
         return s
 
@@ -202,5 +200,4 @@ class StateExpanded(State):
         for i,a in enumerate(self.legal_actions):
             step = Step(self,a,None)
             s+="\n{}:{}".format(i,step.ascii)
-
         return s

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from py_utils.clingo_utils import symbol_str
 
 class Action:
@@ -12,20 +15,20 @@ class Action:
         Symbol defining the action
     """
     def __init__(self, player, action):
-        self.player = player 
-        self.action = action 
-    
+        self.player = player
+        self.action = action
+
     @property
     def str_expanded(self):
         return """
         --------------- ACTION ----------------
-        DOES: {}   PLAYER: {}   
+        DOES: {}   PLAYER: {}
         ---------------------------------------
         """.format(symbol_str(self.action), self.player)
 
     def __str__(self):
         return "({}):{}".format(self.player,symbol_str(self.action))
-      
+
 class ActionExpanded(Action):
     """
     A class used to represent a possible action
@@ -46,14 +49,14 @@ class ActionExpanded(Action):
         super().__init__(player,action)
         self.next_fluents = next_fluents
         self.cost = cost
-    
+
     @property
     def str_expanded(self):
         l = "\n\t".join([symbol_str(n) for n in self.next_fluents])
         return """
         -------- ACTION -------
         PLAYER: {}   DOES: {}   COST: {}
-        -> NEXT FLUENTS: 
+        -> NEXT FLUENTS:
         {}
         -----------------------
         """.format(self.player, symbol_str(self.action),  self.cost, l)

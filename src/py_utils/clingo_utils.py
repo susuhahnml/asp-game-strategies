@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import clingo
 import abc
 from .colors import *
+
 example_number = 0
 
 def get_next_example_name():
@@ -15,14 +19,14 @@ class Context:
     def seq(self, x, y):
         return [x, y]
 
-"""
-Transforms a clingo.Symbol into a string
-"""
 def symbol_str(symbol):
+    """
+    Transforms a clingo.Symbol into a string
+    """
     if(symbol.type == clingo.SymbolType.Function):
         arg_strings = list(map(lambda x: symbol_str(x), symbol.arguments))
         if len(arg_strings)==0:
-            return '{}'.format(symbol.name)        
+            return '{}'.format(symbol.name)
         else:
             return '{}({})'.format(symbol.name, ','.join(arg_strings))
     elif(symbol.type == clingo.SymbolType.Number):
@@ -32,16 +36,14 @@ def symbol_str(symbol):
     else:
         return symbol.type
 
-
-"""
-Obtains all possible actions and observations with an initial encoding
-"""
 def get_all_possible(all_path):
+    """
+    Obtains all possible actions and observations with an initial encoding
+    """
     ctl = clingo.Control("0")
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(all_path)
     ctl.ground([("base", [])], context=Context())
-    
     with ctl.solve(yield_=True) as handle:
         for model in handle:
             atoms = model.symbols(atoms=True)
@@ -75,7 +77,6 @@ def generate_example(state_context,good_action,bad_action):
     order = "#brave_ordering({},{}).".format(good_example_name,bad_example_name)
     return "\n{}\n{}\n{}".format(good_example,bad_example,order)
 
-
 def edit_vars(pred,subst_var,var_set):
     trad_args = []
     def add_v(is_var, v_par):
@@ -98,21 +99,14 @@ def edit_vars(pred,subst_var,var_set):
 
 def generate_rule(game_def, state_context,sel_action):
     #TODO make it general for variable context
-    
     subst_var = game_def.subst_var
     variables = set([])
-
     rule = ":-does({},V,T),V!={},".format(sel_action.player,edit_vars(sel_action.action,subst_var,variables))
     for fluent in state_context.fluents:
         rule+="holds({},T),".format(edit_vars(fluent,subst_var,variables))
-    
     variables =  list(variables)
     n_variables = len(variables)
     for i in range(n_variables):
         for j in range(i+1,n_variables):
             rule += "{}!={},".format(variables[i],variables[j])
-
     return rule[:-1] + "."
-    
-
-

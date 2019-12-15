@@ -1,4 +1,4 @@
-## Game strategies in ASP :clubs: :game_die:
+## Learning game strategies in ASP :clubs: :game_die:
 
 ### Overview
 
@@ -8,7 +8,7 @@ The strategies are represented as Weak Constraints and are learned using the [IL
 
 The game play and search for examples is done using [clingo](https://potassco.org/clingo/). These two systems are connected using python to learn strategies via self-play.
 
-The idea for this project is mainly based on the paper ["Learning weak constraints"](https://www.imperial.ac.uk/media/imperial-college/faculty-of-engineering/computing/public/1718-ug-projects/Elliot-Greenwood-Learning-Player-Strategies-using-Weak-Constraints.pdf) by *Elliot Greenwood*, and further inspired by the [work](https://github.com/921kiyo/symbolic-rl) of *Kiyohito Kunii* in learning hard constraints via inductive logic programming . We will explore some of the proposed future work ideas proposed by these authors while reimplementing the the overall frameworks. 
+The idea for this project is mainly based on the paper ["Learning weak constraints"](https://www.imperial.ac.uk/media/imperial-college/faculty-of-engineering/computing/public/1718-ug-projects/Elliot-Greenwood-Learning-Player-Strategies-using-Weak-Constraints.pdf) by *Elliot Greenwood*, and was further inspired by the [work](https://github.com/921kiyo/symbolic-rl) of *Kiyohito Kunii* in learning hard constraints via inductive logic programming . We will explore some of the proposed future work ideas proposed by these authors while reimplementing the the overall frameworks. 
 
 ### Methodologies
 
@@ -42,7 +42,7 @@ Gebser, Kaminski, Kaufmann and Schaub, 2019 (Clingo)
 Law, Russo and Broda, 2015 (ILASP)
 
 ```
-@misc {ILASP_system,
+@misc{ILASP_system,
   author="Law, Mark and Russo, Alessandra and Broda, Krysia",
   title="The {ILASP} system for learning Answer Set Programs",
   year="2015",

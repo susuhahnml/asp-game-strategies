@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 class bcolors:
     REF = '\033[90m'
     HEADER = '\033[95m'

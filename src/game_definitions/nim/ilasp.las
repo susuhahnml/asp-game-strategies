@@ -27,10 +27,8 @@ terminal :- goal(_,_).
 #constant(amount,0).
 #constant(amount,1).
 #constant(amount,2).
-
 #constant(player,a).
 #constant(player,b).
-
 
 #modeo(3,next(has(var(pile),const(amount))),(positive)).
 #modeo(3,var(pile)!=var(pile),(symmetric,anti_reflexive)).
@@ -38,8 +36,6 @@ terminal :- goal(_,_).
 #weight(1).
 #weight(2).
 #maxp(3).
-
-
 
 %------------------------------- EXAMPLES --------------------------------------
 
@@ -172,7 +168,6 @@ terminal :- goal(_,_).
 #brave_ordering(i1,i2).
 #brave_ordering(i1,i3).
 
-
 %------------ Context J ----------------
 
 #pos(j1, { does(a,remove(p1,1))}, {}, {
@@ -186,7 +181,6 @@ terminal :- goal(_,_).
     true(has(p2,0)).
     true(has(p3,0)).
     true(control(a)).}).
-
 
 #brave_ordering(j1,j2).
 
@@ -209,7 +203,6 @@ terminal :- goal(_,_).
     true(has(p2,2)).
     true(has(p3,3)).
     true(control(a)).}).
-
 
 #brave_ordering(k1,k2).
 #brave_ordering(k1,k3).
