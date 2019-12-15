@@ -9,7 +9,7 @@ from collections import defaultdict
 from structures.game import *
 from structures.state import *
 from py_utils.clingo_utils import *
-from .min_max_asp.min_max_asp import *
+from .min_max_asp import *
 
 class Player(abc.ABC):
     """

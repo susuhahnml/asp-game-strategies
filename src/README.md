@@ -6,6 +6,7 @@ Here we document our source code and its various functionalities. Most functions
 
 1. [Dependencies](#1-Dependencies) 
 2. [Code structure](#2-Code-structure)
+3. [Tests](#3-Tests)
 
 ### 1. Dependencies
 
@@ -58,14 +59,12 @@ Here we provide a tabular summary of our main code structure.
 
 #### ii. `players`
 
-| L1          | L2                               | L3                                                   | Description                                                                                   |
-| :---:       | :---:                            | :---:                                                | :---                                                                                          |
-| **players** |                                  |                                                      | Contains all the possible players representing the approaches for selecting actions in a game |
-| --->        | [players.py](players/players.py) |                                                      | Defines the behaivour of each player                                                          |
-| --->        | **min_max_asp**                  |                                                      | Approach using asp optimization statements to compute the minmax algorithm                    |
-| --->        | --->                             | [min_max_asp.py](players/min_max_asp/min_max_asp.py) | Functions to compute algorithm using asp                                                      |
-| --->        | **min_max_python**               |                                                      | Approach using the minmax algorithm in python                                                 |
-| --->        | --->                             | [min_max_python.py](players/minmax_python/minmax.py) | Functions to compute algorithm in python                                                      |
+| L1          | L2                                                   | Description                                                                                   |
+| :---:       | :---:                                                | :---                                                                                          |
+| **players** |                                                      | Contains all the possible players representing the approaches for selecting actions in a game |
+| --->        | [players.py](players/players.py)                     | Defines the behaivour of each player                                                          |
+| --->        | [min_max_asp.py](players/min_max_asp/min_max_asp.py) | Functions to compute algorithm using asp                                                      |
+| --->        | [min_max_python.py](players/minmax_python/minmax.py) | Functions to compute algorithm in python                                                      |
 
 #### iii. `py_utils`
 
@@ -88,27 +87,14 @@ Here we provide a tabular summary of our main code structure.
 | --->           | [tree.py](structures/tree.py)     | A full tree of a game created by steps, with all possible paths                                                                                                                      |
 | --->           | [game.py](structures/game.py)     | The game representation used for RL agents                                                                                                                                           |
 
-### Test ILASP with small example
+### 3. Tests
 
-In order to check some basic results, you can run the snippet below and you should receive a similar output (timings may differ):
+#### i. Test ILASP with nim example
 
-```shell
-$ ILASP --clingo5 --version=3 ./src/players/ilasp_strategy/ilasp_examples/schedule.las
-
-:~ assigned(V0, V1), type(V0, V1, c2).[1@2, 1, V0, V1]
-:~ assigned(V0, V1), assigned(V2, V3), V2 != V0.[1@1, 2, V0, V1, V2, V3]
-%% score = 5
-Pre-processing  : 0.015s
-Solve time      : 1.125s
-Total           : 1.14s
-```
-
-### Learn weak constraints with ILASP
-
-In order to run ILASP for learning weak constraints in the game of NIM run the following command
+In order to run ILASP for learning weak constraints in the game of Nim, you can run the following command (with corresponding output):
 
 ```shell
-$ ILASP --clingo5 --version=3 ./src/game_definitions/nim/nim_ILASP.las --max-wc-length=6
+$ ILASP --clingo5 --version=3 ./game_definitions/nim/ilasp.las --max-wc-length=6
 
 :~ next(has(V0,2)), next(has(V1,2)), next(has(V2,0)), V0 != V1.[-1@2, 1, V0, V1, V2]
 :~ next(has(V0,1)).[-1@1, 2, V0]
@@ -118,11 +104,7 @@ Solve time      : 77.426s
 Total           : 77.745s
 ```
 
-This process will take over 1 minute.
-
-When using a *conda* environment you might need to define the *clingo* path or deactivate the environment.
-
-### Run main to simulate a match
+#### ii. Run main to simulate a match
 
 Use the following command to simulate a match of nim using a strategy found by ILASP
 
@@ -130,7 +112,7 @@ Use the following command to simulate a match of nim using a strategy found by I
 $ python src/main.py
 ```
 
-### Tests
+#### Tests
 
 For the test we use the pytest pakage, the documentation can be found [here](https://docs.pytest.org/en/latest/getting-started.html#install-pytest).
 
