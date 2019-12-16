@@ -7,6 +7,7 @@ Here we document our source code and its various functionalities. Most functions
 1. [Dependencies](#1-Dependencies) 
 2. [Code structure](#2-Code-structure)
 3. [Tests](#3-Tests)
+4. [Run](#4-Run)
 
 ### 1. Dependencies
 
@@ -104,7 +105,11 @@ Solve time      : 77.426s
 Total           : 77.745s
 ```
 
+### 4. Run
+
 #### ii. Run main to simulate a match
+
+* TODO add parser help-log here
 
 Use the following command to simulate a match of nim using a strategy found by ILASP
 
@@ -130,3 +135,7 @@ pytest src/tests/test_file.py -v -s
 
 This will run the tests in all the files in the tests folder.
 All test files must have the format `test_*.py`
+
+### 5. Developments
+
+* TODO add further things to do here, or link to some document

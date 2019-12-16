@@ -104,17 +104,18 @@ class MLPlayer(Player):
         # self.game = Game(path)
         self.model = model
 
-    # def choose_action(self,state):
-    #     self.game.current_state = state
-    #     obs = self.game.current_observation
-    #     #TODO Check if ok
-    #     action_idx = self.model.forward(obs)
-    #     action_str =  symbol_str(self.game.all_actions[action_idx])
-    #     legal_action = self.game.current_state.get_legal_action_from_str(action_str)
-    #     if not legal_action:
-    #         print(paint("\t MLPlayer selected non legal action: {}".format(action_str),bcolors.FAIL))
-    #         action_idx = self.game.sample_random_legal_action
-    #         action_str =  symbol_str(self.game.all_actions[action_idx])
-    #         print(paint("\t Selected random instead action: {}".format(action_str),bcolors.FAIL))
-    #         return self.game.current_state.get_legal_action_from_str(action_str)
-    #     return legal_action
+    def choose_action(self,state):
+        pass
+       #  self.game.current_state = state
+       #  obs = self.game.current_observation
+       # TODO Check if ok
+       #  action_idx = self.model.forward(obs)
+       #  action_str =  symbol_str(self.game.all_actions[action_idx])
+       #  legal_action = self.game.current_state.get_legal_action_from_str(action_str)
+       #  if not legal_action:
+           #  print(paint("\t MLPlayer selected non legal action: {}".format(action_str),bcolors.FAIL))
+           #  action_idx = self.game.sample_random_legal_action
+           #  action_str =  symbol_str(self.game.all_actions[action_idx])
+           #  print(paint("\t Selected random instead action: {}".format(action_str),bcolors.FAIL))
+           #  return self.game.current_state.get_legal_action_from_str(action_str)
+       #  return legal_action

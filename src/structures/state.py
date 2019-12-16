@@ -3,10 +3,10 @@
 
 import numpy as np
 from .step import Step
+from .action import *
 from py_utils.clingo_utils import  *
 from py_utils.colors import *
 from collections import defaultdict
-from structures.action import *
 from game_definitions.game_def import *
 
 class State:

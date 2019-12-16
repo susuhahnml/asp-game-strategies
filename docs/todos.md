@@ -3,13 +3,11 @@ Workflow to-do\'s
 
 ### Urgent
 
-1.  **TODO** add numbers to TOC, make all test references
-    base in \`src\` instead of everywhere, find midway between
-    everything and displace pytests
+1.  **TODO** add all functions and tests directly into
+    main.py
 
-2.  **TODO** work on actual cleaning code process, and run
-    tests to ensure they work -\> convert tests into command line type
-    files
+2.  **TODO** after cleaning up document -\> work on actual
+    cleaning code process
 
 3.  **TODO** put all game backgrounds in single location
     which get referenced -\> make simplest possible configuration for
@@ -20,7 +18,10 @@ Workflow to-do\'s
 
 5.  **TODO** transfer issues from Gitlab to GitHub
 
-6.  make nicer visualizations with more symmetric faces
+6.  **TODO** add better documentation to show functionalities
+    with table
+
+7.  make nicer visualizations with more symmetric faces
 
 ### Minimax algorithm
 
@@ -75,3 +76,11 @@ Workflow to-do\'s
 
 4.  integrate this approach with asp/ilasp to provide bravely ordered
     samples for complex games
+
+    \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+    \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+    \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+    \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#

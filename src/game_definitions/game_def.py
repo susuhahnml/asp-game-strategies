@@ -44,7 +44,7 @@ class GameDef():
         return NotImplementedError
 
 class GameNimDef(GameDef):
-    def __init__(self,path="src/game_definitions/nim"):
+    def __init__(self,path="./game_definitions/nim"):
         super().__init__(path)
         self.number_piles = 3
         self.max_number = 5

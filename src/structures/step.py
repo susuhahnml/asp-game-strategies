@@ -5,7 +5,6 @@ from .action import *
 from py_utils.clingo_utils import *
 
 class Step:
-
     def __init__(self,state,action,time_step):
         self.state = state
         self.action = action

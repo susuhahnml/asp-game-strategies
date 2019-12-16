@@ -7,25 +7,24 @@ from .colors import *
 from structures.game import *
 from structures.match import *
 
-"""
-Call it with the path to the game definition
-
-Options:
-player_config: A tuple of the player configurations
-    - random: Play against random player
-    - human: Play against human player
-    - human: Play against a strategy defined in a file as weak constraints
-    - config: Play against other system. (System maybe must extend a class) TODO
-
-paths:
-    - optimal*: Generate only one path with optimal actions
-    - all: Generate full tree of matches TODO?
-
-depth:
-    - n: Generate until depth n or terminal state reached
-"""
-
 def simulate_match(game_def, player_config, depth=None, debug=False):
+    """
+    Call it with the path to the game definition
+
+    Options:
+    player_config: A tuple of the player configurations
+        - random: Play against random player
+        - human: Play against human player
+        - human: Play against a strategy defined in a file as weak constraints
+        - config: Play against other system. (System maybe must extend a class) TODO
+
+    paths:
+        - optimal*: Generate only one path with optimal actions
+        - all: Generate full tree of matches TODO?
+
+    depth:
+        - n: Generate until depth n or terminal state reached
+    """
     # TODO check options other than default
     players = [conf_to_player(player_config[0]),conf_to_player(player_config[1])]
     state = StateExpanded.from_game_def(game_def,

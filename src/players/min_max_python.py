@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import numpy as np
 from tqdm import tqdm
 from anytree import Node, RenderTree
 from anytree.exporter import UniqueDotExporter, DotExporter
 from anytree.iterators.levelorderiter import LevelOrderIter
-
-####################################
-# define key functions/workflows
-####################################
 
 def square_possibilities(dim):
     return {(i,j) for i in range(dim) for j in range(dim)}
@@ -135,43 +130,3 @@ def build_minimax(tree):
             elif node.name[1] == -1:
                 node.name[3] = max(scores)
     return tree
-
-####################################
-# plotting trees in various ways
-####################################
-
-# main command call
-# tree = build_tree(dim=2,threshold=2)
-# tree = build_minimax(tree)
-
-# DotExporter(tree).to_picture("test1.png")
-# DotExporter(tree,nodenamefunc=lambda n: 'label="%s"' % (str((n.name[0],n.name[1]))) if not (n.is_root) else n.name,nodeattrfunc=lambda n: 'label="%s"' % (str((n.name[0],n.name[1]))) if not (n.is_root) else None).to_picture("test2.png")
-# UniqueDotExporter(tree, nodeattrfunc=lambda n: 'label="%s"' % (str(n.name))).to_picture("test3.png")
-
-####################################
-# comments/to-do's
-####################################
-
-# add minimax tag to root node
-# check single branch of tree for consistency
-# add script to convert into state-wise tree for easier visualization of some branches
-
-# publish separate repository for minimax/monte-carlo game approach using python and later pipe into asp framework, resume visualization techniques later on and see how monte carlo approach can work, try abstracting to nim
-
-# important:
-# TODO: build minimax from exhaustive tree, assume max player starts first, issue with max-min function implementation
-# TODO: mapping from current view to picturized view for better visuals, given certain branch
-# TODO: build parallelizable scripts and check for speed-ups and limitations
-
-# next-steps:
-# TODO: clean up repo for pushing upstream with documentation
-# TODO: abstract game structure to generic style which can be used for nim
-# TODO: possibly add further symmetries to reduce search space further, perhaps a symmetry function
-# TODO: redefine second graph as winning graph, make it pretty
-# TODO: save graphs as images, dotfiles and pickles to binary which can be used later
-
-# goals:
-# build efficient mini-max algorithm and integrate alpha-beta pruning
-# integrate monte-carlo tree search to auto-generate good and bad examples for ilasp
-# show that monte-carlo approach can approximate minimax tree
-# find out how to integrate this approach with asp/ilasp
