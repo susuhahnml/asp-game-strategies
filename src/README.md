@@ -7,7 +7,7 @@ Here we document our source code and its various functionalities. Most functions
 1. [Dependencies](#1-Dependencies) 
 2. [Code structure](#2-Code-structure)
 3. [Tests](#3-Tests)
-4. [Run](#4-Run)
+4. [Simulate match](#4-Simulate-match)
 
 ### 1. Dependencies
 
@@ -17,6 +17,12 @@ To install python-based dependencies, one can use the file `requirements.txt`. S
 
 ```shell
 $ pip install -r requirements.txt
+```
+
+Additionally, for conducting sanity tests, we recommend installing `pytest`:
+
+```shell
+$ pip install pytest
 ```
 
 #### ii. External dependencies
@@ -90,9 +96,9 @@ Here we provide a tabular summary of our main code structure.
 
 ### 3. Tests
 
-#### i. Test ILASP with nim example
+#### i. Test ILASP with `nim` example
 
-In order to run ILASP for learning weak constraints in the game of Nim, you can run the following command (with corresponding output):
+In order to run ILASP for learning weak constraints in the game of `nim`, you can run the following command (with corresponding output):
 
 ```shell
 $ ILASP --clingo5 --version=3 ./game_definitions/nim/ilasp.las --max-wc-length=6
@@ -105,37 +111,44 @@ Solve time      : 77.426s
 Total           : 77.745s
 ```
 
-### 4. Run
+#### ii. Run sanity tests
 
-#### ii. Run main to simulate a match
+For generic tests, we use the `pytest` pakage, which has its documentation [here](https://docs.pytest.org/en/latest/getting-started.html#install-pytest).
 
-* TODO add parser help-log here
-
-Use the following command to simulate a match of nim using a strategy found by ILASP
+To run all tests, use the following command:
 
 ```shell
-$ python src/main.py
+$ pytest -v -s test.py
 ```
 
-#### Tests
+### 4. Simulate match
 
-For the test we use the pytest pakage, the documentation can be found [here](https://docs.pytest.org/en/latest/getting-started.html#install-pytest).
+To simulate a match, one can run `main.py` with the following arguments:
 
-To run all tests use the following command
+```
+$ python3 main.py --help
+
+usage: main.py [-h] [--path PATH] [--depth DEPTH] [--pA-style PA_STYLE]
+               [--pB-style PB_STYLE] [--debug]
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --path PATH          relative path of game description language for game (default:
+                       ./game_definitions/nim)
+  --depth DEPTH        depth to which game should be played (default: None)
+  --pA-style PA_STYLE  playing style for player a; either 'random', 'strategy' or
+                       'human' (default: random)
+  --pB-style PB_STYLE  playing style for player b; either 'random', 'strategy' or
+                       'human' (default: random)
+  --debug              print debugging information from stack (default: False)
+```
+
+An example of simulating two random players with verbosity is shown below:
 
 ```shell
-pytest . -v -s -p no:warnings
+$ python3 main.py --debug
 ```
-
-To run tests in one file run
-
-```shell
-pytest src/tests/test_file.py -v -s
-```
-
-This will run the tests in all the files in the tests folder.
-All test files must have the format `test_*.py`
 
 ### 5. Developments
 
-* TODO add further things to do here, or link to some document
+Further developments are summarized in our [changelog](/docs/changelog.md).

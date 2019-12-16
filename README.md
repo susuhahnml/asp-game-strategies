@@ -20,7 +20,7 @@ Information on our source code and workflow can be found in the [src](/src) dire
 
 ### Development
 
-A comprehensive changelog can be found [here](/docs/todos.md)
+A comprehensive changelog can be found [here](/docs/changelog.md)
 
 ### Citations
 

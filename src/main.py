@@ -13,19 +13,22 @@ from game_definitions import *
 # define key functions
 ###########################
 
-nim = GameNimDef("./game_definitions/nim")
-
-# TODO add debug, depth and path
-# TODO player 1 and 2; simulate match with human, random, strategy, or minmax
-
-match = simulate_match(nim,
-[
-    # {"name":"strategy","strategy_path":nim_url+"/strategy.lp"},
-    # {"name":"strategy","strategy_path":nim_url+"/strategy.lp"}
-    # {"name":"human"}
-    {"name":"random"},
-    {"name":"random"}
-],debug=True)
+def run(path,depth,pA_style,pB_style,debug):
+    nim = GameNimDef(path)
+    if pA_style != "strategy":
+        pA = {"name":pA_style}
+    else:
+        pA = {"name":pA_style,"strategy_path":path+"/strategy.lp"}
+    if pB_style != "strategy":
+        pB = {"name":pB_style}
+    else:
+        pB = {"name":pB_style,"strategy_path":path+"/strategy.lp"}
+    match = simulate_match(nim,
+    [
+        pA,
+        pB
+    ],debug=debug)
+    return match
 
 ###########################
 # main command call
@@ -33,11 +36,16 @@ match = simulate_match(nim,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--path", type=str, default="./game_definitions_nim",
+    parser.add_argument("--path", type=str, default="./game_definitions/nim",
                         help="relative path of game description language for game")
-    parser.add_argument("--depth", type=int, default="mnist",
-                        help="which training data to use; either mnist, fashion or faces")
-    parser.add_argument("--latent-dim", type=int, default=100,
-                        help="latent dimensionality of GAN generator")
+    parser.add_argument("--depth", type=int, default=None,
+                        help="depth to which game should be played")
+    parser.add_argument("--pA-style", type=str, default="random",
+                        help="playing style for player a; either 'random', 'strategy' or 'human'")
+    parser.add_argument("--pB-style", type=str, default="random",
+                        help="playing style for player b; either 'random', 'strategy' or 'human'")
     parser.add_argument("--debug", default=False, action="store_true",
-                        help="option to continue training model within log directory")
+                        help="print debugging information from stack")
+    args = parser.parse_args()
+    # run command
+    run(args.path,args.depth,args.pA_style,args.pB_style,args.debug)

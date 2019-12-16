@@ -1,7 +1,7 @@
 ** Workflow to-do's
 
 *** Urgent
-***** TODO reformat spacings in all code, think about adding numbers to TOC, add documentation to all missing files in dir-tree, fix init.py issues
+***** TODO add all functions and tests directly into main.py 
 ***** TODO after cleaning up document -> work on actual cleaning code process
 ***** TODO put all game backgrounds in single location which get referenced -> make simplest possible configuration for repository
 ***** TODO make document with all goals and objectives visualized
