@@ -100,7 +100,7 @@ Here we provide a tabular summary of our main code structure.
 
 In order to run ILASP for learning weak constraints in the game of `nim`, you can run the following command (with corresponding output):
 
-```shell
+```
 $ ILASP --clingo5 --version=3 ./game_definitions/nim/ilasp.las --max-wc-length=6
 
 :~ next(has(V0,2)), next(has(V1,2)), next(has(V2,0)), V0 != V1.[-1@2, 1, V0, V1, V2]
