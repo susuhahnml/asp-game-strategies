@@ -69,7 +69,7 @@ Here we provide a tabular summary of our main code structure.
 | L1          | L2                                                   | Description                                                                                   |
 | :---:       | :---:                                                | :---                                                                                          |
 | **players** |                                                      | Contains all the possible players representing the approaches for selecting actions in a game |
-| --->        | [players.py](players/players.py)                     | Defines the behaivour of each player                                                          |
+| --->        | [players.py](players/players.py)                     | Defines the behaviour of each player                                                          |
 | --->        | [min_max_asp.py](players/min_max_asp.py)             | Functions to compute algorithm using asp                                                      |
 | --->        | [min_max_python.py](players/min_max_python.py)       | Functions to compute algorithm in python                                                      |
 
@@ -113,7 +113,7 @@ Total           : 77.745s
 
 #### ii. Run sanity tests
 
-For generic tests, we use the `pytest` pakage, which has its documentation [here](https://docs.pytest.org/en/latest/getting-started.html#install-pytest).
+For generic tests, we use the `pytest` package, which has its documentation [here](https://docs.pytest.org/en/latest/getting-started.html#install-pytest).
 
 To run all tests, use the following command:
 
