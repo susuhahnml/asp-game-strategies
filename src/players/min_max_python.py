@@ -11,7 +11,8 @@ def square_possibilities(dim):
 
 def remaining_moves(board,leaf_node):
     if leaf_node != []:
-        played_moves = {el.name[0] for el in list(leaf_node.iter_path_reverse()) if not el.is_root}
+        played_moves = {el.name[0] for el in
+                        list(leaf_node.iter_path_reverse()) if not el.is_root}
         return board-played_moves
     else:
         return board
@@ -63,7 +64,8 @@ def check_consecutive_subsets_2d(arr):
 
 def terminal_check(leaf_node,next_move,player,threshold):
     if leaf_node != ():
-        played_moves = [(el.name[0],el.name[1]) for el in list(leaf_node.iter_path_reverse()) if not el.is_root]
+        played_moves = [(el.name[0],el.name[1]) for el in
+                        list(leaf_node.iter_path_reverse()) if not el.is_root]
         to_check = [el[0] for el in played_moves if el[1] == player]
         to_check.append(next_move)
         # get row and column moves
@@ -71,12 +73,14 @@ def terminal_check(leaf_node,next_move,player,threshold):
         cols = {el[1] for el in to_check}
         # check for row win
         for row in rows:
-            consec = check_consecutive_subsets([el[1] for el in to_check if el[0] == row])
+            consec = check_consecutive_subsets([el[1] for el in
+                                                to_check if el[0] == row])
             if any(el >= threshold for el in consec):
                 return player
         # check for column win
         for col in cols:
-            consec = check_consecutive_subsets([el[0] for el in to_check if el[1] == col])
+            consec = check_consecutive_subsets([el[0] for el in
+                                                to_check if el[1] == col])
             if any(el >= threshold for el in consec):
                 return player
         # check for diagonal win
@@ -122,7 +126,8 @@ def build_tree(dim,threshold,game="tic-tac-toe"):
 
 def build_minimax(tree):
     # work recursively backwards to fill up slots
-    for node in tqdm(list(reversed(list(LevelOrderIter(tree,maxlevel=tree.height))))):
+    for node in tqdm(list(reversed
+                          (list(LevelOrderIter(tree,maxlevel=tree.height))))):
         scores = [child.name[3] for child in node.children if child != ()]
         if node.name[3] == None:
             if node.name[1] == 1:

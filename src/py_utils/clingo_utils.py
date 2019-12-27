@@ -72,8 +72,10 @@ def generate_example(state_context,good_action,bad_action):
     context = fluents_to_asp_syntax(state_context.fluents)
     good_example_name = get_next_example_name()
     bad_example_name = get_next_example_name()
-    good_example =  "#pos({},{{ {} }}, {{}}, {{\n {} \n}}).".format(good_example_name, action_to_asp_syntax(good_action)[:-1], context )
-    bad_example =  "#pos({},{{ {} }}, {{}}, {{\n {} \n}}).".format(bad_example_name, action_to_asp_syntax(bad_action)[:-1], context )
+    good_example =  "#pos({},{{ {} }}, {{}}, {{\n {} \n}}).".format(
+        good_example_name, action_to_asp_syntax(good_action)[:-1], context )
+    bad_example =  "#pos({},{{ {} }}, {{}}, {{\n {} \n}}).".format(
+        bad_example_name, action_to_asp_syntax(bad_action)[:-1], context )
     order = "#brave_ordering({},{}).".format(good_example_name,bad_example_name)
     return "\n{}\n{}\n{}".format(good_example,bad_example,order)
 
@@ -83,9 +85,9 @@ def edit_vars(pred,subst_var,var_set):
         if is_var:
             v = "V{}".format(v_par)
             var_set.add(v)
-        trad_args.append( v if is_var else v_par) 
+        trad_args.append( v if is_var else v_par)
     for i,arg in enumerate(pred.arguments):
-        is_var = subst_var[pred.name][i] 
+        is_var = subst_var[pred.name][i]
         if(arg.type == clingo.SymbolType.Function):
             if len(arg.arguments)>0:
                 trad_args.append(edit_vars(arg,subst_var,var_set))
@@ -94,14 +96,16 @@ def edit_vars(pred,subst_var,var_set):
         elif(arg.type == clingo.SymbolType.Number):
             add_v(is_var, str(arg.number))
         elif(arg.type == clingo.SymbolType.String):
-            add_v(is_var, str(arg.string))   
+            add_v(is_var, str(arg.string))
     return "{}({})".format(pred.name,",".join(trad_args))
 
 def generate_rule(game_def, state_context,sel_action):
     #TODO make it general for variable context
     subst_var = game_def.subst_var
     variables = set([])
-    rule = ":-does({},V,T),V!={},".format(sel_action.player,edit_vars(sel_action.action,subst_var,variables))
+    rule = ":-does({},V,T),V!={},".format(sel_action.player,
+                                          edit_vars(sel_action.action,
+                                                    subst_var,variables))
     for fluent in state_context.fluents:
         rule+="holds({},T),".format(edit_vars(fluent,subst_var,variables))
     variables =  list(variables)

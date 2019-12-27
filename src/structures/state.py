@@ -28,7 +28,8 @@ class State:
         self.fluents_str = [symbol_str(n) for n in fluents]
         self.is_terminal = is_terminal
         self.goals = {g.arguments[0].name: g.arguments[1].number for g in goals}
-        self.control = [f.arguments[0].name for f in fluents if f.name=='control'][0]
+        self.control = [f.arguments[0].name
+                        for f in fluents if f.name=='control'][0]
         self.game_def = game_def
 
     def get_fluents_string(self):
@@ -101,7 +102,8 @@ class StateExpanded(State):
         Args:
             game_def: The definition of the game
             strategy: Optional Path to file with an strategy
-            current_fluents: A string with all fluents true in the state in clingo syntax
+            current_fluents: A string with all fluents true in the state
+            in clingo syntax
         """
         ctl = clingo.Control("0")
         # Check if it can load from grounded atoms gotten from ASP
@@ -121,7 +123,8 @@ class StateExpanded(State):
                     state = StateExpanded.from_model(model,game_def)
                     has_initialized = True
                 state.add_action_from_clingo_model(model)
-            state.legal_actions_to_idx = {symbol_str(a.action):i for i,a in enumerate(state.legal_actions)}
+            state.legal_actions_to_idx = {symbol_str(a.action):i for
+                                          i,a in enumerate(state.legal_actions)}
             return state
 
     def get_next(self, action, strategy_path = None):
@@ -133,7 +136,8 @@ class StateExpanded(State):
             strategy: Optional strategy path
         """
         return StateExpanded.from_game_def(self.game_def,
-                      current_fluents = fluents_to_asp_syntax(action.next_fluents), strategy=strategy_path )
+                      current_fluents=fluents_to_asp_syntax(action.next_fluents)
+                                           ,strategy=strategy_path)
 
     def get_symbol_legal_actions(self):
         """
@@ -158,14 +162,15 @@ class StateExpanded(State):
             player = symbol_str(action.arguments[0])
             next_fluents = [a.arguments[0] for a in atoms if a.name=='next']
             cost = model.cost
-            action_class = ActionExpanded(player,action.arguments[1],next_fluents,cost)
+            action_class = ActionExpanded(player,action.arguments[1],
+                                          next_fluents,cost)
             self.legal_actions.append(action_class)
             return
 
     def get_legal_action_from_str(self, action_str):
         """
-        Obtains the clingo action from a given string name. If the action is not legal the
-        method returns None.
+        Obtains the clingo action from a given string name.
+        If the action is not legal the method returns None.
         Args:
             action_str: The string representing the action
         """
@@ -176,7 +181,8 @@ class StateExpanded(State):
 
     def __str_detail__(self):
         f = self.get_fluents_string()
-        a = "\n".join(["{}:{}".format(i,str(a)[2:]) for i,a in enumerate(self.legal_actions)])
+        a = "\n".join(["{}:{}".format(i,str(a)[2:])
+                       for i,a in enumerate(self.legal_actions)])
         s = """
         ============== STATE ==============
         FLUENTS:

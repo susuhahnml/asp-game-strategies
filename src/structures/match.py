@@ -16,7 +16,8 @@ class Match:
     @classmethod
     def from_time_model(cls, model, game_def, main_player = None):
         atoms = model.symbols(atoms=True)
-        fluent_steps = defaultdict(lambda: {'fluents':[],'goals':[],'action':None})
+        fluent_steps = defaultdict(lambda: {'fluents':[],'goals':[],
+                                            'action':None})
         for a in atoms:
             if(a.name=="holds"):
                 time = a.arguments[1].number
@@ -31,12 +32,14 @@ class Match:
         fluent_steps = dict(fluent_steps)
         steps = []
         for i in range(len(fluent_steps)):
-            state = State(fluent_steps[i]['fluents'],fluent_steps[i]['goals'],game_def)
+            state = State(fluent_steps[i]['fluents'],fluent_steps[i]['goals'],
+                          game_def)
             action = None
             if(not fluent_steps[i]['action']):
                 pass
             else:
-                action = Action(fluent_steps[i]['action'].arguments[0].name,fluent_steps[i]['action'].arguments[1])
+                action = Action(fluent_steps[i]['action'].arguments[0].name,
+                                fluent_steps[i]['action'].arguments[1])
             step = Step(state,action,i)
             steps.append(step)
         steps[-1].state.is_terminal = True
@@ -58,6 +61,7 @@ class Match:
             s+="\nSTEP {}:".format(step.time_step)
             s+= step.ascii
             if(step.state.is_terminal):
-                s+="{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,bcolors.ENDC)
+                s+="{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,
+                                            bcolors.ENDC)
             s+=bcolors.ENDC
         return s

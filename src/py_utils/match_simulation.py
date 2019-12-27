@@ -26,7 +26,8 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
         - n: Generate until depth n or terminal state reached
     """
     # TODO check options other than default
-    players = [conf_to_player(player_config[0]),conf_to_player(player_config[1])]
+    players = [conf_to_player(player_config[0]),
+               conf_to_player(player_config[1])]
     state = StateExpanded.from_game_def(game_def,
                       game_def.initial,
                       strategy = players[0].strategy)
@@ -34,7 +35,8 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
     time_step = 0
     continue_depth = True if depth==None else time_step<depth
     if debug: print("\n--------------- Simulating match ----------------")
-    if debug: print("a: {}\nb: {}\n".format(players[0].__class__.__name__,players[1].__class__.__name__))
+    if debug: print("a: {}\nb: {}\n".format(players[0].__class__.__name__,
+                                            players[1].__class__.__name__))
     while(not state.is_terminal and continue_depth):
         #TODO what if players change order
         selected_action = players[time_step%2].choose_action(state)
@@ -42,7 +44,8 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
         match.add_step(Step(state,selected_action,time_step))
         time_step+=1
         continue_depth = True if depth==None else time_step<depth
-        state = state.get_next(selected_action,strategy_path = players[time_step%2].strategy)
+        state = state.get_next(selected_action,
+                               strategy_path = players[time_step%2].strategy)
     match.add_step(Step(state,None,time_step))
     if debug: print(match)
     return match

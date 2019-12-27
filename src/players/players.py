@@ -37,7 +37,8 @@ class HumanPlayer(Player):
 
         print('\t'.join(state.str_step_options.splitlines(True)))
         #TODO make more resistent to errors
-        action_index = int(input("\t - - - > Select action by entering the index number: "))
+        action_index = int(input("\t - - - > Select action" +
+                                 " by entering the index number: "))
         print(bcolors.ENDC)
         return state.legal_actions[action_index]
 
@@ -89,7 +90,8 @@ class MinmaxASPPlayer(Player):
         initial = fluents_to_asp_syntax(state.fluents,0)
         match, tree, ex = get_minmax_init(self.game_def,self.main_player,initial)
         action_name = symbol_str(match.steps[0].action.action)
-        action = [l_a for l_a in state.legal_actions if symbol_str(l_a.action) == action_name][0]
+        action = [l_a for l_a in state.legal_actions
+                  if symbol_str(l_a.action) == action_name][0]
         return action
 
 class MLPlayer(Player):

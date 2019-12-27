@@ -1,33 +1,16 @@
 Workflow to-do\'s
 -----------------
 
-### Urgent
-
-1.  **TODO** add all functions and tests directly into
-    main.py
-
-2.  **TODO** after cleaning up document -\> work on actual
-    cleaning code process
-
-3.  **TODO** put all game backgrounds in single location
-    which get referenced -\> make simplest possible configuration for
-    repository
-
-4.  **TODO** make document with all goals and objectives
-    visualized
-
-5.  **TODO** transfer issues from Gitlab to GitHub
-
-6.  **TODO** add better documentation to show functionalities
-    with table
-
-7.  make nicer visualizations with more symmetric faces
-
 ### Minimax algorithm
 
-1.  **TODO** extend game to nim
+1.  **TODO** after cleaning up document -\> work on actual
+    cleaning code process
 
-2.  check if possible to use reverse level iterator without list
+2.  **TODO** extend game to nim
+
+3.  make nicer visualizations with more symmetric faces
+
+4.  check if possible to use reverse level iterator without list
     conversion
 
 ### Monte-carlo tree search
@@ -57,12 +40,15 @@ Workflow to-do\'s
 3.  **TODO** possibly merge visualization into single tree
     pipeline for less overhead, reduce overall tree visits
 
-4.  publish separate repository for minimax/monte-carlo game approach
+4.  **TODO** fix all beyond 80 line issues in all scripts,
+    fix all docstring indents and spaces
+
+5.  publish separate repository for minimax/monte-carlo game approach
     using python and later pipe into asp framework, resume visualization
     techniques later on and see how monte carlo approach can work, try
     abstracting to nim
 
-5.  save graphs as images, dotfiles and pickles to binary which can be
+6.  save graphs as images, dotfiles and pickles to binary which can be
     used later
 
 ### Long-term goals

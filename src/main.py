@@ -35,15 +35,19 @@ def run(path,depth,pA_style,pB_style,debug):
 ###########################
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(formatter_class=
+                                     argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--path", type=str, default="./game_definitions/nim",
-                        help="relative path of game description language for game")
+                        help="relative path of game" +
+                        " description language for game")
     parser.add_argument("--depth", type=int, default=None,
                         help="depth to which game should be played")
     parser.add_argument("--pA-style", type=str, default="random",
-                        help="playing style for player a; either 'random', 'strategy' or 'human'")
+                        help="playing style for player a;"+
+                        " either 'random', 'strategy' or 'human'")
     parser.add_argument("--pB-style", type=str, default="random",
-                        help="playing style for player b; either 'random', 'strategy' or 'human'")
+                        help="playing style for player b;"+
+                        " either 'random', 'strategy' or 'human'")
     parser.add_argument("--debug", default=False, action="store_true",
                         help="print debugging information from stack")
     args = parser.parse_args()
