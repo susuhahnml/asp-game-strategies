@@ -19,14 +19,14 @@ else
   echo "$ pip install --user pipreqs"
 fi
 
-# convert todos.org to todos.md
-pandoc -f org -t markdown -o ./docs/shankar_todos.md ./docs/shankar_todos.org
-
-# replace TODOs cleanly
-sed -i 's/\[.*\]{.*}/**TODO**/g' ./docs/shankar_todos.md
-
-# add requirements.txt to stage for commit
-git add ./docs/shankar_todos.md
+if [ -f ./docs/shankar_todos.org ]; then
+  # convert todos.org to todos.md
+  pandoc -f org -t markdown -o ./docs/shankar_todos.md ./docs/shankar_todos.org
+  # replace TODOs cleanly
+  sed -i 's/\[.*\]{.*}/**TODO**/g' ./docs/shankar_todos.md
+  # add requirements.txt to stage for commit
+  git add ./docs/shankar_todos.md
+fi
 
 if git rev-parse --verify HEAD >/dev/null 2>&1
 then
