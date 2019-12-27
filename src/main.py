@@ -9,10 +9,6 @@ from structures import *
 from players import *
 from game_definitions import *
 
-###########################
-# define key functions
-###########################
-
 def run(path,depth,pA_style,pB_style,debug):
     nim = GameNimDef(path)
     if pA_style != "strategy":
@@ -29,10 +25,6 @@ def run(path,depth,pA_style,pB_style,debug):
         pB
     ],debug=debug)
     return match
-
-###########################
-# main command call
-###########################
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=
