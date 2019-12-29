@@ -6,12 +6,11 @@ Workflow to-do\'s
 1.  **TODO** add minimax pipeline to tree class in simple
     python as this does not require asp references
 
-2.  **TODO** issue of asp encoding removing all
+2.  **TODO** add pull request with new asp encodings for more
+    arbitrary examples, piles and exact solutions instead of symmetries
 
 3.  check if possible to use reverse level iterator without list
     conversion
-
-4.  extend nim to arbitrary piles based on current encoding
 
 ### Presentation
 
