@@ -2,9 +2,8 @@
 
 *** Minimax algorithm
 ***** TODO add minimax pipeline to tree class in simple python as this does not require asp references
-***** TODO issue of asp encoding removing all
+***** TODO add pull request with new asp encodings for more arbitrary examples, piles and exact solutions instead of symmetries
 ***** check if possible to use reverse level iterator without list conversion
-***** extend nim to arbitrary piles based on current encoding
 
 *** Presentation
 ***** TODO make nicer visualizations with more symmetric faces
