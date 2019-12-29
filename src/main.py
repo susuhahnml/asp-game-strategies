@@ -26,9 +26,16 @@ def run(path,depth,pA_style,pB_style,debug):
     ],debug=debug)
     return match
 
+class arg_metav_formatter(argparse.ArgumentDefaultsHelpFormatter,
+                      argparse.MetavarTypeHelpFormatter):
+    """
+    Class to combine argument parsers in order to display meta-variables
+    and defaults for arguments
+    """
+    pass
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(formatter_class=
-                                     argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
     parser.add_argument("--path", type=str, default="./game_definitions/nim",
                         help="relative path of game" +
                         " description language for game")

@@ -128,19 +128,19 @@ To simulate a match, one can run `main.py` with the following arguments:
 ```
 $ python3 main.py --help
 
-usage: main.py [-h] [--path PATH] [--depth DEPTH] [--pA-style PA_STYLE]
-               [--pB-style PB_STYLE] [--debug]
+usage: main.py [-h] [--path str] [--depth int] [--pA-style str] [--pB-style str]
+               [--debug]
 
 optional arguments:
-  -h, --help           show this help message and exit
-  --path PATH          relative path of game description language for game (default:
-                       ./game_definitions/nim)
-  --depth DEPTH        depth to which game should be played (default: None)
-  --pA-style PA_STYLE  playing style for player a; either 'random', 'strategy' or
-                       'human' (default: random)
-  --pB-style PB_STYLE  playing style for player b; either 'random', 'strategy' or
-                       'human' (default: random)
-  --debug              print debugging information from stack (default: False)
+  -h, --help      show this help message and exit
+  --path str      relative path of game description language for game (default:
+                  ./game_definitions/nim)
+  --depth int     depth to which game should be played (default: None)
+  --pA-style str  playing style for player a; either 'random', 'strategy' or 'human'
+                  (default: random)
+  --pB-style str  playing style for player b; either 'random', 'strategy' or 'human'
+                  (default: random)
+  --debug         print debugging information from stack (default: False)
 ```
 
 An example of simulating two random players with verbosity is shown below:
