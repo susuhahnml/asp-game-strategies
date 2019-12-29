@@ -1,27 +1,26 @@
 ** Workflow to-do's
 
 *** Minimax algorithm
-***** TODO after cleaning up document -> work on actual cleaning code process
-***** TODO extend game to nim
-***** make nicer visualizations with more symmetric faces
+***** TODO add minimax pipeline to tree class in simple python as this does not require asp references
+***** TODO issue of asp encoding removing all
 ***** check if possible to use reverse level iterator without list conversion
+***** extend nim to arbitrary piles based on current encoding
 
+*** Presentation
+***** TODO make nicer visualizations with more symmetric faces
+***** TODO possibly merge visualization into single tree pipeline for less overhead, reduce overall tree visits
+***** TODO change location of images to ./src/img directory
+***** save graphs as images, dotfiles and pickles to binary which can be used later
+
+*** Optimizations
+***** TODO optimize mini-max algorithm with fewer tree visits where possible, add slower approach for plotting trees
+***** add further symmetries to reduce search space; extra overhead to search for level-symmetries
+***** add parallelization to all scripts, linear time reduction
+***** time gained in linear symmetry searched, time saved in greater than linear reduced number of leaves due to branching factor
+      
 *** Monte-carlo tree search
 ***** investigate theory and implement in code to approximate minimax tree
 ***** show that minimax and monte-carlo trees converge in practice
-
-*** Optimizations
-***** add parallelization to all scripts, linear time reduction
-***** add further symmetries to reduce search space; extra overhead to search for level-symmetries
-***** time gained in linear symmetry searched, time saved in greater than linear reduced number of leaves due to branching factor
-      
-*** Presentation
-***** TODO once done, make modular and separate classes for compacter representation
-***** TODO add script to convert into state-wise tree with pretty ansi for easier visualization of some branches
-***** TODO possibly merge visualization into single tree pipeline for less overhead, reduce overall tree visits
-***** TODO fix all beyond 80 line issues in all scripts, fix all docstring indents and spaces
-***** publish separate repository for minimax/monte-carlo game approach using python and later pipe into asp framework, resume visualization techniques later on and see how monte carlo approach can work, try abstracting to nim
-***** save graphs as images, dotfiles and pickles to binary which can be used later
 
 *** Long-term goals
 ***** build efficient mini-max algorithm and integrate alpha-beta pruning

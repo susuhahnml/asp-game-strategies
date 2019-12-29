@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# import dependencies
 import time
 import argparse
 from py_utils import *
@@ -11,6 +10,8 @@ from game_definitions import *
 
 def run(path,depth,pA_style,pB_style,debug):
     nim = GameNimDef(path)
+    if "human" in [pA_style,pB_style]:
+        debug = True
     if pA_style != "strategy":
         pA = {"name":pA_style}
     else:
@@ -19,11 +20,7 @@ def run(path,depth,pA_style,pB_style,debug):
         pB = {"name":pB_style}
     else:
         pB = {"name":pB_style,"strategy_path":path+"/strategy.lp"}
-    match = simulate_match(nim,
-    [
-        pA,
-        pB
-    ],debug=debug)
+    match = simulate_match(nim,[pA,pB],debug=debug)
     return match
 
 class arg_metav_formatter(argparse.ArgumentDefaultsHelpFormatter,

@@ -118,7 +118,7 @@ For generic tests, we use the `pytest` package, which has its documentation [her
 To run all tests, use the following command:
 
 ```shell
-$ pytest -v -s test.py
+$ pytest -v -s ./tests/*
 ```
 
 ### 4. Simulate match
