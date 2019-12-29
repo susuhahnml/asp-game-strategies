@@ -67,3 +67,19 @@ class Tree:
     def print_in_console(self):
         for pre, fill, node in RenderTree(self.root):
             print("%s%s" % (pre, node.name))
+
+# TODO add pydocstrings to all bits
+# TODO add minimax scores via reverse strategy
+
+def build_minimax(tree):
+    # work recursively backwards to fill up slots
+    for node in tqdm(list(reversed
+                        (list(LevelOrderIter(tree,maxlevel=tree.height))))):
+        scores = [child.name[3] for child in node.children if child != ()]
+        if node.name[3] == None:
+            if node.name[1] == 1:
+                node.name[3] = min(scores)
+            elif node.name[1] == -1:
+                node.name[3] = max(scores)
+    return tree
+
