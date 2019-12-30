@@ -56,8 +56,14 @@ class Step:
 
     @property
     def ascii_score(self):
-        if(self.score):
-            return "SCORE:({})\n{}".format(self.score,self.ascii)
+        if self.score:
+            if self.action != None:
+                return "score:({})\n{}".format(self.score,
+                                                   self.ascii)
+            else:
+                return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
+                         "{}").format("a",
+                                      self.score,
+                                      self.ascii))
         else:
             return ""
-        # return a+self.ascii

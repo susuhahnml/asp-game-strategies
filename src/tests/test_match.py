@@ -6,7 +6,7 @@ from structures import *
 from players import *
 from game_definitions.game_def import *
 
-nim = GameNimDef("./game_definitions/nim")
+nim = GameNimDef("./game_definitions/test_nim")
 
 def test_match():
     match = simulate_match(nim,

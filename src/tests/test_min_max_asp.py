@@ -7,7 +7,7 @@ from structures import *
 from players import *
 from game_definitions import *
 
-nim = GameNimDef("./game_definitions/nim")
+nim = GameNimDef("./game_definitions/test_nim")
 
 def test_match_time():
     initial = ('holds(has(1,2),0). holds(has(2,2),0).'+

@@ -3,11 +3,12 @@ Workflow to-do\'s
 
 ### Minimax algorithm
 
-1.  **TODO** add minimax pipeline to tree class in simple
-    python as this does not require asp references
+1.  **TODO** add pull request with new asp encodings for more
+    arbitrary examples, piles and exact solutions instead of symmetries,
+    get Susana\'s opinion which might require editing of full~time~.lp
+    encodings
 
-2.  **TODO** add pull request with new asp encodings for more
-    arbitrary examples, piles and exact solutions instead of symmetries
+2.  add pydocstrings to all tree bits
 
 3.  check if possible to use reverse level iterator without list
     conversion
@@ -17,18 +18,15 @@ Workflow to-do\'s
 1.  **TODO** make nicer visualizations with more symmetric
     faces
 
-2.  **TODO** possibly merge visualization into single tree
-    pipeline for less overhead, reduce overall tree visits
+2.  **TODO** add bold for terminal and root scores
 
-3.  **TODO** change location of images to ./src/img directory
-
-4.  save graphs as images, dotfiles and pickles to binary which can be
+3.  save graphs as images, dotfiles and pickles to binary which can be
     used later
 
 ### Optimizations
 
 1.  **TODO** optimize mini-max algorithm with fewer tree
-    visits where possible, add slower approach for plotting trees
+    visits where possible
 
 2.  add further symmetries to reduce search space; extra overhead to
     search for level-symmetries
