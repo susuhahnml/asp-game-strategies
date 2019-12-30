@@ -17,6 +17,7 @@ class Tree:
         initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
         root_node = Node(Step(initial_state,None,0))
         root_node = self.expand_root(root_node)
+        root_node = self.build_minimax(root_node)
         self.root = root_node
 
     def expand_root(self,tree):
@@ -33,14 +34,44 @@ class Tree:
                     for legal_action in valid_moves:
                         next_state = leaf.name.state.get_next(legal_action)
                         step = Step(next_state,legal_action,time_step)
-                        Node(step,parent=leaf)
-                        if(not next_state.is_terminal):
+                        if next_state.is_terminal:
+                            goals = next_state.goals
+                            for player,g_score in goals.items():
+                                if g_score == 1 and player == "a":
+                                    score = 1
+                                elif g_score == 1 and player == "b":
+                                    score = -1
+                            step.score = score
+                        else:
                             expand_further = True
-                else:
-                    pass
-                    # leaf.name.score = leaf.name.
+                        Node(step,parent=leaf)
             time_step += 1
         return tree
+
+    def build_minimax(self,tree):
+        print("tracking minimax scores recursively")
+        # work recursively backwards to fill up slots
+        for node in tqdm(list(reversed
+                            (list(LevelOrderIter(tree.root,
+                                                maxlevel=tree.root.height))))):
+            scores = [child.name.score
+                      for child in node.children if child != ()]
+            if node.name.score == None:
+                if node.name.state.control == "a":
+                    node.name.score = max(scores)
+                elif node.name.state.control == "b":
+                    node.name.score = min(scores)
+        return tree
+
+    def print_in_file(self,base_dir="./img/",file_name="tree_test.png"):
+        def to_label(n):
+            return 'label="%s"' % (n.name.ascii_score)
+        UniqueDotExporter(self.root,nodeattrfunc=to_label).to_picture(base_dir+
+                                                                      file_name)
+
+    def print_in_console(self):
+        for pre, fill, node in RenderTree(self.root):
+            print("%s%s" % (pre, node.name))
 
     @staticmethod
     def node_from_match_initial(match):
@@ -58,28 +89,3 @@ class Tree:
             new = Node(s,parent=current_node)
             current_node = new
         return root_node
-
-    def print_in_file(self,file_name="tree_test.png"):
-        def to_label(n):
-            return 'label="%s"' % (n.name.ascii_score)
-        UniqueDotExporter(self.root,nodeattrfunc=to_label).to_picture(file_name)
-
-    def print_in_console(self):
-        for pre, fill, node in RenderTree(self.root):
-            print("%s%s" % (pre, node.name))
-
-# TODO add pydocstrings to all bits
-# TODO add minimax scores via reverse strategy
-
-def build_minimax(tree):
-    # work recursively backwards to fill up slots
-    for node in tqdm(list(reversed
-                        (list(LevelOrderIter(tree,maxlevel=tree.height))))):
-        scores = [child.name[3] for child in node.children if child != ()]
-        if node.name[3] == None:
-            if node.name[1] == 1:
-                node.name[3] = min(scores)
-            elif node.name[1] == -1:
-                node.name[3] = max(scores)
-    return tree
-
