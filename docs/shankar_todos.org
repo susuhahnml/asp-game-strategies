@@ -1,36 +1,27 @@
 ** Workflow to-do's
 
-Focus on fully building utilities on nim -> start with symmetry reduction and then monte carlo methods based on some time limit, perhaps also parallelization of scripts, tic-tac-toe can come later as an additional step where necessary
-tic-tac-toe can be additional but not necessary step, remove description from all readmes
-
-Focus on symmetry reduction, followed by monte carlo tree search
-
-*** Game encodings
-***** TODO add asp encodings for tic-tac-toe, add ability to read more diverse encodings
-***** TODO possible to terminate nim even one step earlier with next has
-***** might be necessary to terminate tic tac toe with next has
-***** shift all groups of m minus (minimum of set minus one)
-***** use sum of n consecutive naturals for proof checking
-
-*** Minimax algorithm
-***** TODO add pull request with new asp encodings for more arbitrary examples, piles and exact solutions instead of symmetries, get Susana's opinion which might require editing of full_time.lp encodings
-***** TODO add pydocstrings to all tree bits
-***** check if possible to use reverse level iterator without list conversion
-
 *** Presentation
-***** TODO make nicer visualizations with more symmetric faces
+***** TODO make nicer visualizations with more symmetric faces, issue of odd spacings in next steps due to old artifacts
 ***** TODO add bold for terminal and root scores
 ***** save graphs as images, dotfiles and pickles to binary which can be used later
 
-*** Optimizations
-***** TODO optimize mini-max algorithm with fewer tree visits where possible
-***** TODO add further symmetries to reduce search space; extra overhead to search for level-symmetries -> can add symmetry searches directly into asp
-***** add parallelization to all scripts, linear time reduction
-***** time gained in linear symmetry searched, time saved in greater than linear reduced number of leaves due to branching factor
-      
 *** Monte-carlo tree search
-***** investigate theory and implement in code to approximate minimax tree
-***** show that minimax and monte-carlo trees converge in practice
+***** TODO investigate theory and implement in code to approximate minimax tree given certain time threshold
+***** show that minimax and monte-carlo trees converge in practice, perhaps for smaller trees
+
+*** Minimax algorithm
+***** TODO add pull request with new asp encodings for more arbitrary examples, piles and exact solutions instead of symmetries, get Susana's opinion which might require editing of full_time.lp encodings
+***** TODO update diff views after commits; best with auto-created views
+***** TODO add pydocstrings to all tree bits
+***** check if possible to use reverse level iterator without list conversion
+
+*** Optimizations
+***** TODO optimize mini-max algorithm with fewer tree visits where possible, might need to look into exact source code within step/state
+***** add parallelization to all scripts, linear time reduction
+      
+*** Extra: game encodings
+***** possible to terminate nim even one step earlier with next has
+***** add asp encodings for tic-tac-toe, add ability to read more diverse encodings
 
 *** Long-term goals
 ***** build efficient mini-max algorithm and integrate alpha-beta pruning

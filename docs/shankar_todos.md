@@ -1,27 +1,23 @@
 Workflow to-do\'s
 -----------------
 
-Focus on fully building utilities on nim -\> start with symmetry
-reduction and then monte carlo methods based on some time limit, perhaps
-also parallelization of scripts, tic-tac-toe can come later as an
-additional step where necessary tic-tac-toe can be additional but not
-necessary step, remove description from all readmes
+### Presentation
 
-Focus on symmetry reduction, followed by monte carlo tree search
+1.  **TODO** make nicer visualizations with more symmetric
+    faces, issue of odd spacings in next steps due to old artifacts
 
-### Game encodings
+2.  **TODO** add bold for terminal and root scores
 
-1.  **TODO** add asp encodings for tic-tac-toe, add ability
-    to read more diverse encodings
+3.  save graphs as images, dotfiles and pickles to binary which can be
+    used later
 
-2.  **TODO** possible to terminate nim even one step earlier
-    with next has
+### Monte-carlo tree search
 
-3.  might be necessary to terminate tic tac toe with next has
+1.  **TODO** investigate theory and implement in code to
+    approximate minimax tree given certain time threshold
 
-4.  shift all groups of m minus (minimum of set minus one)
-
-5.  use sum of n consecutive naturals for proof checking
+2.  show that minimax and monte-carlo trees converge in practice,
+    perhaps for smaller trees
 
 ### Minimax algorithm
 
@@ -30,40 +26,28 @@ Focus on symmetry reduction, followed by monte carlo tree search
     get Susana\'s opinion which might require editing of full~time~.lp
     encodings
 
-2.  **TODO** add pydocstrings to all tree bits
+2.  **TODO** update diff views after commits; best with
+    auto-created views
 
-3.  check if possible to use reverse level iterator without list
+3.  **TODO** add pydocstrings to all tree bits
+
+4.  check if possible to use reverse level iterator without list
     conversion
-
-### Presentation
-
-1.  **TODO** make nicer visualizations with more symmetric
-    faces
-
-2.  **TODO** add bold for terminal and root scores
-
-3.  save graphs as images, dotfiles and pickles to binary which can be
-    used later
 
 ### Optimizations
 
 1.  **TODO** optimize mini-max algorithm with fewer tree
-    visits where possible
+    visits where possible, might need to look into exact source code
+    within step/state
 
-2.  **TODO** add further symmetries to reduce search space;
-    extra overhead to search for level-symmetries -\> can add symmetry
-    searches directly into asp
+2.  add parallelization to all scripts, linear time reduction
 
-3.  add parallelization to all scripts, linear time reduction
+### Extra: game encodings
 
-4.  time gained in linear symmetry searched, time saved in greater than
-    linear reduced number of leaves due to branching factor
+1.  possible to terminate nim even one step earlier with next has
 
-### Monte-carlo tree search
-
-1.  investigate theory and implement in code to approximate minimax tree
-
-2.  show that minimax and monte-carlo trees converge in practice
+2.  add asp encodings for tic-tac-toe, add ability to read more diverse
+    encodings
 
 ### Long-term goals
 
