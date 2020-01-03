@@ -71,7 +71,6 @@ Here we provide a tabular summary of our main code structure.
 | **players** |                                                      | Contains all the possible players representing the approaches for selecting actions in a game |
 | --->        | [players.py](players/players.py)                     | Defines the behaviour of each player                                                          |
 | --->        | [min_max_asp.py](players/min_max_asp.py)             | Functions to compute algorithm using asp                                                      |
-| --->        | [min_max_python.py](players/min_max_python.py)       | Functions to compute algorithm in python                                                      |
 
 #### iii. `py_utils`
 
