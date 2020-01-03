@@ -6,7 +6,7 @@
 
 ### Python minimax
 * write python-based script for minimax tree creation
-* extend to nim and tic-tac-toe
+* extend to nim game
 
 ### Monte-carlo tree search
 * work on writing quick tree search algorithm to assist in learning examples

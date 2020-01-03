@@ -12,7 +12,7 @@ The idea for this project is mainly based on the paper ["Learning weak constrain
 
 ### Methodologies
 
-As a main example we use the mathematical strategy game called [Nim](https://en.wikipedia.org/wiki/Nim). This game has a wining strategy which we attempt to learn using this framework. Furthermore, we will attempt to cross-model the simple game of [tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe), as an extension to our framework.
+As a main example we use the mathematical strategy game called [Nim](https://en.wikipedia.org/wiki/Nim). This game has a wining strategy which we attempt to learn using this framework.
 
 To represent the game encoding we will use the [Game Description Language (GDL)](https://en.wikipedia.org/wiki/Game_Description_Language) used to formalize the rules of any finite game with complete information.
 
