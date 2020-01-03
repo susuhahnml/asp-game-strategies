@@ -1,8 +1,20 @@
 ** Workflow to-do's
 
+Focus on fully building utilities on nim -> start with symmetry reduction and then monte carlo methods based on some time limit, perhaps also parallelization of scripts, tic-tac-toe can come later as an additional step where necessary
+tic-tac-toe can be additional but not necessary step, remove description from all readmes
+
+Focus on symmetry reduction, followed by monte carlo tree search
+
+*** Game encodings
+***** TODO add asp encodings for tic-tac-toe, add ability to read more diverse encodings
+***** TODO possible to terminate nim even one step earlier with next has
+***** might be necessary to terminate tic tac toe with next has
+***** shift all groups of m minus (minimum of set minus one)
+***** use sum of n consecutive naturals for proof checking
+
 *** Minimax algorithm
 ***** TODO add pull request with new asp encodings for more arbitrary examples, piles and exact solutions instead of symmetries, get Susana's opinion which might require editing of full_time.lp encodings
-***** add pydocstrings to all tree bits
+***** TODO add pydocstrings to all tree bits
 ***** check if possible to use reverse level iterator without list conversion
 
 *** Presentation
@@ -12,7 +24,7 @@
 
 *** Optimizations
 ***** TODO optimize mini-max algorithm with fewer tree visits where possible
-***** add further symmetries to reduce search space; extra overhead to search for level-symmetries
+***** TODO add further symmetries to reduce search space; extra overhead to search for level-symmetries -> can add symmetry searches directly into asp
 ***** add parallelization to all scripts, linear time reduction
 ***** time gained in linear symmetry searched, time saved in greater than linear reduced number of leaves due to branching factor
       
