@@ -65,7 +65,8 @@ class Tree:
 
     def print_in_file(self,base_dir="./img/",file_name="tree_test.png"):
         def to_label(n):
-            return 'label="%s"' % (n.name.ascii_score)
+            return 'label=<%s>' % (n.name.ascii_score.
+                                          replace("\n","<br/>\n"))
         UniqueDotExporter(self.root,nodeattrfunc=to_label).to_picture(base_dir+
                                                                       file_name)
 

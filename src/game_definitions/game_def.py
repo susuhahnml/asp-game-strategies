@@ -87,4 +87,7 @@ class GameNimDef(GameDef):
         new_line = (step.action.player+" ")*(n) + lines[p][:(self.max_number
                                                                -n*2)]
         lines[p] = new_line
+        for i,line in enumerate(lines):
+            if i != 0 and re.match(r'^\s*$', line):
+                del lines[i]
         return "\n".join(lines)

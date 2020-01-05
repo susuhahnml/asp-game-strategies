@@ -1,9 +1,8 @@
 ** Workflow to-do's
 
 *** Presentation
-***** TODO perhaps better to export to dotfile first and then edit/export via shell to png
-***** TODO make nicer visualizations with more symmetric faces, issue of odd spacings in next steps due to old artifacts
-***** TODO add bold for terminal and root scores
+***** TODO make nicer visualizations with more symmetric faces
+***** TODO add dedicated modular html conversion functions
 ***** save graphs as images, dotfiles and pickles to binary which can be used later
 
 *** Monte-carlo tree search
@@ -11,9 +10,8 @@
 ***** show that minimax and monte-carlo trees converge in practice, perhaps for smaller trees
 
 *** Minimax algorithm
-***** TODO update diff views after commits; best with auto-created views
 ***** TODO add pydocstrings to all tree bits
-***** TODO add pull request with new asp encodings for more arbitrary examples, piles and exact solutions instead of symmetries, get Susana's opinion which might require editing of full_time.lp encodings
+***** TODO review pull request which might require editing of full_time.lp encodings
 ***** check if possible to use reverse level iterator without list conversion
 
 *** Optimizations
