@@ -15,6 +15,8 @@ Workflow to-do\'s
 4.  save graphs as images, dotfiles and pickles to binary which can be
     used later
 
+5.  add consistent pydocstrings to all parts of code
+
 ### Monte-carlo tree search
 
 1.  **TODO** investigate theory and implement in code to
@@ -25,12 +27,10 @@ Workflow to-do\'s
 
 ### Minimax algorithm
 
-1.  **TODO** add pydocstrings to all tree bits
-
-2.  **TODO** review pull request which might require editing
+1.  **TODO** review pull request which might require editing
     of full~time~.lp encodings
 
-3.  check if possible to use reverse level iterator without list
+2.  check if possible to use reverse level iterator without list
     conversion
 
 ### Optimizations

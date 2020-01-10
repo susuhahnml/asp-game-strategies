@@ -5,21 +5,20 @@ import re
 from collections import defaultdict
 
 class GameDef():
-    """
-    Creates a game definition from a path.
-
-    Args:
-        game_path: Path to the folder of the game must have the following files:
-                --> all.lp : Clingo file to generate all
-                    possible actions(regardless of the player) and fluents
-                --> background.lp : Clingo file with all rules
-                    from the game in GDL format
-                --> full_time.lp : Clingo file with all rules
-                    from the game in action description language with time steps
-                --> initial.lp : Clingo file with all facts
-                    for the initial state
-    """
+    """ Template class which can be reproduced for multiple games """
     def __init__(self,path):
+        """
+        Creates a game definition from a path.
+
+        Args:
+            game_path (str): Path to directory with following files:
+                - background.lp : Clingo file with all rules
+                from the game in GDL format
+                - initial.lp : Clingo file with all facts
+                for the initial state
+                - full_time.lp (optional): Clingo file with all rules
+                from the game in action description language with time steps
+        """
         self.path = path
         self.background = path + "/background.lp"
         self.full_time = path + "/full_time.lp"
@@ -34,7 +33,7 @@ class GameDef():
         Transforms a state into ascii representation
 
         Args:
-            state: A state of type State
+            state (State): A state of type State
 
         Returns:
             String with asciii representation
@@ -47,7 +46,7 @@ class GameDef():
         with the efects of the action
 
         Args:
-            state: A step of type Step
+            state (State): A step of type Step
 
         Returns:
             String with asciii representation
