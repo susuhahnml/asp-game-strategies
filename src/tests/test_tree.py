@@ -12,4 +12,5 @@ def test_tree():
     piles = nim.number_piles
     maximum = nim.max_number
     tree.from_game_def(nim)
-    tree.print_in_file(piles,maximum,html=True)
+    tree.print_in_file(piles,maximum,html=True,file_name="test_tree_html.png")
+    tree.print_in_file(piles,maximum,html=False,file_name="test_tree_plain.png")
