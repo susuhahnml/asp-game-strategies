@@ -63,7 +63,7 @@ class GameNimDef(GameDef):
                  for el in check if "has" in el]
         check = [ls for ls in check if ls[1] != 0]
         self.number_piles = len(check)
-        self.max_number = max([ls[1] for ls in check])*2
+        self.max_number = max([ls[1] for ls in check])
 
     def state_to_ascii(self,state):
         has = {f.arguments[0].number:f.arguments[1].number
@@ -71,7 +71,7 @@ class GameNimDef(GameDef):
         a = ""
         for p in range(self.number_piles):
             n = has[p+1] if p+1 in has else 0
-            a+="• "*n  + " "*(self.max_number-n*2) + "\n"
+            a+="• "*n  + " "*((self.max_number-n)*2) + "\n"
         return a
 
     def step_to_ascii(self,step):
@@ -83,8 +83,8 @@ class GameNimDef(GameDef):
         p = step.action.action.arguments[0].number
         n = step.action.action.arguments[1].number
         lines = a.splitlines()
-        new_line = (step.action.player+" ")*(n) + lines[p][:(self.max_number
-                                                               -n*2)]
+        new_line = (step.action.player+" ")*(n) + lines[p][:((self.max_number
+                                                               -n)*2)]
         lines[p] = new_line
         for i,line in enumerate(lines):
             if i != 0 and re.match(r'^\s*$', line):

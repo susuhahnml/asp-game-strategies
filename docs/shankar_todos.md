@@ -3,19 +3,24 @@ Workflow to-do\'s
 
 ### Presentation
 
-1.  **TODO** make html table-like grids for more symmetric
-    game visualizations
+1.  **TODO** add shape=plaintext
 
-2.  **TODO** add specific minimax and tree creation functions
-    into base readme
+2.  **TODO** parse into html table format, maybe using some
+    other representation?
 
 3.  **TODO** add dedicated modular html conversion functions
     while keeping old ascii functions intact
 
-4.  save graphs as images, dotfiles and pickles to binary which can be
-    used later
+4.  **TODO** add specific minimax and tree creation functions
+    into base readme
 
-5.  add consistent pydocstrings to all parts of code
+5.  **TODO** update pull request documentation with changes
+    till now
+
+6.  add consistent pydocstrings to all parts of code
+
+7.  save graphs as images, dotfiles and pickles to binary which can be
+    used later
 
 ### Monte-carlo tree search
 

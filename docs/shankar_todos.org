@@ -1,11 +1,13 @@
 ** Workflow to-do's
 
 *** Presentation
-***** TODO make html table-like grids for more symmetric game visualizations
-***** TODO add specific minimax and tree creation functions into base readme
+***** TODO add shape=plaintext
+***** TODO parse into html table format, maybe using some other representation?
 ***** TODO add dedicated modular html conversion functions while keeping old ascii functions intact
-***** save graphs as images, dotfiles and pickles to binary which can be used later
+***** TODO add specific minimax and tree creation functions into base readme
+***** TODO update pull request documentation with changes till now
 ***** add consistent pydocstrings to all parts of code
+***** save graphs as images, dotfiles and pickles to binary which can be used later
 
 *** Monte-carlo tree search
 ***** TODO investigate theory and implement in code to approximate minimax tree given certain time threshold

@@ -58,14 +58,10 @@ class Step:
     def ascii_score(self):
         if self.score:
             if self.action != None:
-                if self.state.is_terminal:
-                    return "<b>score:({})\n{}</b>".format(self.score,
-                                                          self.ascii)
-                else:
-                    return "score:({})\n{}".format(self.score,
+                return "score:({})\n{}".format(self.score,
                                                           self.ascii)
             else:
-                return (("<b>minimax:({},{})\n"+"(a,b):(max,min)</b>\n"+
+                return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
                          "{}").format("a",
                                       self.score,
                                       self.ascii))

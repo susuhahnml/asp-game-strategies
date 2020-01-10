@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
 import anytree
 from tqdm import tqdm
 from anytree import Node, RenderTree
@@ -14,7 +15,7 @@ class Tree:
     Tree class to handle minimax tree construction
     """
     def __init__(self,root=None):
-        """ Initiate with root node """
+        """ Initialize with empty root node """
         self.root = root
 
     def from_game_def(self, game_def):
@@ -93,7 +94,8 @@ class Tree:
                     node.name.score = min(scores)
         return tree
 
-    def print_in_file(self,base_dir="./img/",file_name="tree_test.png"):
+    def print_in_file(self,piles,maximum,base_dir="./img/",
+                      file_name="tree_test.png",html=True):
         """
         Function to plot generated tree as an image file
 
@@ -101,11 +103,63 @@ class Tree:
             base_dir (str): path of image containing directory
             file_name (str): full name of image to be created
         """
-        def to_label(n):
-            return 'label=<%s>' % (n.name.ascii_score.
-                                          replace("\n","<br/>\n"))
-        UniqueDotExporter(self.root,nodeattrfunc=to_label).to_picture(base_dir+
-                                                                      file_name)
+        def to_label(node):
+            """ Minor function to create ascii graph label """
+            return 'label="%s"' % (node.name.ascii_score)
+
+        def text2html(node,piles=piles,maximum=maximum):
+            """ Minor function to parse ascii score to html table """
+            html = []
+            # make html header
+            html.append("<table border='0' cellborder='1' cellspacing='0'" +
+                        " cellpadding='2.5' width='100%'>")
+            # parse score string into list
+            to_parse = list(filter(None,node.name.ascii_score.split("\n")))
+            # create html score header based on node type
+            if node.is_root:
+                html.append("<tr><td colspan='%s'><b>%s</b></td></tr>" %
+                            (maximum,"<br/>".join(to_parse[:2])))
+                del to_parse[:2]
+            elif node.is_leaf:
+                html.append("<tr><td colspan='%s'><b>%s</b></td></tr>" %
+                            (maximum,"<br/>".join(to_parse[:1])))
+                del to_parse[:1]
+            else:
+                html.append("<tr><td colspan='%s'>%s</td></tr>" %
+                            (maximum,"<br/>".join(to_parse[:1])))
+                del to_parse[:1]
+            # assert to check all row characters map to column number times 2
+            for el in to_parse:
+                assert len(el) == 2*maximum
+            # add grids based on dimensions and game states
+            fill = False
+            for i in range(piles):
+                string = "<tr>"
+                if not fill:
+                    try:
+                        split = re.findall("..",to_parse[i])
+                    except IndexError:
+                        fill = True
+                if fill:
+                    for j in range(maximum):
+                        string += "<td width='50%'> </td>"
+                else:
+                    for j in range(maximum):
+                        string += ("<td width='50%'>"+split[j][0]+"</td>")
+                string += "</tr>"
+                html.append(string)
+            # close table
+            html.append("</table>")
+            return 'shape = plaintext label=<%s>' % "\n".join(html)
+        # execute function
+        if html:
+            UniqueDotExporter(self.root,
+                              nodeattrfunc=text2html).to_picture(base_dir+
+                                                                 file_name)
+        else:
+            UniqueDotExporter(self.root,
+                              nodeattrfunc=to_label).to_picture(base_dir+
+                                                                file_name)
 
     def print_in_console(self):
         """
