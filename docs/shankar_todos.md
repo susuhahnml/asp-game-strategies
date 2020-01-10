@@ -3,12 +3,16 @@ Workflow to-do\'s
 
 ### Presentation
 
-1.  **TODO** make nicer visualizations with more symmetric
-    faces
+1.  **TODO** make html table-like grids for more symmetric
+    game visualizations
 
-2.  **TODO** add dedicated modular html conversion functions
+2.  **TODO** add specific minimax and tree creation functions
+    into base readme
 
-3.  save graphs as images, dotfiles and pickles to binary which can be
+3.  **TODO** add dedicated modular html conversion functions
+    while keeping old ascii functions intact
+
+4.  save graphs as images, dotfiles and pickles to binary which can be
     used later
 
 ### Monte-carlo tree search

@@ -1,4 +1,4 @@
-tqdm==4.28.1
-numpy==1.18.0
 anytree==2.7.3
+tqdm==4.28.1
+numpy==1.18.1
 urwid==2.1.0

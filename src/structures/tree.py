@@ -10,10 +10,22 @@ from .state import *
 from .match import *
 
 class Tree:
+    """
+    Tree class to handle minimax tree construction
+    """
     def __init__(self,root=None):
+        """ Initiate with root node """
         self.root = root
 
     def from_game_def(self, game_def):
+        """
+        Wrapper function to start with a game definition and expand
+        root downwards to branch all possibilities. Next, the tree is
+        reviewed upwards using the minimax algorithm.
+
+        Args:
+            game_def (GameDef*): game definition class
+        """
         initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
         root_node = Node(Step(initial_state,None,0))
         root_node = self.expand_root(root_node)
@@ -21,6 +33,15 @@ class Tree:
         self.root = root_node
 
     def expand_root(self,tree):
+        """
+        Function to expand a tree downwards until terminal leaves
+
+        Args:
+            tree (anytree.Node): a tree to expand till its terminal leaves
+
+        Returns:
+            tree (anytree.Node): expanded version of tree
+        """
         expand_further = True
         time_step = 1
         while expand_further:
@@ -49,6 +70,15 @@ class Tree:
         return tree
 
     def build_minimax(self,tree):
+        """
+        Function to review and annotate tree with minimax scores
+
+        Args:
+            tree (anytree.Node): a tree with scores on its leaves
+
+        Returns:
+            tree (anytree.Node): minimax-annotated version of tree
+        """
         print("tracking minimax scores recursively")
         # work recursively backwards to fill up slots
         for node in tqdm(list(reversed
@@ -64,6 +94,13 @@ class Tree:
         return tree
 
     def print_in_file(self,base_dir="./img/",file_name="tree_test.png"):
+        """
+        Function to plot generated tree as an image file
+
+        Args:
+            base_dir (str): path of image containing directory
+            file_name (str): full name of image to be created
+        """
         def to_label(n):
             return 'label=<%s>' % (n.name.ascii_score.
                                           replace("\n","<br/>\n"))
@@ -71,11 +108,23 @@ class Tree:
                                                                       file_name)
 
     def print_in_console(self):
+        """
+        Function to plot generated tree within the console
+        """
         for pre, fill, node in RenderTree(self.root):
             print("%s%s" % (pre, node.name))
 
     @staticmethod
     def node_from_match_initial(match):
+        """
+        Function to construct a tree from match class given initial state
+
+        Args:
+            match (Match): a constructed match
+
+        Returns:
+            root_node (anytree.Node): tree corresponding to match
+        """
         initial = Step(match.steps[0].state,None,-1)
         root_node = Node(initial)
         rest = Tree.node_from_match(match)
@@ -84,6 +133,15 @@ class Tree:
 
     @staticmethod
     def node_from_match(match):
+        """
+        Function to construct a tree from match class
+
+        Args:
+            match (Match): a constructed match
+
+        Returns:
+            root_node (anytree.Node): tree corresponding to match
+        """
         root_node = Node(match.steps[0],children=[])
         current_node = root_node
         for s in match.steps[1:]:
