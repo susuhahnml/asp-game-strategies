@@ -100,8 +100,11 @@ class Tree:
         Function to plot generated tree as an image file
 
         Args:
+            piles (int): total number of nim piles
+            maximum (int): maximum of any pile stack
             base_dir (str): path of image containing directory
             file_name (str): full name of image to be created
+            html (bool): Using html tables for image if True
         """
         def to_label(node):
             """ Minor function to create ascii graph label """
