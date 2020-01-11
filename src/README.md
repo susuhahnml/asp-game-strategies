@@ -75,12 +75,13 @@ Here we provide a tabular summary of our main code structure.
 
 #### iii. `py_utils`
 
-| L1           | L2                                                  | Description                                |
-| :---:        | :---:                                               | :---                                       |
-| **py_utils** |                                                     | Folders with utils functions               |
-| --->         | [clingo_utils.py](py_utils/clingo_utils.py)         | Clingo bindings to be used in python       |
-| --->         | [colors.py](py_utils/colors.py)                     | Defining python colors for pretty-printing |
-| --->         | [match_simulation.py](py_utils/match_simulation.py) | Match simulation functions                 |
+| L1           | L2                                                        | Description                                |
+| :---:        | :---:                                                     | :---                                       |
+| **py_utils** |                                                           | Folders with utils functions               |
+| --->         | [arg_metav_formatter.py](py_utils/arg_metav_formatter.py) | Argparse formatter for cli information     |
+| --->         | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python       |
+| --->         | [colors.py](py_utils/colors.py)                           | Defining python colors for pretty-printing |
+| --->         | [match_simulation.py](py_utils/match_simulation.py)       | Match simulation functions                 |
 
 #### iv. `structures`
 
