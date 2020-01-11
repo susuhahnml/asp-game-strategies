@@ -122,13 +122,13 @@ $ pytest -v -s ./tests/*
 
 ### 4. Simulate match
 
-To simulate a match, one can run `main.py` with the following arguments:
+To simulate a match, one can run `run_match.py` with the following arguments:
 
 ```
-$ python3 main.py --help
+$ python3 run_match.py --help
 
-usage: main.py [-h] [--path str] [--depth int] [--pA-style str] [--pB-style str]
-               [--debug]
+usage: run_match.py [-h] [--path str] [--depth int] [--pA-style str]
+                    [--pB-style str] [--debug]
 
 optional arguments:
   -h, --help      show this help message and exit
@@ -139,13 +139,35 @@ optional arguments:
                   (default: random)
   --pB-style str  playing style for player b; either 'random', 'strategy' or 'human'
                   (default: random)
-  --debug         print debugging information from stack (default: False)
+  --debug         print debugging information from stack (default: False
 ```
 
 An example of simulating two random players with verbosity is shown below:
 
 ```shell
-$ python3 main.py --debug
+$ python3 run_match.py --debug
+```
+
+### 5. Build minimax tree
+
+To build a minimax tree for a predefined game, one can run `run_mx_tree.py` with the following arguments:
+
+```
+$ python3 run_mx_tree.py --help
+
+usage: run_mx_tree.py [-h] [--path str] [--file-name str] [--html]
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --path str       relative path of game description language for game (default: ./game_definitions/nim)
+  --file-name str  output image file name (default: tree_vis.png)
+  --html           whether html should be used for visualization (default: True)
+```
+
+An example of building a tree is shown below:
+
+```shell
+$ python3 run_mx_tree.py --path ./game_definitions/test_nim --file-name tree_test.png
 ```
 
 ### 5. Developments

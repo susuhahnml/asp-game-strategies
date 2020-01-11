@@ -9,8 +9,6 @@ from game_definitions import *
 def test_tree():
     tree = Tree()
     nim = GameNimDef("./game_definitions/test_nim")
-    piles = nim.number_piles
-    maximum = nim.max_number
     tree.from_game_def(nim)
-    tree.print_in_file(piles,maximum,html=True,file_name="test_tree_html.png")
-    tree.print_in_file(piles,maximum,html=False,file_name="test_tree_plain.png")
+    tree.print_in_file(html=True,file_name="test_tree_html.png")
+    tree.print_in_file(html=False,file_name="test_tree_plain.png")

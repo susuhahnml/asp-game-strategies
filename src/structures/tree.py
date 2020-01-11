@@ -14,9 +14,10 @@ class Tree:
     """
     Tree class to handle minimax tree construction
     """
-    def __init__(self,root=None):
-        """ Initialize with empty root node """
+    def __init__(self,root=None,game=None):
+        """ Initialize with empty root node and game class """
         self.root = root
+        self.game = game
 
     def from_game_def(self, game_def):
         """
@@ -27,6 +28,7 @@ class Tree:
         Args:
             game_def (GameDef*): game definition class
         """
+        self.game = game_def
         initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
         root_node = Node(Step(initial_state,None,0))
         root_node = self.expand_root(root_node)
@@ -94,18 +96,20 @@ class Tree:
                     node.name.score = min(scores)
         return tree
 
-    def print_in_file(self,piles,maximum,base_dir="./img/",
+    def print_in_file(self,base_dir="./img/",
                       file_name="tree_test.png",html=True):
         """
         Function to plot generated tree as an image file
 
         Args:
-            piles (int): total number of nim piles
-            maximum (int): maximum of any pile stack
             base_dir (str): path of image containing directory
             file_name (str): full name of image to be created
             html (bool): Using html tables for image if True
         """
+        # define local variables
+        piles = self.game.number_piles
+        maximum = self.game.max_number
+        # define local functions
         def to_label(node):
             """ Minor function to create ascii graph label """
             return 'label="%s"' % (node.name.ascii_score)

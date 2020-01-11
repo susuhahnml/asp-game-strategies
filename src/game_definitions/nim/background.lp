@@ -16,7 +16,7 @@ unique(X) :- #sum{1,L:true(has(L,Q))} != 1, true(has(P,Q)), X = #min{L:true(has(
 % Action selection
 legal(X,remove(P,N)) :- true(has(P,M)), unique(P), removable(N), N<=M, true(control(X)), not terminal, not last_pile.
 legal(X,remove(P,N)) :- true(has(P,M)), removable(N), N<M, true(control(X)), not terminal, last_pile.
-0 { does(X,A)} 1 :- legal(X,A), not terminal.
+0 {does(X,A)} 1 :- legal(X,A), not terminal.
 :- does(X,Y), does(X,Z), Y < Z.
 :- not does(X,_), true(control(X)), not terminal.
 
