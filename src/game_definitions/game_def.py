@@ -12,11 +12,11 @@ class GameDef():
 
         Args:
             game_path (str): Path to directory with following files:
-                - background.lp : Clingo file with all rules
+                - background.lp: Clingo file with all rules
                 from the game in GDL format
-                - initial.lp : Clingo file with all facts
+                - initial.lp: Clingo file with all facts
                 for the initial state
-                - full_time.lp (optional): Clingo file with all rules
+                - full_time.lp: Clingo file with all rules
                 from the game in action description language with time steps
         """
         self.path = path
