@@ -177,6 +177,12 @@ Below is an example `html` visualization of the `./game_definitions/test_nim` ga
 <img src="/src/img/test_tree_html.png" width="500">
 </p>
 
+Below is an example `plaintext` visualization of the `./game_definitions/test_nim` game.
+
+<p align="center">
+<img src="/src/img/test_tree_plain.png" width="500">
+</p>
+
 ### 5. Developments
 
 Further developments are summarized in our [changelog](/docs/changelog.md).
