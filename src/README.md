@@ -159,7 +159,8 @@ usage: run_mx_tree.py [-h] [--path str] [--file-name str] [--html]
 
 optional arguments:
   -h, --help       show this help message and exit
-  --path str       relative path of game description language for game (default: ./game_definitions/nim)
+  --path str       relative path of game description language 
+                   for game (default: ./game_definitions/nim)
   --file-name str  output image file name (default: tree_vis.png)
   --html           whether html should be used for visualization (default: True)
 ```
@@ -169,6 +170,10 @@ An example of building a tree is shown below:
 ```shell
 $ python3 run_mx_tree.py --path ./game_definitions/test_nim --file-name tree_test.png
 ```
+
+Below is an example `html` visualization of the `./game_definitions/test_nim` game.
+
+<img src="/src/img/test_tree_html.png" width="800">
 
 ### 5. Developments
 
