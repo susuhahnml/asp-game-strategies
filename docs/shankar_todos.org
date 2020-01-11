@@ -1,13 +1,10 @@
 ** Workflow to-do's
 
 *** Presentation
-***** TODO add shape=plaintext
-***** TODO parse into html table format, maybe using some other representation?
-***** TODO add dedicated modular html conversion functions while keeping old ascii functions intact
 ***** TODO add specific minimax and tree creation functions into base readme
+***** TODO save graphs as images, dotfiles and pickles to binary which can be used later
 ***** TODO update pull request documentation with changes till now
 ***** add consistent pydocstrings to all parts of code
-***** save graphs as images, dotfiles and pickles to binary which can be used later
 
 *** Monte-carlo tree search
 ***** TODO investigate theory and implement in code to approximate minimax tree given certain time threshold
