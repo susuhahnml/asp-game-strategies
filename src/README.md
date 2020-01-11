@@ -173,7 +173,9 @@ $ python3 run_mx_tree.py --path ./game_definitions/test_nim --file-name tree_tes
 
 Below is an example `html` visualization of the `./game_definitions/test_nim` game.
 
-<img src="/src/img/test_tree_html.png" width="800">
+<p align="center">
+<img src="/src/img/test_tree_html.png" width="500">
+</p>
 
 ### 5. Developments
 
