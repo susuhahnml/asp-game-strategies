@@ -8,7 +8,7 @@ Here we document our source code and its various functionalities. Most functions
 2. [Code structure](#2-Code-structure)
 3. [Tests](#3-Tests)
 4. [Simulate match](#4-Simulate-match)
-4. [Build minimax tree](#4-Build-minimax-tree)
+4. [Build minimax tree](#5-Build-minimax-tree)
 
 ### 1. Dependencies
 
@@ -184,6 +184,6 @@ Below is an example `plaintext` visualization of the `./game_definitions/test_ni
 <img src="/src/img/test_tree_plain.png" width="500">
 </p>
 
-### 5. Developments
+### 6. Developments
 
 Further developments are summarized in our [changelog](/docs/changelog.md).
