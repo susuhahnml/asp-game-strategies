@@ -7,7 +7,7 @@ from structures import *
 from players import *
 from game_definitions import *
 
-def run_tree(path,plaintext,file_name):
+def main_tree(path,plaintext,file_name):
     # remove trailing backslash as failsafe
     html = not plaintext
     path = re.sub(r"\/$","",path)
@@ -27,4 +27,4 @@ if __name__ == "__main__":
                         help="whether plaintext should be used for visualization")
     args = parser.parse_args()
     # run tree command
-    run_tree(args.path,args.plaintext,args.file_name)
+    main_tree(args.path,args.plaintext,args.file_name)

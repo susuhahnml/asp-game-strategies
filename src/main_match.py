@@ -9,7 +9,7 @@ from structures import *
 from players import *
 from game_definitions import *
 
-def run_match(path,depth,pA_style,pB_style,debug):
+def main_match(path,depth,pA_style,pB_style,debug):
     # remove trailing backslash as failsafe
     path=re.sub(r"\/$","",path)
     nim = GameNimDef(path)
@@ -43,4 +43,4 @@ if __name__ == "__main__":
                         help="print debugging information from stack")
     args = parser.parse_args()
     # run match command
-    run_match(args.path,args.depth,args.pA_style,args.pB_style,args.debug)
+    main_match(args.path,args.depth,args.pA_style,args.pB_style,args.debug)
