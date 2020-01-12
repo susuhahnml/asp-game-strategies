@@ -141,7 +141,7 @@ optional arguments:
                   (default: random)
   --pB-style str  playing style for player b; either 'random', 'strategy' or 'human'
                   (default: random)
-  --debug         print debugging information from stack (default: False
+  --debug         print debugging information from stack (default: False)
 ```
 
 An example of simulating two random players with verbosity is shown below:
