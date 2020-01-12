@@ -9,7 +9,7 @@ role(b).
 % Condition where last pile is encountered
 last_pile :- #sum{1,M:true(has(M,Q)),Q!=0} = 1.
 
-% Create symmetry to ensure only unique or pseudo-unique piles are handled
+% Handle symmetry to ensure only unique or pseudo-unique piles are handled
 unique(P) :- #sum{1,L:true(has(L,Q))} = 1, true(has(P,Q)).
 unique(X) :- #sum{1,L:true(has(L,Q))} != 1, true(has(P,Q)), X = #min{L:true(has(L,Q))}.
 
