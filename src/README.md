@@ -157,14 +157,15 @@ To build a minimax tree for a predefined game, one can run `run_mx_tree.py` with
 ```
 $ python3 run_mx_tree.py --help
 
-usage: run_mx_tree.py [-h] [--path str] [--file-name str] [--html]
+usage: run_mx_tree.py [-h] [--path str] [--file-name str] [--plaintext]
 
 optional arguments:
   -h, --help       show this help message and exit
-  --path str       relative path of game description language 
-                   for game (default: ./game_definitions/nim)
+  --path str       relative path of game description language for game (default:
+                   ./game_definitions/nim)
   --file-name str  output image file name (default: tree_vis.png)
-  --html           whether html should be used for visualization (default: True)
+  --plaintext      whether plaintext should be used for visualization (default:
+                   False)
 ```
 
 An example of building a tree is shown below:

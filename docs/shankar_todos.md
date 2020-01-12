@@ -1,19 +1,6 @@
 Workflow to-do\'s
 -----------------
 
-### Presentation
-
-1.  **TODO** add specific minimax and tree creation functions
-    into base readme
-
-2.  **TODO** save graphs as images, dotfiles and pickles to
-    binary which can be used later
-
-3.  **TODO** update pull request documentation with changes
-    till now
-
-4.  add consistent pydocstrings to all parts of code
-
 ### Monte-carlo tree search
 
 1.  **TODO** investigate theory and implement in code to
@@ -21,6 +8,16 @@ Workflow to-do\'s
 
 2.  show that minimax and monte-carlo trees converge in practice,
     perhaps for smaller trees
+
+### Presentation
+
+1.  **TODO** save graphs as images, dotfiles and pickles to
+    binary which can be used later -\> modify readmes correspondingly
+
+2.  **TODO** update pull request documentation with changes
+    till now
+
+3.  add consistent pydocstrings to all parts of code
 
 ### Minimax algorithm
 

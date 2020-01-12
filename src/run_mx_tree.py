@@ -7,9 +7,10 @@ from structures import *
 from players import *
 from game_definitions import *
 
-def run_tree(path,html,file_name):
+def run_tree(path,plaintext,file_name):
     # remove trailing backslash as failsafe
-    path=re.sub(r"\/$","",path)
+    html = not plaintext
+    path = re.sub(r"\/$","",path)
     tree = Tree()
     nim = GameNimDef(path)
     tree.from_game_def(nim)
@@ -22,8 +23,8 @@ if __name__ == "__main__":
                         " description language for game")
     parser.add_argument("--file-name", type=str, default="tree_vis.png",
                         help="output image file name")
-    parser.add_argument("--html", default=True, action="store_true",
-                        help="whether html should be used for visualization")
+    parser.add_argument("--plaintext", default=False, action="store_true",
+                        help="whether plaintext should be used for visualization")
     args = parser.parse_args()
     # run tree command
-    run_tree(args.path,args.html,args.file_name)
+    run_tree(args.path,args.plaintext,args.file_name)
