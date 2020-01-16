@@ -8,7 +8,7 @@ Here we document our source code and its various functionalities. Most functions
 2. [Code structure](#2-Code-structure)
 3. [Tests](#3-Tests)
 4. [Simulate match](#4-Simulate-match)
-4. [Build minimax tree](#5-Build-minimax-tree)
+5. [Build minimax tree](#5-Build-minimax-tree)
 
 ### 1. Dependencies
 
