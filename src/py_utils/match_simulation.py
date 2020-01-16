@@ -41,6 +41,7 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
         #TODO what if players change order
         selected_action = players[time_step%2].choose_action(state)
         step = Step(state,selected_action,time_step)
+        #TODO Check if must add next step when removing last step
         match.add_step(Step(state,selected_action,time_step))
         time_step+=1
         continue_depth = True if depth==None else time_step<depth

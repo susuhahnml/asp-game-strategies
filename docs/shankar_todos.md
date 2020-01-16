@@ -1,48 +1,46 @@
 Workflow to-do\'s
 -----------------
 
-### Minimax algorithm
+### Monte-carlo tree search
 
-1.  **TODO** add minimax pipeline to tree class in simple
-    python as this does not require asp references
+1.  **TODO** investigate theory and implement in code to
+    approximate minimax tree given certain time threshold
 
-2.  **TODO** add pull request with new asp encodings for more
-    arbitrary examples, piles and exact solutions instead of symmetries
-
-3.  check if possible to use reverse level iterator without list
-    conversion
+2.  show that minimax and monte-carlo trees converge in practice,
+    perhaps for smaller trees
 
 ### Presentation
 
-1.  **TODO** make nicer visualizations with more symmetric
-    faces
+1.  **TODO** save graphs as images, dotfiles and pickles to
+    binary which can be used later -\> modify readmes correspondingly
 
-2.  **TODO** possibly merge visualization into single tree
-    pipeline for less overhead, reduce overall tree visits
+2.  **TODO** update pull request documentation with changes
+    till now
 
-3.  **TODO** change location of images to ./src/img directory
+3.  add consistent pydocstrings to all parts of code
 
-4.  save graphs as images, dotfiles and pickles to binary which can be
-    used later
+### Minimax algorithm
+
+1.  **TODO** review pull request which might require editing
+    of full~time~.lp encodings
+
+2.  check if possible to use reverse level iterator without list
+    conversion
 
 ### Optimizations
 
 1.  **TODO** optimize mini-max algorithm with fewer tree
-    visits where possible, add slower approach for plotting trees
+    visits where possible, might need to look into exact source code
+    within step/state
 
-2.  add further symmetries to reduce search space; extra overhead to
-    search for level-symmetries
+2.  add parallelization to all scripts, linear time reduction
 
-3.  add parallelization to all scripts, linear time reduction
+### Extra: game encodings
 
-4.  time gained in linear symmetry searched, time saved in greater than
-    linear reduced number of leaves due to branching factor
+1.  possible to terminate nim even one step earlier with next has
 
-### Monte-carlo tree search
-
-1.  investigate theory and implement in code to approximate minimax tree
-
-2.  show that minimax and monte-carlo trees converge in practice
+2.  add asp encodings for tic-tac-toe, add ability to read more diverse
+    encodings
 
 ### Long-term goals
 

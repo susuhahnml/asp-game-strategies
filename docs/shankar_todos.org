@@ -1,25 +1,25 @@
 ** Workflow to-do's
 
-*** Minimax algorithm
-***** TODO add minimax pipeline to tree class in simple python as this does not require asp references
-***** TODO add pull request with new asp encodings for more arbitrary examples, piles and exact solutions instead of symmetries
-***** check if possible to use reverse level iterator without list conversion
+*** Monte-carlo tree search
+***** TODO investigate theory and implement in code to approximate minimax tree given certain time threshold
+***** show that minimax and monte-carlo trees converge in practice, perhaps for smaller trees
 
 *** Presentation
-***** TODO make nicer visualizations with more symmetric faces
-***** TODO possibly merge visualization into single tree pipeline for less overhead, reduce overall tree visits
-***** TODO change location of images to ./src/img directory
-***** save graphs as images, dotfiles and pickles to binary which can be used later
+***** TODO save graphs as images, dotfiles and pickles to binary which can be used later -> modify readmes correspondingly
+***** TODO update pull request documentation with changes till now
+***** add consistent pydocstrings to all parts of code
+
+*** Minimax algorithm
+***** TODO review pull request which might require editing of full_time.lp encodings
+***** check if possible to use reverse level iterator without list conversion
 
 *** Optimizations
-***** TODO optimize mini-max algorithm with fewer tree visits where possible, add slower approach for plotting trees
-***** add further symmetries to reduce search space; extra overhead to search for level-symmetries
+***** TODO optimize mini-max algorithm with fewer tree visits where possible, might need to look into exact source code within step/state
 ***** add parallelization to all scripts, linear time reduction
-***** time gained in linear symmetry searched, time saved in greater than linear reduced number of leaves due to branching factor
       
-*** Monte-carlo tree search
-***** investigate theory and implement in code to approximate minimax tree
-***** show that minimax and monte-carlo trees converge in practice
+*** Extra: game encodings
+***** possible to terminate nim even one step earlier with next has
+***** add asp encodings for tic-tac-toe, add ability to read more diverse encodings
 
 *** Long-term goals
 ***** build efficient mini-max algorithm and integrate alpha-beta pruning

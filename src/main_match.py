@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
 import time
 import argparse
 from py_utils import *
@@ -8,7 +9,9 @@ from structures import *
 from players import *
 from game_definitions import *
 
-def run(path,depth,pA_style,pB_style,debug):
+def main_match(path,depth,pA_style,pB_style,debug):
+    # remove trailing backslash as failsafe
+    path=re.sub(r"\/$","",path)
     nim = GameNimDef(path)
     if "human" in [pA_style,pB_style]:
         debug = True
@@ -22,14 +25,6 @@ def run(path,depth,pA_style,pB_style,debug):
         pB = {"name":pB_style,"strategy_path":path+"/strategy.lp"}
     match = simulate_match(nim,[pA,pB],debug=debug)
     return match
-
-class arg_metav_formatter(argparse.ArgumentDefaultsHelpFormatter,
-                      argparse.MetavarTypeHelpFormatter):
-    """
-    Class to combine argument parsers in order to display meta-variables
-    and defaults for arguments
-    """
-    pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
@@ -47,5 +42,5 @@ if __name__ == "__main__":
     parser.add_argument("--debug", default=False, action="store_true",
                         help="print debugging information from stack")
     args = parser.parse_args()
-    # run command
-    run(args.path,args.depth,args.pA_style,args.pB_style,args.debug)
+    # run match command
+    main_match(args.path,args.depth,args.pA_style,args.pB_style,args.debug)

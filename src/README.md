@@ -8,6 +8,7 @@ Here we document our source code and its various functionalities. Most functions
 2. [Code structure](#2-Code-structure)
 3. [Tests](#3-Tests)
 4. [Simulate match](#4-Simulate-match)
+5. [Build minimax tree](#5-Build-minimax-tree)
 
 ### 1. Dependencies
 
@@ -74,12 +75,13 @@ Here we provide a tabular summary of our main code structure.
 
 #### iii. `py_utils`
 
-| L1           | L2                                                  | Description                                |
-| :---:        | :---:                                               | :---                                       |
-| **py_utils** |                                                     | Folders with utils functions               |
-| --->         | [clingo_utils.py](py_utils/clingo_utils.py)         | Clingo bindings to be used in python       |
-| --->         | [colors.py](py_utils/colors.py)                     | Defining python colors for pretty-printing |
-| --->         | [match_simulation.py](py_utils/match_simulation.py) | Match simulation functions                 |
+| L1           | L2                                                        | Description                                |
+| :---:        | :---:                                                     | :---                                       |
+| **py_utils** |                                                           | Folders with utils functions               |
+| --->         | [arg_metav_formatter.py](py_utils/arg_metav_formatter.py) | Argparse formatter for cli information     |
+| --->         | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python       |
+| --->         | [colors.py](py_utils/colors.py)                           | Defining python colors for pretty-printing |
+| --->         | [match_simulation.py](py_utils/match_simulation.py)       | Match simulation functions                 |
 
 #### iv. `structures`
 
@@ -122,13 +124,13 @@ $ pytest -v -s ./tests/*
 
 ### 4. Simulate match
 
-To simulate a match, one can run `main.py` with the following arguments:
+To simulate a match, one can run `main_match.py` with the following arguments:
 
 ```
-$ python3 main.py --help
+$ python3 main_match.py --help
 
-usage: main.py [-h] [--path str] [--depth int] [--pA-style str] [--pB-style str]
-               [--debug]
+usage: main_match.py [-h] [--path str] [--depth int] [--pA-style str]
+                     [--pB-style str] [--debug]
 
 optional arguments:
   -h, --help      show this help message and exit
@@ -145,9 +147,45 @@ optional arguments:
 An example of simulating two random players with verbosity is shown below:
 
 ```shell
-$ python3 main.py --debug
+$ python3 main_match.py --debug
 ```
 
-### 5. Developments
+### 5. Build minimax tree
+
+To build a minimax tree for a predefined game, one can run `main_mx_tree.py` with the following arguments:
+
+```
+$ python3 main_mx_tree.py --help
+
+usage: main_mx_tree.py [-h] [--path str] [--file-name str] [--plaintext]
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --path str       relative path of game description language for game (default:
+                   ./game_definitions/nim)
+  --file-name str  output image file name (default: tree_vis.png)
+  --plaintext      whether plaintext should be used for visualization (default:
+                   False)
+```
+
+An example of building a tree is shown below:
+
+```shell
+$ python3 main_mx_tree.py --path ./game_definitions/test_nim --file-name tree_test.png
+```
+
+Below is an example `html` visualization of the `./game_definitions/test_nim` game.
+
+<p align="center">
+<img src="/src/img/test_tree_html.png" width="500">
+</p>
+
+Below is an example `plaintext` visualization of the `./game_definitions/test_nim` game.
+
+<p align="center">
+<img src="/src/img/test_tree_plain.png" width="500">
+</p>
+
+### 6. Developments
 
 Further developments are summarized in our [changelog](/docs/changelog.md).

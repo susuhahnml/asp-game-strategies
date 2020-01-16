@@ -157,7 +157,8 @@ class StateExpanded(State):
             #Ignoring model without action
             return
         else:
-            assert len(does) == 1, "Multiple actions {} not supported".format(len(does))
+            assert len(does) == 1, ("Multiple actions {} not supported"
+                                    .format(len(does)))
             action = does[0]
             player = symbol_str(action.arguments[0])
             next_fluents = [a.arguments[0] for a in atoms if a.name=='next']
