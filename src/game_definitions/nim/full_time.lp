@@ -7,12 +7,6 @@ time(0..tree_depth).
 role(a).
 role(b).
 
-% Initial state
-% holds(has(1,2),0).
-% holds(has(2,0),0).
-% holds(has(3,0),0).
-% holds(control(a),0).
-
 % Action selection
 {does(X,remove(P,N),T):holds(has(P,M),T),removable(N),N<=M}=1 :- holds(control(X),T),
                                                                  time(T), 

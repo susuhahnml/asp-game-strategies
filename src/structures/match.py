@@ -56,7 +56,6 @@ class Match:
         s = ""
         c = [bcolors.OKBLUE,bcolors.HEADER]
         for step in self.steps:
-            # print(step.time_step.state)
             s+=c[step.time_step%2]
             s+="\nSTEP {}:".format(step.time_step)
             s+= step.ascii

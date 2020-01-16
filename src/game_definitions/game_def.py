@@ -83,10 +83,10 @@ class GameNimDef(GameDef):
         p = step.action.action.arguments[0].number
         n = step.action.action.arguments[1].number
         lines = a.splitlines()
-        new_line = (step.action.player+" ")*(n) + lines[p][:((self.max_number
-                                                               -n)*2)]
+        new_line = (step.action.player+" ")*(n) + lines[p][(n)*2:]
         lines[p] = new_line
         for i,line in enumerate(lines):
             if i != 0 and re.match(r'^\s*$', line):
                 del lines[i]
         return "\n".join(lines)
+# 

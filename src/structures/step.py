@@ -61,7 +61,10 @@ class Step:
                 return "score:({})\n{}".format(self.score,
                                                           self.ascii)
             else:
-                return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
+                if(self.state.is_terminal):
+                    return ("Terminal\n{}".format(self.ascii))
+                else:
+                    return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
                          "{}").format("a",
                                       self.score,
                                       self.ascii))

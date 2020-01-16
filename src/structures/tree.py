@@ -31,11 +31,13 @@ class Tree:
         self.game = game_def
         initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
         root_node = Node(Step(initial_state,None,0))
-        root_node = self.expand_root(root_node)
+        # Tree.expand_rec(root_node,0)
+        self.root = root_node
+        self.expand_root()
         root_node = self.build_minimax(root_node)
         self.root = root_node
 
-    def expand_root(self,tree):
+    def expand_root(self):
         """
         Function to expand a tree downwards until terminal leaves
 
@@ -45,32 +47,41 @@ class Tree:
         Returns:
             tree (anytree.Node): expanded version of tree
         """
+        tree =  self.root
+        valid_moves = tree.name.state.legal_actions
+        for legal_action in valid_moves:
+            step = Step(tree.name.state,legal_action,1)
+            Node(step,parent=tree)
         expand_further = True
-        time_step = 1
+        time_step = 2
         while expand_further:
             # define current player
             expand_further = False
             # starting iteration to fill branches
             print("Depth: %s" % (time_step))
             for leaf in tqdm(tree.leaves):
-                if not leaf.name.state.is_terminal:
-                    valid_moves = leaf.name.state.legal_actions
-                    for legal_action in valid_moves:
-                        next_state = leaf.name.state.get_next(legal_action)
-                        step = Step(next_state,legal_action,time_step)
-                        if next_state.is_terminal:
-                            goals = next_state.goals
-                            for player,g_score in goals.items():
-                                if g_score == 1 and player == "a":
-                                    score = 1
-                                elif g_score == 1 and player == "b":
-                                    score = -1
-                            step.score = score
-                        else:
-                            expand_further = True
-                        Node(step,parent=leaf)
+                current_state = leaf.name.state
+                if current_state.is_terminal:
+                    continue
+
+                next_state = current_state.get_next(leaf.name.action)
+                valid_moves = next_state.legal_actions
+                for legal_action in valid_moves:
+                    step = Step(next_state,legal_action,time_step)
+                    Node(step,parent=leaf)
+                    expand_further = True
+                
+                if next_state.is_terminal:
+                    # Node(next_state,parent=leaf)
+                    goals = next_state.goals
+                    for player,g_score in goals.items():
+                        if g_score == 1 and player == "a":
+                            score = 1
+                        elif g_score == 1 and player == "b":
+                            score = -1
+                    leaf.name.score = score
+
             time_step += 1
-        return tree
 
     def build_minimax(self,tree):
         """
@@ -106,15 +117,16 @@ class Tree:
             file_name (str): full name of image to be created
             html (bool): Using html tables for image if True
         """
-        # define local variables
-        piles = self.game.number_piles
-        maximum = self.game.max_number
         # define local functions
         def to_label(node):
             """ Minor function to create ascii graph label """
             return 'label="%s"' % (node.name.ascii_score)
-
-        def text2html(node,piles=piles,maximum=maximum):
+        
+        #TODO find a way to make this general
+        # define local variables
+        def text2html(node):
+            piles = self.game.number_piles
+            maximum = self.game.max_number
             """ Minor function to parse ascii score to html table """
             html = []
             # make html header

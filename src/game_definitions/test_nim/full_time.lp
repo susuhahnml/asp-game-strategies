@@ -7,16 +7,16 @@ time(0..tree_depth).
 role(a).
 role(b).
 
-% Initial state
-% holds(has(1,2),0).
-% holds(has(2,2),0).
-% holds(has(3,0),0).
-% holds(control(a),0).
-%  holds(has(1,2),0). holds(has(2,2),0). holds(has(3,0),0). holds(control(a),0).holds(has(1,2),0). holds(has(2,2),0). holds(has(3,0),0). holds(control(a),0). does(a,remove(2,1),0).holds(control(b),1). holds(has(3,0),1). holds(has(1,2),1). holds(has(2,1),1). not does(b,remove(1,1),1).
-
-% holds(has(1,2),0). holds(has(2,2),0). holds(has(3,0),0). holds(control(a),0).holds(has(1,2),0). holds(has(2,2),0). holds(has(3,0),0). holds(control(a),0). not does(a,remove(1,1),0).
+holds(has(1,2),0).
+holds(has(2,2),0).
+holds(control(a),0).
 
 % Action selection
+% legal(X,remove(P,N),T) :- holds(has(P,M),T), P = #min{L:holds(has(L,M),T)}, removable(N), N<=M, holds(control(X),T), time(T), not holds(goal(_,_),T).
+
+% {does(X,A,T): legal(X,A,T)}=1 :- time(T), not holds(goal(_,_),T).
+
+
 {does(X,remove(P,N),T):holds(has(P,M),T),removable(N),N<=M}=1 :- holds(control(X),T),
                                                                  time(T), 
                                                                  not holds(goal(_,_),T).
@@ -32,10 +32,3 @@ holds(goal(X,1),T+1):- #sum{M,P:holds(has(P,M),T+1)}=0,
                     time(T), 
                     not holds(goal(_,_),T).
 holds(goal(Y,-1*G),T):- holds(goal(X,G),T), role(Y), Y!=X.
-% goal(N) :- holds(goal(a,N),_).
-
-% #maximize {N,T:holds(goal(a,N),T)}.
-% #maximize{N:goal(N)}.
-#show does/3.
-#show holds/2.
-% #show goal/1.
