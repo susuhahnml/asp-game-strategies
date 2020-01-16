@@ -10,11 +10,12 @@ role(b).
 % last_pile :- #sum{1,M:true(has(M,Q)),Q!=0} = 1.
 
 % Handle symmetry to ensure only unique or pseudo-unique piles are handled
-unique(P) :- #sum{1,L:true(has(L,Q))} = 1, true(has(P,Q)).
-unique(X) :- #sum{1,L:true(has(L,Q))} != 1, true(has(P,Q)), X = #min{L:true(has(L,Q))}.
+% unique(P) :- #sum{1,L:true(has(L,Q))} = 1, true(has(P,Q)).
+% unique(X) :- #sum{1,L:true(has(L,Q))} != 1, true(has(P,Q)), X = #min{L:true(has(L,Q))}.
 
 % Action selection
-legal(X,remove(P,N)) :- true(has(P,M)), unique(P), removable(N), N<=M, true(control(X)), not terminal.
+legal(X,remove(P,N)) :- true(has(P,M)), P = #min{L:true(has(L,M))}, removable(N), N<=M, true(control(X)), not terminal.
+% legal(X,remove(P,N)) :- true(has(P,M)), unique(P), removable(N), N<=M, true(control(X)), not terminal.
 % legal(X,remove(P,N)) :- true(has(P,M)), removable(N), N<M, true(control(X)), not terminal, last_pile.
 0 {does(X,A)} 1 :- legal(X,A), not terminal.
 :- does(X,Y), does(X,Z), Y < Z.
