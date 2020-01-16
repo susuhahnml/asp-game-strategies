@@ -21,7 +21,7 @@ def test_match_time():
     assert(minmax_match.goals["a"] == -1)
     assert(minmax_match.steps[0].score == -1)
     min_max_tree.print_in_console()
-    min_max_tree.print_in_file(file_name="tree_test_minmax_asp.png",html=False)
+    min_max_tree.print_in_file(file_name="tree_test_minmax_asp2.png",html=False)
 
 def test_match_time_good():
     initial = ('holds(has(1,2),0). holds(has(2,2),0). holds(has(3,1),0).'+
