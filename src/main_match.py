@@ -25,8 +25,8 @@ def main_match(path,depth,pA_style,pB_style,debug):
             conf["main_player"]=n
         pl.append(conf)
 
-    match = simulate_match(nim,pl,debug=debug)
-    return match
+    match, response_times = simulate_match(nim,pl,debug=debug)
+    
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)

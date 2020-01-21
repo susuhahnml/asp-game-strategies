@@ -1,0 +1,28 @@
+------------------
+Game:GameNimDef
+Initial state:
+true(has(1,0)).
+true(has(2,2)).
+true(has(3,2)).
+true(control(a)).
+
+	Minmax tree: 0.10021686553955078 sec
+	Minmax ASP: 0.30784106254577637 sec------------------
+Game:GameNimDef
+Initial state:
+true(has(1,3)).
+true(has(2,2)).
+true(has(3,2)).
+true(control(a)).
+
+	Minmax tree: 5.613364219665527 sec
+	Minmax ASP: 3.682374954223633 sec------------------
+Game:GameNimDef
+Initial state:
+true(has(1,5)).
+true(has(2,3)).
+true(has(3,2)).
+true(control(a)).
+
+	Minmax tree: 191.95327401161194 sec
+	Minmax ASP: 88.14717721939087 sec

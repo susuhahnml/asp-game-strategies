@@ -6,7 +6,7 @@ from collections import defaultdict
 
 class GameDef():
     """ Template class which can be reproduced for multiple games """
-    def __init__(self,path):
+    def __init__(self,path,initial):
         """
         Creates a game definition from a path.
 
@@ -18,12 +18,16 @@ class GameDef():
                 for the initial state
                 - full_time.lp: Clingo file with all rules
                 from the game in action description language with time steps
+            initial (str): String or path to file to overwrite the initial state 
         """
         self.path = path
         self.background = path + "/background.lp"
         self.full_time = path + "/full_time.lp"
         self.initial = path + "/initial.lp"
         self.all = path + "/all.lp"
+        if not initial is None:
+            self.initial = initial
+
 
 
     def state_to_ascii(self, state):
@@ -55,7 +59,7 @@ class GameDef():
         """
         Obtains the initial state in full time format
         """
-        if(self.initial[-3:] == ".lp"):
+        if(self.initial_is_file):
             with open(self.initial,"r") as File:
                 lines = File.readlines()
                 content = "".join(lines)
@@ -65,14 +69,18 @@ class GameDef():
         content = content.replace("true","holds")
         return content
 
-        
-
+    @property
+    def initial_is_file(self):
+        return(self.initial[-3:] == ".lp")
 
 class GameNimDef(GameDef):
-    def __init__(self,path="./game_definitions/nim"):
-        super().__init__(path)
-        with open(self.initial,"r") as File:
-            check = File.readlines()
+    def __init__(self,path="./game_definitions/nim",initial=None):
+        super().__init__(path,initial)
+        if self.initial_is_file:
+            with open(self.initial,"r") as File:
+                check = File.readlines()
+        else:
+            check =  [s+'.' for s in self.initial.split('.')]
         check = [[int(els) for els in re.sub(r".*has\((\d+\,\d+)\)\)\.","\g<1>",
                         el.replace("\n","")).split(",")]
                  for el in check if "has" in el]

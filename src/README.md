@@ -186,6 +186,25 @@ Below is an example `plaintext` visualization of the `./game_definitions/test_ni
 <img src="/src/img/test_tree_plain.png" width="500">
 </p>
 
+
+### 6. Build minimax tree asp aproach
+
+To build a minimax tree using the maximize and minimize optimization statements of asp for a predefined game, one can run `main_mxasp.py` with the following arguments:
+
+```
+$ python3 main_mx_tree.py --help
+
+usage: main_mx_tree.py [-h] [--path str] [--file-name str] [--plaintext]
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --path str       relative path of game description language for game (default:
+                   ./game_definitions/nim)
+  --file-name str  output image file name (default: tree_vis.png)
+  --plaintext      whether plaintext should be used for visualization (default:
+                   False)
+```
+
 ### 6. Developments
 
 Further developments are summarized in our [changelog](/docs/changelog.md).

@@ -6,7 +6,7 @@ from .clingo_utils import *
 from .colors import *
 from structures.game import *
 from structures.match import *
-
+import time
 def simulate_match(game_def, player_config, depth=None, debug=False):
     """
     Call it with the path to the game definition
@@ -15,7 +15,8 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
     player_config: A tuple of the player configurations
         - random: Play against random player
         - human: Play against human player
-        - human: Play against a strategy defined in a file as weak constraints
+        - strategy: Play against a strategy defined in a file as weak constraints
+        - minmax-asp: Play against a player using minmax strategy in asp
         - config: Play against other system. (System maybe must extend a class) TODO
 
     paths:
@@ -52,9 +53,15 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
     if debug: print("\n--------------- Simulating match ----------------")
     if debug: print("a: {}\nb: {}\n".format(players[0].__class__.__name__,
                                             players[1].__class__.__name__))
+
+    letters = ['a','b']
+    response_times = {'a':[],'b':[]}
     while(not state.is_terminal and continue_depth):
         #TODO what if players change order
+        t0 = time.time()
         selected_action = players[time_step%2].choose_action(state)
+        t1 = time.time()
+        response_times[letters[time_step%2]].append((t1-t0)*1000)
         step = Step(state,selected_action,time_step)
         #TODO Check if must add next step when removing last step
         match.add_step(Step(state,selected_action,time_step))
@@ -64,6 +71,6 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
                                strategy_path = players[time_step%2].strategy)
     match.add_step(Step(state,None,time_step))
     if debug: print(match)
-    return match
+    return match, {k:sum(lst) / len(lst) for k,lst in response_times.items()}
 
 

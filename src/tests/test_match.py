@@ -6,10 +6,10 @@ from structures import *
 from players import *
 from game_definitions.game_def import *
 
-nim = GameNimDef("./game_definitions/test_nim")
+nim = GameNimDef()
 
 def test_match():
-    match = simulate_match(nim,
+    match , metrics = simulate_match(nim,
     [
         {"name":"random"},
         {"name":"random"}
@@ -17,14 +17,14 @@ def test_match():
     assert len(match.steps) == 3
 
 def test_match_full():
-    match = simulate_match(nim,
+    match , metrics = simulate_match(nim,
     [
         {"name":"random"},
         {"name":"random"}
     ])
 
 def test_match_human():
-    match = simulate_match(nim,
+    match , metrics= simulate_match(nim,
                            [{"name":"minmax_asp",
                              "game_def":nim,
                              "main_player":"a"},
