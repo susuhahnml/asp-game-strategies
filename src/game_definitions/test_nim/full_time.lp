@@ -7,15 +7,6 @@ time(0..tree_depth).
 role(a).
 role(b).
 
-holds(has(1,2),0).
-holds(has(2,2),0).
-holds(control(a),0).
-
-% Action selection
-% legal(X,remove(P,N),T) :- holds(has(P,M),T), P = #min{L:holds(has(L,M),T)}, removable(N), N<=M, holds(control(X),T), time(T), not holds(goal(_,_),T).
-
-% {does(X,A,T): legal(X,A,T)}=1 :- time(T), not holds(goal(_,_),T).
-
 
 {does(X,remove(P,N),T):holds(has(P,M),T),removable(N),N<=M}=1 :- holds(control(X),T),
                                                                  time(T), 

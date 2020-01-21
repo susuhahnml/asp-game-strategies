@@ -25,6 +25,21 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
     depth:
         - n: Generate until depth n or terminal state reached
     """
+
+    def conf_to_player(config):
+        config = defaultdict(lambda: None,config)
+        if(config['name']=="human"):
+            return HumanPlayer()
+        if(config['name']=="strategy"):
+            return StrategyPlayer(config['strategy_path'])
+        if(config['name']=="random"):
+            return RandomPlayer(config['seed'])
+        if(config['name']=="minmax_asp"):
+            return MinmaxASPPlayer(game_def, config['main_player'])
+        # if(config['name']=="ML"):
+        #     return MLPlayer(config['model'])
+
+
     # TODO check options other than default
     players = [conf_to_player(player_config[0]),
                conf_to_player(player_config[1])]
@@ -51,15 +66,4 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
     if debug: print(match)
     return match
 
-def conf_to_player(config):
-    config = defaultdict(lambda: None,config)
-    if(config['name']=="human"):
-        return HumanPlayer()
-    if(config['name']=="strategy"):
-        return StrategyPlayer(config['strategy_path'])
-    if(config['name']=="random"):
-        return RandomPlayer(config['seed'])
-    if(config['name']=="minmax_asp"):
-        return MinmaxASPPlayer(config['game_def'],config['main_player'])
-    # if(config['name']=="ML"):
-    #     return MLPlayer(config['model'])
+

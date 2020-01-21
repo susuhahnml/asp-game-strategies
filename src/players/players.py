@@ -74,7 +74,7 @@ class RandomPlayer(Player):
 
 class MinmaxASPPlayer(Player):
     """
-    Player that chosses an action using the minmax of asp
+    Player that choses an action using the minmax of asp
 
     Attributes
     ----------
@@ -88,7 +88,7 @@ class MinmaxASPPlayer(Player):
     def choose_action(self,state):
         #TODO Give a time limit and save learned rules
         initial = fluents_to_asp_syntax(state.fluents,0)
-        match, tree, ex = get_minmax_init(self.game_def,self.main_player,initial)
+        match, tree, ex, ls = get_minmax_init(self.game_def,self.main_player,initial)
         action_name = symbol_str(match.steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
                   if symbol_str(l_a.action) == action_name][0]

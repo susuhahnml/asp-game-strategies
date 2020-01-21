@@ -24,7 +24,6 @@ class GameDef():
         self.full_time = path + "/full_time.lp"
         self.initial = path + "/initial.lp"
         self.all = path + "/all.lp"
-        # TODO think how to put this inside clingo..
 
 
     def state_to_ascii(self, state):
@@ -51,16 +50,34 @@ class GameDef():
             String with asciii representation
         """
         return NotImplementedError
+    
+    def get_initial_time(self):
+        """
+        Obtains the initial state in full time format
+        """
+        if(self.initial[-3:] == ".lp"):
+            with open(self.initial,"r") as File:
+                lines = File.readlines()
+                content = "".join(lines)
+        else:
+            content = self.initial + ""
+        content = content.replace(").",",0).")
+        content = content.replace("true","holds")
+        return content
+
+        
+
 
 class GameNimDef(GameDef):
     def __init__(self,path="./game_definitions/nim"):
         super().__init__(path)
-        with open(path+"/initial.lp","r") as File:
+        with open(self.initial,"r") as File:
             check = File.readlines()
         check = [[int(els) for els in re.sub(r".*has\((\d+\,\d+)\)\)\.","\g<1>",
                         el.replace("\n","")).split(",")]
                  for el in check if "has" in el]
         check = [ls for ls in check if ls[1] != 0]
+        #TODO pass this as parameters
         self.number_piles = len(check)
         self.max_number = max([ls[1] for ls in check])
         self.subst_var = {"remove":[True,False],

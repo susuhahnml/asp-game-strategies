@@ -23,12 +23,3 @@ holds(goal(X,1),T+1):- #sum{M,P:holds(has(P,M),T+1)}=0,
                     time(T), 
                     not holds(goal(_,_),T).
 holds(goal(Y,-1*G),T):- holds(goal(X,G),T), role(Y), Y!=X.
-% goal(N) :- holds(goal(a,N),_).
-
-% #maximize {N,T:holds(goal(a,N),T)}.
-% #maximize{N:goal(N)}.
-#show does/3.
-#show holds/2.
-% #show goal/1.
-
-% :-holds(control(a),T),holds(has(V2,2),T),holds(has(V3,0),T),holds(has(V1,0),T),V3!=V2,V3!=V1,V2!=V1, does(a,A,T), A!=remove(V2,1).

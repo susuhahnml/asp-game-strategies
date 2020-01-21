@@ -12,6 +12,8 @@ nim = GameNimDef("./game_definitions/test_nim")
 def test_match_time():
     initial = ('holds(has(1,2),0). holds(has(2,2),0).'+
                ' holds(has(3,0),0). holds(control(a),0).')
+    print("Initital\n\n")
+    print(nim.get_initial_time())
     minmax_match, min_max_tree, examples, learned_rules = get_minmax_init(nim,
                                                            'a',
                                                            initial,
