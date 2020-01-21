@@ -25,8 +25,7 @@ class GameDef():
         self.initial = path + "/initial.lp"
         self.all = path + "/all.lp"
         # TODO think how to put this inside clingo..
-        self.subst_var = {"remove":[True,False],
-                          "has":[True,False],"control":[False]}
+
 
     def state_to_ascii(self, state):
         """
@@ -64,6 +63,8 @@ class GameNimDef(GameDef):
         check = [ls for ls in check if ls[1] != 0]
         self.number_piles = len(check)
         self.max_number = max([ls[1] for ls in check])
+        self.subst_var = {"remove":[True,False],
+                          "has":[True,False],"control":[False]}
 
     def state_to_ascii(self,state):
         has = {f.arguments[0].number:f.arguments[1].number

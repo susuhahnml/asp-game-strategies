@@ -69,6 +69,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True,
         - minmax_tree: The search tree with the parts that where
           required to compute
         - examples_list: The list of examples for ILASP
+        - learned_rules: The list of rules learned
     """
     match  = get_match(game_def,case[main_player][main_player]['optimization'],
                        initial,[],'a')
@@ -85,7 +86,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True,
     final_score = minmax_match.goals[main_player]
     minmax_match.steps[0].set_score(final_score)
     minmax_tree.root.name.set_score(final_score)
-    return minmax_match, minmax_tree, examples_list
+    return minmax_match, minmax_tree, examples_list, learned_rules
 
 def get_minmax_rec(game_def, match, node_top, top_step, main_player,
                    old_fixed='', learned_rules=[], level = 0,

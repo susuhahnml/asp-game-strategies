@@ -12,12 +12,11 @@ nim = GameNimDef("./game_definitions/test_nim")
 def test_match_time():
     initial = ('holds(has(1,2),0). holds(has(2,2),0).'+
                ' holds(has(3,0),0). holds(control(a),0).')
-    minmax_match, min_max_tree, examples = get_minmax_init(nim,
+    minmax_match, min_max_tree, examples, learned_rules = get_minmax_init(nim,
                                                            'a',
                                                            initial,
                                                            debug=True)
-    print(minmax_match)
-    print("".join(examples))
+    print("\n".join(learned_rules))
     assert(minmax_match.goals["a"] == -1)
     assert(minmax_match.steps[0].score == -1)
     min_max_tree.print_in_console()
@@ -26,7 +25,7 @@ def test_match_time():
 def test_match_time_good():
     initial = ('holds(has(1,2),0). holds(has(2,2),0). holds(has(3,1),0).'+
                ' holds(control(a),0).')
-    minmax_match, min_max_tree, examples = get_minmax_init(nim,'a',initial,
+    minmax_match, min_max_tree, examples, learned_rules = get_minmax_init(nim,'a',initial,
                                                            debug=True)
     assert(minmax_match.goals["a"] == 1)
 
