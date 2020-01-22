@@ -15,7 +15,7 @@ def benchmark_match(n,name_a,name_b):
     games = [
         # GameNimDef(initial="true(has(1,0)).true(has(2,2)).true(has(3,2)).true(control(a))."),
         GameNimDef(initial="true(has(1,3)).true(has(2,2)).true(has(3,2)).true(control(a))."),
-        # GameNimDef(initial="true(has(1,5)).true(has(2,3)).true(has(3,2)).true(control(a))."),
+        GameNimDef(initial="true(has(1,5)).true(has(2,3)).true(has(3,2)).true(control(a))."),
         # GameNimDef(initial="true(has(1,7)).true(has(2,5)).true(has(3,3)).true(control(a))."),
     ]
     player_encounters = []
@@ -59,10 +59,10 @@ if __name__ == "__main__":
                         help="Number of matches to simulate")
     parser.add_argument("--pA-style", type=str, default="random",
                         help="playing style for player a;"+
-                        " either 'minmax_asp', 'random', 'strategy' or 'human'")
+                        " either 'minmax_asp', 'minmax', 'random', 'strategy' or 'human'")
     parser.add_argument("--pB-style", type=str, default="random",
                         help="playing style for player b;"+
-                        " either 'minmax_asp', 'random', 'strategy' or 'human'")
+                        " either 'minmax_asp', 'minmax', 'random', 'strategy' or 'human'")
     parser.add_argument("--file-name", type=str, default="benchmark_res.txt",
                         help="output image file name")
     args = parser.parse_args()

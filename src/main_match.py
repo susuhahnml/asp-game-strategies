@@ -21,7 +21,7 @@ def main_match(path,depth,pA_style,pB_style,debug):
         conf = {"name":p}
         if p == "strategy":
             conf["strategy_path"]=path+"/strategy.lp"
-        if p == "minmax_asp":
+        if p in ["minmax_asp","minmax"]:
             conf["main_player"]=n
         pl.append(conf)
 

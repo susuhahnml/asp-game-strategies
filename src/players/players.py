@@ -103,22 +103,16 @@ class MinmaxPlayer(Player):
     Attributes
     ----------
     """
-    def __init__(self, game_def):
+    def __init__(self, game_def,main_player):
         self.game_def = game_def
+        self.main_player = main_player
         self.strategy= None
 
     def choose_action(self,state):
         #TODO Give a time limit and save learned rules
         tree = Tree()
-        tree.from_game_def(self.game_def,initial_state=state)
+        tree.from_game_def(self.game_def,initial_state=state,main_player=self.main_player)
         next_steps = [c.name for c in tree.root.children if c.name.score==tree.root.name.score]
-        print(tree.root.name.ascii_score)
-        print("Next ")
-        print("\n".join([str(s.name) for s in tree.root.children]))
-        print("Next with same score")
-        print("\n".join([s.ascii for s in next_steps]))
-        print(tree.root.name.score)
-        
         action_name = symbol_str(next_steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
                   if symbol_str(l_a.action) == action_name][0]

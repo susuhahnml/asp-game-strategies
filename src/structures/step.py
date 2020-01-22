@@ -99,8 +99,7 @@ class Step:
         s = self.state.game_def.step_to_ascii(self)
         return s
 
-    @property
-    def ascii_score(self):
+    def ascii_score(self,main_player="a"):
         """
         Returns the ascii representation of the step including the score
         """
@@ -112,9 +111,13 @@ class Step:
                 if(self.state.is_terminal):
                     return ("Terminal\n{}".format(self.ascii))
                 else:
-                    return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
-                         "{}").format("a",
-                                      self.score,
-                                      self.ascii))
+                    if main_player=="a":
+                        
+                        return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
+                            "{}").format("a",self.score, self.ascii))
+                    else:
+                        return (("minimax:({},{})\n"+"(b,a):(max,min)\n"+
+                            "{}").format("b",self.score, self.ascii))
+
         else:
             return ""
