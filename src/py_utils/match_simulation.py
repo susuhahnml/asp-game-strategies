@@ -37,6 +37,8 @@ def simulate_match(game_def, player_config, depth=None, debug=False):
             return RandomPlayer(config['seed'])
         if(config['name']=="minmax_asp"):
             return MinmaxASPPlayer(game_def, config['main_player'])
+        if(config['name']=="minmax"):
+            return MinmaxPlayer(game_def)
         # if(config['name']=="ML"):
         #     return MLPlayer(config['model'])
 

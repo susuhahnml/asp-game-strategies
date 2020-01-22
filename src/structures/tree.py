@@ -19,7 +19,7 @@ class Tree:
         self.root = root
         self.game = game
 
-    def from_game_def(self, game_def):
+    def from_game_def(self, game_def, initial_state = None):
         """
         Wrapper function to start with a game definition and expand
         root downwards to branch all possibilities. Next, the tree is
@@ -29,7 +29,9 @@ class Tree:
             game_def (GameDef*): game definition class
         """
         self.game = game_def
-        initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
+        if initial_state is None:
+            initial = game_def.initial
+            initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
         root_node = Node(Step(initial_state,None,0))
         # Tree.expand_rec(root_node,0)
         self.root = root_node

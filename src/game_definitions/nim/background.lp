@@ -7,8 +7,7 @@ role(a).
 role(b).
 
 % Action selection
-legal(X,remove(P,N)) :- true(has(P,M)), removable(N), N<=M, true(control(X)), not terminal.
-% legal(X,remove(P,N)) :- true(has(P,M)), P = #min{L:true(has(L,M))}, removable(N), N<=M, true(control(X)), not terminal.
+legal(X,remove(P,N)) :- true(has(P,M)), P = #min{L:true(has(L,M))}, removable(N), N<=M, true(control(X)), not terminal.
 0 {does(X,A)} 1 :- legal(X,A), not terminal.
 :- does(X,Y), does(X,Z), Y < Z.
 :- not does(X,_), true(control(X)), not terminal.

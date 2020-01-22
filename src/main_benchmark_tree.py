@@ -40,9 +40,14 @@ def benchmark_tree():
     return results
 
 
-res = benchmark_tree()
-with open("benchmark-full-tree.txt", "w") as text_file:
-    text_file.write(res)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
+    parser.add_argument("--file-name", type=str, default="benchmark_tree_res.txt",
+                        help="output image file name")
+    args = parser.parse_args()
+    res = benchmark_tree()
+    with open(args.file_name, "w") as text_file:
+        text_file.write(res)
 
     
 

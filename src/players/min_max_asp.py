@@ -55,7 +55,7 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
         return matches[-1]
 
 def get_minmax_init(game_def, main_player, initial, learning_rules = True, learning_examples = False,
-                    debug = False):
+                    debug = False, extra_fixed = ""):
     """
     Computes the minmax using multiple calls to clingo.
     Args:
@@ -73,7 +73,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
         - learned_rules: The list of rules learned
     """
     match  = get_match(game_def,case[main_player][main_player]['optimization'],
-                       initial,[],'a')
+                       initial+extra_fixed,[],'a')
     examples_list = [] if learning_examples else None
     learned_rules = [] if learning_rules else None
     node = Tree.node_from_match_initial(match)
@@ -81,7 +81,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
                                                main_player,
                                                learned_rules=learned_rules,
                                                list_examples=examples_list,
-                                               debug=debug)
+                                               debug=debug, old_fixed=extra_fixed)
     minmax_tree=Tree(minmax_tree.parent)
     final_score = minmax_match.goals[main_player]
     minmax_match.steps[0].set_score(final_score)
@@ -121,8 +121,8 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         fixed += 'not ' + match.steps[i].action_to_asp_syntax()
         current_goal = minmax_match.goals[main_player]
         #Get optimal match (Without minimizing for second player)
-        opt_match  = get_match(game_def,fixed,case[main_player][control]
-                               ['optimization'],learned_rules,main_player)
+        opt_match  = get_match(game_def,case[main_player][control]
+                               ['optimization'],fixed,learned_rules,main_player)
         # Score is current goal unless proved other
         node_top.name.set_score(current_goal)
         if(not opt_match):

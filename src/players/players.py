@@ -83,16 +83,47 @@ class MinmaxASPPlayer(Player):
     def __init__(self, game_def, main_player):
         self.game_def = game_def
         self.main_player =  main_player
-        self.strategy=None
+        self.strategy= None
+        self.learned = ""
 
     def choose_action(self,state):
         #TODO Give a time limit and save learned rules
         initial = fluents_to_asp_syntax(state.fluents,0)
         match, tree, ex, ls = get_minmax_init(self.game_def,self.main_player,initial)
+        self.learned+= "\n".join(ls)
         action_name = symbol_str(match.steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
                   if symbol_str(l_a.action) == action_name][0]
         return action
+
+class MinmaxPlayer(Player):
+    """
+    Player that choses an action using the classic minmax computation
+
+    Attributes
+    ----------
+    """
+    def __init__(self, game_def):
+        self.game_def = game_def
+        self.strategy= None
+
+    def choose_action(self,state):
+        #TODO Give a time limit and save learned rules
+        tree = Tree()
+        tree.from_game_def(self.game_def,initial_state=state)
+        next_steps = [c.name for c in tree.root.children if c.name.score==tree.root.name.score]
+        print(tree.root.name.ascii_score)
+        print("Next ")
+        print("\n".join([str(s.name) for s in tree.root.children]))
+        print("Next with same score")
+        print("\n".join([s.ascii for s in next_steps]))
+        print(tree.root.name.score)
+        
+        action_name = symbol_str(next_steps[0].action.action)
+        action = [l_a for l_a in state.legal_actions
+                  if symbol_str(l_a.action) == action_name][0]
+        return action
+
 
 class MLPlayer(Player):
     """
@@ -115,7 +146,6 @@ class MLPlayer(Player):
        #  action_str =  symbol_str(self.game.all_actions[action_idx])
        #  legal_action = self.game.current_state.get_legal_action_from_str(action_str)
        #  if not legal_action:
-           #  print(paint("\t MLPlayer selected non legal action: {}".format(action_str),bcolors.FAIL))
            #  action_idx = self.game.sample_random_legal_action
            #  action_str =  symbol_str(self.game.all_actions[action_idx])
            #  print(paint("\t Selected random instead action: {}".format(action_str),bcolors.FAIL))

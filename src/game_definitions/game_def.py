@@ -84,7 +84,7 @@ class GameNimDef(GameDef):
         check = [[int(els) for els in re.sub(r".*has\((\d+\,\d+)\)\)\.","\g<1>",
                         el.replace("\n","")).split(",")]
                  for el in check if "has" in el]
-        check = [ls for ls in check if ls[1] != 0]
+        # check = [ls for ls in check if ls[1] != 0]
         #TODO pass this as parameters
         self.number_piles = len(check)
         self.max_number = max([ls[1] for ls in check])

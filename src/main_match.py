@@ -37,10 +37,10 @@ if __name__ == "__main__":
                         help="depth to which game should be played")
     parser.add_argument("--pA-style", type=str, default="random",
                         help="playing style for player a;"+
-                        " either 'minmax_asp', 'random', 'strategy' or 'human'")
+                        " either 'minmax_asp', 'minmax', 'random', 'strategy' or 'human'")
     parser.add_argument("--pB-style", type=str, default="random",
                         help="playing style for player b;"+
-                        " either 'minmax_asp', 'random', 'strategy' or 'human'")
+                        " either 'minmax_asp', 'minmax', 'random', 'strategy' or 'human'")
     parser.add_argument("--debug", default=False, action="store_true",
                         help="print debugging information from stack")
     args = parser.parse_args()
