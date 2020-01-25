@@ -40,7 +40,8 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(game_def.full_time)
     ctl.add("base",[],fixed_atoms)
-    ctl.add("base",[],"".join(learned_rules))
+    if not (learned_rules is None):
+        ctl.add("base",[],"".join(learned_rules))
     ctl.add("base",[],optimization)
     ctl.ground([("base", [])], context=Context())
     with ctl.solve(yield_=True) as handle:
@@ -53,8 +54,8 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
             return None
         return matches[-1]
 
-def get_minmax_init(game_def, main_player, initial, learning_rules = True,
-                    debug = False):
+def get_minmax_init(game_def, main_player, initial, learning_rules = True, learning_examples = False,
+                    debug = False, extra_fixed = ""):
     """
     Computes the minmax using multiple calls to clingo.
     Args:
@@ -69,27 +70,27 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True,
         - minmax_tree: The search tree with the parts that where
           required to compute
         - examples_list: The list of examples for ILASP
+        - learned_rules: The list of rules learned
     """
     match  = get_match(game_def,case[main_player][main_player]['optimization'],
-                       initial,[],'a')
-    examples_list = []
-    learned_rules = []
+                       initial+extra_fixed,[],'a')
+    examples_list = [] if learning_examples else None
+    learned_rules = [] if learning_rules else None
     node = Tree.node_from_match_initial(match)
     minmax_match, minmax_tree = get_minmax_rec(game_def,match,node,0,
                                                main_player,
                                                learned_rules=learned_rules,
                                                list_examples=examples_list,
-                                               learning_rules=learning_rules,
-                                               debug=debug)
+                                               debug=debug, old_fixed=extra_fixed)
     minmax_tree=Tree(minmax_tree.parent)
     final_score = minmax_match.goals[main_player]
     minmax_match.steps[0].set_score(final_score)
     minmax_tree.root.name.set_score(final_score)
-    return minmax_match, minmax_tree, examples_list
+    return minmax_match, minmax_tree, examples_list, learned_rules
 
 def get_minmax_rec(game_def, match, node_top, top_step, main_player,
-                   old_fixed='', learned_rules=[], level = 0,
-                   list_examples=[], learning_rules=True, debug = False):
+                   old_fixed='', learned_rules=None, level = 0,
+                   list_examples=None, debug = False):
     """
     Computes the recursive call to compute the minmax with asp
     Args:
@@ -104,6 +105,8 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         - learned_rules: The rules learned for the tree
         - level: The recursion level
     """
+    learning_examples = not (list_examples is None)
+    learning_rules = not (learned_rules is None)
     steps_to_analyze = match.steps[top_step:-1]
     minmax_match = match
     node_top = node_top.leaves[0]
@@ -118,8 +121,8 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         fixed += 'not ' + match.steps[i].action_to_asp_syntax()
         current_goal = minmax_match.goals[main_player]
         #Get optimal match (Without minimizing for second player)
-        opt_match  = get_match(game_def,fixed,case[main_player][control]
-                               ['optimization'],learned_rules,main_player)
+        opt_match  = get_match(game_def,case[main_player][control]
+                               ['optimization'],fixed,learned_rules,main_player)
         # Score is current goal unless proved other
         node_top.name.set_score(current_goal)
         if(not opt_match):
@@ -132,9 +135,10 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         if case[main_player][control]['current_is_better'](current_goal,
                                                            new_goal):
             # Choosing other action gets a worst result in the best case
-            ex = generate_example(match.steps[i].state,match.steps[i].action,
-                                  opt_match.steps[i].action)
-            list_examples.append(ex)
+            if learning_examples:
+                ex = generate_example(match.steps[i].state,match.steps[i].action,
+                                    opt_match.steps[i].action)
+                list_examples.append(ex)
             if learning_rules:
                 rule = generate_rule(game_def,match.steps[i].state,
                                      match.steps[i].action)
@@ -158,9 +162,10 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         if case[main_player][control]['current_is_better'](current_goal,
                                                            new_goal):
             # Choosing other action gets a worst result in the best case
-            ex = generate_example(match.steps[i].state,match.steps[i].action,
-                                  opt_minmax.steps[i].action)
-            list_examples.append(ex)
+            if learning_examples:
+                ex = generate_example(match.steps[i].state,match.steps[i].action,
+                                    opt_minmax.steps[i].action)
+                list_examples.append(ex)
             if learning_rules:
                 rule = generate_rule(game_def,match.steps[i].state,
                                      match.steps[i].action)
@@ -171,9 +176,10 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
             # this section will remain unexplored
             continue
         #### New match is better for current player maximized
-        ex = generate_example(match.steps[i].state,opt_minmax.steps[i].action,
-                              match.steps[i].action)
-        list_examples.append(ex)
+        if learning_examples:
+            ex = generate_example(match.steps[i].state,opt_minmax.steps[i].action,
+                                match.steps[i].action)
+            list_examples.append(ex)
         if learning_rules:
             rule = generate_rule(game_def,match.steps[i].state,
                                  opt_minmax.steps[i].action)

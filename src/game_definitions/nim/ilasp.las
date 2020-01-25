@@ -41,168 +41,106 @@ terminal :- goal(_,_).
 
 %------------ Context E ----------------
 
-#pos(e1, { does(a,remove(p2,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e0,{ does(b,remove(3,1)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,0)). true(has(1,0)). 
+}).
+#pos(e1,{ does(b,remove(3,2)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,0)). true(has(1,0)). 
+}).
+#brave_ordering(e0,e1).
 
-#pos(e2, { does(a,remove(p1,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e2,{ does(a,remove(3,2)) }, {}, {
+ true(control(a)). true(has(3,2)). true(has(1,0)). true(has(2,1)). 
+}).
+#pos(e3,{ does(a,remove(3,1)) }, {}, {
+ true(control(a)). true(has(3,2)). true(has(1,0)). true(has(2,1)). 
+}).
+#brave_ordering(e2,e3).
 
-#pos(e3, { does(a,remove(p2,2))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e4,{ does(a,remove(3,2)) }, {}, {
+ true(control(a)). true(has(3,2)). true(has(1,0)). true(has(2,1)). 
+}).
+#pos(e5,{ does(a,remove(2,1)) }, {}, {
+ true(control(a)). true(has(3,2)). true(has(1,0)). true(has(2,1)). 
+}).
+#brave_ordering(e4,e5).
 
-#brave_ordering(e1,e2).
-#brave_ordering(e3,e2).
+#pos(e6,{ does(a,remove(2,1)) }, {}, {
+ true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). 
+}).
+#pos(e7,{ does(a,remove(2,2)) }, {}, {
+ true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). 
+}).
+#brave_ordering(e6,e7).
 
-% %------------ Context F ----------------
+#pos(e8,{ does(b,remove(3,1)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,1)). true(has(1,1)). 
+}).
+#pos(e9,{ does(b,remove(3,2)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,1)). true(has(1,1)). 
+}).
+#brave_ordering(e8,e9).
 
-#pos(f1, { does(a,remove(p1,1))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e10,{ does(b,remove(1,2)) }, {}, {
+ true(control(b)). true(has(2,1)). true(has(1,2)). true(has(3,0)). 
+}).
+#pos(e11,{ does(b,remove(2,1)) }, {}, {
+ true(control(b)). true(has(2,1)). true(has(1,2)). true(has(3,0)). 
+}).
+#brave_ordering(e10,e11).
 
-#pos(f2, { does(a,remove(p1,2))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e12,{ does(b,remove(1,2)) }, {}, {
+ true(control(b)). true(has(2,1)). true(has(1,2)). true(has(3,0)). 
+}).
+#pos(e13,{ does(b,remove(1,1)) }, {}, {
+ true(control(b)). true(has(2,1)). true(has(1,2)). true(has(3,0)). 
+}).
+#brave_ordering(e12,e13).
 
-#pos(f3, { does(a,remove(p1,3))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e14,{ does(a,remove(2,1)) }, {}, {
+ true(control(a)). true(has(1,2)). true(has(3,2)). true(has(2,1)). 
+}).
+#pos(e15,{ does(a,remove(1,2)) }, {}, {
+ true(control(a)). true(has(1,2)). true(has(3,2)). true(has(2,1)). 
+}).
+#brave_ordering(e14,e15).
 
-#pos(f4, { does(a,remove(p2,1))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,2)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e16,{ does(a,remove(2,1)) }, {}, {
+ true(control(a)). true(has(1,2)). true(has(3,2)). true(has(2,1)). 
+}).
+#pos(e17,{ does(a,remove(3,2)) }, {}, {
+ true(control(a)). true(has(1,2)). true(has(3,2)). true(has(2,1)). 
+}).
+#brave_ordering(e16,e17).
 
-#brave_ordering(f1,f2).
-#brave_ordering(f1,f3).
-#brave_ordering(f1,f4).
+#pos(e18,{ does(a,remove(2,1)) }, {}, {
+ true(control(a)). true(has(1,2)). true(has(3,2)). true(has(2,1)). 
+}).
+#pos(e19,{ does(a,remove(1,1)) }, {}, {
+ true(control(a)). true(has(1,2)). true(has(3,2)). true(has(2,1)). 
+}).
+#brave_ordering(e18,e19).
 
-%------------ Context G ----------------
+#pos(e20,{ does(b,remove(2,2)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,2)). true(has(1,2)). 
+}).
+#pos(e21,{ does(b,remove(2,1)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,2)). true(has(1,2)). 
+}).
+#brave_ordering(e20,e21).
 
-#pos(g1, { does(a,remove(p1,2))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,0)).
-    true(has(p3,0)).
-    true(control(a)).}).
+#pos(e22,{ does(b,remove(2,2)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,2)). true(has(1,2)). 
+}).
+#pos(e23,{ does(b,remove(1,1)) }, {}, {
+ true(control(b)). true(has(3,2)). true(has(2,2)). true(has(1,2)). 
+}).
+#brave_ordering(e22,e23).
 
-#pos(g2, { does(a,remove(p1,1))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,0)).
-    true(has(p3,0)).
-    true(control(a)).}).
-
-#pos(g3, { does(a,remove(p1,3))}, {}, {
-    true(has(p1,3)).
-    true(has(p2,0)).
-    true(has(p3,0)).
-    true(control(a)).}).
-
-#brave_ordering(g1,g2).
-#brave_ordering(g1,g3). % FOR SOME REASON THIS LEADS TO UNSAT
-
-%------------ Context H ----------------
-
-#pos(h1, { does(a,remove(p3,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,1)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#pos(h2, { does(a,remove(p2,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,1)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#pos(h3, { does(a,remove(p1,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,1)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#pos(h4, { does(a,remove(p3,2))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,1)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#brave_ordering(h1,h2).
-#brave_ordering(h1,h3).
-#brave_ordering(h1,h4).% FOR SOME REASON THIS LEADS TO UNSAT
-
-%------------ Context I ----------------
-
-#pos(i1, { does(a,remove(p1,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,2)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#pos(i2, { does(a,remove(p3,1))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,2)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#pos(i3, { does(a,remove(p3,2))}, {}, {
-    true(has(p1,1)).
-    true(has(p2,2)).
-    true(has(p3,2)).
-    true(control(a)).}).
-
-#brave_ordering(i1,i2).
-#brave_ordering(i1,i3).
-
-%------------ Context J ----------------
-
-#pos(j1, { does(a,remove(p1,1))}, {}, {
-    true(has(p1,2)).
-    true(has(p2,0)).
-    true(has(p3,0)).
-    true(control(a)).}).
-
-#pos(j2, { does(a,remove(p1,2))}, {}, {
-    true(has(p1,2)).
-    true(has(p2,0)).
-    true(has(p3,0)).
-    true(control(a)).}).
-
-#brave_ordering(j1,j2).
-
-%------------ Context K ----------------
-
-#pos(k1, { does(a,remove(p3,3))}, {}, {
-    true(has(p1,2)).
-    true(has(p2,2)).
-    true(has(p3,3)).
-    true(control(a)).}).
-
-#pos(k2, { does(a,remove(p2,2))}, {}, {
-    true(has(p1,2)).
-    true(has(p2,2)).
-    true(has(p3,3)).
-    true(control(a)).}).
-
-#pos(k3, { does(a,remove(p3,2))}, {}, {
-    true(has(p1,2)).
-    true(has(p2,2)).
-    true(has(p3,3)).
-    true(control(a)).}).
-
-#brave_ordering(k1,k2).
-#brave_ordering(k1,k3).
+#pos(e24,{ does(a,remove(1,3)) }, {}, {
+ true(has(1,3)). true(has(2,2)). true(has(3,2)). true(control(a)). 
+}).
+#pos(e25,{ does(a,remove(1,1)) }, {}, {
+ true(has(1,3)). true(has(2,2)). true(has(3,2)). true(control(a)). 
+}).
+#brave_ordering(e24,e25).

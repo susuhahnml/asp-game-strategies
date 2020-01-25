@@ -10,6 +10,7 @@ from anytree.iterators.levelorderiter import LevelOrderIter
 from .state import *
 from .match import *
 
+
 class Tree:
     """
     Tree class to handle minimax tree construction
@@ -19,7 +20,7 @@ class Tree:
         self.root = root
         self.game = game
 
-    def from_game_def(self, game_def):
+    def from_game_def(self, game_def, initial_state = None, main_player="a"):
         """
         Wrapper function to start with a game definition and expand
         root downwards to branch all possibilities. Next, the tree is
@@ -29,15 +30,17 @@ class Tree:
             game_def (GameDef*): game definition class
         """
         self.game = game_def
-        initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
+        if initial_state is None:
+            initial = game_def.initial
+            initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
         root_node = Node(Step(initial_state,None,0))
         # Tree.expand_rec(root_node,0)
         self.root = root_node
-        self.expand_root()
-        root_node = self.build_minimax(root_node)
+        self.expand_root(main_player=main_player)
+        root_node = self.build_minimax(root_node,main_player=main_player)
         self.root = root_node
 
-    def expand_root(self):
+    def expand_root(self, main_player="a"):
         """
         Function to expand a tree downwards until terminal leaves
 
@@ -58,8 +61,8 @@ class Tree:
             # define current player
             expand_further = False
             # starting iteration to fill branches
-            print("Depth: %s" % (time_step))
-            for leaf in tqdm(tree.leaves):
+            # print("Depth: %s" % (time_step))
+            for leaf in tqdm(tree.leaves,disable=True):
                 current_state = leaf.name.state
                 if current_state.is_terminal:
                     continue
@@ -74,41 +77,36 @@ class Tree:
                 if next_state.is_terminal:
                     # Node(next_state,parent=leaf)
                     goals = next_state.goals
-                    for player,g_score in goals.items():
-                        if g_score == 1 and player == "a":
-                            score = 1
-                        elif g_score == 1 and player == "b":
-                            score = -1
-                    leaf.name.score = score
+                    leaf.name.score = goals[main_player]
 
             time_step += 1
 
-    def build_minimax(self,tree):
+    def build_minimax(self,tree,main_player="a"):
         """
         Function to review and annotate tree with minimax scores
 
         Args:
             tree (anytree.Node): a tree with scores on its leaves
-
+            main_player (str): The player to maximize
         Returns:
             tree (anytree.Node): minimax-annotated version of tree
         """
-        print("tracking minimax scores recursively")
+        # print("tracking minimax scores recursively")
         # work recursively backwards to fill up slots
         for node in tqdm(list(reversed
                             (list(LevelOrderIter(tree.root,
-                                                maxlevel=tree.root.height))))):
+                                                maxlevel=tree.root.height)))),disable=True):
             scores = [child.name.score
                       for child in node.children if child != ()]
             if node.name.score == None:
-                if node.name.state.control == "a":
+                if node.children[0].name.state.control == main_player:
                     node.name.score = max(scores)
-                elif node.name.state.control == "b":
+                else:
                     node.name.score = min(scores)
         return tree
 
     def print_in_file(self,base_dir="./img/",
-                      file_name="tree_test.png",html=True):
+                      file_name="tree_test.png",html=True,main_player="a"):
         """
         Function to plot generated tree as an image file
 
@@ -120,7 +118,7 @@ class Tree:
         # define local functions
         def to_label(node):
             """ Minor function to create ascii graph label """
-            return 'label="%s"' % (node.name.ascii_score)
+            return 'label="%s"' % (node.name.ascii_score(main_player))
         
         #TODO find a way to make this general
         # define local variables
@@ -133,7 +131,7 @@ class Tree:
             html.append("<table border='0' cellborder='1' cellspacing='0'" +
                         " cellpadding='2.5' width='100%'>")
             # parse score string into list
-            to_parse = list(filter(None,node.name.ascii_score.split("\n")))
+            to_parse = list(filter(None,node.name.ascii_score(main_player).split("\n")))
             # create html score header based on node type
             if node.is_root:
                 html.append("<tr><td colspan='%s'><b>%s</b></td></tr>" %

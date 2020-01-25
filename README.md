@@ -2,19 +2,22 @@
 
 ### Overview
 
-This project involves the creation of a framework for learning strategies for games.
+This project involves the creation of a framework to play two player games using Answer Set Programming for game description and dynamics.
 
-The strategies are represented as Weak Constraints and are learned using the [ILASP](http://www.ilasp.com) system for Inductive Logic Programming with Answer Set Programing.
+#### Game description
 
-The game play and search for examples is done using [clingo](https://potassco.org/clingo/). These two systems are connected using python to learn strategies via self-play.
+The description of the games is represented in ASP and it is called from python to compute the best moves for a player using different approaches and strategies. 
 
-The idea for this project is mainly based on the paper ["Learning weak constraints"](https://www.imperial.ac.uk/media/imperial-college/faculty-of-engineering/computing/public/1718-ug-projects/Elliot-Greenwood-Learning-Player-Strategies-using-Weak-Constraints.pdf) by *Elliot Greenwood*, and was further inspired by the [work](https://github.com/921kiyo/symbolic-rl) of *Kiyohito Kunii* in learning hard constraints via inductive logic programming . We will explore some of the proposed future work ideas proposed by these authors while reimplementing the the overall frameworks. 
-
-### Methodologies
+To represent the game encoding we will use the [Game Description Language (GDL)](https://en.wikipedia.org/wiki/Game_Description_Language) used to formalize the rules of any finite game with complete information. This framework only works with two player games with complete information where turns alternate after every move.
 
 As a main example we use the mathematical strategy game called [Nim](https://en.wikipedia.org/wiki/Nim). This game has a wining strategy which we attempt to learn using this framework.
 
-To represent the game encoding we will use the [Game Description Language (GDL)](https://en.wikipedia.org/wiki/Game_Description_Language) used to formalize the rules of any finite game with complete information.
+### Learning strategies
+
+The strategies are represented as Weak Constraints and are learned using the [ILASP](http://www.ilasp.com) system for Inductive Logic Programming with Answer Set Programing.
+
+
+### Methodologies
 
 Information on our source code and workflow can be found in the [src](/src) directory.
 

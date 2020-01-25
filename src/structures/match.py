@@ -7,14 +7,34 @@ from .action import *
 from structures.step import *
 
 class Match:
+    """
+    Class to represent a match 
+
+    Attributes
+    ----------
+    steps : list(Step)
+        list of steps performed in the match
+    """
     def __init__(self,steps):
         self.steps = steps
 
     def add_step(self, step):
+        """
+        Adds a nex step
+        """
         self.steps.append(step)
 
     @classmethod
     def from_time_model(cls, model, game_def, main_player = None):
+        """
+        Given a stabel model for the full time representation of the game,
+        the functions creates a match with each action taken.
+
+        Args:
+            model: Stable model from the full time representation
+            game_def: The game definition
+            main_player: The player for which we aim to minmax
+        """
         atoms = model.symbols(atoms=True)
         fluent_steps = defaultdict(lambda: {'fluents':[],'goals':[],
                                             'action':None})
@@ -48,11 +68,17 @@ class Match:
 
     @property
     def goals(self):
+        """
+        Returns: Obtains the goals of a match using the last step
+        """
         if(len(self.steps) == 0):
             return {}
         return self.steps[-1].state.goals
 
     def __str__(self):
+        """
+        Returns: A console representation of the match
+        """
         s = ""
         c = [bcolors.OKBLUE,bcolors.HEADER]
         for step in self.steps:

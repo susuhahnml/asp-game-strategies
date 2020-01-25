@@ -3,10 +3,10 @@
 
 import re
 from collections import defaultdict
-
+from py_utils.colors import *
 class GameDef():
     """ Template class which can be reproduced for multiple games """
-    def __init__(self,path):
+    def __init__(self,path,initial):
         """
         Creates a game definition from a path.
 
@@ -18,15 +18,17 @@ class GameDef():
                 for the initial state
                 - full_time.lp: Clingo file with all rules
                 from the game in action description language with time steps
+            initial (str): String or path to file to overwrite the initial state 
         """
         self.path = path
         self.background = path + "/background.lp"
         self.full_time = path + "/full_time.lp"
         self.initial = path + "/initial.lp"
         self.all = path + "/all.lp"
-        # TODO think how to put this inside clingo..
-        self.subst_var = {"remove":[True,False],
-                          "has":[True,False],"control":[False]}
+        if not initial is None:
+            self.initial = initial
+
+
 
     def state_to_ascii(self, state):
         """
@@ -52,18 +54,42 @@ class GameDef():
             String with asciii representation
         """
         return NotImplementedError
+    
+    def get_initial_time(self):
+        """
+        Obtains the initial state in full time format
+        """
+        if(self.initial_is_file):
+            with open(self.initial,"r") as File:
+                lines = File.readlines()
+                content = "".join(lines)
+        else:
+            content = self.initial + ""
+        content = content.replace(").",",0).")
+        content = content.replace("true","holds")
+        return content
+
+    @property
+    def initial_is_file(self):
+        return(self.initial[-3:] == ".lp")
 
 class GameNimDef(GameDef):
-    def __init__(self,path="./game_definitions/nim"):
-        super().__init__(path)
-        with open(path+"/initial.lp","r") as File:
-            check = File.readlines()
+    def __init__(self,path="./game_definitions/nim",initial=None):
+        super().__init__(path,initial)
+        if self.initial_is_file:
+            with open(self.initial,"r") as File:
+                check = File.readlines()
+        else:
+            check =  [s+'.' for s in self.initial.split('.')]
         check = [[int(els) for els in re.sub(r".*has\((\d+\,\d+)\)\)\.","\g<1>",
                         el.replace("\n","")).split(",")]
                  for el in check if "has" in el]
-        check = [ls for ls in check if ls[1] != 0]
+        # check = [ls for ls in check if ls[1] != 0]
+        #TODO pass this as parameters
         self.number_piles = len(check)
         self.max_number = max([ls[1] for ls in check])
+        self.subst_var = {"remove":[True,False],
+                          "has":[True,False],"control":[False]}
 
     def state_to_ascii(self,state):
         has = {f.arguments[0].number:f.arguments[1].number
@@ -89,4 +115,54 @@ class GameNimDef(GameDef):
             if i != 0 and re.match(r'^\s*$', line):
                 del lines[i]
         return "\n".join(lines)
+
+color_p = {"a":bcolors.HEADER,"b":bcolors.OKBLUE}
+
+class GameDomDef(GameDef):
+    def __init__(self,path="./game_definitions/dominoes",initial=None):
+        super().__init__(path,initial)
+        self.max_number=4
+        self.subst_var = {"in_hand":[False,False],
+                          "stack":[True,False],
+                          "plays":[False,True],
+                          "pass":[],
+                          "control":[False],
+                          "domino":[True,True]}
+
+    def state_to_ascii(self, state):
+        div = "-"*(self.max_number*2 +1) +"\n"
+        a = div
+        in_hand = [f for f in state.fluents if f.name == "in_hand"]
+        hands = {'a':[],'b':[]}
+        for h in in_hand:
+            t = (h.arguments[1].arguments[0].number,h.arguments[1].arguments[1].number)
+            hands[h.arguments[0].name].append(t)
+        stack = {f.arguments[0].name:f.arguments[1].number for f in state.fluents if f.name == "stack"}
+        hand_a = "  ".join(["{}-{}".format(t[0],t[1]) for t in hands['a']])
+        hand_b = "  ".join(["{}-{}".format(t[0],t[1]) for t in hands['b']])
+        return """
+a: {}
+
+\t\t{}...{}
+
+b: {}
+        """.format(hand_a, stack['l'],stack['r'],hand_b)
+    
+    def step_to_ascii(self, step):
+        p=step.state.control
+        state = step.state
+        a_split = self.state_to_ascii(state).splitlines(True)
+        if(not step.action):
+            return "".join(a_split)
+        if(step.action.action.name=="pass"):
+            a_split[3] = ("\tPASS\t") + a_split[3][2:-1] + ("\tPASS\n")
+            return "".join(a_split)
+        d = (step.action.action.arguments[0].arguments[0].number,step.action.action.arguments[0].arguments[1].number)
+        s = step.action.action.arguments[1].name
+        d_string = " ({}) {}-{}".format(p,d[0],d[1])
+        if s == "l":
+            a_split[3] = "\t" + d_string + "\t" + a_split[3][2:]
+        else:
+            a_split[3] = a_split[3][:-1] + "\t" + d_string + "\n"
+        return "".join(a_split)
 # 
