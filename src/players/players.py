@@ -95,6 +95,7 @@ class MinmaxASPPlayer(Player):
         action = [l_a for l_a in state.legal_actions
                   if symbol_str(l_a.action) == action_name][0]
         return action
+color_p = {"a":bcolors.HEADER,"b":bcolors.OKBLUE}
 
 class MinmaxPlayer(Player):
     """

@@ -9,10 +9,10 @@ from structures import *
 from players import *
 from game_definitions import *
 
-def main_match(path,depth,pA_style,pB_style,debug):
+def main_match(path,depth,pA_style,pB_style,debug,game_name):
     # remove trailing backslash as failsafe
     path=re.sub(r"\/$","",path)
-    nim = GameNimDef(path)
+    game = globals()['Game{}Def'.format(game_name)](path)    
     if "human" in [pA_style,pB_style]:
         debug = True
     
@@ -25,7 +25,7 @@ def main_match(path,depth,pA_style,pB_style,debug):
             conf["main_player"]=n
         pl.append(conf)
 
-    match, response_times = simulate_match(nim,pl,debug=debug)
+    match, response_times = simulate_match(game,pl,debug=debug)
     
 
 if __name__ == "__main__":
@@ -43,6 +43,9 @@ if __name__ == "__main__":
                         " either 'minmax_asp', 'minmax', 'random', 'strategy' or 'human'")
     parser.add_argument("--debug", default=False, action="store_true",
                         help="print debugging information from stack")
+    parser.add_argument("--game-name", type=str, default="Nim",
+                help="short name for the game. Available: Dom and Nim")
+
     args = parser.parse_args()
     # run match command
-    main_match(args.path,args.depth,args.pA_style,args.pB_style,args.debug)
+    main_match(args.path,args.depth,args.pA_style,args.pB_style,args.debug,args.game_name)

@@ -7,16 +7,18 @@ from structures import *
 from players import *
 from game_definitions import *
 
-def main_minmax_asp(path,plaintext,image_file_name,ilasp_examples_file,rules_file,main_player):
+import sys
+# getattr(sys.modules[__name__],"GameNimDef")
+def main_minmax_asp(path,plaintext,image_file_name,ilasp_examples_file,rules_file,main_player,game_name):
     # remove trailing backslash as failsafe
     html = not plaintext
     path = re.sub(r"\/$","",path)
-    nim = GameNimDef(path)    
-    initial = nim.get_initial_time()
+    game = globals()['Game{}Def'.format(game_name)](path)    
+    initial = game.get_initial_time()
     learn_examples = not (ilasp_examples_file is None)
     learn_rules = not (rules_file is None)
 
-    minmax_match, min_max_tree, examples, learned_rules = get_minmax_init(nim,
+    minmax_match, min_max_tree, examples, learned_rules = get_minmax_init(game,
                                                            main_player,
                                                            initial,
                                                            debug=True,learning_rules=learn_rules, learning_examples=learn_examples)
@@ -49,6 +51,8 @@ if __name__ == "__main__":
                         help="relative path to location where ilasp examples will be saved")
     parser.add_argument("--rules-file", type=str, default=None,
                     help="relative path to save rules learned when tree rules are learned while computing minmax")
+    parser.add_argument("--game-name", type=str, default="Nim",
+                    help="short name for the game. Available: Dom and Nim")
     
     args = parser.parse_args()
-    main_minmax_asp(args.path,args.plaintext,args.image_file_name,args.ilasp_examples_file,args.rules_file,args.main_player)
+    main_minmax_asp(args.path,args.plaintext,args.image_file_name,args.ilasp_examples_file,args.rules_file,args.main_player,args.game_name)
