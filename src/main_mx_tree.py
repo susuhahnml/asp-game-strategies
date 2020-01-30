@@ -2,34 +2,41 @@
 # -*- coding: utf-8 -*-
 
 import re
-from py_utils import *
-from structures import *
-from players import *
+from py_utils import arg_metav_formatter
 from game_definitions import *
-
-def main_tree(path,plaintext,file_name,main_player,game_name):
+import argparse
+from structures.tree import Tree
+from py_utils.logger import log 
+def main_tree(plaintext,file_name,main_player,game_name):
     # remove trailing backslash as failsafe
     html = not plaintext
-    path = re.sub(r"\/$","",path)
     tree = Tree()
-    game = globals()['Game{}Def'.format(game_name)](path)    
+    game = GameDef.from_name(game_name)
+    log.info("Computing normal minmax for tree")
     tree.from_game_def(game,main_player=main_player)
     tree.print_in_file(html=html,file_name=file_name,main_player=main_player)
+    log.info("Tree image saved in {}".format(file_name))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
-    parser.add_argument("--path", type=str, default="./game_definitions/nim",
-                        help="relative path of game" +
-                        " description language for game")
-    parser.add_argument("--file-name", type=str, default="tree_vis.png",
+    parser.add_argument("--log", type=str, default="INFO",
+                        help="Log level: 'info' 'debug' 'error'" )
+    parser.add_argument("--image-file-name", type=str, default="tree_vis.png",
                         help="output image file name")
-    parser.add_argument("--plaintext", default=False, action="store_true",
+    parser.add_argument("--plaintext", default=True, action="store_true",
                         help="whether plaintext should be used for visualization")
     parser.add_argument("--main-player", default="a",
                     help="the player from wich to maximize")
     parser.add_argument("--game-name", type=str, default="Nim",
                 help="short name for the game. Available: Dom and Nim")
 
+
+    # parser.add_argument("--random-seed", type=int, default=0,
+                        # help="the random seed for the initial state, 0 indicates the use of default initial state")
+
     args = parser.parse_args()
+    log.set_level(args.log)
+
     # run tree command
-    main_tree(args.path,args.plaintext,args.file_name,args.main_player,args.game_name)
+    main_tree(args.plaintext,args.image_file_name,args.main_player,args.game_name)

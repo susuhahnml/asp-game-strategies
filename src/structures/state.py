@@ -3,11 +3,10 @@
 
 import numpy as np
 from .step import Step
-from .action import *
+from .action import Action, ActionExpanded
 from py_utils.clingo_utils import  *
 from py_utils.colors import *
 from collections import defaultdict
-from game_definitions.game_def import *
 
 class State:
     """
@@ -157,8 +156,8 @@ class StateExpanded(State):
             #Ignoring model without action
             return
         else:
-            assert len(does) == 1, ("Multiple actions {} not supported"
-                                    .format(len(does)))
+            assert len(does) == 1, ("Multiple actions {} not supported {}"
+                                    .format(len(does),model))
             action = does[0]
             player = symbol_str(action.arguments[0])
             next_fluents = [a.arguments[0] for a in atoms if a.name=='next']

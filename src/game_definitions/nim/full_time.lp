@@ -30,9 +30,10 @@ holds(goal(X,1),T+1):- #sum{M,P:holds(has(P,M),T+1)}=0,
 holds(goal(Y,-1*G),T):- holds(goal(X,G),T), role(Y), Y!=X.
 
 
-% holds(has(1,1),0).
-% holds(has(2,1),0).
-% holds(has(3,1),0).
+% holds(has(1,2),0).
+% holds(has(2,2),0).
+% holds(has(3,2),0).
 % holds(control(a),0).
 
 % #show does/3.
+% #show can_do/3.

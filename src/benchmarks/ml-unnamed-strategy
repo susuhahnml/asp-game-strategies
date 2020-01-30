@@ -1,0 +1,9 @@
+------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-unnamed:
+            wins: 4   losses: 2   points: 8 response_time: 13.959500524732803
+        strategy:
+            wins: 2   losses: 4   points: -8 response_time: 0.00625628012197989
+        

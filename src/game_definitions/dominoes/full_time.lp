@@ -1,11 +1,12 @@
-time(0..10).
+time(0..40).
+#const size=3.
 
 % generate two players
 role(a). role(b).
 stack(l). stack(r).
 
 % generate all dominoes
-eye(0..4).
+eye(0..size).
 domino(N1,N2) :- eye(N1), eye(N2), N1<=N2.
 
 % check possible moves
@@ -47,16 +48,5 @@ holds(goal(X,-1*G),T) :- holds(goal(Y,G),T), role(X), X!=Y.
 holds(terminal,T) :- holds(goal(_,_),T).
 
 
-holds(control(a),0).
-holds(in_hand(a, domino(0,4)),0).
-holds(in_hand(a, domino(4,4)),0).
-holds(in_hand(a, domino(1,1)),0).
-holds(in_hand(b, domino(1,2)),0).
-holds(in_hand(b, domino(3,4)),0).
-holds(in_hand(b, domino(1,3)),0).
-holds(stack(l,2),0).
-holds(stack(r,0),0).
-
-
-#show does/3.
-#show holds/2.
+% #show does/3.
+% #show holds/2.

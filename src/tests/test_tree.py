@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from py_utils import *
-from structures import *
-from players import *
-from game_definitions import *
+from structures.tree import Tree
+from ..game_definitions.game_def import GameNimDef
 
 def test_tree():
     tree = Tree()

@@ -1,0 +1,49 @@
+------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-dense-0.1:
+            wins: 59   losses: 61   points: -24 response_time: 175.1539508501688
+        ml-dense-0.3:
+            wins: 61   losses: 59   points: 24 response_time: 181.47870699564615
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-dense-0.1:
+            wins: 45   losses: 75   points: -182 response_time: 263.1083726882934
+        strategy:
+            wins: 75   losses: 45   points: 182 response_time: 0.5129694938659668
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-dense-0.1:
+            wins: 56   losses: 64   points: -29 response_time: 287.039601802826
+        random:
+            wins: 64   losses: 56   points: 29 response_time: 1.3022263844807944
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-dense-0.3:
+            wins: 48   losses: 72   points: -91 response_time: 357.6100786526999
+        strategy:
+            wins: 72   losses: 48   points: 91 response_time: 0.47049919764200854
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-dense-0.3:
+            wins: 61   losses: 59   points: -7 response_time: 355.9797922770182
+        random:
+            wins: 59   losses: 61   points: 7 response_time: 0.9354233741760254
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        strategy:
+            wins: 58   losses: 62   points: 5 response_time: 0.5370179812113445
+        random:
+            wins: 62   losses: 58   points: -5 response_time: 1.4144102732340496
+        

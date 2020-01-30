@@ -1,6 +1,6 @@
 ## Learning game strategies in ASP :clubs: :game_die:
 
-Here we document our source code and its various functionalities. Most functions use a combination of ASP (clingo), ILASP and python.
+Here we document our source code and its various functionalities. 
 
 ### Table of contents
 
@@ -61,19 +61,14 @@ Here we provide a tabular summary of our main code structure.
 | **game_definitions** |                                             |                                                     | Contains files with the asp encodings of games                                                                                              |
 | --->                 | [game_def.py](game_definitions/game_def.py) |                                                     | Definitions of games that include the paths for the game, any extra configuration and a transformation of the states to ascii for printing. |
 | --->                 | **game_name**                               |                                                     | Generic name of game (eg. "nim"). It is passed as a path in many functions.                                                                 |
-| --->                 | --->                                        | [background.lp](game_definitions/nim/background.lp) | Defines the basic rules using of the game for one `time_step`, using `next`                                                                 |
-| --->                 | --->                                        | [initial.lp](game_definitions/nim/initial.lp)       | Defines the initial state of the game                                                                                                       |
+| --->                 | --->                                        | [background.lp](game_definitions/nim/background.lp) | Defines the basic rules using of the game for one `time_step`, using `next` With GDL synax                                                                |
+| --->                 | --->                                        | [initial.lp](game_definitions/nim/initial.lp)       | Defines the initial state of the game used as default                                                                                                       |
 | --->                 | --->                                        | [full_time.lp](game_definitions/nim/full_time.lp)   | Defines the basic rules using of the game for all the game, using `holds` in each possible `time_step`                                      |
+| --->                 | --->                                        | [all.lp](game_definitions/nim/all.lp)       | Defines all the possible fluents and actions in one single stable model                                                                                                     |
+| --->                 | --->                                        | [rand_init.lp](game_definitions/nim/rand_init.lp)       | Defines all possible initial states. One per stable model                                                                                                       |
 
-#### ii. `players`
 
-| L1          | L2                                                   | Description                                                                                   |
-| :---:       | :---:                                                | :---                                                                                          |
-| **players** |                                                      | Contains all the possible players representing the approaches for selecting actions in a game |
-| --->        | [players.py](players/players.py)                     | Defines the behaviour of each player                                                          |
-| --->        | [min_max_asp.py](players/min_max_asp.py)             | Functions to compute algorithm using asp                                                      |
-
-#### iii. `py_utils`
+#### ii. `py_utils`
 
 | L1           | L2                                                        | Description                                |
 | :---:        | :---:                                                     | :---                                       |
@@ -82,6 +77,7 @@ Here we provide a tabular summary of our main code structure.
 | --->         | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python       |
 | --->         | [colors.py](py_utils/colors.py)                           | Defining python colors for pretty-printing |
 | --->         | [match_simulation.py](py_utils/match_simulation.py)       | Match simulation functions                 |
+| --->        | [min_max_asp.py](players/min_max_asp.py)             | Functions to compute minmax algorithm using asp                                                      |
 
 #### iv. `structures`
 
@@ -94,6 +90,7 @@ Here we provide a tabular summary of our main code structure.
 | --->           | [match.py](structures/match.py)   | A full match of a game, list of steps                                                                                                                                                |
 | --->           | [tree.py](structures/tree.py)     | A full tree of a game created by steps, with all possible paths                                                                                                                      |
 | --->           | [game.py](structures/game.py)     | The game representation used for RL agents                                                                                                                                           |
+| --->           | [players.py](players/players.py)  | Defines the behaviour of each type of player representing the approaches for selecting actions in a game                                     |
 
 ### 3. Tests
 

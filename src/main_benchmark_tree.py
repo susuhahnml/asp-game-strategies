@@ -4,12 +4,12 @@
 import re
 import time
 import argparse
-from py_utils import *
-from structures import *
-from players import *
-from game_definitions import *
+from py_utils import arg_metav_formatter
+from game_definitions import GameNimDef
 import time
 import json
+from structures.tree import Tree
+from py_utils.min_max_asp import get_minmax_init
 def benchmark_tree():
     games = [
         GameNimDef(initial="true(has(1,0)).true(has(2,2)).true(has(3,2)).true(control(a))."),
@@ -29,10 +29,10 @@ def benchmark_tree():
 
         t0 = time.time()
         initial = game.get_initial_time()
-        minmax_match, min_max_tree, examples, learned_rules = get_minmax_init(game,
+        minmax_match, min_max_tree, examples, learned_rules, training_list = get_minmax_init(game,
                                                            'a',
                                                            initial,
-                                                           debug=False,learning_rules=False, learning_examples=False)
+                                                           generating_training=False,learning_rules=False, learning_examples=False)
         t1 = time.time()
         results += ("\n\tMinmax ASP: {} sec".format(t1-t0))
 
