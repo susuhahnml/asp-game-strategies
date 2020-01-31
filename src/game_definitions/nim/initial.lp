@@ -1,4 +1,4 @@
-true(has(1,3)).
-true(has(2,2)).
-true(has(3,2)).
+true(has(1,7)).
+true(has(2,4)).
+true(has(3,1)).
 true(control(a)).

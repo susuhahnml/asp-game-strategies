@@ -8,7 +8,7 @@ from py_utils.colors import *
 from structures.tree import Tree
 from anytree import RenderTree
 from .clingo_utils import Context, generate_example, generate_rule
-
+from py_utils.logger import log
 case = {
     'a':{
         'a': {
@@ -132,6 +132,10 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         #Compute tree for optimal match
         opt_node = Tree.node_from_match(Match(opt_match.steps[i:]))
         opt_node.parent = node_top.parent
+        if not (main_player in opt_match.goals):
+            log.error("No goals reached for match")
+            log.error(opt_match)
+            raise RuntimeError("No terminal state reach, try increasing number of time steps")
         new_goal = opt_match.goals[main_player]
         if case[main_player][control]['current_is_better'](current_goal,
                                                            new_goal):

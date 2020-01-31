@@ -33,10 +33,10 @@ if __name__ == "__main__":
                         help="depth to which game should be played")
     parser.add_argument("--pA-style", type=str, default="random",
                         help="playing style for player a;"+
-                        " either 'minmax_asp', 'minmax', 'random', 'strategy', 'ml-[name]' or 'human'")
+                        " either 'minmax_asp', 'minmax', 'random', 'strategy-[name]', 'ml-[name]' or 'human'")
     parser.add_argument("--pB-style", type=str, default="random",
                         help="playing style for player b;"+
-                        " either 'minmax_asp', 'minmax', 'random', 'strategy', 'ml-[name]' or 'human'")
+                        " either 'minmax_asp', 'minmax', 'random', 'strategy-[name]', 'ml-[name]' or 'human'")
     parser.add_argument("--game-name", type=str, default="Dom",
                 help="short name for the game. Available: Dom and Nim")
 

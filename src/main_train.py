@@ -46,7 +46,7 @@ if __name__ == "__main__":
                         " Available: 'dom', 'clipped'")
     parser.add_argument("--opponent", type=str, default="strategy",
                         help="model underlying opponent behaviour"+
-                        " Available: 'random', 'strategy', 'ml'")
+                        " Available: 'random', 'strategy-[name]', 'ml'")
     parser.add_argument("--n-steps", type=int, default=50000,
                         help="total number of steps to take in environment")
     parser.add_argument("--model-path", type=str, default=None,

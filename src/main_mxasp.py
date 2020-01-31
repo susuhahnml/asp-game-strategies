@@ -26,6 +26,9 @@ def main_minmax_asp(plaintext,image_file_name,ilasp_examples_file,rules_file,tra
     else:
         random.Random(random_seed).shuffle(initial_states)
     
+    all_examples = []
+    all_learned_rules = []
+    all_training_list = []
     for i in range(n):
         log.info("Computing asp minmax for tree")
         game.initial = initial_states[i]
@@ -34,25 +37,31 @@ def main_minmax_asp(plaintext,image_file_name,ilasp_examples_file,rules_file,tra
                                                             main_player,
                                                             initial,
                                                             generating_training=generate_train,learning_rules=learn_rules, learning_examples=learn_examples)
-        if learn_examples:
-            with open(ilasp_examples_file, "a") as text_file:
-                text_file.write("\n".join(examples))
-                log.info("ILASP Examples saved in " + ilasp_examples_file)
-        if learn_rules:
-            with open(rules_file, "a") as text_file:
-                text_file.write("\n".join(learned_rules))
-            rules_file_to_gdl(rules_file)
-            log.info("Rules saved in " + rules_file)
-
-        if generate_train:
-            training_data_to_csv(train_file,training_list,game)
-            log.info("Training data saved in " + train_file)
-            remove_duplicates_training(train_file)
-            
+        log.info("Initial state: {}".format(minmax_match.steps[0].state.ascii))
         log.debug(minmax_match)
-        if(not (image_file_name is None)):
-            min_max_tree.print_in_file(file_name=image_file_name,html=False,main_player=main_player)
-            log.info("Tree image saved in {}".format(image_file_name))
+        if not examples is None: all_examples.extend(examples) 
+        if not learned_rules is None: all_learned_rules.extend(learned_rules) 
+        if not training_list is None: all_training_list.extend(training_list) 
+
+                                                        
+    if learn_examples:
+        with open(ilasp_examples_file, "w") as text_file:
+            text_file.write("\n".join(all_examples))
+            log.info("ILASP Examples saved in " + ilasp_examples_file)
+    if learn_rules:
+        with open(rules_file, "w") as text_file:
+            text_file.write("\n".join(all_learned_rules))
+        rules_file_to_gdl(rules_file)
+        log.info("Rules saved in " + rules_file)
+
+    if generate_train:
+        training_data_to_csv(train_file,all_training_list,game)
+        log.info("Training data saved in " + train_file)
+        remove_duplicates_training(train_file)
+            
+    if(not (image_file_name is None)):
+        min_max_tree.print_in_file(file_name=image_file_name,html=False,main_player=main_player)
+        log.info("Tree image saved in {}".format(image_file_name))
 
 
         

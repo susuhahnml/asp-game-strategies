@@ -50,14 +50,12 @@ def simulate_match(game_def, players, depth=None, ran_init=False):
     letters = ['a','b']
     response_times = {'a':[],'b':[]}
     while(not state.is_terminal and continue_depth):
-        #TODO what if players change order
         t0 = time.time()
         selected_action = players[time_step%2].choose_action(state)
         t1 = time.time()
         response_times[letters[time_step%2]].append((t1-t0)*1000)
         step = Step(state,selected_action,time_step)
-        #TODO Check if must add next step when removing last step
-        match.add_step(Step(state,selected_action,time_step))
+        match.add_step(step)
         time_step+=1
         continue_depth = True if depth==None else time_step<depth
         state = state.get_next(selected_action,

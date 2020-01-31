@@ -105,6 +105,7 @@ class StateExpanded(State):
             in clingo syntax
         """
         ctl = clingo.Control("0")
+        
         # Check if it can load from grounded atoms gotten from ASP
         ctl.load(game_def.background)
         if(current_fluents[-3:] == ".lp"):
@@ -205,5 +206,5 @@ class StateExpanded(State):
         s += "****** Available actions *******"
         for i,a in enumerate(self.legal_actions):
             step = Step(self,a,None)
-            s+="\n{}:{}".format(i,step.ascii)
+            s+="\n{}:{}\n".format(i,step.ascii)
         return s

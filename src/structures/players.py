@@ -29,8 +29,8 @@ class Player(abc.ABC):
         config = defaultdict(lambda: None,config)
         if(config['name']=="human"):
             return HumanPlayer()
-        if(config['name']=="strategy"):
-            return StrategyPlayer(game_def,config['strategy_path'])
+        if(config['name'][:8]=="strategy"):
+            return StrategyPlayer(game_def,config['name'][8:])
         if(config['name']=="random"):
             return RandomPlayer(config['seed'])
         if(config['name']=="minmax_asp"):
@@ -69,18 +69,18 @@ class StrategyPlayer(Player):
 
     Attributes
     ----------
-    strategy_path: The path to the file with the strategy
+    strategy_name: The name of the strategy file inside the game def.
     """
-    def __init__(self, game_def, strategy_path):
+    def __init__(self, game_def, strategy_name):
         
-        if strategy_path is None:
+        if strategy_name == "":
             self.strategy=game_def.path + "/strategy.lp"
         else:
-            self.strategy=game_def.path + "/" + strategy_path
+            self.strategy=game_def.path + "/strategy" + strategy_name + ".lp"
         
 
     def choose_action(self,state):
-        return state.legal_actions[0]
+        return state.legal_actions[-1]
 
 class RandomPlayer(Player):
     """

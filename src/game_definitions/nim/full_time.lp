@@ -1,6 +1,6 @@
 %Configuration
-#const remove_limit=3.
-#const tree_depth=10.
+#const remove_limit=6.
+#const tree_depth=14.
 
 removable(1..remove_limit).
 time(0..tree_depth).

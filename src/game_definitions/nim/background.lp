@@ -1,5 +1,5 @@
 % Removable configuration
-#const n = 3.
+#const n = 6.
 removable(1..n).
 
 % Roles (Players)
