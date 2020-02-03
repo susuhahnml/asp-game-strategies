@@ -37,7 +37,7 @@ def main_minmax_asp(plaintext,image_file_name,ilasp_examples_file,rules_file,tra
                                                             main_player,
                                                             initial,
                                                             generating_training=generate_train,learning_rules=learn_rules, learning_examples=learn_examples)
-        log.info("Initial state: {}".format(minmax_match.steps[0].state.ascii))
+        log.info("Initial state: \n{}".format(minmax_match.steps[0].state.ascii))
         log.debug(minmax_match)
         if not examples is None: all_examples.extend(examples) 
         if not learned_rules is None: all_learned_rules.extend(learned_rules) 
