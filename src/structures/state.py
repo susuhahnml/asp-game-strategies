@@ -3,11 +3,10 @@
 
 import numpy as np
 from .step import Step
-from .action import *
+from .action import Action, ActionExpanded
 from py_utils.clingo_utils import  *
 from py_utils.colors import *
 from collections import defaultdict
-from game_definitions.game_def import *
 
 class State:
     """
@@ -106,6 +105,7 @@ class StateExpanded(State):
             in clingo syntax
         """
         ctl = clingo.Control("0")
+        
         # Check if it can load from grounded atoms gotten from ASP
         ctl.load(game_def.background)
         if(current_fluents[-3:] == ".lp"):
@@ -157,8 +157,8 @@ class StateExpanded(State):
             #Ignoring model without action
             return
         else:
-            assert len(does) == 1, ("Multiple actions {} not supported"
-                                    .format(len(does)))
+            assert len(does) == 1, ("Multiple actions {} not supported {}"
+                                    .format(len(does),model))
             action = does[0]
             player = symbol_str(action.arguments[0])
             next_fluents = [a.arguments[0] for a in atoms if a.name=='next']
@@ -206,5 +206,5 @@ class StateExpanded(State):
         s += "****** Available actions *******"
         for i,a in enumerate(self.legal_actions):
             step = Step(self,a,None)
-            s+="\n{}:{}".format(i,step.ascii)
+            s+="\n{}:{}\n".format(i,step.ascii)
         return s

@@ -7,8 +7,9 @@ from tqdm import tqdm
 from anytree import Node, RenderTree
 from anytree.exporter import UniqueDotExporter, DotExporter
 from anytree.iterators.levelorderiter import LevelOrderIter
-from .state import *
-from .match import *
+from .state import State, StateExpanded
+from .match import Match
+from .step import Step
 
 
 class Tree:
@@ -117,8 +118,10 @@ class Tree:
         """
         # define local functions
         def to_label(node):
+            a = node.name.ascii_score(main_player)
+            a_r = a.replace('\n','\l')+'\l\n'
             """ Minor function to create ascii graph label """
-            return 'label="%s"' % (node.name.ascii_score(main_player))
+            return 'label="%s" shape=box style=rounded fontname=Calibri labeljust=l'  % ( a_r)
         
         #TODO find a way to make this general
         # define local variables
@@ -175,7 +178,8 @@ class Tree:
                                                                  file_name)
         else:
             UniqueDotExporter(self.root,
-                              nodeattrfunc=to_label).to_picture(base_dir+
+                              nodeattrfunc=to_label,
+                              edgeattrfunc=lambda parent, child: "style=bold").to_picture(base_dir+
                                                                 file_name)
 
     def print_in_console(self):

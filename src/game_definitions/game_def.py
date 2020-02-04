@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import random
 import re
 from collections import defaultdict
 from py_utils.colors import *
+from py_utils.clingo_utils import *
+from py_utils.logger import log
+
 class GameDef():
     """ Template class which can be reproduced for multiple games """
     def __init__(self,path,initial):
@@ -25,10 +28,20 @@ class GameDef():
         self.full_time = path + "/full_time.lp"
         self.initial = path + "/initial.lp"
         self.all = path + "/all.lp"
+        self.random_init = None
         if not initial is None:
             self.initial = initial
 
 
+    @classmethod
+    def from_name(cls,name,initial=None):
+        if name == "Dom":
+            return GameDomDef(initial=initial)
+        elif name == "Nim":
+            return GameNimDef(initial=initial)
+        else:
+            log.error("Invalid game name {}".format(name))
+            raise NotImplementedError
 
     def state_to_ascii(self, state):
         """
@@ -55,11 +68,13 @@ class GameDef():
         """
         return NotImplementedError
     
-    def get_initial_time(self):
+    def get_initial_time(self,random=False):
         """
         Obtains the initial state in full time format
         """
-        if(self.initial_is_file):
+        if(random):
+            content =  self.get_random_initial()
+        elif(self.initial_is_file):
             with open(self.initial,"r") as File:
                 lines = File.readlines()
                 content = "".join(lines)
@@ -72,6 +87,11 @@ class GameDef():
     @property
     def initial_is_file(self):
         return(self.initial[-3:] == ".lp")
+
+    def get_random_initial(self):
+        if self.random_init is None:
+            self.random_init = get_all_models(self.path + "/ran_initial.lp")
+        return random.choice(self.random_init)
 
 class GameNimDef(GameDef):
     def __init__(self,path="./game_definitions/nim",initial=None):
@@ -116,14 +136,13 @@ class GameNimDef(GameDef):
                 del lines[i]
         return "\n".join(lines)
 
-color_p = {"a":bcolors.HEADER,"b":bcolors.OKBLUE}
 
 class GameDomDef(GameDef):
     def __init__(self,path="./game_definitions/dominoes",initial=None):
         super().__init__(path,initial)
         self.max_number=4
-        self.subst_var = {"in_hand":[False,False],
-                          "stack":[True,False],
+        self.subst_var = {"in_hand":[True,False],
+                          "stack":[True,True],
                           "plays":[False,True],
                           "pass":[],
                           "control":[False],
@@ -138,15 +157,18 @@ class GameDomDef(GameDef):
             t = (h.arguments[1].arguments[0].number,h.arguments[1].arguments[1].number)
             hands[h.arguments[0].name].append(t)
         stack = {f.arguments[0].name:f.arguments[1].number for f in state.fluents if f.name == "stack"}
+        cont_a = "➤ " if state.control == "a" else " "
+        cont_b = "➤ " if state.control == "b" else " "
         hand_a = "  ".join(["{}-{}".format(t[0],t[1]) for t in hands['a']])
         hand_b = "  ".join(["{}-{}".format(t[0],t[1]) for t in hands['b']])
         return """
-a: {}
+{}a: {}
 
-\t\t{}...{}
+    ⎡{}⎤
+    ⎣{}⎦
 
-b: {}
-        """.format(hand_a, stack['l'],stack['r'],hand_b)
+{}b: {}
+        """.format(cont_a, hand_a, stack['l'],stack['r'],cont_b,hand_b)
     
     def step_to_ascii(self, step):
         p=step.state.control
@@ -155,14 +177,15 @@ b: {}
         if(not step.action):
             return "".join(a_split)
         if(step.action.action.name=="pass"):
-            a_split[3] = ("\tPASS\t") + a_split[3][2:-1] + ("\tPASS\n")
+            a_split = a_split[:3] + ["\tpass\n"] + a_split[3:]
+            a_split = a_split[:6] + ["\tpass\n"] + a_split[6:]
             return "".join(a_split)
         d = (step.action.action.arguments[0].arguments[0].number,step.action.action.arguments[0].arguments[1].number)
         s = step.action.action.arguments[1].name
-        d_string = " ({}) {}-{}".format(p,d[0],d[1])
+        d_string = "\t[{}-{}]\n".format(d[0],d[1])
         if s == "l":
-            a_split[3] = "\t" + d_string + "\t" + a_split[3][2:]
+            a_split = a_split[:3] + [d_string] + a_split[3:]
         else:
-            a_split[3] = a_split[3][:-1] + "\t" + d_string + "\n"
+            a_split = a_split[:5] + [d_string] + a_split[5:]
         return "".join(a_split)
 # 

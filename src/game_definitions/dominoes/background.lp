@@ -1,9 +1,11 @@
 % generate two players
+#const size=3.
+
 role(a). role(b).
 stack(l). stack(r).
 
 % generate all dominoes
-eye(0..4).
+eye(0..size).
 domino(N1,N2) :- eye(N1), eye(N2), N1<=N2.
 
 % check possible moves
@@ -32,3 +34,5 @@ goal(X,G2) :- legal(X, pass), legal(Y, pass), X!=Y, G1=#sum{N1+N2,N1,N2 : true(i
 
 goal(X,-1*G) :- goal(Y,G), role(X), X!=Y.
 terminal :- goal(_,_).
+
+% #show does/2.

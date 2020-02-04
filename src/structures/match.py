@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from collections import defaultdict
-from .state import *
-from .action import *
-from structures.step import *
+from structures.state import State, StateExpanded
+from structures.action import ActionExpanded, Action
+from structures.step import Step
+from py_utils.colors import *
 
 class Match:
     """
@@ -90,3 +91,16 @@ class Match:
                                             bcolors.ENDC)
             s+=bcolors.ENDC
         return s
+
+    def generate_train(self, training_list, i):
+        if training_list is None:
+            return
+        step = self.steps[i]
+        p = step.state.control
+        control_goal = self.goals[p]
+        training_list.append(
+            {'s_init':step.state,
+            'action':step.action,
+            's_next':self.steps[i+1].state,
+            'reward':control_goal,
+            'win':-1 if control_goal<0 else 1})

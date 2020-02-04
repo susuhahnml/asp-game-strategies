@@ -1,0 +1,25 @@
+------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-unnamed:
+            wins: 4   losses: 2   points: 8 response_time: 13.959500524732803
+        strategy:
+            wins: 2   losses: 4   points: -8 response_time: 0.00625628012197989
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        ml-unnamed:
+            wins: 2   losses: 4   points: -7 response_time: 18.559270434909397
+        random:
+            wins: 4   losses: 2   points: 7 response_time: 0.014315711127387153
+        ------------------
+Game:GameDomDef
+Initial state:
+RANDOM
+        strategy:
+            wins: 5   losses: 1   points: 13 response_time: 0.005549854702419705
+        random:
+            wins: 1   losses: 5   points: -13 response_time: 0.013971770251238788
+        

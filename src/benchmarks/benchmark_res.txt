@@ -1,0 +1,7 @@
+------------------
+Game:GameNimDef
+    strategy-math:
+        wins: 68   losses: 12   points: 56 response_time(ms): 0
+    strategy-ilasp:
+        wins: 12   losses: 68   points: -56 response_time(ms): 0
+    

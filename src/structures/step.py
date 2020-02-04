@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .action import *
+from .action import Action, ActionExpanded
 from py_utils.clingo_utils import *
 
 class Step:
@@ -105,11 +105,11 @@ class Step:
         """
         if self.score:
             if self.action != None:
-                return "score:({})\n{}".format(self.score,
+                return "Score:({})\n{}".format(self.score,
                                                           self.ascii)
             else:
                 if(self.state.is_terminal):
-                    return ("Terminal\n{}".format(self.ascii))
+                    return ("Terminal:({})\n{}".format(self.score,self.ascii))
                 else:
                     if main_player=="a":
                         
