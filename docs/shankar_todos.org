@@ -1,5 +1,9 @@
 ** Workflow to-do's
 
+* finish up tic-tac-toe
+* make basic vis for 2d TTT
+* make optimizations in terms of groups for TTT
+
 *** Monte-carlo tree search
 ***** TODO investigate theory and implement in code to approximate minimax tree given certain time threshold
 ***** show that minimax and monte-carlo trees converge in practice, perhaps for smaller trees

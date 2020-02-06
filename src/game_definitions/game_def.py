@@ -21,7 +21,7 @@ class GameDef():
                 for the initial state
                 - full_time.lp: Clingo file with all rules
                 from the game in action description language with time steps
-            initial (str): String or path to file to overwrite the initial state 
+            initial (str): String or path to file to overwrite the initial state
         """
         self.path = path
         self.background = path + "/background.lp"
@@ -31,7 +31,6 @@ class GameDef():
         self.random_init = None
         if not initial is None:
             self.initial = initial
-
 
     @classmethod
     def from_name(cls,name,initial=None):
@@ -67,7 +66,7 @@ class GameDef():
             String with asciii representation
         """
         return NotImplementedError
-    
+
     def get_initial_time(self,random=False):
         """
         Obtains the initial state in full time format
@@ -169,7 +168,7 @@ class GameDomDef(GameDef):
 
 {}b: {}
         """.format(cont_a, hand_a, stack['l'],stack['r'],cont_b,hand_b)
-    
+
     def step_to_ascii(self, step):
         p=step.state.control
         state = step.state
@@ -188,4 +187,14 @@ class GameDomDef(GameDef):
         else:
             a_split = a_split[:5] + [d_string] + a_split[5:]
         return "".join(a_split)
-# 
+
+class GameTTTDef(GameDef):
+    def __init__(self,path="./game_definitions/tic_tac_toe",initial=None):
+        super().__init__(path,initial)
+        pass
+
+    def state_to_ascii(self,state):
+        pass
+
+    def step_to_ascii(self,step):
+        pass

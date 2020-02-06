@@ -1,6 +1,15 @@
 Workflow to-do\'s
 -----------------
 
+finish up tic-tac-toe
+=====================
+
+make basic vis for 2d TTT
+=========================
+
+make optimizations in terms of groups for TTT
+=============================================
+
 ### Monte-carlo tree search
 
 1.  **TODO** investigate theory and implement in code to

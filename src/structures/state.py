@@ -105,7 +105,6 @@ class StateExpanded(State):
             in clingo syntax
         """
         ctl = clingo.Control("0")
-        
         # Check if it can load from grounded atoms gotten from ASP
         ctl.load(game_def.background)
         if(current_fluents[-3:] == ".lp"):
