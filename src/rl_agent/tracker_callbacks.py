@@ -93,7 +93,7 @@ class SaveTrackEpisodes(Callback):
 
     def save_to_file(self):
     	COLUMN_NAMES = ['episode', 'duration', 'steps', 'reward', 'loss', 'mae', 'mean_q', 'final_state', 'final_action', 'observation_hist', 'action_hist']
-    	file_name = self.name + "_training_log.csv"
+    	file_name = "./rl_agent/logs/" + self.name + "_training_log.csv"
     	try:
     		with open(file_name, 'w') as csvfile:
     			writer = DictWriter(csvfile, fieldnames = COLUMN_NAMES)

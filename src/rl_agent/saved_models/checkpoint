@@ -1,2 +1,2 @@
-model_checkpoint_path: "unnamed.weights"
-all_model_checkpoint_paths: "unnamed.weights"
+model_checkpoint_path: "nim.weights"
+all_model_checkpoint_paths: "nim.weights"

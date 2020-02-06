@@ -73,7 +73,7 @@ class StrategyPlayer(Player):
     """
     def __init__(self, game_def, strategy_name):
         
-        if strategy_name == "":
+        if strategy_name == "" or strategy_name is None:
             self.strategy=game_def.path + "/strategy.lp"
         else:
             self.strategy=game_def.path + "/strategy" + strategy_name + ".lp"

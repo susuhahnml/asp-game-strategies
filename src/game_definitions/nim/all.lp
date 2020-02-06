@@ -1,5 +1,5 @@
 % generate all dominoes
-#const n = 3.
+#const n = 6.
 #const m_s = 7.
 #const p_n = 3.
 
@@ -13,4 +13,3 @@ true(control(X)) :- role(X).
 
 #show true/1.
 #show does/1.
-
