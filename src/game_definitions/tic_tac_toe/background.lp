@@ -6,7 +6,7 @@ role(a).
 role(b).
 
 % Action selection
-legal(P,remove(X,Y)) :- true(has(X,Y)), true(control(P)), not true(has(_,X,Y)), not terminal.
+legal(P,remove(X,Y)) :- true(has(X,Y)), true(control(P)), not terminal.
 0 { does(X,A)} 1 :- legal(X,A), not terminal.
 :- does(X,Y), does(X,Z), Y < Z.
 :- not does(X,_), true(control(X)), not terminal.
