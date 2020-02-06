@@ -1,7 +1,7 @@
 % Grid size
-#const n = 2.
+#const n = 3.
 % Winning number configuration
-#const m = 2.
+#const m = 3.
 
 % Player identifier
 role(a).

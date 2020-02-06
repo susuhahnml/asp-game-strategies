@@ -8,10 +8,6 @@ from game_definitions import *
 from structures.tree import Tree
 from py_utils.logger import log
 
-tree = Tree()
-game = GameTTTDef()
-tree.from_game_def(game,main_player="a")
-
 def main_tree(file_name,main_player,game_name):
     # remove trailing backslash as failsafe
     tree = Tree()
