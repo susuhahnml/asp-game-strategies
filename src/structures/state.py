@@ -104,7 +104,7 @@ class StateExpanded(State):
             current_fluents: A string with all fluents true in the state
             in clingo syntax
         """
-        ctl = clingo.Control("0")
+        ctl = clingo.Control(["0","--warn=none"])
         # Check if it can load from grounded atoms gotten from ASP
         ctl.load(game_def.background)
         if(current_fluents[-3:] == ".lp"):

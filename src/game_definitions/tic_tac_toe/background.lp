@@ -1,5 +1,6 @@
 % Grid size
 #const n = 3.
+
 % Winning number configuration
 #const m = 3.
 
@@ -20,10 +21,10 @@ next(has(P,X,Y)) :- does(P,mark(X,Y)),not terminal.
 next(has(P,X,Y)) :- true(has(P,X,Y)),not terminal.
 
 % Check for win
-goal(P,1):-#count{1,P,X+M,Y:true(has(P,X+M,Y)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
-goal(P,1):-#count{1,P,X,Y+M:true(has(P,X,Y+M)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
-goal(P,1):-#count{1,P,X+M,Y-M:true(has(P,X+M,Y-M)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
-goal(P,1):-#count{1,P,X+M,Y+M:true(has(P,X+M,Y+M)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
+goal(P,1):-#count{P,X+M,Y:true(has(P,X+M,Y)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
+goal(P,1):-#count{P,X,Y+M:true(has(P,X,Y+M)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
+goal(P,1):-#count{P,X+M,Y-M:true(has(P,X+M,Y-M)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
+goal(P,1):-#count{P,X+M,Y+M:true(has(P,X+M,Y+M)),M=0..m-1}=C,C=m,true(has(P,X,Y)),role(P).
 
 % Complementary goal declaration
 goal(X,-1*G) :- goal(Y,G), role(X), X!=Y.
