@@ -39,8 +39,8 @@ class GameDef():
             return GameDomDef(initial=initial)
         elif name == "Nim":
             return GameNimDef(initial=initial)
-        elif name == "TTT":
-            return GameTTTDef(initial=initial)
+        elif name == "Nim":
+            return GameNimDef(initial=initial)
         else:
             log.error("Invalid game name {}".format(name))
             raise NotImplementedError
@@ -200,8 +200,8 @@ class GameTTTDef(GameDef):
                      if re.search(r"true\(has\(grid_size",el) and
                      not el.startswith("%")]
             assert len(check) == 1
-        self.grid_size = int(re.sub(".*(\d+).*","\g<1>",
-                                    check[0].replace("\n","")))
+            self.grid_size = int(re.sub(".*(\d+).*","\g<1>",
+                                        check[0].replace("\n","")))
 
     def state_to_ascii(self,state):
         a = ""
