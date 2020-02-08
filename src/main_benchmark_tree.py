@@ -21,13 +21,11 @@ def benchmark_tree():
     results = ""
     for game in games:
         results += ("\n\n------------------\nGame:{}\nInitial state:\n{}".format(game.__class__.__name__,game.initial.replace('.','.\n')))
-
         t0 = time.time()
         tree = Tree()
         tree.from_game_def(game)
         t1 = time.time()
         results += ("\n\tMinmax tree: {} sec".format(t1-t0))
-
         t0 = time.time()
         initial = game.get_initial_time()
         minmax_match, min_max_tree, examples, learned_rules, training_list = get_minmax_init(game,
@@ -35,10 +33,7 @@ def benchmark_tree():
                                                            initial,
                                                            generating_training=False,learning_rules=False, learning_examples=False)
         t1 = time.time()
-
         results += ("\n\tMinmax ASP: {} sec".format(t1-t0))
-
-
     return results
 
 
