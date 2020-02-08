@@ -10,6 +10,7 @@ import time
 import json
 from structures.tree import Tree
 from py_utils.min_max_asp import get_minmax_init
+
 def benchmark_tree():
     games = [
         GameNimDef(initial="true(has(1,0)).true(has(2,2)).true(has(3,2)).true(control(a))."),
@@ -34,6 +35,7 @@ def benchmark_tree():
                                                            initial,
                                                            generating_training=False,learning_rules=False, learning_examples=False)
         t1 = time.time()
+
         results += ("\n\tMinmax ASP: {} sec".format(t1-t0))
 
 

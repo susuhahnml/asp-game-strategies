@@ -13,6 +13,7 @@ from py_utils.match_simulation import simulate_match
 from tqdm import tqdm
 from py_utils.logger import log
 from structures.players import Player
+
 def benchmark_match(n,name_a,name_b,random_seed,game_name):
     log.info("Benchmarking: {} vs {} for {} games".format(name_a,name_b,n))
     results = ""

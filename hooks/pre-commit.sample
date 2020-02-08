@@ -19,6 +19,8 @@ else
   echo "$ pip install --user pipreqs"
 fi
 
+sed -i "s/tensorflow.*/tensorflow_gpu==2.0.0/g" ./src/requirements.txt
+
 if [ -f ./docs/shankar_todos.org ]; then
   # convert todos.org to todos.md
   pandoc -f org -t markdown -o ./docs/shankar_todos.md ./docs/shankar_todos.org

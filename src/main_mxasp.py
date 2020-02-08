@@ -12,6 +12,7 @@ from py_utils.logger import log
 from ml_agent.train_utils import training_data_to_csv, remove_duplicates_training
 import random
 # getattr(sys.modules[__name__],"GameNimDef")
+
 def main_minmax_asp(plaintext,image_file_name,ilasp_examples_file,rules_file,train_file,main_player,game_name,random_seed,n):
     # remove trailing backslash as failsafe
     html = not plaintext
