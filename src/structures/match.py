@@ -40,13 +40,12 @@ class Match:
         fluent_steps = defaultdict(lambda: {'fluents':[],'goals':[],
                                             'action':None})
         for a in atoms:
-            if(a.name=="holds"):
+            if(a.name == "goal"):
+                time = a.arguments[2].number
+                fluent_steps[time]['goals'].append(a)
+            elif(a.name=="holds"):
                 time = a.arguments[1].number
-                if(a.arguments[0].name == "goal"):
-                    fluent_steps[time]['goals'].append(a.arguments[0])
-                    continue
-                else:
-                    fluent_steps[time]['fluents'].append(a.arguments[0])
+                fluent_steps[time]['fluents'].append(a.arguments[0])
             elif(a.name=="does"):
                 time = a.arguments[2].number
                 fluent_steps[time]['action'] = a

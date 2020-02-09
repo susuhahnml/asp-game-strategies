@@ -158,3 +158,75 @@ def rules_file_to_gdl(file_path):
         text_file = open(file_path[:-4]+'gdl.txt', "wt")
         text_file.write(data)
         text_file.close()
+
+names_update = ['legal','true','does','goal','terminal','next']
+
+
+def add_time(stm):
+    stm_type = str(stm.type)
+    # print("\nSTM: {}({})".format(stm,stm_type))
+
+    if stm_type == "Rule":
+        add_time(stm.head)
+        return any([add_time(i) for i in stm.body])
+    elif stm_type == "Aggregate":
+        return any([add_time(i) for i in stm.elements])
+    elif stm_type == "ConditionalLiteral":
+        l_t = add_time(stm.literal)
+        l_c = any([add_time(i) for i in stm.condition])
+        return l_t or l_c
+    elif stm_type == "Literal":
+        return add_time(stm.atom)
+    elif stm_type == "Function":
+        fun_name = stm.name
+        l_a = any([add_time(i) for i in stm.arguments])
+
+        if fun_name in names_update:
+            var = clingo.ast.Variable(stm.location,"T")
+            if fun_name == "next":
+                stm.name = "holds"
+                var = clingo.ast.BinaryOperation(stm.location,clingo.ast.BinaryOperator.Plus,var,1)
+            if fun_name == "true":
+                stm.name = "holds"
+            stm.arguments.append(var)
+            return True
+        else:
+            return l_a
+    elif stm_type == "SymbolicAtom":
+        return add_time(stm.term)
+    elif stm_type == "BodyAggregate":
+        added = False
+        for w in stm.elements:
+            l_a = any([add_time(i) for i in w.tuple])
+            l_c = any([add_time(i) for i in w.condition])
+            added = added or l_a or l_c
+        return added
+    elif stm_type == "Variable":
+        return False
+    else:
+        # print("No match {}({})".format(stm,stm_type))
+        return False
+
+def gdl_to_full_time(path,file_name):
+    file = open(path+'/'+file_name,'r')
+    prg = "".join(file.readlines())
+    updated_rules = []
+    def add_time_rule(stm):
+        added_time = add_time(stm)
+        if(added_time):
+            time_f = clingo.ast.Function(stm.location,"time",[clingo.ast.Variable(stm.location,"T")],False)
+            stm.body.append(time_f)
+        updated_rules.append(str(stm))
+    clingo.parse_program(prg, add_time_rule)
+    
+    # Adding time rule time(0..15)
+    interval = clingo.ast.Interval("begin",0,15)
+    fun = clingo.ast.Function("begin","time",[interval],False)
+    sa = clingo.ast.SymbolicAtom(fun)
+    lit = clingo.ast.Literal("begin",clingo.ast.Sign.NoSign,sa)
+    time_rule = clingo.ast.Rule("begin",lit,[])
+    updated_rules.append(str(time_rule))
+
+    file = open(path+'/full_time.lp','w')
+    file.write("\n".join(updated_rules))
+    file.close

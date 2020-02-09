@@ -37,6 +37,7 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     Makes a clingo call to compute the match for the fixed atoms 
     and the player optimization.
     """
+    log.debug("getting match")
     ctl = clingo.Control("0")
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(game_def.full_time)
