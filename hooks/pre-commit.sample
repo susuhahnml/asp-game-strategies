@@ -13,13 +13,12 @@ if [ -n "$test" ]; then
 	# execute to update requirements
 	pipreqs --force ./src
   # add requirements.txt to stage for commit
+	sed -i "s/tensorflow.*/tensorflow==2.0.0/g" ./src/requirements.txt
   git add ./src/requirements.txt
 else
   echo "pipreqs not found, install it manually via:"
   echo "$ pip install --user pipreqs"
 fi
-
-sed -i "s/tensorflow.*/tensorflow==2.0.0/g" ./src/requirements.txt
 
 if [ -f ./docs/shankar_todos.org ]; then
   # convert todos.org to todos.md
