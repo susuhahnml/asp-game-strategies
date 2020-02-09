@@ -1,55 +1,25 @@
 Workflow to-do\'s
 -----------------
 
-### Monte-carlo tree search
+### Tic-tac-toe
 
-1.  **TODO** investigate theory and implement in code to
-    approximate minimax tree given certain time threshold
+1.  **TODO** make basic vis for 2d TTT, use blocks instead of
+    html, think about vis for other games and how to optimize
 
-2.  show that minimax and monte-carlo trees converge in practice,
-    perhaps for smaller trees
-
-### Presentation
-
-1.  **TODO** save graphs as images, dotfiles and pickles to
-    binary which can be used later -\> modify readmes correspondingly
-
-2.  **TODO** update pull request documentation with changes
-    till now
-
-3.  add consistent pydocstrings to all parts of code
+2.  make symmetries for tic-tac-toe within \`background.lp\` if possible
 
 ### Minimax algorithm
 
-1.  **TODO** review pull request which might require editing
-    of full~time~.lp encodings
+1.  **TODO** check if possible to use reverse level iterator
+    without list conversion, perhaps as generator
 
-2.  check if possible to use reverse level iterator without list
-    conversion
+### Presentation
 
-### Optimizations
-
-1.  **TODO** optimize mini-max algorithm with fewer tree
-    visits where possible, might need to look into exact source code
-    within step/state
-
-2.  add parallelization to all scripts, linear time reduction
-
-### Extra: game encodings
-
-1.  possible to terminate nim even one step earlier with next has
-
-2.  add asp encodings for tic-tac-toe, add ability to read more diverse
-    encodings
+1.  add consistent pydocstrings/spaces and improve readmes
 
 ### Long-term goals
 
 1.  build efficient mini-max algorithm and integrate alpha-beta pruning
 
-2.  integrate monte-carlo tree search to auto-generate good and bad
-    examples for ilasp
-
-3.  show that monte-carlo approach can approximate minimax tree
-
-4.  integrate this approach with asp/ilasp to provide bravely ordered
+2.  integrate this approach with asp/ilasp to provide bravely ordered
     samples for complex games

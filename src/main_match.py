@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from py_utils.logger import log
 import re
 import time
@@ -8,6 +9,7 @@ from py_utils import arg_metav_formatter
 from game_definitions import GameDef
 from py_utils.match_simulation import simulate_match
 from structures.players import Player
+
 def main_match(depth,pA_style,pB_style,game_name):
     # remove trailing backslash as failsafe
     game = GameDef.from_name(game_name)

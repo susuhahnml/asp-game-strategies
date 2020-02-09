@@ -11,7 +11,6 @@ from .state import State, StateExpanded
 from .match import Match
 from .step import Step
 
-
 class Tree:
     """
     Tree class to handle minimax tree construction
@@ -62,8 +61,8 @@ class Tree:
             # define current player
             expand_further = False
             # starting iteration to fill branches
-            # print("Depth: %s" % (time_step))
-            for leaf in tqdm(tree.leaves,disable=True):
+            print("Depth: %s" % (time_step))
+            for leaf in tqdm(tree.leaves):
                 current_state = leaf.name.state
                 if current_state.is_terminal:
                     continue
@@ -74,7 +73,7 @@ class Tree:
                     step = Step(next_state,legal_action,time_step)
                     Node(step,parent=leaf)
                     expand_further = True
-                
+
                 if next_state.is_terminal:
                     # Node(next_state,parent=leaf)
                     goals = next_state.goals
@@ -92,11 +91,11 @@ class Tree:
         Returns:
             tree (anytree.Node): minimax-annotated version of tree
         """
-        # print("tracking minimax scores recursively")
+        print("tracking minimax scores recursively")
         # work recursively backwards to fill up slots
         for node in tqdm(list(reversed
                             (list(LevelOrderIter(tree.root,
-                                                maxlevel=tree.root.height)))),disable=True):
+                                                maxlevel=tree.root.height))))):
             scores = [child.name.score
                       for child in node.children if child != ()]
             if node.name.score == None:
@@ -107,80 +106,25 @@ class Tree:
         return tree
 
     def print_in_file(self,base_dir="./img/",
-                      file_name="tree_test.png",html=True,main_player="a"):
+                      file_name="tree_test.png",main_player="a"):
         """
         Function to plot generated tree as an image file
 
         Args:
             base_dir (str): path of image containing directory
             file_name (str): full name of image to be created
-            html (bool): Using html tables for image if True
         """
         # define local functions
         def to_label(node):
+            """ Minor function to create ascii graph label """
             a = node.name.ascii_score(main_player)
             a_r = a.replace('\n','\l')+'\l\n'
-            """ Minor function to create ascii graph label """
             return 'label="%s" shape=box style=rounded fontname=Calibri labeljust=l'  % ( a_r)
-        
-        #TODO find a way to make this general
-        # define local variables
-        def text2html(node):
-            piles = self.game.number_piles
-            maximum = self.game.max_number
-            """ Minor function to parse ascii score to html table """
-            html = []
-            # make html header
-            html.append("<table border='0' cellborder='1' cellspacing='0'" +
-                        " cellpadding='2.5' width='100%'>")
-            # parse score string into list
-            to_parse = list(filter(None,node.name.ascii_score(main_player).split("\n")))
-            # create html score header based on node type
-            if node.is_root:
-                html.append("<tr><td colspan='%s'><b>%s</b></td></tr>" %
-                            (maximum,"<br/>".join(to_parse[:2])))
-                del to_parse[:2]
-            elif node.is_leaf:
-                html.append("<tr><td colspan='%s'><b>%s</b></td></tr>" %
-                            (maximum,"<br/>".join(to_parse[:1])))
-                del to_parse[:1]
-            else:
-                html.append("<tr><td colspan='%s'>%s</td></tr>" %
-                            (maximum,"<br/>".join(to_parse[:1])))
-                del to_parse[:1]
-            # assert to check all row characters map to column number times 2
-            for el in to_parse:
-                assert len(el) == 2*maximum
-            # add grids based on dimensions and game states
-            fill = False
-            for i in range(piles):
-                string = "<tr>"
-                if not fill:
-                    try:
-                        split = re.findall("..",to_parse[i])
-                    except IndexError:
-                        fill = True
-                if fill:
-                    for j in range(maximum):
-                        string += "<td width='50%'> </td>"
-                else:
-                    for j in range(maximum):
-                        string += ("<td width='50%'>"+split[j][0]+"</td>")
-                string += "</tr>"
-                html.append(string)
-            # close table
-            html.append("</table>")
-            return 'shape = plaintext label=<%s>' % "\n".join(html)
-        # execute function
-        if html:
-            UniqueDotExporter(self.root,
-                              nodeattrfunc=text2html).to_picture(base_dir+
-                                                                 file_name)
-        else:
-            UniqueDotExporter(self.root,
-                              nodeattrfunc=to_label,
-                              edgeattrfunc=lambda parent, child: "style=bold").to_picture(base_dir+
-                                                                file_name)
+        UniqueDotExporter(self.root,
+                          nodeattrfunc=to_label,
+                          edgeattrfunc=lambda parent,
+                          child: "style=bold").to_picture(base_dir+file_name)
+
 
     def print_in_console(self):
         """

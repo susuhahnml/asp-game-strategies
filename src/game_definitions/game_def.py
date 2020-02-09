@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import random
+
 import re
+import random
 from collections import defaultdict
 from py_utils.colors import *
 from py_utils.clingo_utils import *
@@ -21,7 +22,7 @@ class GameDef():
                 for the initial state
                 - full_time.lp: Clingo file with all rules
                 from the game in action description language with time steps
-            initial (str): String or path to file to overwrite the initial state 
+            initial (str): String or path to file to overwrite the initial state
         """
         self.path = path
         self.background = path + "/background.lp"
@@ -32,13 +33,14 @@ class GameDef():
         if not initial is None:
             self.initial = initial
 
-
     @classmethod
     def from_name(cls,name,initial=None):
         if name == "Dom":
             return GameDomDef(initial=initial)
         elif name == "Nim":
             return GameNimDef(initial=initial)
+        elif name == "TTT":
+            return GameTTTDef(initial=initial)
         else:
             log.error("Invalid game name {}".format(name))
             raise NotImplementedError
@@ -67,7 +69,7 @@ class GameDef():
             String with asciii representation
         """
         return NotImplementedError
-    
+
     def get_initial_time(self,random=False):
         """
         Obtains the initial state in full time format
@@ -136,7 +138,6 @@ class GameNimDef(GameDef):
                 del lines[i]
         return "\n".join(lines)
 
-
 class GameDomDef(GameDef):
     def __init__(self,path="./game_definitions/dominoes",initial=None):
         super().__init__(path,initial)
@@ -169,7 +170,7 @@ class GameDomDef(GameDef):
 
 {}b: {}
         """.format(cont_a, hand_a, stack['l'],stack['r'],cont_b,hand_b)
-    
+
     def step_to_ascii(self, step):
         p=step.state.control
         state = step.state
@@ -188,4 +189,61 @@ class GameDomDef(GameDef):
         else:
             a_split = a_split[:5] + [d_string] + a_split[5:]
         return "".join(a_split)
-# 
+
+class GameTTTDef(GameDef):
+    def __init__(self,path="./game_definitions/tic_tac_toe",initial=None):
+        super().__init__(path,initial)
+        if self.initial_is_file:
+            with open(self.initial,"r") as File:
+                check = File.readlines()
+            check = [el for el in check
+                     if re.search(r"true\(has\(grid_size",el) and
+                     not el.startswith("%")]
+            assert len(check) == 1
+            self.grid_size = int(re.sub(".*(\d+).*","\g<1>",
+                                        check[0].replace("\n","")))
+
+    def state_to_ascii(self,state):
+        a = ""
+        to_sub = []
+        fluents = state.fluents
+        for fluent in fluents:
+            if re.search("has\((a|b)",str(fluent)):
+                hold = re.sub("\)","",re.sub(r"has\(","",
+                                             str(fluent))).split(",")
+                hold = [hold[0],[int(hold[1]),int(hold[2])]]
+                to_sub.append(hold)
+        for i in range(self.grid_size):
+            for j in range(self.grid_size):
+                for k, check in enumerate(to_sub):
+                    if [i+1,j+1] in check:
+                        a+=check[0]+" "
+                        break
+                    elif k == (len(to_sub)-1):
+                        a+="• "
+            a += "\n"
+        return a
+
+    def step_to_ascii(self,step):
+        a = "\n"
+        if(not step.action):
+            return a
+        else:
+            to_sub = []
+            next_fluents = step.action.next_fluents
+            for fluent in next_fluents:
+                if re.search("has\((a|b)",str(fluent)):
+                    hold = re.sub("\)","",re.sub(r"has\(","",
+                                                str(fluent))).split(",")
+                    hold = [hold[0],[int(hold[1]),int(hold[2])]]
+                    to_sub.append(hold)
+            for i in range(self.grid_size):
+                for j in range(self.grid_size):
+                    for k, check in enumerate(to_sub):
+                        if [i+1,j+1] in check:
+                            a+=check[0]+" "
+                            break
+                        elif k == (len(to_sub)-1):
+                            a+="• "
+                a += "\n"
+            return a

@@ -30,7 +30,7 @@ def symbol_str(symbol):
         else:
             return '{}({})'.format(symbol.name, ','.join(arg_strings))
     elif(symbol.type == clingo.SymbolType.Number):
-        return  str(symbol.number) 
+        return  str(symbol.number)
     elif(symbol.type == clingo.SymbolType.String):
         return  symbol.string
     else:
@@ -40,7 +40,7 @@ def get_all_models(all_path):
     """
     Obtains all possible models of given path as string
     """
-    ctl = clingo.Control("0")
+    ctl = clingo.Control(["0","--warn=none"])
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(all_path)
     ctl.ground([("base", [])], context=Context())
@@ -69,7 +69,7 @@ def get_all_possible(all_path,player_name):
     """
     Obtains all possible actions and observations with an initial encoding
     """
-    ctl = clingo.Control("0")
+    ctl = clingo.Control(["0","--warn=none"])
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(all_path)
     ctl.ground([("base", [])], context=Context())
