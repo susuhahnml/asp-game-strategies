@@ -39,8 +39,8 @@ class GameDef():
             return GameDomDef(initial=initial)
         elif name == "Nim":
             return GameNimDef(initial=initial)
-        elif name == "Nim":
-            return GameNimDef(initial=initial)
+        elif name == "TTT":
+            return GameTTTDef(initial=initial)
         else:
             log.error("Invalid game name {}".format(name))
             raise NotImplementedError
