@@ -213,20 +213,27 @@ class GameTTTDef(GameDef):
                                              str(fluent))).split(",")
                 hold = [hold[0],[int(hold[1]),int(hold[2])]]
                 to_sub.append(hold)
-        for i in range(self.grid_size):
-            for j in range(self.grid_size):
-                for k, check in enumerate(to_sub):
-                    if [i+1,j+1] in check:
-                        a+=check[0]+" "
-                        break
-                    elif k == (len(to_sub)-1):
-                        a+="• "
-            a += "\n"
+        if to_sub != []:
+            for i in range(self.grid_size):
+                for j in range(self.grid_size):
+                    for k, check in enumerate(to_sub):
+                        if [i+1,j+1] in check:
+                            a+=check[0]+" "
+                            break
+                        elif k == (len(to_sub)-1):
+                            a+="• "
+                a += "\n"
+        else:
+            for i in range(self.grid_size):
+                for j in range(self.grid_size):
+                    a+="• "
+                a += "\n"
         return a
 
     def step_to_ascii(self,step):
         a = "\n"
         if(not step.action):
+            a += self.state_to_ascii(step.state)
             return a
         else:
             to_sub = []
