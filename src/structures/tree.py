@@ -10,6 +10,7 @@ from anytree.iterators.levelorderiter import LevelOrderIter
 from .state import State, StateExpanded
 from .match import Match
 from .step import Step
+from py_utils.logger import log
 
 class Tree:
     """
@@ -50,6 +51,7 @@ class Tree:
         Returns:
             tree (anytree.Node): expanded version of tree
         """
+        disable_tqdm = log.is_disabled_for('debug')
         tree =  self.root
         valid_moves = tree.name.state.legal_actions
         for legal_action in valid_moves:
@@ -61,8 +63,8 @@ class Tree:
             # define current player
             expand_further = False
             # starting iteration to fill branches
-            print("Depth: %s" % (time_step))
-            for leaf in tqdm(tree.leaves):
+            log.debug("Depth: %s" % (time_step))
+            for leaf in tqdm(tree.leaves,disable=disable_tqdm):
                 current_state = leaf.name.state
                 if current_state.is_terminal:
                     continue
@@ -91,11 +93,12 @@ class Tree:
         Returns:
             tree (anytree.Node): minimax-annotated version of tree
         """
-        print("tracking minimax scores recursively")
+        disable_tqdm = log.is_disabled_for('debug')
+        log.debug("tracking minimax scores recursively")
         # work recursively backwards to fill up slots
         for node in tqdm(list(reversed
                             (list(LevelOrderIter(tree.root,
-                                                maxlevel=tree.root.height))))):
+                                                maxlevel=tree.root.height)))),disable=disable_tqdm):
             scores = [child.name.score
                       for child in node.children if child != ()]
             if node.name.score == None:

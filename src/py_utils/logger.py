@@ -47,4 +47,11 @@ class Log:
         logger.setLevel(n_level)
         console_handler.setLevel(n_level)
 
+    
+    @staticmethod
+    def is_disabled_for(level):
+        real_level = logger.level
+        n_level = getattr(logging, level.upper(), None)
+        return real_level>n_level
+
 log = Log()

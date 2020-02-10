@@ -1,4 +1,4 @@
-from py_utils.clingo_utils import  generate_rule, get_all_possible, symbol_str
+from py_utils.clingo_utils import  generate_rule, get_all_possible
 from py_utils.colors import *
 from collections import defaultdict
 import numpy as np
@@ -18,9 +18,9 @@ class Game:
         #Set all options for actions and observations
         all_actions, all_obs = get_all_possible(game_def, game_def.background,player_name)
         self.all_actions = all_actions
-        self.actionstr_to_idx = {symbol_str(a):i for i,a in enumerate(all_actions)}
+        self.actionstr_to_idx = {str(a):i for i,a in enumerate(all_actions)}
         self.all_obs = all_obs
-        self.obsstr_to_idx = {symbol_str(o):i for i,o in enumerate(all_obs)}
+        self.obsstr_to_idx = {str(o):i for i,o in enumerate(all_obs)}
         self.debug = debug
         self.clip_rewards = clip_rewards
         #Set current state
@@ -76,7 +76,7 @@ class Game:
         if n_legal==0: # "Cant sample without legal actions"
             return None
         r_l_idx = np.random.randint(n_legal)
-        legal_action_str = symbol_str(self.current_state.legal_actions[r_l_idx].action)
+        legal_action_str = str(self.current_state.legal_actions[r_l_idx].action)
         real_idx = self.actionstr_to_idx[legal_action_str]
 
         return real_idx
@@ -108,7 +108,7 @@ class Game:
     """
     def step(self, player_str, action_idx, next_strategy = None):
         log.debug(paint("\n----------- Performing GAME step -----------",bcolors.REF))
-        action_str =  symbol_str(self.all_actions[action_idx])
+        action_str =  str(self.all_actions[action_idx])
         legal_action = self.current_state.get_legal_action_from_str(action_str)
         log.debug(legal_action)
         if not legal_action:

@@ -47,7 +47,7 @@ def get_all_models(game_def, all_path):
     with ctl.solve(yield_=True) as handle:
         for model in handle:
             atoms = model.symbols(terms=True,shown=True)
-            models.append(''.join(["{}.".format(symbol_str(a)) for a in atoms]))
+            models.append(''.join(["{}.".format(str(a)) for a in atoms]))
         return models
 
 def has_player_ref(symbol,player_name):
@@ -88,14 +88,14 @@ def fluents_to_asp_syntax(fluents,time=None):
         base = "true({})."
     else:
         base = "holds({},{})."
-    return " ".join([base.format(symbol_str(f),time) for f in fluents])
+    return " ".join([base.format(str(f),time) for f in fluents])
 
 def action_to_asp_syntax(action,time=None):
     if time is None:
         base = "does({},{})."
     else:
         base = "does({},{},{})."
-    return base.format(action.player,symbol_str(action.action),time)
+    return base.format(action.player,str(action.action),time)
 
 def generate_example(leaned_examples, state_context,good_action,bad_action):
     if leaned_examples is None:

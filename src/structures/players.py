@@ -116,9 +116,9 @@ class MinmaxASPPlayer(Player):
         initial = fluents_to_asp_syntax(state.fluents,0)
         match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed=self.learned)
         self.learned+= "\n".join(ls)
-        action_name = symbol_str(match.steps[0].action.action)
+        action_name = str(match.steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
-                  if symbol_str(l_a.action) == action_name][0]
+                  if str(l_a.action) == action_name][0]
         return action
 color_p = {"a":bcolors.HEADER,"b":bcolors.OKBLUE}
 
@@ -139,9 +139,9 @@ class MinmaxPlayer(Player):
         tree = Tree()
         tree.from_game_def(self.game_def,initial_state=state,main_player=self.main_player)
         next_steps = [c.name for c in tree.root.children if c.name.score==tree.root.name.score]
-        action_name = symbol_str(next_steps[0].action.action)
+        action_name = str(next_steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
-                  if symbol_str(l_a.action) == action_name][0]
+                  if str(l_a.action) == action_name][0]
         return action
 
 
@@ -168,12 +168,12 @@ class RLPlayer(Player):
         obs = self.game.current_observation
         # TODO Check if ok
         action_idx = self.model.agent.forward(obs)
-        action_str =  symbol_str(self.game.all_actions[action_idx])
+        action_str =  str(self.game.all_actions[action_idx])
         legal_action = self.game.current_state.get_legal_action_from_str(action_str)
         if not legal_action:
             log.debug("RL Player select a non leagal action")
             action_idx = self.game.sample_random_legal_action
-            action_str =  symbol_str(self.game.all_actions[action_idx])
+            action_str =  str(self.game.all_actions[action_idx])
             log.debug(paint("\t Selected random instead action: {}".format(action_str),bcolors.FAIL))
             
             return self.game.current_state.get_legal_action_from_str(action_str)

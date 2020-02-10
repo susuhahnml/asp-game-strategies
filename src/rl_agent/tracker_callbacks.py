@@ -4,7 +4,6 @@ import numpy as np
 import warnings
 from csv import DictWriter
 from rl.callbacks import Callback
-from py_utils.clingo_utils import symbol_str
 from py_utils.logger import log
 
 class SaveTrackEpisodes(Callback):
