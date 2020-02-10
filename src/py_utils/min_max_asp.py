@@ -12,21 +12,21 @@ from py_utils.logger import log
 case = {
     'a':{
         'a': {
-            'optimization': "#maximize{N,T:holds(goal(a,N),T)}.",
+            'optimization': "#maximize{N,T:goal(a,N,T)}.",
             'current_is_better': operator.gt
         },
         'b': {
-            'optimization': "#minimize{N,T:holds(goal(a,N),T)}.",
+            'optimization': "#minimize{N,T:goal(a,N,T)}.",
             'current_is_better': operator.lt
         }
     },
     'b':{
         'a': {
-            'optimization': "#minimize{N,T:holds(goal(b,N),T)}.",
+            'optimization': "#minimize{N,T:goal(b,N,T)}.",
             'current_is_better': operator.lt
         },
         'b': {
-            'optimization': "#maximize{N,T:holds(goal(b,N),T)}.",
+            'optimization': "#maximize{N,T:goal(b,N,T)}.",
             'current_is_better': operator.gt
         }
     },
@@ -37,7 +37,6 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     Makes a clingo call to compute the match for the fixed atoms 
     and the player optimization.
     """
-    log.debug("getting match")
     ctl = get_new_control(game_def)
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(game_def.full_time)
