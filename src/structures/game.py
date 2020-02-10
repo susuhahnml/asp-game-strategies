@@ -16,7 +16,7 @@ class Game:
     def __init__(self, game_def,debug=False,clip_rewards = False,player_name="a"):
         self.game_def = game_def
         #Set all options for actions and observations
-        all_actions, all_obs = get_all_possible(game_def.all,player_name)
+        all_actions, all_obs = get_all_possible(game_def, game_def.background,player_name)
         self.all_actions = all_actions
         self.actionstr_to_idx = {symbol_str(a):i for i,a in enumerate(all_actions)}
         self.all_obs = all_obs
@@ -24,7 +24,6 @@ class Game:
         self.debug = debug
         self.clip_rewards = clip_rewards
         #Set current state
-        #TODO define how and where to randomly initialize
         self.random_reset()
 
     """

@@ -19,29 +19,28 @@ class Context:
     def seq(self, x, y):
         return [x, y]
 
-def symbol_str(symbol):
-    """
-    Transforms a clingo.Symbol into a string
-    """
-    if(symbol.type == clingo.SymbolType.Function):
-        arg_strings = list(map(lambda x: symbol_str(x), symbol.arguments))
-        if len(arg_strings)==0:
-            return '{}'.format(symbol.name)
-        else:
-            return '{}({})'.format(symbol.name, ','.join(arg_strings))
-    elif(symbol.type == clingo.SymbolType.Number):
-        return  str(symbol.number)
-    elif(symbol.type == clingo.SymbolType.String):
-        return  symbol.string
-    else:
-        return symbol.type
+def get_new_control(game_def):
+    args = ["0","--warn=none"]
+    for c_n,c_v in game_def.constants.items():
+        args.append("-c {}={}".format(c_n,c_v))
+    ctl = clingo.Control(args)
+    return ctl
 
-def get_all_models(all_path):
+def get_constant(file_name,constant_name,must_exist):
+    ctl = clingo.Control(["0","--warn=none"])
+    ctl.load(file_name)
+    c = ctl.get_const(constant_name)
+    if c is None:
+        raise RuntimeError("Const {} not found in file: {}".format(constant_name,file_name))
+    else:
+        return c
+
+
+def get_all_models(game_def, all_path):
     """
     Obtains all possible models of given path as string
     """
-    ctl = clingo.Control(["0","--warn=none"])
-    # Check if it can load from grounded atoms gotten from AS
+    ctl = get_new_control(game_def)
     ctl.load(all_path)
     ctl.ground([("base", [])], context=Context())
     models = []
@@ -65,22 +64,22 @@ def has_player_ref(symbol,player_name):
         return symbol.type == player_name
 
 
-def get_all_possible(all_path,player_name):
+def get_all_possible(game_def, all_path,player_name):
     """
     Obtains all possible actions and observations with an initial encoding
     """
-    ctl = clingo.Control(["0","--warn=none"])
-    # Check if it can load from grounded atoms gotten from AS
+    ctl = get_new_control(game_def)
     ctl.load(all_path)
     ctl.ground([("base", [])], context=Context())
     with ctl.solve(yield_=True) as handle:
         for model in handle:
             atoms = model.symbols(atoms=True)
-            does = [a for a in atoms if a.name=='does']
-            fluents = [a for a in atoms if a.name=='true']
-            assert len(does) > 0 
-            actions = [d.arguments[0] for d in does]
-            observations = [f.arguments[0] for f in fluents]
+            inputs = [a for a in atoms if a.name=='input']
+            base = [a for a in atoms if a.name=='base']
+            assert len(inputs) > 0 
+            actions = set([d.arguments[1] for d in inputs])
+            actions = list(actions)
+            observations = [f.arguments[0] for f in base]
             observations = sorted(observations, key=lambda x: not has_player_ref(x,player_name))
         return actions, observations
 
@@ -164,7 +163,6 @@ names_update = ['legal','true','does','goal','terminal','next']
 
 def add_time(stm):
     stm_type = str(stm.type)
-    # print("\nSTM: {}({})".format(stm,stm_type))
 
     if stm_type == "Rule":
         add_time(stm.head)
@@ -204,11 +202,10 @@ def add_time(stm):
     elif stm_type == "Variable":
         return False
     else:
-        # print("No match {}({})".format(stm,stm_type))
         return False
 
 def gdl_to_full_time(path,file_name):
-    file = open(path+'/'+file_name,'r')
+    file = open(path+file_name,'r')
     prg = "".join(file.readlines())
     updated_rules = []
     def add_time_rule(stm):

@@ -83,10 +83,10 @@ class Match:
         c = [bcolors.OKBLUE,bcolors.HEADER]
         for step in self.steps:
             s+=c[step.time_step%2]
-            s+="\nSTEP {}:".format(step.time_step)
+            s+="\nSTEP {}:\n".format(step.time_step)
             s+= step.ascii
             if(step.state.is_terminal):
-                s+="{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,
+                s+="\n{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,
                                             bcolors.ENDC)
             s+=bcolors.ENDC
         return s

@@ -7,7 +7,7 @@ from structures.match import Match
 from py_utils.colors import *
 from structures.tree import Tree
 from anytree import RenderTree
-from .clingo_utils import Context, generate_example, generate_rule
+from .clingo_utils import Context, generate_example, generate_rule, get_new_control
 from py_utils.logger import log
 case = {
     'a':{
@@ -38,7 +38,7 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     and the player optimization.
     """
     log.debug("getting match")
-    ctl = clingo.Control("0")
+    ctl = get_new_control(game_def)
     # Check if it can load from grounded atoms gotten from AS
     ctl.load(game_def.full_time)
     ctl.add("base",[],fixed_atoms)

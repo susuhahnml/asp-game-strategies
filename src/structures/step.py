@@ -36,7 +36,6 @@ class Step:
         """
         Returns the perfomed action in asp syntax
         """
-        print(self)
         return action_to_asp_syntax(self.action,self.time_step)
 
     def to_asp_syntax(self):

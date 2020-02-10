@@ -7,10 +7,10 @@ from collections import defaultdict
 from py_utils.colors import *
 from py_utils.clingo_utils import *
 from py_utils.logger import log
-
+import os
 class GameDef():
     """ Template class which can be reproduced for multiple games """
-    def __init__(self,path,initial):
+    def __init__(self,path,initial,constants={}):
         """
         Creates a game definition from a path.
 
@@ -22,25 +22,31 @@ class GameDef():
                 for the initial state
                 - full_time.lp: Clingo file with all rules
                 from the game in action description language with time steps
+                If none is given it will be generated from background
             initial (str): String or path to file to overwrite the initial state
+            constants: The dictiorary of constants that must be passed to clingo
         """
         self.path = path
         self.background = path + "/background.lp"
+        if not os.path.exists(path + "/full_time.lp"):
+            log.info("Automatically generating full_time file")
+            gdl_to_full_time(path,"/background.lp")
         self.full_time = path + "/full_time.lp"
         self.initial = path + "/initial.lp"
-        self.all = path + "/all.lp"
         self.random_init = None
+        self.constants = constants
         if not initial is None:
+            log.info("No initial .lp file for " + path + ", one will be randomely generated")
             self.initial = initial
 
     @classmethod
-    def from_name(cls,name,initial=None):
+    def from_name(cls,name,initial=None,constants={}):
         if name == "Dom":
-            return GameDomDef(initial=initial)
+            return GameDomDef(initial=initial,constants=constants)
         elif name == "Nim":
-            return GameNimDef(initial=initial)
+            return GameNimDef(initial=initial,constants=constants)
         elif name == "TTT":
-            return GameTTTDef(initial=initial)
+            return GameTTTDef(initial=initial,constants=constants)
         else:
             log.error("Invalid game name {}".format(name))
             raise NotImplementedError
@@ -70,6 +76,23 @@ class GameDef():
         """
         return NotImplementedError
 
+    def get_constant(self, constant_name, type_of_symbol="number"):
+        """
+        Obtains the constant of teh game definition
+        from the background file or using the one 
+        provided on creation
+
+        Args:
+            constant_name: Name of the required constant
+        Returns:
+            A clingo Symbol representing the constant
+        """
+        if constant_name in self.constants:
+            return self.constants[constant_name]
+        const = get_constant(self.background,constant_name,True)
+        return getattr(const, type_of_symbol)
+
+
     def get_initial_time(self,random=False):
         """
         Obtains the initial state in full time format
@@ -92,24 +115,14 @@ class GameDef():
 
     def get_random_initial(self):
         if self.random_init is None:
-            self.random_init = get_all_models(self.path + "/ran_initial.lp")
+            self.random_init = get_all_models(self, self.path + "/ran_initial.lp")
         return random.choice(self.random_init)
 
 class GameNimDef(GameDef):
-    def __init__(self,path="./game_definitions/nim",initial=None):
-        super().__init__(path,initial)
-        if self.initial_is_file:
-            with open(self.initial,"r") as File:
-                check = File.readlines()
-        else:
-            check =  [s+'.' for s in self.initial.split('.')]
-        check = [[int(els) for els in re.sub(r".*has\((\d+\,\d+)\)\)\.","\g<1>",
-                        el.replace("\n","")).split(",")]
-                 for el in check if "has" in el]
-        # check = [ls for ls in check if ls[1] != 0]
-        #TODO pass this as parameters
-        self.number_piles = len(check)
-        self.max_number = max([ls[1] for ls in check])
+    def __init__(self,path="./game_definitions/nim",initial=None,constants={}):
+        super().__init__(path,initial,constants)
+        self.number_piles = int(self.get_constant("num_piles"))
+        self.max_sticks = int(self.get_constant("num_piles"))
         self.subst_var = {"remove":[True,False],
                           "has":[True,False],"control":[False]}
 
@@ -119,7 +132,7 @@ class GameNimDef(GameDef):
         a = ""
         for p in range(self.number_piles):
             n = has[p+1] if p+1 in has else 0
-            a+="• "*n  + " "*((self.max_number-n)*2) + "\n"
+            a+="• "*n  + " "*((self.max_sticks-n)*2) + "\n"
         return a
 
     def step_to_ascii(self,step):
@@ -139,9 +152,9 @@ class GameNimDef(GameDef):
         return "\n".join(lines)
 
 class GameDomDef(GameDef):
-    def __init__(self,path="./game_definitions/dominoes",initial=None):
-        super().__init__(path,initial)
-        self.max_number=4
+    def __init__(self,path="./game_definitions/dominoes",initial=None,constants={}):
+        super().__init__(path,initial,constants)
+        self.size = int(self.get_constant("size"))+1
         self.subst_var = {"in_hand":[True,False],
                           "stack":[True,True],
                           "plays":[False,True],
@@ -150,7 +163,7 @@ class GameDomDef(GameDef):
                           "domino":[True,True]}
 
     def state_to_ascii(self, state):
-        div = "-"*(self.max_number*2 +1) +"\n"
+        div = "-"*(self.size*2 +1) +"\n"
         a = div
         in_hand = [f for f in state.fluents if f.name == "in_hand"]
         hands = {'a':[],'b':[]}
@@ -191,66 +204,29 @@ class GameDomDef(GameDef):
         return "".join(a_split)
 
 class GameTTTDef(GameDef):
-    def __init__(self,path="./game_definitions/tic_tac_toe",initial=None):
-        super().__init__(path,initial)
-        if self.initial_is_file:
-            with open(self.initial,"r") as File:
-                check = File.readlines()
-            check = [el for el in check
-                     if re.search(r"true\(has\(grid_size",el) and
-                     not el.startswith("%")]
-            assert len(check) == 1
-            self.grid_size = int(re.sub(".*(\d+).*","\g<1>",
-                                        check[0].replace("\n","")))
+    def __init__(self,path="./game_definitions/tic_tac_toe",initial=None,constants={}):
+        super().__init__(path,initial,constants)
+        self.grid_size = int(self.get_constant("grid_size"))
+        self.subst_var = {"mark":[False,False],
+                          "has":[True,False,False],"control":[True]}
+        
 
     def state_to_ascii(self,state):
-        a = ""
-        to_sub = []
+        to_sub = [["•"]*self.grid_size for i in range(self.grid_size)]
         fluents = state.fluents
         for fluent in fluents:
             if re.search("has\((a|b)",str(fluent)):
                 hold = re.sub("\)","",re.sub(r"has\(","",
                                              str(fluent))).split(",")
-                hold = [hold[0],[int(hold[1]),int(hold[2])]]
-                to_sub.append(hold)
-        if to_sub != []:
-            for i in range(self.grid_size):
-                for j in range(self.grid_size):
-                    for k, check in enumerate(to_sub):
-                        if [i+1,j+1] in check:
-                            a+=check[0]+" "
-                            break
-                        elif k == (len(to_sub)-1):
-                            a+="• "
-                a += "\n"
-        else:
-            for i in range(self.grid_size):
-                for j in range(self.grid_size):
-                    a+="• "
-                a += "\n"
-        return a
+                to_sub[int(hold[1])-1][int(hold[2])-1]=hold[0]
+        return "\n".join([" ".join(x) for x in to_sub])
 
     def step_to_ascii(self,step):
-        a = "\n"
+        a_split = self.state_to_ascii(step.state).splitlines(True)
         if(not step.action):
-            a += self.state_to_ascii(step.state)
-            return a
-        else:
-            to_sub = []
-            next_fluents = step.action.next_fluents
-            for fluent in next_fluents:
-                if re.search("has\((a|b)",str(fluent)):
-                    hold = re.sub("\)","",re.sub(r"has\(","",
-                                                str(fluent))).split(",")
-                    hold = [hold[0],[int(hold[1]),int(hold[2])]]
-                    to_sub.append(hold)
-            for i in range(self.grid_size):
-                for j in range(self.grid_size):
-                    for k, check in enumerate(to_sub):
-                        if [i+1,j+1] in check:
-                            a+=check[0]+" "
-                            break
-                        elif k == (len(to_sub)-1):
-                            a+="• "
-                a += "\n"
-            return a
+            return "".join(a_split)
+        x = step.action.action.arguments[0].number -1
+        y = step.action.action.arguments[1].number -1
+        a_split[x] = a_split[x][0:y*2] + step.action.player + a_split[x][y*2+1:]
+
+        return "".join(a_split)

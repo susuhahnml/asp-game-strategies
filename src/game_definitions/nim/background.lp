@@ -1,21 +1,21 @@
 % Removable configuration
-#const n = 6.
-#const m_s = 7.
-#const p_n = 3.
+#const max_removable = 6.
+#const max_sticks = 7.
+#const num_piles = 3.
 
 % Roles
 role(a). role(b).
 
 % Base (All possible fluents)
-base(has(P,M)):-P=1..p_n,M=0..m_s.
+base(has(P,M)):-P=1..num_piles,M=0..max_sticks.
 base(control(X)) :- role(X).
 
 % Input (All possible actions)
-input(X,remove(P,N)) :- P=1..p_n, N=1..n,role(X).
+input(X,remove(P,N)) :- P=1..num_piles, N=1..max_removable,role(X).
 
 
 % Legal action
-legal(X,remove(P,N)) :- true(has(P,M)), P = #min{L:true(has(L,M))}, N=1..n, N<=M, true(control(X)), not terminal.
+legal(X,remove(P,N)) :- true(has(P,M)), P = #min{L:true(has(L,M))}, N=1..max_removable, N<=M, true(control(X)), not terminal.
 
 % Action selection
 0 {does(X,A)} 1 :- legal(X,A), not terminal.

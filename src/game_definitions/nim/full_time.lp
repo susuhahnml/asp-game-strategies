@@ -1,13 +1,13 @@
 #program base.
-#const n = 6.
-#const m_s = 7.
-#const p_n = 3.
+#const max_removable = 6.
+#const max_sticks = 7.
+#const num_piles = 3.
 role(a).
 role(b).
-base(has(P,M)) :- P=(1..p_n); M=(0..m_s).
+base(has(P,M)) :- P=(1..num_piles); M=(0..max_sticks).
 base(control(X)) :- role(X).
-input(X,remove(P,N)) :- P=(1..p_n); N=(1..n); role(X).
-legal(X,remove(P,N),T) :- holds(has(P,M),T); P = #min { L : holds(has(L,M),T) }; N=(1..n); N<=M; holds(control(X),T); not terminal(T); time(T).
+input(X,remove(P,N)) :- P=(1..num_piles); N=(1..max_removable); role(X).
+legal(X,remove(P,N),T) :- holds(has(P,M),T); P = #min { L : holds(has(L,M),T) }; N=(1..max_removable); N<=M; holds(control(X),T); not terminal(T); time(T).
 0 <= { does(X,A,T) :  } <= 1 :- legal(X,A,T); not terminal(T); time(T).
 #false :- does(X,Y,T); does(X,Z,T); Y<Z; time(T).
 #false :- not does(X,_,T); holds(control(X),T); not terminal(T); time(T).
