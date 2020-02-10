@@ -45,16 +45,19 @@ def main_minmax_asp(image_file_name,ilasp_examples_file,rules_file,train_file,ma
 
                                                         
     if learn_examples:
+        ilasp_examples_file = './learned_info/ilasp/{}_{}'.format(game_name,ilasp_examples_file)
         with open(ilasp_examples_file, "w") as text_file:
             text_file.write("\n".join(all_examples))
             log.info("ILASP Examples saved in " + ilasp_examples_file)
     if learn_rules:
+        rules_file = './learned_info/rules/{}_{}'.format(game_name,rules_file)
         with open(rules_file, "w") as text_file:
             text_file.write("\n".join(all_learned_rules))
         rules_file_to_gdl(rules_file)
         log.info("Rules saved in " + rules_file)
 
     if generate_train:
+        train_file = './learned_info/train/{}_{}'.format(game_name,train_file)
         training_data_to_csv(train_file,all_training_list,game)
         log.info("Training data saved in " + train_file)
         remove_duplicates_training(train_file)

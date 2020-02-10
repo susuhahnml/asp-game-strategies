@@ -1,0 +1,3 @@
+best_do(Vb,mark(2,2)):-true(control(Vb)),true(has(Va,2,1)),true(has(Va,2,3)),true(has(Vb,1,1)),Va!=Vb.
+best_do(Vb,mark(2,2)):-true(control(Vb)),true(has(Va,2,1)),true(has(Va,2,3)),true(has(Vb,1,1)),Va!=Vb.
+best_do(Va,mark(1,3)):-true(control(Va)),true(has(Vb,1,1)),true(has(Va,2,3)),Va!=Vb.
