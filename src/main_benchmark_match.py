@@ -9,10 +9,10 @@ import json
 import random
 from py_utils import arg_metav_formatter, add_params
 from game_definitions import GameDef
-from py_utils.match_simulation import simulate_match
 from tqdm import tqdm
 from py_utils.logger import log
 from structures.players import Player
+from structures.match import Match
 
 def benchmark_match(n,name_a,name_b,random_seed,game_name,constants):
     log.info("Benchmarking: {} vs {} for {} games".format(name_a,name_b,n))
@@ -33,7 +33,7 @@ def benchmark_match(n,name_a,name_b,random_seed,game_name,constants):
         idx = {'a':0+turn,'b':1-turn}
         for i in tqdm(range(n)):
             game.initial = initial_states[i]
-            match, metrics = simulate_match(game,vs,ran_init=False)
+            match, metrics = Match.simulate_match(game,vs,ran_init=False)
             goals = match.goals
             for l,g in goals.items():
                 scores[idx[l]]['points']+=g

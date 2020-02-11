@@ -1,0 +1,2 @@
+model_checkpoint_path: "nim.weights"
+all_model_checkpoint_paths: "nim.weights"

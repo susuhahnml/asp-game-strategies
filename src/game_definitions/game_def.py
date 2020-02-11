@@ -123,7 +123,7 @@ class GameNimDef(GameDef):
         self.number_piles = int(self.get_constant("num_piles"))
         self.max_sticks = int(self.get_constant("num_piles"))
         self.subst_var = {"remove":[True,False],
-                          "has":[True,False],"control":[False]}
+                          "has":[True,False],"control":[True]}
 
     def state_to_ascii(self,state):
         has = {f.arguments[0].number:f.arguments[1].number

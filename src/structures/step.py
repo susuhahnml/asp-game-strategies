@@ -98,26 +98,3 @@ class Step:
         """
         s = self.state.game_def.step_to_ascii(self)
         return s
-
-    def ascii_score(self,main_player="a"):
-        """
-        Returns the ascii representation of the step including the score
-        """
-        if self.score:
-            if self.action != None:
-                return "Score:({})\n{}".format(self.score,
-                                                          self.ascii)
-            else:
-                if(self.state.is_terminal):
-                    return ("Terminal:({})\n{}".format(self.score,self.ascii))
-                else:
-                    if main_player=="a":
-                        
-                        return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
-                            "{}").format("a",self.score, self.ascii))
-                    else:
-                        return (("minimax:({},{})\n"+"(b,a):(max,min)\n"+
-                            "{}").format("b",self.score, self.ascii))
-
-        else:
-            return ""

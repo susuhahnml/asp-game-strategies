@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import time
+from py_utils.logger import log
 from collections import defaultdict
 from structures.state import State, StateExpanded
 from structures.action import ActionExpanded, Action
@@ -24,47 +25,6 @@ class Match:
         Adds a nex step
         """
         self.steps.append(step)
-
-    @classmethod
-    def from_time_model(cls, model, game_def, main_player = None):
-        """
-        Given a stabel model for the full time representation of the game,
-        the functions creates a match with each action taken.
-
-        Args:
-            model: Stable model from the full time representation
-            game_def: The game definition
-            main_player: The player for which we aim to minmax
-        """
-        atoms = model.symbols(atoms=True)
-        fluent_steps = defaultdict(lambda: {'fluents':[],'goals':[],
-                                            'action':None})
-        for a in atoms:
-            if(a.name == "goal"):
-                time = a.arguments[2].number
-                fluent_steps[time]['goals'].append(a)
-            elif(a.name=="holds"):
-                time = a.arguments[1].number
-                fluent_steps[time]['fluents'].append(a.arguments[0])
-            elif(a.name=="does"):
-                time = a.arguments[2].number
-                fluent_steps[time]['action'] = a
-        fluent_steps = dict(fluent_steps)
-        steps = []
-        for i in range(len(fluent_steps)):
-            state = State(fluent_steps[i]['fluents'],fluent_steps[i]['goals'],
-                          game_def)
-            action = None
-            if(not fluent_steps[i]['action']):
-                pass
-            else:
-                action = Action(fluent_steps[i]['action'].arguments[0].name,
-                                fluent_steps[i]['action'].arguments[1])
-            step = Step(state,action,i)
-            steps.append(step)
-        steps[-1].state.is_terminal = True
-        steps[-1].set_score_player(main_player)
-        return cls(steps)
 
     @property
     def goals(self):
@@ -103,3 +63,56 @@ class Match:
             's_next':self.steps[i+1].state,
             'reward':control_goal,
             'win':-1 if control_goal<0 else 1})
+
+    @staticmethod
+    def simulate_match(game_def, players, depth=None, ran_init=False):
+        """
+        Call it with the path to the game definition
+
+        Options:
+        player_config: A tuple of the player configurations
+            - random: Play against random player
+            - human: Play against human player
+            - strategy: Play against a strategy defined in a file as weak constraints
+            - minmax-asp: Play against a player using minmax strategy in asp
+
+        paths:
+            - optimal*: Generate only one path with optimal actions
+            - all: Generate full tree of matches TODO?
+
+        depth:
+            - n: Generate until depth n or terminal state reached
+        """
+
+        if(ran_init):
+            initial = game_def.get_random_initial()
+        else:
+            initial = game_def.initial
+        state = StateExpanded.from_game_def(game_def,
+                        initial,
+                        strategy = players[0].strategy)
+        match = Match([])
+        time_step = 0
+        continue_depth = True if depth==None else time_step<depth
+        log.debug("\n--------------- Simulating match ----------------")
+        log.debug("\na: {}\nb: {}\n".format(players[0].get_name(),
+                                                players[1].get_name()))
+
+        letters = ['a','b']
+        response_times = {'a':[],'b':[]}
+        while(not state.is_terminal and continue_depth):
+            t0 = time.time()
+            selected_action = players[time_step%2].choose_action(state)
+            t1 = time.time()
+            response_times[letters[time_step%2]].append((t1-t0)*1000)
+            step = Step(state,selected_action,time_step)
+            match.add_step(step)
+            time_step+=1
+            continue_depth = True if depth==None else time_step<depth
+            state = state.get_next(selected_action,
+                                strategy_path = players[time_step%2].strategy)
+        match.add_step(Step(state,None,time_step))
+        log.debug(match)
+        return match, {k:sum(lst) / (len(lst) if len(lst)>0 else 1) for k,lst in response_times.items()}
+
+

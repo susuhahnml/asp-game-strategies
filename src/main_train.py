@@ -5,7 +5,7 @@ import re
 import time
 import argparse
 from py_utils import arg_metav_formatter
-from rl_agent.rl_instance import RLInstance
+from ml_agent.rl_instance import RLInstance
 from py_utils.logger import log
 
 

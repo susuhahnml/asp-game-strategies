@@ -8,6 +8,15 @@ stack(l). stack(r).
 eye(0..size).
 domino(N1,N2) :- eye(N1), eye(N2), N1<=N2.
 
+
+% check all moves
+input(P, plays(domino(N1,N2), S)) :- domino(N1,N2), stack(S), role(P).
+input(P, pass):-role(P).
+base(in_hand(X,domino(N1,N2))) :- domino(N1,N2), role(X).
+base(stack(S,0..size)):- stack(S).
+base(control(X)) :- role(X).
+
+
 % check possible moves
 legal(X, plays(domino(N1,N2), S)) :- true(in_hand(X, domino(N1,N2))), true(stack(S,N2)).
 

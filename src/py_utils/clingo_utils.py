@@ -151,12 +151,14 @@ def generate_rule(learned_rules, game_def, state_context,sel_action):
     learned_rules.append(rule[:-1] + ".")
 
 
+# ------------------------- GDL Transformations --------------------------
+
 def rules_file_to_gdl(file_path):
     with open(file_path, 'r') as file:
         data = file.read()
         data = data.replace(',T)',')')
         data = data.replace('holds','true')
-        text_file = open(file_path[:-4]+'gdl.txt', "wt")
+        text_file = open(file_path[:-4]+'_gdl.lp', "wt")
         text_file.write(data)
         text_file.close()
 

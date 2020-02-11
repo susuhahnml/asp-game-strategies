@@ -9,7 +9,8 @@ from game_definitions import GameNimDef
 import time
 import json
 from structures.tree import Tree
-from py_utils.min_max_asp import get_minmax_init
+from min_max_asp.min_max_asp import get_minmax_init
+from min_max.min_max import minmax_from_game_def
 
 def benchmark_tree():
     games = [
@@ -22,8 +23,7 @@ def benchmark_tree():
     for game in games:
         results += ("\n\n------------------\nGame:{}\nInitial state:\n{}".format(game.__class__.__name__,game.initial.replace('.','.\n')))
         t0 = time.time()
-        tree = Tree()
-        tree.from_game_def(game)
+        tree = minmax_from_game_def(game)
         t1 = time.time()
         results += ("\n\tMinmax tree: {} sec".format(t1-t0))
         t0 = time.time()

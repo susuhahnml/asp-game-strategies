@@ -1,6 +1,6 @@
 import os.path
 import csv
-from structures.game import Game
+from .game import Game
 from py_utils.logger import log
 def training_data_to_csv(file_name, training_list, game_def, force_new = False):
     games = {'a': Game(game_def,player_name="a"),

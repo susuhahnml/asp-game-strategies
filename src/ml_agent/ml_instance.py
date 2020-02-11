@@ -1,4 +1,4 @@
-from rl_agent.asp_game_env import ASPGameEnv
+from ml_agent.asp_game_env import ASPGameEnv
 from py_utils.logger import log
 import numpy as np
 import asyncio
@@ -47,7 +47,7 @@ class MLInstance():
 	def load_weights(self, model_name):
 		file_name = "./ml_agent/saved_models/" + model_name + ".weights"
 		#Load weigths of nn
-		self.agent.load_weights(file_name)
+		# self.agent.load_weights(file_name)
 
 
 	@classmethod

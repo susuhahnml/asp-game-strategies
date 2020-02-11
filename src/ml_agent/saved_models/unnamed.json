@@ -1,0 +1,1 @@
+{"architecture": "dense", "agent": "dqn", "policy": "custom_eps_greedy", "epsilon": 0.1, "rewardf": "dom", "opponent_name": "strategy", "n_steps": 100, "model_name": "unnamed", "game_name": "Dom", "strategy_path": "min_max_asp/dominoes/strategy.lp"}

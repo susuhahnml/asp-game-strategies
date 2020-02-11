@@ -7,8 +7,8 @@ import time
 import argparse
 from py_utils import arg_metav_formatter, add_params
 from game_definitions import GameDef
-from py_utils.match_simulation import simulate_match
 from structures.players import Player
+from structures.match import Match
 
 def main_match(depth,pA_style,pB_style,game_name,constants):
     # remove trailing backslash as failsafe
@@ -17,14 +17,12 @@ def main_match(depth,pA_style,pB_style,game_name,constants):
     pl = []
     for n,p in [("a",pA_style),("b",pB_style)]:
         conf = {"name":p}
-        if p == "strategy":
-            conf["strategy_path"]="strategy.lp"
         if p in ["minmax_asp","minmax"]:
             conf["main_player"]=n
         pl.append(Player.from_config(conf,game_def=game))
     
 
-    match, response_times = simulate_match(game,pl)
+    match, response_times = Match.simulate_match(game,pl)
     
 
 if __name__ == "__main__":
