@@ -105,8 +105,7 @@ class GameDef():
                 content = "".join(lines)
         else:
             content = self.initial + ""
-        content = content.replace(").",",0).")
-        content = content.replace("true","holds")
+        content = "\n".join(transform_rules_gdl(content,fixed_time=0))
         return content
 
     @property

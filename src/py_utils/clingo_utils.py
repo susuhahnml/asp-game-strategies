@@ -161,26 +161,29 @@ def rules_file_to_gdl(file_path):
 names_update = ['legal','true','does','goal','terminal','next']
 
 
-def add_time(stm):
+def add_time(stm,fixed_time=None):
     stm_type = str(stm.type)
-
+    
     if stm_type == "Rule":
-        add_time(stm.head)
-        return any([add_time(i) for i in stm.body])
+        add_time(stm.head,fixed_time)
+        return any([add_time(i,fixed_time) for i in stm.body])
     elif stm_type == "Aggregate":
-        return any([add_time(i) for i in stm.elements])
+        return any([add_time(i,fixed_time) for i in stm.elements])
     elif stm_type == "ConditionalLiteral":
         l_t = add_time(stm.literal)
-        l_c = any([add_time(i) for i in stm.condition])
+        l_c = any([add_time(i,fixed_time) for i in stm.condition])
         return l_t or l_c
     elif stm_type == "Literal":
-        return add_time(stm.atom)
+        return add_time(stm.atom,fixed_time)
     elif stm_type == "Function":
         fun_name = stm.name
-        l_a = any([add_time(i) for i in stm.arguments])
+        l_a = any([add_time(i,fixed_time) for i in stm.arguments])
 
         if fun_name in names_update:
-            var = clingo.ast.Variable(stm.location,"T")
+            if(fixed_time is None):
+                var = clingo.ast.Variable(stm.location,"T")
+            else:
+                var = clingo.ast.Symbol(stm.location,clingo.Number(fixed_time) )
             if fun_name == "next":
                 stm.name = "holds"
                 var = clingo.ast.BinaryOperation(stm.location,clingo.ast.BinaryOperator.Plus,var,1)
@@ -191,12 +194,12 @@ def add_time(stm):
         else:
             return l_a
     elif stm_type == "SymbolicAtom":
-        return add_time(stm.term)
+        return add_time(stm.term,fixed_time)
     elif stm_type == "BodyAggregate":
         added = False
         for w in stm.elements:
-            l_a = any([add_time(i) for i in w.tuple])
-            l_c = any([add_time(i) for i in w.condition])
+            l_a = any([add_time(i,fixed_time) for i in w.tuple])
+            l_c = any([add_time(i,fixed_time) for i in w.condition])
             added = added or l_a or l_c
         return added
     elif stm_type == "Variable":
@@ -204,17 +207,22 @@ def add_time(stm):
     else:
         return False
 
-def gdl_to_full_time(path,file_name):
-    file = open(path+file_name,'r')
-    prg = "".join(file.readlines())
+
+def transform_rules_gdl(prog_str,fixed_time=None):
     updated_rules = []
     def add_time_rule(stm):
-        added_time = add_time(stm)
-        if(added_time):
+        added_time = add_time(stm,fixed_time)
+        if(added_time and fixed_time is None):
             time_f = clingo.ast.Function(stm.location,"time",[clingo.ast.Variable(stm.location,"T")],False)
             stm.body.append(time_f)
         updated_rules.append(str(stm))
-    clingo.parse_program(prg, add_time_rule)
+    clingo.parse_program(prog_str, add_time_rule)
+    return updated_rules
+
+def gdl_to_full_time(path,file_name):
+    file = open(path+file_name,'r')
+    prg = "".join(file.readlines())
+    updated_rules = transform_rules_gdl(prg,None)
     
     # Adding time rule time(0..15)
     interval = clingo.ast.Interval("begin",0,15)
