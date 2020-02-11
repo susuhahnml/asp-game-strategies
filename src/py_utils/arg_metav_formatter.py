@@ -26,7 +26,7 @@ def add_params(parser, params_list):
             parser.add_argument("--image-file-name", type=str, default=None,
                                 help="output image file name")
         elif "--main-player" == p:
-            parser.add_argument("--main-player", default="a",
+            parser.add_argument("--main-player", type= str, default="a",
                                 help="the player from wich to maximize")
         elif "--pA-style" == p:
             parser.add_argument("--pA-style", type=str, default="random",
@@ -65,3 +65,4 @@ def add_params(parser, params_list):
                             help="true for performing a grid search")
         else:
             log.error("Parameter {} is not in list".format(p))
+

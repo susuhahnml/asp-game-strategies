@@ -207,7 +207,7 @@ class GameTTTDef(GameDef):
         super().__init__(path,initial,constants)
         self.grid_size = int(self.get_constant("grid_size"))
         self.subst_var = {"mark":[False,False],
-                          "has":[True,False,False],"control":[True]}
+                          "has":[True,False,False],"control":[True],"free":[False,False]}
         
 
     def state_to_ascii(self,state):

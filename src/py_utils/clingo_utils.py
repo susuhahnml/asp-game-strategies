@@ -103,10 +103,10 @@ def generate_example(leaned_examples, state_context,good_action,bad_action):
     context = fluents_to_asp_syntax(state_context.fluents)
     good_example_name = get_next_example_name()
     bad_example_name = get_next_example_name()
-    good_example =  "#pos({},{{ {} }}, {{}}, {{\n {} \n}}).".format(
-        good_example_name, action_to_asp_syntax(good_action)[:-1], context )
-    bad_example =  "#pos({},{{ {} }}, {{}}, {{\n {} \n}}).".format(
-        bad_example_name, action_to_asp_syntax(bad_action)[:-1], context )
+    good_example =  "#pos({},{{}}, {{}}, {{\n {} {} \n}}).".format(
+        good_example_name, context, action_to_asp_syntax(good_action))
+    bad_example =  "#pos({},{{}}, {{}}, {{\n {} {} \n}}).".format(
+        bad_example_name, context, action_to_asp_syntax(bad_action))
     order = "#brave_ordering({},{}).".format(good_example_name,bad_example_name)
     leaned_examples.append("\n{}\n{}\n{}".format(good_example,bad_example,order))
 
@@ -118,6 +118,8 @@ def edit_vars(pred,subst_var,var_set):
             var_set.add(v)
         trad_args.append( v if is_var else v_par)
     for i,arg in enumerate(pred.arguments):
+        if(not pred.name in subst_var):
+            raise RuntimeError("Predicate '{}' must be in the subst_var attribute of the game definition in order to use the learning rules functionality".format(pred.name))
         is_var = subst_var[pred.name][i]
         if(arg.type == clingo.SymbolType.Function):
             if len(arg.arguments)>0:

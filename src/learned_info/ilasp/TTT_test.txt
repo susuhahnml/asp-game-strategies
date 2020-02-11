@@ -1,0 +1,568 @@
+
+#pos(e0,{}, {}, {
+ true(free(1,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,1)). true(has(b,1,3)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(2,3)). 
+}).
+#pos(e1,{}, {}, {
+ true(free(1,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,1)). true(has(b,1,3)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e0,e1).
+
+#pos(e2,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(2,2)). 
+}).
+#pos(e3,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(2,1)). 
+}).
+#brave_ordering(e2,e3).
+
+#pos(e4,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(2,3)). 
+}).
+#pos(e5,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(1,1)). 
+}).
+#brave_ordering(e4,e5).
+
+#pos(e6,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,3)). true(has(b,3,2)). does(b,mark(2,3)). 
+}).
+#pos(e7,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,3)). true(has(b,3,2)). does(b,mark(1,1)). 
+}).
+#brave_ordering(e6,e7).
+
+#pos(e8,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(control(a)). true(has(b,3,2)). true(has(b,1,3)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(2,2)). 
+}).
+#pos(e9,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(control(a)). true(has(b,3,2)). true(has(b,1,3)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e8,e9).
+
+#pos(e10,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(2,3)). 
+}).
+#pos(e11,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(3,2)). 
+}).
+#brave_ordering(e10,e11).
+
+#pos(e12,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(2,3)). 
+}).
+#pos(e13,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,1,3)). does(b,mark(3,1)). 
+}).
+#brave_ordering(e12,e13).
+
+#pos(e14,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e15,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(1,1)). 
+}).
+#brave_ordering(e14,e15).
+
+#pos(e16,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e17,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e16,e17).
+
+#pos(e18,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e19,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e18,e19).
+
+#pos(e20,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e21,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(a,3,3)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e20,e21).
+
+#pos(e22,{}, {}, {
+ true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(2,2)). 
+}).
+#pos(e23,{}, {}, {
+ true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e22,e23).
+
+#pos(e24,{}, {}, {
+ true(free(1,1)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,1,3)). true(has(b,3,2)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(2,2)). 
+}).
+#pos(e25,{}, {}, {
+ true(free(1,1)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,1,3)). true(has(b,3,2)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e24,e25).
+
+#pos(e26,{}, {}, {
+ true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(2,2)). 
+}).
+#pos(e27,{}, {}, {
+ true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e26,e27).
+
+#pos(e28,{}, {}, {
+ true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(2,2)). 
+}).
+#pos(e29,{}, {}, {
+ true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(1,1)). 
+}).
+#brave_ordering(e28,e29).
+
+#pos(e30,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(control(a)). true(has(b,1,3)). true(has(b,3,2)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(2,2)). 
+}).
+#pos(e31,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(control(a)). true(has(b,1,3)). true(has(b,3,2)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e30,e31).
+
+#pos(e32,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(control(a)). true(has(b,1,1)). true(has(b,3,2)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(2,2)). 
+}).
+#pos(e33,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(control(a)). true(has(b,1,1)). true(has(b,3,2)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e32,e33).
+
+#pos(e34,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(2,3)). 
+}).
+#pos(e35,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(1,1)). 
+}).
+#brave_ordering(e34,e35).
+
+#pos(e36,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(2,3)). 
+}).
+#pos(e37,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e36,e37).
+
+#pos(e38,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(2,3)). 
+}).
+#pos(e39,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,3,2)). does(b,mark(1,2)). 
+}).
+#brave_ordering(e38,e39).
+
+#pos(e40,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(a,3,3)). does(a,mark(2,3)). 
+}).
+#pos(e41,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(a,3,3)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e40,e41).
+
+#pos(e42,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(a,3,3)). does(a,mark(2,3)). 
+}).
+#pos(e43,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(a,3,3)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e42,e43).
+
+#pos(e44,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(2,2)). 
+}).
+#pos(e45,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e44,e45).
+
+#pos(e46,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(3,2)). true(control(a)). true(has(b,2,1)). true(has(b,2,3)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(3,2)). 
+}).
+#pos(e47,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(3,2)). true(control(a)). true(has(b,2,1)). true(has(b,2,3)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(1,1)). 
+}).
+#brave_ordering(e46,e47).
+
+#pos(e48,{}, {}, {
+ true(free(3,2)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,2,3)). does(b,mark(1,3)). 
+}).
+#pos(e49,{}, {}, {
+ true(free(3,2)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,2,3)). does(b,mark(2,1)). 
+}).
+#brave_ordering(e48,e49).
+
+#pos(e50,{}, {}, {
+ true(free(3,2)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,2,3)). does(b,mark(1,3)). 
+}).
+#pos(e51,{}, {}, {
+ true(free(3,2)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,2,3)). does(b,mark(1,1)). 
+}).
+#brave_ordering(e50,e51).
+
+#pos(e52,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e53,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(a,3,3)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e52,e53).
+
+#pos(e54,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,2,1)). true(has(a,3,3)). true(has(a,1,1)). does(a,mark(1,2)). 
+}).
+#pos(e55,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,2,1)). true(has(a,3,3)). true(has(a,1,1)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e54,e55).
+
+#pos(e56,{}, {}, {
+ true(free(1,2)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(b,2,1)). true(has(a,3,3)). true(has(a,1,1)). does(a,mark(2,3)). 
+}).
+#pos(e57,{}, {}, {
+ true(free(1,2)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(b,2,1)). true(has(a,3,3)). true(has(a,1,1)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e56,e57).
+
+#pos(e58,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,2,1)). does(b,mark(2,2)). 
+}).
+#pos(e59,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,2,1)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e58,e59).
+
+#pos(e60,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,2,1)). does(b,mark(2,2)). 
+}).
+#pos(e61,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,2,1)). does(b,mark(2,3)). 
+}).
+#brave_ordering(e60,e61).
+
+#pos(e62,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e63,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,1)). true(has(a,3,3)). does(a,mark(1,1)). 
+}).
+#brave_ordering(e62,e63).
+
+#pos(e64,{}, {}, {
+ true(free(1,1)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,2)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,2)). 
+}).
+#pos(e65,{}, {}, {
+ true(free(1,1)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,2)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e64,e65).
+
+#pos(e66,{}, {}, {
+ true(free(1,1)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,2)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,3)). 
+}).
+#pos(e67,{}, {}, {
+ true(free(1,1)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,2)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e66,e67).
+
+#pos(e68,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,2)). does(b,mark(2,1)). 
+}).
+#pos(e69,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,2)). does(b,mark(3,1)). 
+}).
+#brave_ordering(e68,e69).
+
+#pos(e70,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,2)). does(b,mark(2,1)). 
+}).
+#pos(e71,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,1)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,2)). does(b,mark(3,2)). 
+}).
+#brave_ordering(e70,e71).
+
+#pos(e72,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,2)). does(b,mark(2,3)). 
+}).
+#pos(e73,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,2)). does(b,mark(3,2)). 
+}).
+#brave_ordering(e72,e73).
+
+#pos(e74,{}, {}, {
+ true(free(1,1)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,2)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e75,{}, {}, {
+ true(free(1,1)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,2)). true(has(a,3,3)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e74,e75).
+
+#pos(e76,{}, {}, {
+ true(free(1,1)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,2)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e77,{}, {}, {
+ true(free(1,1)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,2)). true(has(a,3,3)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e76,e77).
+
+#pos(e78,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(2,2)). 
+}).
+#pos(e79,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,3,1)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e78,e79).
+
+#pos(e80,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,1)). 
+}).
+#pos(e81,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,3)). 
+}).
+#brave_ordering(e80,e81).
+
+#pos(e82,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,1)). true(has(b,3,2)). does(b,mark(2,3)). 
+}).
+#pos(e83,{}, {}, {
+ true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,1)). true(has(a,3,3)). true(has(b,1,1)). true(has(b,3,2)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e82,e83).
+
+#pos(e84,{}, {}, {
+ true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(2,2)). 
+}).
+#pos(e85,{}, {}, {
+ true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e84,e85).
+
+#pos(e86,{}, {}, {
+ true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(2,2)). 
+}).
+#pos(e87,{}, {}, {
+ true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e86,e87).
+
+#pos(e88,{}, {}, {
+ true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(2,3)). 
+}).
+#pos(e89,{}, {}, {
+ true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,2)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e88,e89).
+
+#pos(e90,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,1)). 
+}).
+#pos(e91,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e90,e91).
+
+#pos(e92,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,1)). 
+}).
+#pos(e93,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,3)). 
+}).
+#brave_ordering(e92,e93).
+
+#pos(e94,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,1)). 
+}).
+#pos(e95,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(3,2)). 
+}).
+#brave_ordering(e94,e95).
+
+#pos(e96,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,1)). true(has(b,3,1)). does(b,mark(3,2)). 
+}).
+#pos(e97,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,1)). true(has(b,3,1)). does(b,mark(2,3)). 
+}).
+#brave_ordering(e96,e97).
+
+#pos(e98,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,2,1)). does(a,mark(2,3)). 
+}).
+#pos(e99,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,2,1)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e98,e99).
+
+#pos(e100,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,2)). 
+}).
+#pos(e101,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(3,1)). 
+}).
+#brave_ordering(e100,e101).
+
+#pos(e102,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,1)). true(has(b,3,1)). does(b,mark(3,2)). 
+}).
+#pos(e103,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,1,1)). true(has(b,3,1)). does(b,mark(2,3)). 
+}).
+#brave_ordering(e102,e103).
+
+#pos(e104,{}, {}, {
+ true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,3)). 
+}).
+#pos(e105,{}, {}, {
+ true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e104,e105).
+
+#pos(e106,{}, {}, {
+ true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(1,2)). 
+}).
+#pos(e107,{}, {}, {
+ true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,2,3)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e106,e107).
+
+#pos(e108,{}, {}, {
+ true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,3)). 
+}).
+#pos(e109,{}, {}, {
+ true(free(1,2)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(control(a)). true(has(b,3,2)). true(has(b,1,1)). true(has(a,3,3)). true(has(a,1,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e108,e109).
+
+#pos(e110,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,2)). 
+}).
+#pos(e111,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(3,2)). 
+}).
+#brave_ordering(e110,e111).
+
+#pos(e112,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,2)). 
+}).
+#pos(e113,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,3)). 
+}).
+#brave_ordering(e112,e113).
+
+#pos(e114,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(2,2)). 
+}).
+#pos(e115,{}, {}, {
+ true(free(3,2)). true(free(3,1)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,1,1)). does(b,mark(3,1)). 
+}).
+#brave_ordering(e114,e115).
+
+#pos(e116,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e117,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e116,e117).
+
+#pos(e118,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e119,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e118,e119).
+
+#pos(e120,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e121,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e120,e121).
+
+#pos(e122,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e123,{}, {}, {
+ true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,1)). true(free(3,2)). true(control(a)). true(has(b,1,1)). true(has(a,3,3)). does(a,mark(3,1)). 
+}).
+#brave_ordering(e122,e123).
+
+#pos(e124,{}, {}, {
+ true(free(1,1)). true(free(1,3)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,2)). true(has(a,3,3)). true(has(a,2,1)). does(a,mark(2,3)). 
+}).
+#pos(e125,{}, {}, {
+ true(free(1,1)). true(free(1,3)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(b,1,2)). true(has(a,3,3)). true(has(a,2,1)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e124,e125).
+
+#pos(e126,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(2,2)). 
+}).
+#pos(e127,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(1,3)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,2,1)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(1,2)). 
+}).
+#brave_ordering(e126,e127).
+
+#pos(e128,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(2,2)). 
+}).
+#pos(e129,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,2)). true(free(1,1)). true(control(b)). true(has(a,1,3)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(1,1)). 
+}).
+#brave_ordering(e128,e129).
+
+#pos(e130,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(3,2)). 
+}).
+#pos(e131,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,1)). true(control(b)). true(has(a,1,2)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e130,e131).
+
+#pos(e132,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(3,2)). 
+}).
+#pos(e133,{}, {}, {
+ true(free(3,2)). true(free(2,3)). true(free(2,2)). true(free(2,1)). true(free(1,3)). true(free(1,2)). true(control(b)). true(has(a,1,1)). true(has(a,3,3)). true(has(b,3,1)). does(b,mark(1,3)). 
+}).
+#brave_ordering(e132,e133).
+
+#pos(e134,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e135,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(1,1)). 
+}).
+#brave_ordering(e134,e135).
+
+#pos(e136,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e137,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(1,2)). 
+}).
+#brave_ordering(e136,e137).
+
+#pos(e138,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e139,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(1,3)). 
+}).
+#brave_ordering(e138,e139).
+
+#pos(e140,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(2,2)). 
+}).
+#pos(e141,{}, {}, {
+ true(free(1,1)). true(free(1,2)). true(free(1,3)). true(free(2,1)). true(free(2,2)). true(free(2,3)). true(free(3,2)). true(control(a)). true(has(b,3,1)). true(has(a,3,3)). does(a,mark(2,1)). 
+}).
+#brave_ordering(e140,e141).
