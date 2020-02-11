@@ -5,14 +5,14 @@ from py_utils.logger import log
 import re
 import time
 import argparse
-from py_utils import arg_metav_formatter
+from py_utils import arg_metav_formatter, add_params
 from game_definitions import GameDef
 from py_utils.match_simulation import simulate_match
 from structures.players import Player
 
-def main_match(depth,pA_style,pB_style,game_name):
+def main_match(depth,pA_style,pB_style,game_name,constants):
     # remove trailing backslash as failsafe
-    game = GameDef.from_name(game_name)
+    game = GameDef.from_name(game_name,constants=constants)
 
     pl = []
     for n,p in [("a",pA_style),("b",pB_style)]:
@@ -29,21 +29,19 @@ def main_match(depth,pA_style,pB_style,game_name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=arg_metav_formatter)
-    parser.add_argument("--log", type=str, default="INFO",
-                        help="Log level: 'info' 'debug' 'error'" )
-    parser.add_argument("--depth", type=int, default=None,
-                        help="depth to which game should be played")
-    parser.add_argument("--pA-style", type=str, default="random",
-                        help="playing style for player a;"+
-                        " either 'minmax_asp', 'minmax', 'random', 'strategy-[name]', 'ml-[name]' or 'human'")
-    parser.add_argument("--pB-style", type=str, default="random",
-                        help="playing style for player b;"+
-                        " either 'minmax_asp', 'minmax', 'random', 'strategy-[name]', 'ml-[name]' or 'human'")
-    parser.add_argument("--game-name", type=str, default="Dom",
-                help="short name for the game. Available: Dom and Nim")
-
+    params = ["--log",
+            "--depth",
+            "--pA-style",
+            "--pB-style",
+            "--game-name",
+            "--const"
+            ]
+    add_params(parser,params)
     args = parser.parse_args()
     log.set_level(args.log)
+    if args.const is None:
+        constants = {}
+    else:
+        constants = {c.split("=")[0]:c.split("=")[1] for c in args.const}
 
-    # run match command
-    main_match(args.depth,args.pA_style,args.pB_style,args.game_name)
+    main_match(args.depth,args.pA_style,args.pB_style,args.game_name,constants)

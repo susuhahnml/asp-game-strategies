@@ -62,6 +62,6 @@ def simulate_match(game_def, players, depth=None, ran_init=False):
                                strategy_path = players[time_step%2].strategy)
     match.add_step(Step(state,None,time_step))
     log.debug(match)
-    return match, {k:sum(lst) / len(lst) for k,lst in response_times.items()}
+    return match, {k:sum(lst) / (len(lst) if len(lst)>0 else 1) for k,lst in response_times.items()}
 
 

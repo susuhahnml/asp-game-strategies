@@ -24,7 +24,7 @@ class State:
     """
     def __init__(self, fluents, goals, game_def, is_terminal = False):
         self.fluents = fluents
-        self.fluents_str = [symbol_str(n) for n in fluents]
+        self.fluents_str = [str(n) for n in fluents]
         self.is_terminal = is_terminal
         self.goals = {g.arguments[0].name: g.arguments[1].number for g in goals}
         self.control = [f.arguments[0].name
@@ -104,8 +104,7 @@ class StateExpanded(State):
             current_fluents: A string with all fluents true in the state
             in clingo syntax
         """
-        ctl = clingo.Control(["0","--warn=none"])
-        # Check if it can load from grounded atoms gotten from ASP
+        ctl = get_new_control(game_def)
         ctl.load(game_def.background)
         if(current_fluents[-3:] == ".lp"):
             ctl.load(current_fluents)
@@ -122,7 +121,7 @@ class StateExpanded(State):
                     state = StateExpanded.from_model(model,game_def)
                     has_initialized = True
                 state.add_action_from_clingo_model(model)
-            state.legal_actions_to_idx = {symbol_str(a.action):i for
+            state.legal_actions_to_idx = {str(a.action):i for
                                           i,a in enumerate(state.legal_actions)}
             return state
 
@@ -142,7 +141,7 @@ class StateExpanded(State):
         """
         Obtains a list with all legal actions as strings
         """
-        return [symbol_str(a.action) for a in self.legal_actions]
+        return [str(a.action) for a in self.legal_actions]
 
     def add_action_from_clingo_model(self, model): 
         """
@@ -159,7 +158,7 @@ class StateExpanded(State):
             assert len(does) == 1, ("Multiple actions {} not supported {}"
                                     .format(len(does),model))
             action = does[0]
-            player = symbol_str(action.arguments[0])
+            player = str(action.arguments[0])
             next_fluents = [a.arguments[0] for a in atoms if a.name=='next']
             cost = model.cost
             action_class = ActionExpanded(player,action.arguments[1],

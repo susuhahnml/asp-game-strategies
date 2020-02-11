@@ -1,14 +1,13 @@
 import os.path
 import csv
 from structures.game import Game
-from py_utils.clingo_utils import symbol_str
 from py_utils.logger import log
 def training_data_to_csv(file_name, training_list, game_def, force_new = False):
     games = {'a': Game(game_def,player_name="a"),
     "b": Game(game_def,player_name="b")}
 
-    obs = [symbol_str(o) for o in games['a'].all_obs]
-    act = [symbol_str(o) for o in games['a'].all_actions]
+    obs = [str(o) for o in games['a'].all_obs]
+    act = [str(o) for o in games['a'].all_actions]
     COLUMN_NAMES = ["'INIT:{}'".format(o) for o in obs]
     COLUMN_NAMES.extend(act)
     COLUMN_NAMES.extend(["'NEXT:{}'".format(o) for o in obs])
@@ -27,7 +26,7 @@ def training_data_to_csv(file_name, training_list, game_def, force_new = False):
                 control = l['s_init'].control
                 games[control].current_state = l['s_init']
                 row.extend(games[control].current_observation)
-                row.extend(games[control].mask_action(symbol_str(l['action'].action)))
+                row.extend(games[control].mask_action(str(l['action'].action)))
                 games[control].current_state = l['s_next']
                 row.extend(games[control].current_observation)
                 row.extend([l['reward'],l['win']])

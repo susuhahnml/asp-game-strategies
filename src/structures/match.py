@@ -40,13 +40,12 @@ class Match:
         fluent_steps = defaultdict(lambda: {'fluents':[],'goals':[],
                                             'action':None})
         for a in atoms:
-            if(a.name=="holds"):
+            if(a.name == "goal"):
+                time = a.arguments[2].number
+                fluent_steps[time]['goals'].append(a)
+            elif(a.name=="holds"):
                 time = a.arguments[1].number
-                if(a.arguments[0].name == "goal"):
-                    fluent_steps[time]['goals'].append(a.arguments[0])
-                    continue
-                else:
-                    fluent_steps[time]['fluents'].append(a.arguments[0])
+                fluent_steps[time]['fluents'].append(a.arguments[0])
             elif(a.name=="does"):
                 time = a.arguments[2].number
                 fluent_steps[time]['action'] = a
@@ -84,10 +83,10 @@ class Match:
         c = [bcolors.OKBLUE,bcolors.HEADER]
         for step in self.steps:
             s+=c[step.time_step%2]
-            s+="\nSTEP {}:".format(step.time_step)
+            s+="\nSTEP {}:\n".format(step.time_step)
             s+= step.ascii
             if(step.state.is_terminal):
-                s+="{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,
+                s+="\n{}GOALS: \n{}{}".format(bcolors.OKGREEN, step.state.goals,
                                             bcolors.ENDC)
             s+=bcolors.ENDC
         return s

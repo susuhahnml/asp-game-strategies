@@ -6,7 +6,6 @@ import sys
 import copy
 from structures.game import Game
 from structures.players import StrategyPlayer
-from py_utils.clingo_utils import symbol_str
 
 class ASPGameEnv(Env):
     """The abstract environment class that is used by all agents. This class has the exact
@@ -53,7 +52,7 @@ class ASPGameEnv(Env):
             return obs1, rew1, done1, info
         
         action = self.opponent.choose_action(self.game.current_state)
-        action_idx = self.game.actionstr_to_idx[symbol_str(action.action)]
+        action_idx = self.game.actionstr_to_idx[str(action.action)]
         # rand_idx = self.game.sample_random_legal_action()
         #Performing one random step for player b
         return self.game.step("a",action_idx)
