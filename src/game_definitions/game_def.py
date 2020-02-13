@@ -10,7 +10,7 @@ from py_utils.logger import log
 import os
 class GameDef():
     """ Template class which can be reproduced for multiple games """
-    def __init__(self,path,initial,constants={}):
+    def __init__(self,name,path,initial,constants={}):
         """
         Creates a game definition from a path.
 
@@ -26,27 +26,29 @@ class GameDef():
             initial (str): String or path to file to overwrite the initial state
             constants: The dictiorary of constants that must be passed to clingo
         """
+        self.name = name
         self.path = path
         self.background = path + "/background.lp"
         if not os.path.exists(path + "/full_time.lp"):
             log.info("Automatically generating full_time file")
             gdl_to_full_time(path,"/background.lp")
         self.full_time = path + "/full_time.lp"
-        self.initial = path + "/initial.lp"
         self.random_init = None
         self.constants = constants
-        if not initial is None:
-            log.info("No initial .lp file for " + path + ", one will be randomely generated")
+        if initial is None:
+            self.initial = path + "/initial.lp"
+        else:
             self.initial = initial
+
 
     @classmethod
     def from_name(cls,name,initial=None,constants={}):
-        if name == "Dom":
-            return GameDomDef(initial=initial,constants=constants)
-        elif name == "Nim":
-            return GameNimDef(initial=initial,constants=constants)
-        elif name == "TTT":
-            return GameTTTDef(initial=initial,constants=constants)
+        if name == "dom":
+            return GameDomDef(name= "dom", initial=initial,constants=constants)
+        elif name == "nim":
+            return GameNimDef(name = 'nim', initial=initial,constants=constants)
+        elif name == "ttt":
+            return GameTTTDef(name = 'ttt', initial=initial,constants=constants)
         else:
             log.error("Invalid game name {}".format(name))
             raise NotImplementedError
@@ -93,13 +95,11 @@ class GameDef():
         return getattr(const, type_of_symbol)
 
 
-    def get_initial_time(self,random=False):
+    def get_initial_time(self):
         """
         Obtains the initial state in full time format
         """
-        if(random):
-            content =  self.get_random_initial()
-        elif(self.initial_is_file):
+        if(self.initial_is_file):
             with open(self.initial,"r") as File:
                 lines = File.readlines()
                 content = "".join(lines)
@@ -114,12 +114,13 @@ class GameDef():
 
     def get_random_initial(self):
         if self.random_init is None:
+            log.info("Computing all possible initial states")
             self.random_init = get_all_models(self, self.path + "/ran_initial.lp")
         return random.choice(self.random_init)
 
 class GameNimDef(GameDef):
-    def __init__(self,path="./game_definitions/nim",initial=None,constants={}):
-        super().__init__(path,initial,constants)
+    def __init__(self,name,path="./game_definitions/nim",initial=None,constants={}):
+        super().__init__(name,path,initial,constants)
         self.number_piles = int(self.get_constant("num_piles"))
         self.max_sticks = int(self.get_constant("num_piles"))
         self.subst_var = {"remove":[True,False],
@@ -151,8 +152,8 @@ class GameNimDef(GameDef):
         return "\n".join(lines)
 
 class GameDomDef(GameDef):
-    def __init__(self,path="./game_definitions/dominoes",initial=None,constants={}):
-        super().__init__(path,initial,constants)
+    def __init__(self,name,path="./game_definitions/dominoes",initial=None,constants={}):
+        super().__init__(name, path,initial,constants)
         self.size = int(self.get_constant("size"))+1
         self.subst_var = {"in_hand":[True,False],
                           "stack":[True,True],
@@ -203,8 +204,8 @@ class GameDomDef(GameDef):
         return "".join(a_split)
 
 class GameTTTDef(GameDef):
-    def __init__(self,path="./game_definitions/tic_tac_toe",initial=None,constants={}):
-        super().__init__(path,initial,constants)
+    def __init__(self,name,path="./game_definitions/tic_tac_toe",initial=None,constants={}):
+        super().__init__(name,path,initial,constants)
         self.grid_size = int(self.get_constant("grid_size"))
         self.subst_var = {"mark":[False,False],
                           "has":[True,False,False],"control":[True],"free":[False,False]}

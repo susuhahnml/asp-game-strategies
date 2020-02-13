@@ -88,11 +88,11 @@ class SaveTrackEpisodes(Callback):
         """ Print training time at end of training """
         duration = timeit.default_timer() - self.train_start
         self.save_to_file()
-        log.info('Training finished, took {:.3f} seconds'.format(duration))
+        log.info('Done, took {:.3f} seconds'.format(duration))
 
     def save_to_file(self):
     	COLUMN_NAMES = ['episode', 'duration', 'steps', 'reward', 'loss', 'mae', 'mean_q', 'final_state', 'final_action', 'observation_hist', 'action_hist']
-    	file_name = "./ml_agent/logs/" + self.name + "_training_log.csv"
+    	file_name = "/logs/" + self.name + "_training_log.csv"
     	try:
     		with open(file_name, 'w') as csvfile:
     			writer = DictWriter(csvfile, fieldnames = COLUMN_NAMES)

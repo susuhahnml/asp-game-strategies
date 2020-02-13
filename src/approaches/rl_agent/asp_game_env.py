@@ -5,7 +5,7 @@ from py_utils.colors import *
 import sys
 import copy
 from .game import Game
-from structures.players import StrategyPlayer
+from approaches.strategy.player import StrategyPlayer
 
 class ASPGameEnv(Env):
     """The abstract environment class that is used by all agents. This class has the exact

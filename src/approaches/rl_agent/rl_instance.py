@@ -1,12 +1,13 @@
-from ml_agent.asp_game_env import ASPGameEnv
-from .tracker_callbacks import SaveTrackEpisodes
-from .model import ModelSelector
-from .agent import AgentSelector
-from .policy import PolicySelector
-from structures.players import StrategyPlayer, RandomPlayer
+from approaches.rl_agent.asp_game_env import ASPGameEnv
+from approaches.rl_agent.tracker_callbacks import SaveTrackEpisodes
+from approaches.rl_agent.model import ModelSelector
+from approaches.rl_agent.agent import AgentSelector
+from approaches.rl_agent.policy import PolicySelector
+from approaches.strategy.player import StrategyPlayer
+from approaches.random.player import RandomPlayer
 from game_definitions import GameDef
 from py_utils.logger import log
-
+from structures.players import Player
 import numpy as np
 import asyncio
 import json
@@ -18,23 +19,16 @@ tf.compat.v1.disable_eager_execution()
 class RLInstance():
 
 	def __init__(self, architecture, agent, policy, epsilon, rewardf, opponent_name, n_steps, model_name, game_name, strategy_path):
-		
-		self.build(architecture, agent, policy, epsilon, rewardf,opponent_name,n_steps, model_name, game_name, strategy_path)
+		game_def = GameDef.from_name(game_name)
+		self.build(architecture, agent, policy, epsilon, rewardf,opponent_name,n_steps, model_name, game_def, strategy_path)
 		self.input = locals()
 		del self.input['self']
 		
 		
-	def build(self, architecture, agent, policy, epsilon, rewardf, opponent_name, n_steps, model_name, game_name, strategy_path):
+	def build(self, architecture, agent, policy, epsilon, rewardf, opponent_name, n_steps, model_name, game_def, strategy_path):
 		
-		game_def = GameDef.from_name(game_name)
 
-		if(opponent_name=="strategy"):
-			opponent = StrategyPlayer({'name':'strategy-'+strategy_path})    
-		elif(opponent_name=="random"):
-			opponent = RandomPlayer({})
-		elif(opponent_name=="ml"):
-			raise NotImplementedError
-
+		opponent = Player.from_name_style(game_def,opponent_name,'a')
 		clip_rewards = False
 		if rewardf == "clipped":
 			clip_rewards = True
@@ -67,7 +61,7 @@ class RLInstance():
 		self.env.game.debug = False
 
 	def save(self):
-		file_base = "./ml_agent/saved_models/"+self.instance_name
+		file_base = "./approaches/rl_agent/saved_models/"+self.instance_name
 		file_weights = file_base + ".weights"
 		file_info = file_base + ".json"
 		self.agent.save_weights(file_weights, overwrite=True)
@@ -76,13 +70,13 @@ class RLInstance():
 
 
 	def load_weights(self, model_name):
-		file_name = "./ml_agent/saved_models/" + model_name + ".weights"
+		file_name = "./approaches/rl_agent/saved_models/" + model_name + ".weights"
 		self.agent.load_weights(file_name)
 
 
 	@classmethod
 	def from_file(cls, model_name):
-		file_info = "./ml_agent/saved_models/"+ model_name + ".json"
+		file_info = "./approaches/rl_agent/saved_models/"+ model_name + ".json"
 		with open(file_info, 'r') as fr:
 			dct = json.load(fr)
 		rl_instance = cls(**dct)

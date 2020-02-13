@@ -95,8 +95,8 @@ class Match:
         time_step = 0
         continue_depth = True if depth==None else time_step<depth
         log.debug("\n--------------- Simulating match ----------------")
-        log.debug("\na: {}\nb: {}\n".format(players[0].get_name(),
-                                                players[1].get_name()))
+        log.debug("\na: {}\nb: {}\n".format(players[0].name,
+                                                players[1].name))
 
         letters = ['a','b']
         response_times = {'a':[],'b':[]}

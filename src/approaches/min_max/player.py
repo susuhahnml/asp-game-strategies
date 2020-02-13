@@ -1,35 +1,13 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from importlib.machinery import SourceFileLoader
+
+from structures.players import Player
+from structures.tree import Tree
+from approaches.min_max.min_max import minmax_from_game_def
 from py_utils.logger import log
-import abc
-from py_utils.colors import *
-from random import seed
-from random import randint
-from collections import defaultdict
-from structures.state import State, StateExpanded
+from structures.players import Player
 
-import os
-
-def player_approaches_sub_classes():
-    player_approaches = {}
-    root = './approaches/'
-    directories = [d for d in os.listdir(root) if os.path.isdir(os.path.join(root,d)) and not d[0]=='_']
-    for approach_name in directories:
-        player_path = os.path.join(root,os.path.join(approach_name,'player.py'))
-        if os.path.isfile(player_path):
-            module = SourceFileLoader(approach_name, player_path).load_module()
-            p_class =  getattr(module, module.__dir__()[-1])
-            player_approaches[approach_name] = p_class
-        else:
-            log.error("Missing player file for approach " +approach_name)
-
-    return player_approaches
-
-
-class Player(abc.ABC):
+class MinMaxPlayer(Player):
     """
-    A class used to represent an player that chooses an action in a state
+    Creates the full minmax tree
 
     Attributes
     ----------
@@ -37,10 +15,9 @@ class Player(abc.ABC):
     main_player: The name of the player to optimize
     """
 
-    description = "Must be filled with a description of the approach to show on the console"
+    description = "Generates the full minmax tree"
 
-
-    def __init__(self, game_def, name, main_player, strategy=None):
+    def __init__(self, game_def, name_style, main_player):
         """
         Constructs a player using saved information, the information must be saved 
         when the build method is called. This information should be able to be accessed
@@ -49,38 +26,25 @@ class Player(abc.ABC):
         Args:
             game_def (GameDef): The game definition used for the creation
             main_player (str): The name of the player either a or b
-            name (str): The name representing the palyer
+            name_style (str): The name style used to create the built player. This name will be passed
+                        from the command line. EXAMPLE approach_name<file-name>, in this case 
+                        the initialization could use the name file to load player.
         """
-        self.name = name
-        self.game_def = game_def
-        self.main_player = main_player
-        self.strategy = strategy
-
-    @classmethod
-    def from_name_style(cls, game_def, name_style, main_player):
-        approaches = player_approaches_sub_classes()
-        for n,c in approaches.items():
-            if c.match_name_style(name_style):
-                log.debug("Creating player from class {}".format(c.__name__))
-                return c(game_def, name_style, main_player)
-        
-        raise RuntimeError("No subclass of Player matched {}".format(name_style))
-
+        super().__init__(game_def, "Min max tree", main_player)
 
     @classmethod
     def get_name_style_description(cls):
         """
         Gets a description of the required format of the name_style.
         This description will be shown on the console.
-        EXAMPLE: "approach_name<file-name> where file-name is the relative 
-                 path to the file required information for player."
+                    path to the file required information for player."
         Returns: 
             String for the description
         """
-        raise NotImplementedError
+        return "min_max"
 
     @staticmethod
-    def match_name_style(name):
+    def match_name_style(name_style):
         """
         Verifies if a name_style matches the approach
 
@@ -90,21 +54,23 @@ class Player(abc.ABC):
         Returns: 
             Boolean value indicating if the name_style is a match
         """
-        raise NotImplementedError
+        return name_style=="min_max"
 
 
     @staticmethod
-    def add_parser_build_args(parser):
+    def add_parser_build_args(approach_parser):
         """
         Adds all required arguments to the approach parser. This arguments will then 
         be present on when the build method is called.
-        Use approach_parser.add_argument(...) as explained in https://docs.python.org/2/library/argparse.html
         
         Args:
             approach_parser (argparser): An argparser used from the command line for
                 this specific approach. 
         """
-        pass
+        approach_parser.add_argument("--tree-image-file-name", type=str, default=None,
+            help="Name of the file save an image of the computed tree")
+        approach_parser.add_argument("--main-player", type= str, default="a",
+            help="The player for which to maximize; either a or b")
 
 
     @staticmethod
@@ -117,9 +83,14 @@ class Player(abc.ABC):
             game_def (GameDef): The game definition used for the creation
             args (NameSpace): A name space with all the attributes defined in add_parser_build_args
         """
-        raise NotImplementedError
+        log.debug("Computing normal minmax for tree")
+        tree = minmax_from_game_def(game_def,main_player=args.main_player)
+        if(not args.tree_image_file_name is None):
+            file_name = '{}/{}'.format(game_def.name,args.tree_image_file_name)
+            tree.print_in_file(file_name=file_name,main_player=args.main_player)
+            log.debug("Tree image saved in {}".format(file_name))
+        pass
 
-    
     def choose_action(self,state):
         """
         The player chooses an action given a current state.
@@ -130,4 +101,6 @@ class Player(abc.ABC):
         Returns:
             action (Action): The selected action. Should be one from the list of state.legal_actions
         """
-        raise NotImplementedError
+        log.error("Minmax not implemented for choosing action")
+        return state.legal_actions[0]
+
