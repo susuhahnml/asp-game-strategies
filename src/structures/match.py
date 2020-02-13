@@ -104,7 +104,7 @@ class Match:
             t0 = time.time()
             selected_action = players[time_step%2].choose_action(state)
             t1 = time.time()
-            response_times[letters[time_step%2]].append((t1-t0)*1000)
+            response_times[letters[time_step%2]].append(round((t1-t0)*1000,3))
             step = Step(state,selected_action,time_step)
             match.add_step(step)
             time_step+=1
@@ -113,6 +113,6 @@ class Match:
                                 strategy_path = players[time_step%2].strategy)
         match.add_step(Step(state,None,time_step))
         log.debug(match)
-        return match, {k:sum(lst) / (len(lst) if len(lst)>0 else 1) for k,lst in response_times.items()}
+        return match, {k:round(sum(lst) / (len(lst) if len(lst)>0 else 1),3) for k,lst in response_times.items()}
 
 

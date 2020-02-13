@@ -1,7 +1,0 @@
-------------------
-Game:GameNimDef
-    strategy-ilasp/nim/strategy-best.lp:
-        wins: 77   losses: 3   points: 74 response_time(ms): 0
-    rl-nim:
-        wins: 3   losses: 77   points: -74 response_time(ms): 1
-    

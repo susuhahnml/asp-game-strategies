@@ -8,6 +8,7 @@ from py_utils.colors import *
 from py_utils.clingo_utils import *
 from py_utils.logger import log
 import os
+from structures.state import StateExpanded
 class GameDef():
     """ Template class which can be reproduced for multiple games """
     def __init__(self,name,path,initial,constants={}):
@@ -114,9 +115,27 @@ class GameDef():
 
     def get_random_initial(self):
         if self.random_init is None:
-            log.info("Computing all possible initial states")
             self.random_init = get_all_models(self, self.path + "/ran_initial.lp")
         return random.choice(self.random_init)
+
+    def get_initial_state(self):
+        if(self.initial_is_file):
+            with open(self.initial,"r") as File:
+                lines = File.readlines()
+                content = "".join(lines)
+        else:
+            content = self.initial + ""
+        
+        ctl = get_new_control(self)
+        ctl.add("base",[],content)
+        ctl.ground([("base", [])], context=Context())
+        models = []
+        state =None
+        with ctl.solve(yield_=True) as handle:
+            for model in handle:
+                state = StateExpanded.from_model(model,self)
+            
+        return state
 
 class GameNimDef(GameDef):
     def __init__(self,name,path="./game_definitions/nim",initial=None,constants={}):

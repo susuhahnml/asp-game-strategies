@@ -1,0 +1,70 @@
+
+COMMAND: ilasp --num-repetition=10 --game-name=nim --const max_sticks=3 --random-initial-state-seed=2 --benchmark-output-file=r10_e4.txt --language-bias-name=math-language.las --background-path=./approaches/ilasp/nim/background.lp --log=debug
+Game name: nim
+Repetitions: 10
+
+
+Initial state: 
+• •   
+• • • 
+• • • 
+	 Build times(ms):[8616.451]
+
+Initial state: 
+• •   
+• • • 
+      
+	 Build times(ms):[3447.595]
+
+Initial state: 
+• • • 
+•     
+• •   
+	 Build times(ms):[4535.492]
+
+Initial state: 
+• •   
+• •   
+• • • 
+	 Build times(ms):[7209.559]
+
+Initial state: 
+• • • 
+• •   
+      
+	 Build times(ms):[5547.129]
+
+Initial state: 
+• •   
+•     
+•     
+	 Build times(ms):[5203.99]
+
+Initial state: 
+• • • 
+• • • 
+      
+	 Build times(ms):[6613.081]
+
+Initial state: 
+•     
+• •   
+• • • 
+	 Build times(ms):[8601.889]
+
+Initial state: 
+• •   
+• • • 
+• •   
+	 Build times(ms):[10673.756]
+
+Initial state: 
+• • • 
+      
+• •   
+	 Build times(ms):[10637.226]
+
+
+Global build times: 
+[8616.451, 3447.595, 4535.492, 7209.559, 5547.129, 5203.99, 6613.081, 8601.889, 10673.756, 10637.226]
+        

@@ -36,7 +36,7 @@ class MinmaxASPPlayer(Player):
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
         approach_parser.add_argument("--ilasp-examples-file-name", type=str, default=None,
-            help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/examples")
+            help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/game_name/examples")
         approach_parser.add_argument("--rules-file-name", type=str, default=None,
             help="File name to save rules learned during the computation of the asp pruned min max tree. Passing this argument implies the use of such rules during the computation to find similarities. IMPORTANT: The game definition used must have the subst_var attribute and the encoding of the game definition must be total regarding fluents (No information is encoded in unprovable fluents)")
         approach_parser.add_argument("--train-file-name", type=str, default=None,
@@ -50,31 +50,38 @@ class MinmaxASPPlayer(Player):
 
     @staticmethod
     def build(game_def, args):
+        if not 'first_build' in args:
+            log.debug("Creating new files")
+            new_files = 'w'
+            args.first_build = False
+        else:
+            log.debug("Appending to existent files")
+            new_files = 'a'
         learn_examples = not (args.ilasp_examples_file_name is None)
         learn_rules = not (args.rules_file_name is None)
         generate_train = not (args.train_file_name is None)
         
         log.debug("Computing asp minmax for tree")
+        log.debug("Initial state: \n{}".format(game_def.get_initial_state().ascii))
         initial = game_def.get_initial_time()
         minmax_match, min_max_tree, examples, learned_rules, training_list = get_minmax_init(game_def,
                                                             args.main_player,
                                                             initial,
                                                             generating_training=generate_train,learning_rules=learn_rules, learning_examples=learn_examples)
-        log.debug("Initial state: \n{}".format(minmax_match.steps[0].state.ascii))
         log.debug(minmax_match)
         
                                                             
         if learn_examples:
             ilasp_examples_file_name = './approaches/ilasp/{}/examples/{}'.format(args.game_name,args.ilasp_examples_file_name)
             os.makedirs(os.path.dirname(ilasp_examples_file_name), exist_ok=True)
-            with open(ilasp_examples_file_name, "a") as text_file:
+            with open(ilasp_examples_file_name, new_files) as text_file:
                 text_file.write("\n".join(examples))
                 log.debug("ILASP Examples saved in " + ilasp_examples_file_name)
         
         if learn_rules:
             rules_file = './approaches/min_max_asp/learned_rules/{}/{}'.format(args.game_name,args.rules_file_name)
             os.makedirs(os.path.dirname(rules_file), exist_ok=True)
-            with open(rules_file, "a") as text_file:
+            with open(rules_file, new_files) as text_file:
                 text_file.write("\n".join(learned_rules))
             rules_file_to_gdl(rules_file)
             log.debug("Rules saved in " + rules_file)
@@ -82,7 +89,7 @@ class MinmaxASPPlayer(Player):
         if generate_train:
             train_file = './approaches/ml_agent/train/{}/{}'.format(args.game_name,args.train_file)
             os.makedirs(os.path.dirname(train_file), exist_ok=True)
-            training_data_to_csv(train_file,training_list,args.game_def)
+            training_data_to_csv(train_file,training_list,args.game_def,new_files)
             log.debug("Training data saved in " + train_file)
             remove_duplicates_training(train_file)
                 

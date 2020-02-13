@@ -88,6 +88,7 @@ class StateExpanded(State):
         """
         Creates a State from a model without considering the actions
         """
+        
         atoms = model.symbols(atoms=True)
         is_terminal = model.contains(clingo.Function("terminal", []))
         fluents = [a.arguments[0] for a in atoms if a.name=='true']

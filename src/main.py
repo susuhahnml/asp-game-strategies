@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
 from tqdm import tqdm
 import time
 import inspect
@@ -65,7 +66,7 @@ if __name__ == "__main__":
     # ---------------------------- Setting default arguments ----------------------------
     args = parser.parse_args()
     n = args.num_repetitions
-    log.set_level(args.log)
+    log.set_level(args.log.upper())
     if args.const is None:
         constants = {}
     else:
@@ -75,7 +76,7 @@ if __name__ == "__main__":
     using_random = not args.random_initial_state_seed is None
     using_fixed_initial = not args.initial_state_full_path is None
     if(using_random):
-        log.info("Using random seed for initial states {}".format(args.random_initial_state_seed))
+        log.info("Using random seed {} for initial states".format(args.random_initial_state_seed))
         game_def.get_random_initial()
         initial_states = game_def.random_init
         random.Random(args.random_initial_state_seed).shuffle(initial_states)
@@ -102,11 +103,28 @@ if __name__ == "__main__":
             Player.from_name_style(game_def,style_b,'a'),
             Player.from_name_style(game_def,style_a,'b')
         ])
-        scores = [{'wins':0,'losses':0,'draws':0,'points':0,'response_time':0},{'wins':0,'losses':0,'draws':0,'points':0,'response_time':0}]
+        global_scores = [{'wins':0,'draws':0,'points':0,'response_times':[]},{'wins':0,'draws':0,'points':0,'response_times':[]}]
+        def scores_string(s):
+            return """
+                {}:
+                    wins: {} 
+                    points: {} 
+                    response_times(ms): {}
+                {}:
+                    wins: {} 
+                    points: {} 
+                    response_times(ms): {}
+                """.format(style_a,s[0]['wins'],s[0]['points'],s[0]['response_times'],
+                           style_b,s[1]['wins'],s[1]['points'],s[1]['response_times'])
+        benckmarks_results= ""
+        for i in tqdm(range(n)):
+            if(not using_random):
+                scores = global_scores
+            else:
+                scores = [{'wins':0,'draws':0,'points':0,'response_times':[]},{'wins':0,'draws':0,'points':0,'response_times':[]}]
 
-        for turn, vs in enumerate(player_encounters):
-            idx = {'a':0+turn,'b':1-turn}
-            for i in tqdm(range(n)):
+            for turn, vs in enumerate(player_encounters):
+                idx = {'a':0+turn,'b':1-turn}
                 game_def.initial = initial_states[i%len(initial_states)]
                 match, metrics = Match.simulate_match(game_def,vs,ran_init=False)
                 goals = match.goals
@@ -114,58 +132,73 @@ if __name__ == "__main__":
                     scores[idx[l]]['points']+=g
                     if g>0:
                         scores[idx[l]]['wins']+=1
-                    elif g<0:
-                        scores[idx[l]]['losses']+=1
-                    else:
+                    elif g==0:
                         scores[idx[l]]['draws']+=1
-                scores[idx['a']]['response_time']+=metrics['a']  
-                scores[idx['b']]['response_time']+=metrics['b']  
-            scores[idx['a']]['response_time']=int(scores[idx['a']]['response_time']/n)
-            scores[idx['b']]['response_time']=int(scores[idx['b']]['response_time']/n)
+                scores[idx['a']]['response_times'].append(metrics['a'])
+                scores[idx['b']]['response_times'].append(metrics['b'])
+            
+            if(using_random):
+                for p_i, p in enumerate(global_scores):
+                    for k,v in p.items():
+                        if k!='response_times':
+                            global_scores[p_i][k]+=scores[p_i][k]
+                        else:
+                            global_scores[p_i][k].extend(scores[p_i][k])
+            
+            if(i==n-1 or using_random):
+                initial_ascii = game_def.get_initial_state().ascii
+                benckmarks_results+= """
+Initial state: \n{}\n{}""".format(initial_ascii,scores_string(scores))
 
-        benckmarks_results = """
-        {}:
-            wins: {}   losses: {}   points: {} response_time(ms): {}
-        {}:
-            wins: {}   losses: {}   points: {} response_time(ms): {}
-        """.format(style_a,scores[0]['wins'],scores[0]['losses'],scores[0]['points'],scores[0]['response_time'],
-        style_b,scores[1]['wins'],scores[1]['losses'],scores[1]['points'],scores[1]['response_time'])
+        if(using_random and n>1):
+            benckmarks_results+= """\n
+Global scores: \n{}""".format(scores_string(global_scores))
 
-
-    # ---------------------------- Computing Approach ----------------------------
+    # ---------------------------- Computing Build for Approach ----------------------------
 
     else :
-        response_times = []
-        print(args.selected_approach)
+        global_build_times = []
         p_cls = player_classes[args.selected_approach]
-
+        benckmarks_results = ""
         for i in tqdm(range(n)):
+            build_times = []
+            if(not using_random):
+                build_times = global_build_times
             game_def.initial = initial_states[i%len(initial_states)]
             t0 = time.time()
             p_cls.build(game_def,args)
             t1 = time.time()
-            response_times.append((t1-t0)*1000)
+            build_times.append(round((t1-t0)*1000,3))
+            if(i==n-1 or using_random):
+                initial_ascii = game_def.get_initial_state().ascii
+                benckmarks_results+= """
+Initial state: \n{}\t Build times(ms):{}\n""".format(initial_ascii,build_times)
 
-        benckmarks_results = "\n".join([str(r) for r in response_times])
-   
-    #  If build:
-        # Reapeat n times:
-            # set initial state maybe the random one
-            # save times
-            # call the aproach build function with all params and game_def
-            # Append benchmarks results
-        # Sumup benchamrks
+            if(using_random):
+                global_build_times.extend(build_times)
+        if(using_random and n>1):
+            benckmarks_results+= """\n
+Global build times: \n{}""".format(global_build_times)
 
-
-    # ---------------------------- Saving Benchamrks ----------------------------
+    # ---------------------------- Saving Benchamarks ----------------------------
 
     benckmark_file = args.benchmark_output_file
     if(benckmark_file == 'console'):
         log.info(benckmarks_results)
     else:
-        benckmark_file = "benchmarks/"+benckmark_file
+        benckmark_file = "benchmarks/{}/{}/{}".format(args.selected_approach,game_def.name,benckmark_file)
+        os.makedirs(os.path.dirname(benckmark_file), exist_ok=True)
         with open(benckmark_file, "w") as text_file:
-            text_file.write(benckmarks_results)
+            command = ' '.join(sys.argv[1:])
+            benckmarks_final= """
+COMMAND: {}
+Game name: {}
+Repetitions: {}
+
+{}
+        """.format(command,game_def.name,n,benckmarks_results)
+
+            text_file.write(benckmarks_final)
             log.info("Results saved in " + benckmark_file)
 
 

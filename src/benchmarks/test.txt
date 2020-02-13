@@ -1,6 +1,0 @@
-
-        random:
-            wins: 3   losses: 5   points: -2 response_time(ms): 0
-        random:
-            wins: 5   losses: 3   points: 2 response_time(ms): 0
-        

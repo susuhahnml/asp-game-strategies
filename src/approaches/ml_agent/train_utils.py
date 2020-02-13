@@ -2,7 +2,7 @@ import os.path
 import csv
 from .game import Game
 from py_utils.logger import log
-def training_data_to_csv(file_name, training_list, game_def, force_new = False):
+def training_data_to_csv(file_name, training_list, game_def, new_files):
     games = {'a': Game(game_def,player_name="a"),
     "b": Game(game_def,player_name="b")}
 
@@ -17,9 +17,9 @@ def training_data_to_csv(file_name, training_list, game_def, force_new = False):
 
         exists = os.path.isfile(file_name)
 
-        with open(file_name, 'a') as csvfile:
+        with open(file_name, new_files) as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
-            if not exists or force_new:
+            if new_files=="w":
                 writer.writerow(COLUMN_NAMES)
             for l in training_list:
                 row = []

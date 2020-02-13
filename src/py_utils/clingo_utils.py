@@ -34,6 +34,13 @@ def get_constant(file_name,constant_name,must_exist):
         raise RuntimeError("Const {} not found in file: {}".format(constant_name,file_name))
     else:
         return c
+# class M:
+#     def __init__(self, s):
+#         self.s=s
+#     def symbols(self, atoms=False):
+#         return self.s
+
+
 
 
 def get_all_models(game_def, all_path):

@@ -26,7 +26,6 @@ class StrategyPlayer(Player):
                         the initialization could use the name file to load player.
         """
         strategy= name_style[9:]
-        print(name_style)
         name = "Strategy using asp file: {}".format(strategy)
         super().__init__(game_def, name, main_player,strategy=strategy)
 
