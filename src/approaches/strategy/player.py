@@ -25,7 +25,10 @@ class StrategyPlayer(Player):
                         from the command line. EXAMPLE approach_name<file-name>, in this case 
                         the initialization could use the name file to load player.
         """
-        strategy= name_style[9:]
+        if name_style=="strategy":
+            strategy = "./approaches/strategy/none.lp"    
+        else:
+            strategy= name_style[9:]
         name = "Strategy using asp file: {}".format(strategy)
         super().__init__(game_def, name, main_player,strategy=strategy)
 
@@ -38,7 +41,7 @@ class StrategyPlayer(Player):
             String for the description
         """
         #Must implement
-        return "strategy-<full-path> where full-path is the full path to a strategy file from the src directory" 
+        return "strategy-<full-path> where full-path is the full path to a strategy file from the src directory, if no full path is provided no strategy will be used" 
 
     @staticmethod
     def match_name_style(name_style):
@@ -51,7 +54,7 @@ class StrategyPlayer(Player):
         Returns: 
             Boolean value indicating if the name_style is a match
         """
-        return name_style[:9]=="strategy-"
+        return name_style[:8]=="strategy"
 
 
     @staticmethod

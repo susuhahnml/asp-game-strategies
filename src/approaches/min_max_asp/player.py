@@ -27,7 +27,7 @@ class MinmaxASPPlayer(Player):
 
     @staticmethod
     def match_name_style(name):
-        return name[:11]=="min_max_asp"
+        return name[:12]=="min_max_asp-"
 
     @staticmethod
     def add_parser_build_args(approach_parser):
@@ -36,11 +36,11 @@ class MinmaxASPPlayer(Player):
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
         approach_parser.add_argument("--ilasp-examples-file-name", type=str, default=None,
-            help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/game_name/examples")
+            help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/game_name/examples. Extension .las")
         approach_parser.add_argument("--rules-file-name", type=str, default=None,
-            help="File name to save rules learned during the computation of the asp pruned min max tree. Passing this argument implies the use of such rules during the computation to find similarities. IMPORTANT: The game definition used must have the subst_var attribute and the encoding of the game definition must be total regarding fluents (No information is encoded in unprovable fluents)")
+            help="File name to save rules learned during the computation of the asp pruned min max tree. Passing this argument implies the use of such rules during the computation to find similarities. IMPORTANT: The game definition used must have the subst_var attribute and the encoding of the game definition must be total regarding fluents (No information is encoded in unprovable fluents) Extension .lp")
         approach_parser.add_argument("--train-file-name", type=str, default=None,
-            help="File name to save training information computed during the calculations. The information is encoded in hot-one encoding according to the ml-agent approach. The file is saved in approaches/ml-agent/training")
+            help="File name to save training information computed during the calculations. The information is encoded in hot-one encoding according to the ml-agent approach. The file is saved in approaches/ml-agent/training. Extension .csv")
 
     
     @classmethod
@@ -87,9 +87,9 @@ class MinmaxASPPlayer(Player):
             log.debug("Rules saved in " + rules_file)
 
         if generate_train:
-            train_file = './approaches/ml_agent/train/{}/{}'.format(args.game_name,args.train_file)
+            train_file = './approaches/ml_agent/train/{}/{}'.format(args.game_name,args.train_file_name)
             os.makedirs(os.path.dirname(train_file), exist_ok=True)
-            training_data_to_csv(train_file,training_list,args.game_def,new_files)
+            training_data_to_csv(train_file,training_list,game_def,new_files)
             log.debug("Training data saved in " + train_file)
             remove_duplicates_training(train_file)
                 

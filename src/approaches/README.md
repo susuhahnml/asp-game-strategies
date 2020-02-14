@@ -3,7 +3,11 @@
 * You must add a directory to the approaches directory.
   The directory name will be your `approach_name`
 
-* It should have at least the following files:
+* After you have added the directory with the requested files, your approach will be available
+  to be run from the console, for building and match simulations. This allows benchamarking
+  against other approaches.
+
+* Your folder should have at least the following files:
   ```sh
   approaches/
     approach_name/
@@ -115,10 +119,6 @@
         return None
   ```
 
-Notes:
-Relative imports are not allowed.
-The class extending player must be the last definition of the file
-
-* After you have added the directory with the requested files, your approach will be available
-  to be run from the console, for building and match simulations. This allows benchamarking
-  against other approaches.
+    Notes:
+    - Relative imports are not allowed.
+    - The class extending player must be the last definition of the file

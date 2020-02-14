@@ -8,7 +8,7 @@ import random
 import os
 import re
 from py_utils import arg_metav_formatter, add_params
-from game_definitions import GameDef
+from structures.game_def import GameDef
 import argparse
 from py_utils.logger import log
 from structures.players import player_approaches_sub_classes, Player

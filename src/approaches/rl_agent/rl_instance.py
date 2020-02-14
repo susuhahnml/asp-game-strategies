@@ -5,7 +5,7 @@ from approaches.rl_agent.agent import AgentSelector
 from approaches.rl_agent.policy import PolicySelector
 from approaches.strategy.player import StrategyPlayer
 from approaches.random.player import RandomPlayer
-from game_definitions import GameDef
+from structures.game_def import GameDef
 from py_utils.logger import log
 from structures.players import Player
 import numpy as np
