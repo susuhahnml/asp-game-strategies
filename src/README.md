@@ -60,34 +60,54 @@ Here we provide a tabular summary of our main code structure.
 | L1                   | L2                                          | L3                                                  | Description                                                                                                                                 |
 | :---:                | :---:                                       | :---:                                               | :---                                                                                                                                        |
 | **game_definitions** |                                             |                                                     | Contains files with the asp encodings of games                                                                                              |
-| --->                 | **game_name**                               |                                                     | Generic name of game (eg. "nim"). Used in the command line                                                                 |
-| --->                 | --->                                        | [background.lp](game_definitions/nim/background.lp) | Defines the basic rules using of the game for one `time_step`, using `next` With GDL syntax                                                                |
-| --->                 | --->                                        | [default_initial.lp](game_definitions/nim/default_initial.lp)       | Defines the initial state of the game used as default                                                                                                       |
-| --->                 | --->                                        | [all_init.lp](game_definitions/nim/all_init.lp)       | Defines all possible initial states. One per stable model                                                                                                       |
+|                  | **game_name**                               |                                                     | Generic name of game (eg. "nim"). Used in the command line                                                                 |
+|                  |                                         | [background.lp](game_definitions/nim/background.lp) | Defines the basic rules using of the game for one `time_step`, using `next` With GDL syntax                                                                |
+|                  |                                         | [default_initial.lp](game_definitions/nim/default_initial.lp)       | Defines the initial state of the game used as default                                                                                                       |
+|                  |                                         | [all_init.lp](game_definitions/nim/all_init.lp)       | Defines all possible initial states. One per stable model                                                                                                       |
 
 
-#### ii. `py_utils`
+#### ii. `approaches`
+
+| L1                   | L2                                          | L3                                                  | Description                                                                                                                                 |
+| :---:                | :---:                                       | :---:                                               | :---                                                                                                                                        |
+| **approaches** |                                             |                                                     | Contains the a folder for each strategic approach to play a game                                                                                              |
+|                  | **approach_name**                               |                                                     | Generic name of approach (eg. "min_max"). Used in the command line                                                                 |
+|                  |                                         | [player.lp](approaches/min_max/player.py) | Defines how a player using this approach should be built and how it makes a desition given a state of the game                      |
+
+
+#### iii. `benchmarks`
+
+| L1           | L2                                                        | Description                                |
+| :---:        | :---:                                                     | :---                                       |
+| **benchmarks** |                                                           | Folders with output benchmarks files               |
+|          | **approach_name**                               |                                                     | Will store all benchmarks generated for the building of 'approach _name'                                                                |
+|                  |                                         | **game_name**       | The name of the game for the benchmarks                                                                                                       |
+|          | **vs**                               |                                                     | Will store all benchmarks generated when players play against each other                                                               |
+|                  |                                         | **game_name**       | The name of the game for the benchmarks                                                                                                       |
+
+
+#### iv. `py_utils`
 
 | L1           | L2                                                        | Description                                |
 | :---:        | :---:                                                     | :---                                       |
 | **py_utils** |                                                           | Folders with utils functions               |
-| --->         | [arg_metav_formatter.py](py_utils/arg_metav_formatter.py) | Argparse formatter for cli information     |
-| --->         | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python with CLingo API       |
-| --->         | [colors.py](py_utils/colors.py)                           | Defining python colors for pretty-printing |
+|          | [arg_metav_formatter.py](py_utils/arg_metav_formatter.py) | Argparse formatter for cli information     |
+|          | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python with CLingo API       |
+|          | [colors.py](py_utils/colors.py)                           | Defining python colors for pretty-printing |
 
-#### iv. `structures`
+#### v. `structures`
 
 | L1             | L2                                | Description                                                                                                                                                                          |
 | :---:          | :---:                             | :---                                                                                                                                                                                 |
 | **structures** |                                   | Contains the structures used to model the games                                                                                                                                      |
-| --->           | [action.py](structures/action.py) | An action selected by a player. An extended class also includes the fluents of the next state once the action ins performed                                                          |
-| --->           | [state.py](structures/state.py)   | The state of the game, including board state, hows turn it is, if the game finished and if such, the goals reached. An extended class also includes all valid actions from the state |
-| --->           | [step.py](structures/step.py)     | The step on a match, includes the state and the action performed in such state                                                                                                       |
-| --->           | [match.py](structures/match.py)   | A full match of a game, list of steps                                                                                                                                                |
-| --->           | [tree.py](structures/tree.py)     | A full tree of a game created by steps, with all possible paths                                                                                                                      |
-| --->           | [game.py](structures/game.py)     | The game representation used for RL agents                                                                                                                                           |
-| --->           | [players.py](structures/players.py)  | Defines the general behavior of  of a player approach                                    |
-| --->           | [game_def.py](structures/game_def.py)  | Defines the general class for game definitions                                     |
+|            | [action.py](structures/action.py) | An action selected by a player. An extended class also includes the fluents of the next state once the action ins performed                                                          |
+|            | [state.py](structures/state.py)   | The state of the game, including board state, hows turn it is, if the game finished and if such, the goals reached. An extended class also includes all valid actions from the state |
+|            | [step.py](structures/step.py)     | The step on a match, includes the state and the action performed in such state                                                                                                       |
+|            | [match.py](structures/match.py)   | A full match of a game, list of steps                                                                                                                                                |
+|            | [tree.py](structures/tree.py)     | A full tree of a game created by steps, with all possible paths                                                                                                                      |
+|            | [game.py](structures/game.py)     | The game representation used for RL agents                                                                                                                                           |
+|            | [players.py](structures/players.py)  | Defines the general behavior of  of a player approach                                    |
+|            | [game_def.py](structures/game_def.py)  | Defines the general class for game definitions                                     |
 
 ### 3. Main
 
