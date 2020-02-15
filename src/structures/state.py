@@ -88,6 +88,7 @@ class StateExpanded(State):
         """
         Creates a State from a model without considering the actions
         """
+        
         atoms = model.symbols(atoms=True)
         is_terminal = model.contains(clingo.Function("terminal", []))
         fluents = [a.arguments[0] for a in atoms if a.name=='true']
@@ -98,6 +99,7 @@ class StateExpanded(State):
     def from_game_def(cls, game_def, current_fluents, strategy=None):
         """
         Obtains the answer sets from clingo and transforms them into a state
+        adding one legal action per model
         Args:
             game_def: The definition of the game
             strategy: Optional Path to file with an strategy

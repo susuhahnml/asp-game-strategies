@@ -1,0 +1,137 @@
+from structures.players import Player
+from approaches.min_max_asp.player import MinmaxASPPlayer
+from py_utils.logger import log
+import os
+class ILASPPlayer(Player):
+    """
+    A player using an ILASP strategy
+
+    Attributes
+    ----------
+    game_def: The game definition
+    main_player: The name of the player to optimize
+    """
+
+    description = "A player using a strategy learned by ILASP"
+
+    def __init__(self, game_def, name_style, main_player):
+        """
+        Constructs a player using saved information, the information must be saved 
+        when the build method is called. This information should be able to be accessed
+        using parts of the name_style to refer to saved files or other conditions
+
+        Args:
+            game_def (GameDef): The game definition used for the creation
+            main_player (str): The name of the player either a or b
+            name_style (str): The name style used to create the built player. This name will be passed
+                        from the command line. 
+        """
+        strategy = "./approaches/ilasp/{}/strategies/{}".format(game_def.name,name_style[6:])
+        name = "ILASP using strategy file: {}".format(strategy)
+        super().__init__(game_def, name, main_player,strategy=strategy)
+
+    @classmethod
+    def get_name_style_description(cls):
+        """
+        Gets a description of the required format of the name_style.
+        This description will be shown on the console.
+        Returns: 
+            String for the description
+        """
+        return "ilasp-<strategy-path> where strategy-path if the path for the strategy file inside rooted in directory ./approaches/ilasp/game_name/strategies" 
+
+    @staticmethod
+    def match_name_style(name_style):
+        """
+        Verifies if a name_style matches the approach
+
+        Args:
+            name_style (str): The name style used to create the built player. This name will be passed
+                        from the command line. Will then be used in the constructor. 
+        Returns: 
+            Boolean value indicating if the name_style is a match
+        """
+        return name_style[:6]=="ilasp-"
+
+
+    @staticmethod
+    def add_parser_build_args(approach_parser):
+        """
+        Adds all required arguments to the approach parser. This arguments will then 
+        be present on when the build method is called.
+        
+        Args:
+            approach_parser (argparser): An argparser used from the command line for
+                this specific approach. 
+        """
+        approach_parser.add_argument("--main-player", type= str, default="a",
+            help="The player for which to maximize; either a or b")
+        approach_parser.add_argument("--ilasp-examples-file-name", type=str, default=None,
+            help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/game_name/examples")
+        approach_parser.add_argument("--language-bias-name", type=str, default=None, required=True,
+            help="File name encoding the language bias for ILASP. The file must be in the directory approaches/ilasp/game_name. Any ASP rules defined in this file will also be saved as part of the strategy")
+        approach_parser.add_argument("--background-path", type=str, default=None, required=True,
+            help="The full path for the background definition of the game rooted in src")
+        approach_parser.add_argument("--strategy-name", type=str, default="strategy.lp",
+            help="File name on which to save the strategy computed by ILASP. The file will be saved in the directory approaches/ilasp/game_name/strategies. Can be latter used as parte of name_style")
+
+
+    @staticmethod
+    def build(game_def, args):
+        """
+        Runs the required computation to build a player. For instance, creating a tree or 
+        training a model. 
+        The computed information should be stored to be accessed latter on using the name_style
+        Args:
+            game_def (GameDef): The game definition used for the creation
+            args (NameSpace): A name space with all the attributes defined in add_parser_build_args
+        """
+        args.rules_file_name = None
+        args.tree_image_file_name = None
+        args.train_file_name = None
+        if args.ilasp_examples_file_name is None:
+            args.ilasp_examples_file_name = 'temporal_examples.las'
+        MinmaxASPPlayer.build(game_def, args)
+        base_path = './approaches/ilasp/{}/'.format(game_def.name)
+        lines = []
+        with open(args.background_path,'r') as background_file:
+            lines.extend(background_file.readlines())
+        with open('{}{}'.format(base_path,args.language_bias_name),'r') as language_bias_file:
+            langauage_bias_lines = language_bias_file.readlines()
+            lines.extend(langauage_bias_lines)
+        with open('{}/examples/{}'.format(base_path,args.ilasp_examples_file_name),'r') as examples_file:
+            lines.extend(examples_file.readlines())
+        with open('{}/temporal.las'.format(base_path),'w') as complete_file:
+            complete_file.write("".join(lines))
+            complete_file.close()
+        
+        import subprocess
+        command = ["ILASP ","--clingo5 ","--version=2i",'{}/temporal.las'.format(base_path ),"--multi-wc ","--max-wc-length=8 ","-q"]
+        string_command = " ".join(command)
+        log.debug("Running ilasp command: \n{}".format(" ".join(command)))
+        result = subprocess.check_output(string_command, shell=True).decode("utf-8") 
+        log.debug("Found strategy: \n{}".format(result))
+        
+        strategy_file_path = '{}/strategies/{}'.format(base_path,args.strategy_name)
+        os.makedirs(os.path.dirname(strategy_file_path), exist_ok=True)
+
+        langauage_bias_predicates = [l for l in langauage_bias_lines if l[0]!="#"]
+        result = result + "".join(langauage_bias_predicates)
+        with open(strategy_file_path,'w') as startegy:
+            startegy.write(result)
+            startegy.close()
+        log.debug("Strategy saved in {}/strategies/{}".format(base_path,args.strategy_name))
+
+        pass
+
+    def choose_action(self,state):
+        """
+        The player chooses an action given a current state.
+
+        Args:
+            state (State): The current state
+        
+        Returns:
+            action (Action): The selected action. Should be one from the list of state.legal_actions
+        """
+        return state.legal_actions[-1]

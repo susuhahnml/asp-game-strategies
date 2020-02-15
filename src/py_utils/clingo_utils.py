@@ -34,6 +34,13 @@ def get_constant(file_name,constant_name,must_exist):
         raise RuntimeError("Const {} not found in file: {}".format(constant_name,file_name))
     else:
         return c
+# class M:
+#     def __init__(self, s):
+#         self.s=s
+#     def symbols(self, atoms=False):
+#         return self.s
+
+
 
 
 def get_all_models(game_def, all_path):
@@ -151,12 +158,14 @@ def generate_rule(learned_rules, game_def, state_context,sel_action):
     learned_rules.append(rule[:-1] + ".")
 
 
+# ------------------------- GDL Transformations --------------------------
+
 def rules_file_to_gdl(file_path):
     with open(file_path, 'r') as file:
         data = file.read()
         data = data.replace(',T)',')')
         data = data.replace('holds','true')
-        text_file = open(file_path[:-4]+'gdl.txt', "wt")
+        text_file = open(file_path[:-4]+'_gdl.lp', "wt")
         text_file.write(data)
         text_file.close()
 

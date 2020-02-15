@@ -1,7 +1,0 @@
-------------------
-Game:GameNimDef
-    strategy:
-        wins: 78   losses: 2   points: 76 response_time(ms): 0
-    rl-nim:
-        wins: 2   losses: 78   points: -76 response_time(ms): 1
-    

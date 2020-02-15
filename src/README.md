@@ -1,4 +1,4 @@
-## Learning game strategies in ASP :clubs: :game_die:
+## Game play strategies powered by ASP THE CODE :clubs: :game_die:
 
 Here we document our source code and its various functionalities. 
 
@@ -6,9 +6,10 @@ Here we document our source code and its various functionalities.
 
 1. [Dependencies](#1-Dependencies) 
 2. [Code structure](#2-Code-structure)
-3. [Tests](#3-Tests)
-4. [Simulate match](#4-Simulate-match)
-5. [Build minimax tree](#5-Build-minimax-tree)
+3. [Main](#3-Main)
+   a. [Build an approach](#Build-approach)
+   b. [Simulate match](#Simulate-match)
+4. [Developments](#4-Developments)
 
 ### 1. Dependencies
 
@@ -59,13 +60,10 @@ Here we provide a tabular summary of our main code structure.
 | L1                   | L2                                          | L3                                                  | Description                                                                                                                                 |
 | :---:                | :---:                                       | :---:                                               | :---                                                                                                                                        |
 | **game_definitions** |                                             |                                                     | Contains files with the asp encodings of games                                                                                              |
-| --->                 | [game_def.py](game_definitions/game_def.py) |                                                     | Definitions of games that include the paths for the game, any extra configuration and a transformation of the states to ascii for printing. |
-| --->                 | **game_name**                               |                                                     | Generic name of game (eg. "nim"). It is passed as a path in many functions.                                                                 |
-| --->                 | --->                                        | [background.lp](game_definitions/nim/background.lp) | Defines the basic rules using of the game for one `time_step`, using `next` With GDL synax                                                                |
-| --->                 | --->                                        | [initial.lp](game_definitions/nim/initial.lp)       | Defines the initial state of the game used as default                                                                                                       |
-| --->                 | --->                                        | [full_time.lp](game_definitions/nim/full_time.lp)   | Defines the basic rules using of the game for all the game, using `holds` in each possible `time_step`                                      |
-| --->                 | --->                                        | [all.lp](game_definitions/nim/all.lp)       | Defines all the possible fluents and actions in one single stable model                                                                                                     |
-| --->                 | --->                                        | [rand_init.lp](game_definitions/nim/rand_init.lp)       | Defines all possible initial states. One per stable model                                                                                                       |
+| --->                 | **game_name**                               |                                                     | Generic name of game (eg. "nim"). Used in the command line                                                                 |
+| --->                 | --->                                        | [background.lp](game_definitions/nim/background.lp) | Defines the basic rules using of the game for one `time_step`, using `next` With GDL syntax                                                                |
+| --->                 | --->                                        | [default_initial.lp](game_definitions/nim/default_initial.lp)       | Defines the initial state of the game used as default                                                                                                       |
+| --->                 | --->                                        | [all_init.lp](game_definitions/nim/all_init.lp)       | Defines all possible initial states. One per stable model                                                                                                       |
 
 
 #### ii. `py_utils`
@@ -74,10 +72,8 @@ Here we provide a tabular summary of our main code structure.
 | :---:        | :---:                                                     | :---                                       |
 | **py_utils** |                                                           | Folders with utils functions               |
 | --->         | [arg_metav_formatter.py](py_utils/arg_metav_formatter.py) | Argparse formatter for cli information     |
-| --->         | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python       |
+| --->         | [clingo_utils.py](py_utils/clingo_utils.py)               | Clingo bindings to be used in python with CLingo API       |
 | --->         | [colors.py](py_utils/colors.py)                           | Defining python colors for pretty-printing |
-| --->         | [match_simulation.py](py_utils/match_simulation.py)       | Match simulation functions                 |
-| --->        | [min_max_asp.py](players/min_max_asp.py)             | Functions to compute minmax algorithm using asp                                                      |
 
 #### iv. `structures`
 
@@ -90,118 +86,107 @@ Here we provide a tabular summary of our main code structure.
 | --->           | [match.py](structures/match.py)   | A full match of a game, list of steps                                                                                                                                                |
 | --->           | [tree.py](structures/tree.py)     | A full tree of a game created by steps, with all possible paths                                                                                                                      |
 | --->           | [game.py](structures/game.py)     | The game representation used for RL agents                                                                                                                                           |
-| --->           | [players.py](players/players.py)  | Defines the behaviour of each type of player representing the approaches for selecting actions in a game                                     |
+| --->           | [players.py](structures/players.py)  | Defines the general behavior of  of a player approach                                    |
+| --->           | [game_def.py](structures/game_def.py)  | Defines the general class for game definitions                                     |
 
-### 3. Tests
+### 3. Main
 
-#### i. Test ILASP with `nim` example
-
-In order to run ILASP for learning weak constraints in the game of `nim`, you can run the following command (with corresponding output):
-
-```
-$ ILASP --clingo5 --version=3 ./game_definitions/nim/ilasp.las --max-wc-length=6
-
-:~ next(has(V0,2)), next(has(V1,2)), next(has(V2,0)), V0 != V1.[-1@2, 1, V0, V1, V2]
-:~ next(has(V0,1)).[-1@1, 2, V0]
-%% score = 5
-Pre-processing  : 0.318s
-Solve time      : 77.426s
-Total           : 77.745s
-```
-
-#### ii. Run sanity tests
-
-For generic tests, we use the `pytest` package, which has its documentation [here](https://docs.pytest.org/en/latest/getting-started.html#install-pytest).
-
-To run all tests, use the following command:
+We provide two types of main functions. Both of them have the following arguments in common to define the game, the number of times they will be ran and where the benckmark's output. This command must me used under the `src` directory
 
 ```shell
-$ pytest -v -s ./tests/*
+$ python main.py -h
 ```
 
-### 4. Simulate match
-
-To simulate a match, one can run `main_match.py` with the following arguments:
-
 ```
-$ python3 main_match.py --help
-
-usage: main_match.py [-h] [--path str] [--depth int] [--pA-style str]
-                     [--pB-style str] [--debug]
-
-optional arguments:
-  -h, --help      show this help message and exit
-  --path str      relative path of game description language for game (default:
-                  ./game_definitions/nim)
-  --depth int     depth to which game should be played (default: None)
-  --pA-style str  playing style for player a; either 'random', 'strategy' or 'human'
-                  (default: random)
-  --pB-style str  playing style for player b; either 'random', 'strategy' or 'human'
-                  (default: random)
-  --debug         print debugging information from stack (default: False)
+--log LOG             Log level: 'info' 'debug' 'error'
+--game-name GAME_NAME
+                      Short name for the game. Must be the name of the
+                      folder with the game description
+--const CONST         A constant for the game definition that will passed to
+                      clingo on every call. Must of the form <id>=<value>,
+                      can appear multiple times
+--random-initial-state-seed RANDOM_INITIAL_STATE_SEED
+                      The initial state for each repetition will be
+                      generated randomly using this seed. One will be
+                      generated for each repetition. This requires the game
+                      definition to have a file named rand_initial.lp as
+                      part of its definition to generate random states.
+--initial-state-full-path INITIAL_STATE_FULL_PATH
+                      The full path starting from src to the file considered
+                      for the initial state. Must have .lp extension
+--num-repetitions NUM_REPETITIONS
+                      Number of times the process will be repeated
+--benchmark-output-file BENCHMARK_OUTPUT_FILE
+                      Output file to save the benchmarks of the process that
+                      was ran
 ```
 
-An example of simulating two random players with verbosity is shown below:
+#### Build your approach
 
+This command can be used to build an approach. It will run the `bild()` method of the player's approach. Using its own specific arguments.
+Usage:
 ```shell
-$ python3 main_match.py --debug
+$ python main.py <approach-name>
 ```
-
-### 5. Build minimax tree
-
-To build a minimax tree for a predefined game, one can run `main_mx_tree.py` with the following arguments:
-
-```
-$ python3 main_mx_tree.py --help
-
-usage: main_mx_tree.py [-h] [--path str] [--file-name str] [--plaintext]
-
-optional arguments:
-  -h, --help       show this help message and exit
-  --path str       relative path of game description language for game (default:
-                   ./game_definitions/nim)
-  --file-name str  output image file name (default: tree_vis.png)
-  --plaintext      whether plaintext should be used for visualization (default:
-                   False)
-```
-
-An example of building a tree is shown below:
-
+Example:
 ```shell
-$ python3 main_mx_tree.py --path ./game_definitions/test_nim --file-name tree_test.png
+$ python main.py min_max -h
 ```
 
-Below is an example `html` visualization of the `./game_definitions/test_nim` game.
-
-<p align="center">
-<img src="/src/img/test_tree_html.png" width="500">
-</p>
-
-Below is an example `plaintext` visualization of the `./game_definitions/test_nim` game.
-
-<p align="center">
-<img src="/src/img/test_tree_plain.png" width="500">
-</p>
-
-
-### 6. Build minimax tree asp aproach
-
-To build a minimax tree using the maximize and minimize optimization statements of asp for a predefined game, one can run `main_mxasp.py` with the following arguments:
-
+The help will include the arguments specific for this approach:  
 ```
-$ python3 main_mx_tree.py --help
-
-usage: main_mx_tree.py [-h] [--path str] [--file-name str] [--plaintext]
-
-optional arguments:
-  -h, --help       show this help message and exit
-  --path str       relative path of game description language for game (default:
-                   ./game_definitions/nim)
-  --file-name str  output image file name (default: tree_vis.png)
-  --plaintext      whether plaintext should be used for visualization (default:
-                   False)
+--tree-image-file-name TREE_IMAGE_FILE_NAME
+                        Name of the file save an image of the computed tree
+--main-player MAIN_PLAYER
+                        The player for which to maximize; either a or b
 ```
 
-### 6. Developments
+#### Simulate a match
+
+This command can be used to simulate a match with one type of player against another in an specific game definition. It requires the following additional arguments to define the kind of players.
+
+Example:
+```shell
+$ python main.py vs -h
+```
+
+```
+--pA-style PA_STYLE   Playing style name for player a;
+--pB-style PB_STYLE   Playing style name for player b;
+--play-symmetry       When this flag is passed, all games will be played
+                      twice, one with player a starting and one with player
+                      b starting to increase fairness
+```
+This command will generate games playing the approaches against each other. It will give benchmarks regarding, winning, points and response times.
+
+Example:
+```shell
+$ python main.py vs --pA-style='strategy' --pB-style='random' --num-repetition=5 --game-name="nim"
+```
+
+```
+INFO:  Using default initial state ./game_definitions/nim/default_initial.lp
+
+INFO:  Benchmarking: strategy vs random for 5 games
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 47.27it/s]
+
+INFO:
+		Initial state:
+		• • •
+		• •
+		•
+
+
+		                strategy:
+		                    wins: 2
+		                    points: -1
+		                    response_times(ms): [0.009, 0.004, 0.003, 0.002, 0.002]
+		                random:
+		                    wins: 3
+		                    points: 1
+		                    response_times(ms): [0.022, 0.014, 0.015, 0.01, 0.009]
+```
+
+### 4. Developments
 
 Further developments are summarized in our [changelog](/docs/changelog.md).
