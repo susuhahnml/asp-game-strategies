@@ -36,14 +36,27 @@ class Tree:
         def to_label(node):
             os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
             """ Minor function to create ascii graph label """
-            #TODO paint nodes
             a = Tree.step_ascii_score(node.name,main_player)
             a_r = a.replace('\n','\l')+'\l\n'
-            return 'label="%s" shape=box style=rounded fontname=Calibri labeljust=l'  % ( a_r)
+            style = ['rounded','filled']
+            if not (node.name.action is None):
+                if node.name.action.player ==main_player:
+                    style.append('solid')
+                else:
+                    style.append('dotted')
+            format_str = 'label="%s" shape=box style="%s" fontname="Computer Modern" labeljust=l'  % ( a_r,",".join(style))
+            if node.name.score is None:
+                format_str += ' fillcolor="#d0d0d0"'
+            else:
+                if node.name.score<0:
+                    format_str += ' fillcolor="#fbe7e6"'
+                elif node.name.score>0:
+                    format_str += ' fillcolor="#e6fbea"'
+            return format_str
         UniqueDotExporter(self.root,
                           nodeattrfunc=to_label,
                           edgeattrfunc=lambda parent,
-                          child: "style=bold").to_picture(image_file_name)
+                          child: "style=dotted").to_picture(image_file_name)
         log.info("Tree image saved in {}".format(image_file_name))
 
     def print_in_console(self):

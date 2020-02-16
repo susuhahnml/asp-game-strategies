@@ -18,11 +18,11 @@ base(control(X)) :- role(X).
 
 
 % check possible moves
-legal(X, plays(domino(N1,N2), S)) :- true(in_hand(X, domino(N1,N2))), true(stack(S,N2)),true(control(X)).
+legal(X, plays(domino(N1,N2), S)) :- true(in_hand(X, domino(N1,N2))), true(stack(S,N2)),true(control(X)), not terminal.
 
-legal(X, plays(domino(N1,N2), S)) :- true(in_hand(X, domino(N1,N2))), true(stack(S,N1)),true(control(X)).
+legal(X, plays(domino(N1,N2), S)) :- true(in_hand(X, domino(N1,N2))), true(stack(S,N1)),true(control(X)), not terminal.
 
-legal(X, pass) :- not legal(X, plays(_,_)), role(X), true(control(X)).
+legal(X, pass) :- not legal(X, plays(_,_)), role(X), true(control(X)), not terminal.
 
 % choose move M
 {does(X,M) : legal(X,M)} = 1 :- true(control(X)), not terminal.
@@ -38,11 +38,13 @@ next(in_hand(X,D)) :- not does(X,plays(D, _)), true(in_hand(X,D)), not terminal.
 
 % define terminal state
 % finished tiles
-goal(X,G) :- {true(in_hand(X,D))} = 0, G=#sum{N1+N2,N1,N2 : true(in_hand(Y, domino(N1,N2)))}, role(Y), X!=Y, true(control(X)).
+goal(X,G) :- true(control(Y)),
+             #count{1,D':true(in_hand(X,D'))} = 0, 
+             G=#sum{N1+N2,N1,N2 : true(in_hand(Y, domino(N1,N2)))}, role(X), X!=Y.
 % closed game
 goal(X,G2) :- role(X), role(Y), true(control(Z)),
-            #count{P,N1,N2:true(in_hand(X, domino(N1,N2))), true(stack(S,N2)),role(P)}=0,
-            #count{P,N1,N2:true(in_hand(X, domino(N1,N2))), true(stack(S,N1)),role(P)}=0,
+            #count{P,N1,N2:true(in_hand(P, domino(N1,N2))), true(stack(S,N2)),role(P)}=0,
+            #count{P,N1,N2:true(in_hand(P, domino(N1,N2))), true(stack(S,N1)),role(P)}=0,
             G1=#sum{N1+N2,N1,N2 : true(in_hand(X, domino(N1,N2)))}, 
             G2=#sum{N1+N2,N1,N2 : true(in_hand(Y, domino(N1,N2)))}, 
             G1<G2.

@@ -75,6 +75,10 @@ def match_from_time_model(model, game_def, main_player = None):
         steps.append(step)
     steps[-1].state.is_terminal = True
     steps[-1].set_score_player(main_player)
+    # steps[-2].set_score_player(main_player)
+    # steps[-2].state.goals = steps[-1].state.goals
+    # steps =steps[:-1]
+    
     return Match(steps)
     
 def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
