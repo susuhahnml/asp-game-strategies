@@ -40,13 +40,13 @@ class Tree:
             a_r = a.replace('\n','\l')+'\l\n'
             style = ['rounded','filled']
             if not (node.name.action is None):
-                if node.name.action.player ==main_player:
+                if node.name.action.player == main_player:
                     style.append('solid')
                 else:
                     style.append('dotted')
             format_str = 'label="%s" shape=box style="%s" fontname="Computer Modern" labeljust=l'  % ( a_r,",".join(style))
             if node.name.score is None:
-                format_str += ' fillcolor="#d0d0d0"'
+                format_str += ' fillcolor="#e4e4e4"'
             else:
                 if node.name.score<0:
                     format_str += ' fillcolor="#fbe7e6"'
@@ -55,8 +55,7 @@ class Tree:
             return format_str
         UniqueDotExporter(self.root,
                           nodeattrfunc=to_label,
-                          edgeattrfunc=lambda parent,
-                          child: "style=dotted").to_picture(image_file_name)
+                          edgeattrfunc=lambda parent, child: 'arrowhead=vee').to_picture(image_file_name)
         log.info("Tree image saved in {}".format(image_file_name))
 
     def print_in_console(self):
