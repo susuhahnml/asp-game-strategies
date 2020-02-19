@@ -29,7 +29,7 @@ next(has(P,N-M)) :- does(_,remove(P,M)), true(has(P,N)), not terminal.
 next(has(P,N)) :- not does(_,remove(P,_)), true(has(P,N)), not terminal.
 
 % Goals
-goal(X,1) :- #sum{N,M:true(has(M,N))}=0, true(control(X)).
+goal(X,-1) :- #sum{N,M:true(has(M,N))}=0, true(control(X)).
 goal(X,-1*G):- goal(Y,G), role(X), X!=Y.
 
 % Terminal state

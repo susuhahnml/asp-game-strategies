@@ -1,17 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Functions using clingo API
+"""
+
 
 import clingo
 import abc
-from .colors import *
+from py_utils.colors import *
 
-example_number = 0
-
-def get_next_example_name():
-    global example_number
-    example_name = "e" + str(example_number)
-    example_number+=1
-    return example_name
 
 class Context:
     def id(self, x):
@@ -20,13 +17,27 @@ class Context:
         return [x, y]
 
 def get_new_control(game_def):
+    """
+    Obtains the context of a game definition
+    using the defined constants
+    Return:
+        (Context): Clingo context
+    """
     args = ["0","--warn=none"]
     for c_n,c_v in game_def.constants.items():
         args.append("-c {}={}".format(c_n,c_v))
     ctl = clingo.Control(args)
     return ctl
 
-def get_constant(file_name,constant_name,must_exist):
+def get_constant(file_name,constant_name):
+    """
+    Obtains the constant from a clingo file
+    Args:
+        file_name (str): Clingo file name as full path
+        constant_name (str): The name of the constant to obtain
+    Returns:
+        (clingo.Symbol): The clingo symbol with the constant value
+    """
     ctl = clingo.Control(["0","--warn=none"])
     ctl.load(file_name)
     c = ctl.get_const(constant_name)
@@ -34,21 +45,18 @@ def get_constant(file_name,constant_name,must_exist):
         raise RuntimeError("Const {} not found in file: {}".format(constant_name,file_name))
     else:
         return c
-# class M:
-#     def __init__(self, s):
-#         self.s=s
-#     def symbols(self, atoms=False):
-#         return self.s
 
-
-
-
-def get_all_models(game_def, all_path):
+def get_all_models(game_def, file_path):
     """
-    Obtains all possible models of given path as string
+    Obtains all models of given path as a list of strings
+    Args:
+        game_def: The game definition
+        file_path: The path from with to get the models
+    Returns:
+        [str]: A list with one string per model
     """
     ctl = get_new_control(game_def)
-    ctl.load(all_path)
+    ctl.load(file_path)
     ctl.ground([("base", [])], context=Context())
     models = []
     with ctl.solve(yield_=True) as handle:
@@ -57,7 +65,43 @@ def get_all_models(game_def, all_path):
             models.append(''.join(["{}.".format(str(a)) for a in atoms]))
         return models
 
+def fluents_to_asp_syntax(fluents,time=None):
+    """
+    Transforms a list of fluents into clingo gdl syntax
+    Args:
+        fluents ([str]): List of all fluent names
+        time (Any): If something is passed, it will be added in the
+                    end of a holds predicate to indicate the time step
+    """
+    if time is None:
+        base = "true({})."
+    else:
+        base = "holds({},{})."
+    return " ".join([base.format(str(f),time) for f in fluents])
+
+def action_to_asp_syntax(action,time=None):
+    """
+    Transforms an action into clingo gdl syntax
+        fluents (Action): The action to transform
+        time (Any): If something is passed, it will be added in the
+                    end of a holds predicate to indicate the time step
+
+    """
+    if time is None:
+        base = "does({},{})."
+    else:
+        base = "does({},{},{})."
+    return base.format(action.player,str(action.action),time)
+
+# ------------ ML ------------------
+
 def has_player_ref(symbol,player_name):
+    """
+    Verifies if a clingo symbol has a players name inside its predicates
+    Args:
+        symbol (clingo.Symbol): The symbol to parse
+        player_name (str): The name of the player
+    """
     if(symbol.type == clingo.SymbolType.Function):
         if(symbol.name == player_name and len(symbol.arguments) ==0):
             return True
@@ -70,10 +114,13 @@ def has_player_ref(symbol,player_name):
     else:
         return symbol.type == player_name
 
-
 def get_all_possible(game_def, all_path,player_name):
     """
-    Obtains all possible actions and observations with an initial encoding
+    Obtains all possible actions and observations for a game_definition
+    using the predicates 'input' and 'base'
+    Args:
+        game_def: The game definition
+        player_name: The player name based on which the response will be ordered
     """
     ctl = get_new_control(game_def)
     ctl.load(all_path)
@@ -90,21 +137,27 @@ def get_all_possible(game_def, all_path,player_name):
             observations = sorted(observations, key=lambda x: not has_player_ref(x,player_name))
         return actions, observations
 
-def fluents_to_asp_syntax(fluents,time=None):
-    if time is None:
-        base = "true({})."
-    else:
-        base = "holds({},{})."
-    return " ".join([base.format(str(f),time) for f in fluents])
+# ------------ ILASP ------------------
+example_number = 0 #Global constant to create examples ids for ilasp
 
-def action_to_asp_syntax(action,time=None):
-    if time is None:
-        base = "does({},{})."
-    else:
-        base = "does({},{},{})."
-    return base.format(action.player,str(action.action),time)
+def get_next_example_name():
+    """
+    Gets the next example name using the global variable
+    """
+    global example_number
+    example_name = "e" + str(example_number)
+    example_number+=1
+    return example_name
 
 def generate_example(leaned_examples, state_context,good_action,bad_action):
+    """
+    Generates a new example for ILASP
+    Args:
+        learned_examples: The list with all learned examples
+        state_context (State): The State used as context in the example
+        good_action (Action): The action that is known to be better
+        bad_action (Action): The action that is known to be worse that good_action
+    """
     if leaned_examples is None:
         return
     context = fluents_to_asp_syntax(state_context.fluents)
@@ -117,7 +170,12 @@ def generate_example(leaned_examples, state_context,good_action,bad_action):
     order = "#brave_ordering({},{}).".format(good_example_name,bad_example_name)
     leaned_examples.append("\n{}\n{}\n{}".format(good_example,bad_example,order))
 
+# ------------ MIN MAX ASP ------------------
+
 def edit_vars(pred,subst_var,var_set):
+    """
+    Edits the variables of a predicate 
+    """
     trad_args = []
     def add_v(is_var, v_par):
         if is_var:
@@ -140,6 +198,16 @@ def edit_vars(pred,subst_var,var_set):
     return "{}({})".format(pred.name,",".join(trad_args))
 
 def generate_rule(learned_rules, game_def, state_context,sel_action):
+    """
+    # Genrates a rule to enforce taking a decision in an specific full context
+    Args:
+        learned_rules: The list of rules already learned
+        game_def: The game definition
+        state_context (State): The state used as context. The fluents of this state
+                    must cover only this state and no other.
+        sel_action (Action): The action that is best to take in this context
+    Returns:
+    """
     if learned_rules is None:
         return
     #TODO make it general for variable context
@@ -161,6 +229,13 @@ def generate_rule(learned_rules, game_def, state_context,sel_action):
 # ------------------------- GDL Transformations --------------------------
 
 def rules_file_to_gdl(file_path):
+    """
+    Changes a file of rules learned with the function generate_rule
+    into a file with GDL notation by removing the explicit time step
+    The file is saved in the same location.
+    Args:
+        file_path: The file with all the rules in full time format
+    """
     with open(file_path, 'r') as file:
         data = file.read()
         data = data.replace(',T)',')')
@@ -173,6 +248,15 @@ names_update = ['legal','true','does','goal','terminal','next']
 
 
 def add_time(stm,fixed_time=None):
+    """
+    Adds the explicit time step to a sintax tree
+    Args:
+        stm: The clingo syntax tree
+        fixed_time: If a number is passed it used insted of 'T'
+                    as specific time_step
+    Returns (bool):
+        True if a substitution was performed.
+    """
     stm_type = str(stm.type)
     
     if stm_type == "Rule":
@@ -220,6 +304,16 @@ def add_time(stm,fixed_time=None):
 
 
 def transform_rules_gdl(prog_str,fixed_time=None):
+    """
+    Transforms a program rules using gdl
+    into explicit time steps
+    Args:
+        prog_str: The string with all rules from the program
+        fixed_time: If a number is passed it used insted of 'T'
+            as specific time_step
+    Returns:
+        The list of rules translated
+    """
     updated_rules = []
     def add_time_rule(stm):
         added_time = add_time(stm,fixed_time)
@@ -231,6 +325,13 @@ def transform_rules_gdl(prog_str,fixed_time=None):
     return updated_rules
 
 def gdl_to_full_time(path,file_name):
+    """
+    Transform a file in GDL to explicit time steps,
+    saves the new file in the same location.
+    Args:
+        path: The path of the file
+        file_name: The name of the file
+    """
     file = open(path+file_name,'r')
     prg = "".join(file.readlines())
     updated_rules = transform_rules_gdl(prg,None)

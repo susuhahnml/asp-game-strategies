@@ -1,3 +1,4 @@
+import subprocess
 from structures.players import Player
 from approaches.min_max_asp.player import MinmaxASPPlayer
 from py_utils.logger import log
@@ -67,7 +68,7 @@ class ILASPPlayer(Player):
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
         approach_parser.add_argument("--ilasp-examples-file-name", type=str, default=None,
-            help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/game_name/examples")
+            help="File name where the ilasp examples have already been generated during the computation of the asp pruned min max tree. ")
         approach_parser.add_argument("--language-bias-name", type=str, default=None, required=True,
             help="File name encoding the language bias for ILASP. The file must be in the directory approaches/ilasp/game_name. Any ASP rules defined in this file will also be saved as part of the strategy")
         approach_parser.add_argument("--background-path", type=str, default=None, required=True,
@@ -90,23 +91,27 @@ class ILASPPlayer(Player):
         args.tree_image_file_name = None
         args.train_file_name = None
         if args.ilasp_examples_file_name is None:
-            args.ilasp_examples_file_name = 'temporal_examples.las'
-        MinmaxASPPlayer.build(game_def, args)
+            log.debug("Generating examples using min_max_asp algorithm")
+            args.ilasp_examples_file_name = 'temp_examples.las'
+            MinmaxASPPlayer.build(game_def, args)
         base_path = './approaches/ilasp/{}/'.format(game_def.name)
         lines = []
         with open(args.background_path,'r') as background_file:
             lines.extend(background_file.readlines())
-        with open('{}{}'.format(base_path,args.language_bias_name),'r') as language_bias_file:
+        with open('{}languages/{}'.format(base_path,args.language_bias_name),'r') as language_bias_file:
             langauage_bias_lines = language_bias_file.readlines()
             lines.extend(langauage_bias_lines)
-        with open('{}/examples/{}'.format(base_path,args.ilasp_examples_file_name),'r') as examples_file:
+        with open('{}examples/{}'.format(base_path,args.ilasp_examples_file_name),'r') as examples_file:
             lines.extend(examples_file.readlines())
-        with open('{}/temporal.las'.format(base_path),'w') as complete_file:
+        with open('{}temporal.las'.format(base_path),'w') as complete_file:
             complete_file.write("".join(lines))
             complete_file.close()
-        
-        import subprocess
-        command = ["ILASP ","--clingo5 ","--version=2i",'{}/temporal.las'.format(base_path ),"--multi-wc ","--max-wc-length=8 ","-q"]
+        command = ["ILASP ","--clingo5 ","--version=2i",'{}temporal.las'.format(base_path ),"--multi-wc ","--max-wc-length=8 ","-q"]
+        if not log.is_disabled_for("debug"):
+            string_command = " ".join(command+["-s"])
+            result = subprocess.check_output(string_command, shell=True).decode("utf-8") 
+            log.debug("Search space:{}".format(result))
+
         string_command = " ".join(command)
         log.debug("Running ilasp command: \n{}".format(" ".join(command)))
         result = subprocess.check_output(string_command, shell=True).decode("utf-8") 

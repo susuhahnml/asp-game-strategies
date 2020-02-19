@@ -7,7 +7,7 @@ import inspect
 import random
 import os
 import re
-from py_utils import arg_metav_formatter, add_params
+from py_utils import arg_metav_formatter
 from structures.game_def import GameDef
 import argparse
 from py_utils.logger import log
@@ -126,7 +126,7 @@ if __name__ == "__main__":
             for turn, vs in enumerate(player_encounters):
                 idx = {'a':0+turn,'b':1-turn}
                 game_def.initial = initial_states[i%len(initial_states)]
-                match, metrics = Match.simulate_match(game_def,vs,ran_init=False)
+                match, metrics = Match.simulate(game_def,vs,ran_init=False)
                 goals = match.goals
                 for l,g in goals.items():
                     scores[idx[l]]['points']+=g

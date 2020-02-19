@@ -10,7 +10,8 @@ from py_utils.colors import *
 
 class Match:
     """
-    Class to represent a match 
+    Class to represent a match, this match is defined by a list of steps
+    indicating the actions taken and their corresponding changes in the environment
 
     Attributes
     ----------
@@ -22,7 +23,9 @@ class Match:
 
     def add_step(self, step):
         """
-        Adds a nex step
+        Adds a nex step to the list of steps
+        Args:
+            step (Step): Step to add in the end
         """
         self.steps.append(step)
 
@@ -52,6 +55,12 @@ class Match:
         return s
 
     def generate_train(self, training_list, i):
+        """
+        Adds a training instance to the list for the decision made at time_step i
+        Args:
+            training_list ([Dic]): the list will all training instances
+            i (int): the time step that must be added
+        """
         if training_list is None:
             return
         step = self.steps[i]
@@ -65,23 +74,15 @@ class Match:
             'win':-1 if control_goal<0 else 1})
 
     @staticmethod
-    def simulate_match(game_def, players, depth=None, ran_init=False):
+    def simulate(game_def, players, depth=None, ran_init=False):
         """
         Call it with the path to the game definition
 
-        Options:
-        player_config: A tuple of the player configurations
-            - random: Play against random player
-            - human: Play against human player
-            - strategy: Play against a strategy defined in a file as weak constraints
-            - minmax-asp: Play against a player using minmax strategy in asp
+        Args:
+            players (Player,Player): A tuple of the players
 
-        paths:
-            - optimal*: Generate only one path with optimal actions
-            - all: Generate full tree of matches TODO?
-
-        depth:
-            - n: Generate until depth n or terminal state reached
+            depth:
+                - n: Generate until depth n or terminal state reached
         """
 
         if(ran_init):

@@ -1,4 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Functions to allow logging levels across the project. 
+"""
 import logging
+from py_utils.colors import bcolors
 
 formatter = logging.Formatter('%(message)s')
 logger = logging.getLogger('general')
@@ -11,19 +17,6 @@ fmt = '%(message)s'
 formatter = logging.Formatter(fmt)
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler) 
-
-
-class bcolors:
-    REF = '\033[90m'
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
 
 class Log:
 

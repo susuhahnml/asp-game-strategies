@@ -15,11 +15,11 @@ class State:
     Attributes
     ----------
     fluents : list(string)
-        the name of the animal
+        the names of the fluents that hold in this state
     terminal : boolean
         true if the state is terminal
     goals : dic
-        A dictionary with the reward per player name
+        A dictionary with the reward for each player
     control : name of the player in turn
     """
     def __init__(self, fluents, goals, game_def, is_terminal = False):
@@ -42,10 +42,16 @@ class State:
 
     @property
     def ascii(self):
+        """
+        Returns the ascii representation of the state using the game definition.
+        """
         return self.game_def.state_to_ascii(self)
 
     @property
     def str_expanded(self):
+        """
+        Returns a string with the state and all its info
+        """
         s = """
         {}============== STATE ==============
         FLUENTS:
@@ -64,20 +70,14 @@ class State:
 
 class StateExpanded(State):
     """
-    A class used to represent a State on the game
+    A class used to represent a State on the game that includes all the
+    possible legal actions already expanded with the fluents of 
+    the next states
 
     Attributes
     ----------
     legal_actions : list(Action)
         List of possible actions from the current state
-    fluents : list(string)
-        the name of the animal
-    terminal : boolean
-        true if the state is terminal
-    goals : tuple
-        A list of goals Symbol
-        goal(player, reward)
-    control : name of the player in turn
     """
     def __init__(self, legal_actions, fluents, goals, game_def, is_terminal):
         super().__init__(fluents,goals,is_terminal,game_def)
@@ -86,9 +86,8 @@ class StateExpanded(State):
     @classmethod
     def from_model(cls, model,game_def):
         """
-        Creates a State from a model without considering the actions
+        Creates a State from a model without considering the legal actions
         """
-        
         atoms = model.symbols(atoms=True)
         is_terminal = model.contains(clingo.Function("terminal", []))
         fluents = [a.arguments[0] for a in atoms if a.name=='true']
@@ -181,6 +180,10 @@ class StateExpanded(State):
             return None
 
     def __str_detail__(self):
+        """
+        Returns a string with all the state detail. Including each
+        legal action
+        """
         f = self.get_fluents_string()
         a = "\n".join(["{}:{}".format(i,str(a)[2:])
                        for i,a in enumerate(self.legal_actions)])
@@ -201,6 +204,9 @@ class StateExpanded(State):
 
     @property
     def str_step_options(self):
+        """
+        String with all the available actions on this state
+        """
         f = self.get_fluents_string()
         s = "\n======== CURRENT STATE ========\n{}".format(self.ascii)
         s += "****** Available actions *******"

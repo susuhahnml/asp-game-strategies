@@ -14,7 +14,7 @@ from py_utils.logger import log
 
 class Tree:
     """
-    Tree class to handle minimax tree construction
+    Tree class to handle search trees for games
     """
     def __init__(self,root=None,game=None):
         """ Initialize with empty root node and game class """
@@ -68,10 +68,11 @@ class Tree:
     @staticmethod
     def node_from_match_initial(match):
         """
-        Function to construct a tree from match class given initial state
-
+        Function to construct a tree from a match class.
+        It will create a tree with one branch representing the match
+        Adds an extra root for the tree with the initial state.
         Args:
-            match (Match): a constructed match
+            match (Match): match to generate a tree
 
         Returns:
             root_node (anytree.Node): tree corresponding to match
@@ -85,8 +86,8 @@ class Tree:
     @staticmethod
     def node_from_match(match):
         """
-        Function to construct a tree from match class
-
+        Function to construct a tree from a match class.
+        It will create a tree with one branch representing the match
         Args:
             match (Match): a constructed match
 
@@ -104,6 +105,7 @@ class Tree:
     def step_ascii_score(step,main_player="a"):
         """
         Returns the ascii representation of the step including the score
+        Used for printing
         """
         if step.score:
             if step.action != None:

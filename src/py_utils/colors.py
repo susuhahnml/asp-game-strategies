@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+"""
+Functions to print in console using colors
+"""
 class bcolors:
     REF = '\033[90m'
     HEADER = '\033[95m'

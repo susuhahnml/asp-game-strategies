@@ -6,7 +6,7 @@ from py_utils.clingo_utils import *
 
 class Step:
     """
-    A class used to represent a Step on a match
+    A class used to represent a Step on a match.
 
     Attributes
     ----------
@@ -81,7 +81,7 @@ class Step:
     @property
     def str_expanded(self):
         """
-        Returns an expanded string representation of the setp
+        Returns an expanded string representation of the step
         """
         if self.action:
             a_str = self.action.str_expanded

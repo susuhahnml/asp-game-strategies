@@ -12,6 +12,10 @@ from structures.state import StateExpanded
 from importlib.machinery import SourceFileLoader
 
 def game_def_sub_classes():
+    """
+    Obtains all the classes with different game_definitions 
+    that extend GameDef. This classes must be inside ./game_definitions
+    """
     game_definitions = {}
     root = './game_definitions/'
     directories = [d for d in os.listdir(root) if os.path.isdir(os.path.join(root,d)) and not d[0]=='_']
@@ -27,7 +31,10 @@ def game_def_sub_classes():
     return game_definitions
 
 class GameDef():
-    """ Template class which can be reproduced for multiple games """
+    """ 
+    Class to represent a game definition using ASP. 
+    It must be extended by each definition to provide functions for pretty printing
+    """
     def __init__(self,name,initial=None,constants={}):
         """
         Creates a game definition. It will automatically generate a 
@@ -65,6 +72,14 @@ class GameDef():
 
     @classmethod
     def from_name(cls, name,initial=None,constants={}):
+        """
+        Creates a game definition of the subclass whose folder matches the 
+        argument 'name'
+        Args:
+            name: the name of the folder containing the class definition
+            initial: an optional initial state
+            constants: the constants to be passed to clingo for this game
+        """
         games = game_def_sub_classes()
         if name in games:
             log.debug("Creating game definition from class {}".format(games[name].__name__))
@@ -112,7 +127,7 @@ class GameDef():
         """
         if constant_name in self.constants:
             return self.constants[constant_name]
-        const = get_constant(self.background,constant_name,True)
+        const = get_constant(self.background,constant_name)
         return getattr(const, type_of_symbol)
 
 
@@ -126,9 +141,17 @@ class GameDef():
 
     @property
     def initial_is_file(self):
+        """
+        Returns: True if the initial state is a file name
+        """
         return(self.initial[-3:] == ".lp")
 
     def get_initial_str(self):
+        """
+        Returns the initial state content
+        Returns:
+            (str): The content of the initial state
+        """
         if(self.initial_is_file):
             with open(self.initial,"r") as File:
                 lines = File.readlines()
@@ -137,11 +160,19 @@ class GameDef():
             return self.initial + ""
 
     def get_random_initial(self):
+        """
+        Gets a random initial state sampleing from all possible states
+        """
         if self.random_init is None:
             self.random_init = get_all_models(self, self.path + "/all_initial.lp")
         return random.choice(self.random_init)
 
     def get_initial_state(self):
+        """
+        Gets the initial state as a class of State
+        Returns:
+            (StateExpanded): The initial state
+        """
         content = self.get_initial_str()
         ctl = get_new_control(self)
         ctl.add("base",[],content)

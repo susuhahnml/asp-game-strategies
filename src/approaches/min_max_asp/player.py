@@ -16,6 +16,16 @@ class MinmaxASPPlayer(Player):
     description = "Calculates the min max tree pruned by the clingo optimizations to improve complexity."
     
     def __init__(self, game_def, name_style, main_player):
+                """
+        Constructs a player using saved information, the information must be saved 
+        when the build method is called. This information should be able to be accessed
+        using parts of the name_style to refer to saved files or other conditions
+
+        Args:
+            game_def (GameDef): The game definition used for the creation
+            main_player (str): The name of the player either a or b
+            name_style (str): The name style used to create the built player. 
+        """
         name = "Min max asp pruned player"
         super().__init__(game_def, name, main_player)
         apply_rules_rule="{does(P,A,T):best_do(P,A,T)}=1:-time(T),not holds(goal(_,_),T),{best_do(P,A,T)}>0,true(control(P)).\n"
@@ -25,12 +35,40 @@ class MinmaxASPPlayer(Player):
             rules.append(apply_rules_rule)
             self.learned = "\n".join(rules)
 
+    @classmethod
+    def get_name_style_description(cls):
+        """
+        Gets a description of the required format of the name_style.
+        This description will be shown on the console.
+                    path to the file required information for player."
+        Returns: 
+            String for the description
+        """
+        return "min_max_asp-<rules-file>: where rules-file is the name of the file saved in the folder rules during build"
+
     @staticmethod
     def match_name_style(name):
+        """
+        Verifies if a name_style matches the approach
+
+        Args:
+            name_style (str): The name style used to create the built player. This name will be passed
+                        from the command line. Will then be used in the constructor. 
+        Returns: 
+            Boolean value indicating if the name_style is a match
+        """
         return name[:12]=="min_max_asp-"
 
     @staticmethod
     def add_parser_build_args(approach_parser):
+        """
+        Adds all required arguments to the approach parser. This arguments will then 
+        be present on when the build method is called.
+        
+        Args:
+            approach_parser (argparser): An argparser used from the command line for
+                this specific approach. 
+        """
         approach_parser.add_argument("--tree-image-file-name", type=str, default=None,
             help="Name of the file save an image of the computed tree")
         approach_parser.add_argument("--main-player", type= str, default="a",
@@ -42,14 +80,18 @@ class MinmaxASPPlayer(Player):
         approach_parser.add_argument("--train-file-name", type=str, default=None,
             help="File name to save training information computed during the calculations. The information is encoded in hot-one encoding according to the ml-agent approach. The file is saved in approaches/ml-agent/training. Extension .csv")
 
-    
-    @classmethod
-    def get_name_style_description(cls):
-        return "min_max_asp-<rules-file>: where rules-file is the name of the file saved in the folder rules during build"
 
 
     @staticmethod
     def build(game_def, args):
+        """
+        Runs the required computation to build a player. For instance, creating a tree or 
+        training a model. 
+        The computed information should be stored to be accessed latter on using the name_style
+        Args:
+            game_def (GameDef): The game definition used for the creation
+            args (NameSpace): A name space with all the attributes defined in add_parser_build_args
+        """
         if not 'first_build' in args:
             log.debug("Creating new files")
             new_files = 'w'
@@ -99,6 +141,15 @@ class MinmaxASPPlayer(Player):
 
 
     def choose_action(self,state):
+        """
+        The player chooses an action given a current state.
+
+        Args:
+            state (State): The current state
+        
+        Returns:
+            action (Action): The selected action. Should be one from the list of state.legal_actions
+        """
         initial = fluents_to_asp_syntax(state.fluents,0)
         match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed=self.learned)
         action_name = str(match.steps[0].action.action)

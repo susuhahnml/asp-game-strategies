@@ -3,13 +3,13 @@
 
 class Action:
     """
-    A class used to represent a possible action
+    A class used to represent an action in the game
 
     Attributes
     ----------
     player : str
         Name of the player that performs the action
-    action: Symbol
+    action: clingo.Symbol
         Symbol defining the action
     """
     def __init__(self, player, action):
@@ -29,19 +29,16 @@ class Action:
 
 class ActionExpanded(Action):
     """
-    A class used to represent a possible action
+    A class used to represent an action that includes the next fluents
+    that will become true when the action is taken.
 
     Attributes
     ----------
-    player : str
-        Name of the player that performs the action
-    action: Symbol
-        Symbol defining the action
     next_fluents : list(str)
         List of fluents that will hold in the next time step
         once the action is performed.
     cost : int
-        The optimality cost
+        The optimality cost provided by clingo when using optimization
     """
     def __init__(self, player, action, next_fluents, cost):
         super().__init__(player,action)
@@ -50,6 +47,9 @@ class ActionExpanded(Action):
 
     @property
     def str_expanded(self):
+        """
+        A string to represent the action with its possible next fluents
+        """
         l = "\n\t".join([str(n) for n in self.next_fluents])
         return """
         -------- ACTION -------

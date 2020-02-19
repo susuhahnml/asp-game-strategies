@@ -12,6 +12,10 @@ from structures.state import State, StateExpanded
 import os
 
 def player_approaches_sub_classes():
+    """
+    Obtains all the classes with different approaches 
+    that extend Player. This classes must be inside ./approaches
+    """
     player_approaches = {}
     root = './approaches/'
     directories = [d for d in os.listdir(root) if os.path.isdir(os.path.join(root,d)) and not d[0]=='_']
@@ -29,7 +33,8 @@ def player_approaches_sub_classes():
 
 class Player(abc.ABC):
     """
-    A class used to represent an player that chooses an action in a state
+    A class used to represent an player with an special approach to analyze a game and
+    make select actions. This class must be extended by the specific approach.
 
     Attributes
     ----------
@@ -37,7 +42,7 @@ class Player(abc.ABC):
     main_player: The name of the player to optimize
     """
 
-    description = "Must be filled with a description of the approach to show on the console"
+    description = ""
 
 
     def __init__(self, game_def, name, main_player, strategy=None):
@@ -58,6 +63,15 @@ class Player(abc.ABC):
 
     @classmethod
     def from_name_style(cls, game_def, name_style, main_player):
+        """
+        Creates a player by finding the Player's subclass matching the
+        name_style.
+        Args:
+            game_def (GameDef): The game_definition used
+            name_style (str): String to match with the function match_name_style
+                              of the subclass
+            main_player (str): String with the name of the main player 
+        """
         approaches = player_approaches_sub_classes()
         for n,c in approaches.items():
             if c.match_name_style(name_style):

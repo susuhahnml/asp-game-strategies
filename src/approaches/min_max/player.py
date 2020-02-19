@@ -26,9 +26,7 @@ class MinMaxPlayer(Player):
         Args:
             game_def (GameDef): The game definition used for the creation
             main_player (str): The name of the player either a or b
-            name_style (str): The name style used to create the built player. This name will be passed
-                        from the command line. EXAMPLE approach_name<file-name>, in this case 
-                        the initialization could use the name file to load player.
+            name_style (str): The name style used to create the built player. 
         """
         super().__init__(game_def, "Min max tree", main_player)
 
