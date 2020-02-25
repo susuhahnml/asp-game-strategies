@@ -16,7 +16,7 @@ class MinmaxASPPlayer(Player):
     description = "Calculates the min max tree pruned by the clingo optimizations to improve complexity."
     
     def __init__(self, game_def, name_style, main_player):
-                """
+        """
         Constructs a player using saved information, the information must be saved 
         when the build method is called. This information should be able to be accessed
         using parts of the name_style to refer to saved files or other conditions

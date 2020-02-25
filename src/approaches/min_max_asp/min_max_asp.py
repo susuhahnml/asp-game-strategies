@@ -159,6 +159,7 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
     steps_to_analyze = match.steps[top_step:-1]
     minmax_match = match
     node_top = node_top.leaves[0]
+
     for step in steps_to_analyze[::-1]:
         node_top = node_top.parent
         i = step.time_step
@@ -240,4 +241,6 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         
         #Update minmax match
         minmax_match = opt_minmax
+    t=Tree(node_top)
+    t.print_in_file("mm_{}_{}.png".format(top_step,level))
     return minmax_match, node_top

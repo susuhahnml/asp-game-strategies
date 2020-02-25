@@ -37,14 +37,14 @@ class Tree:
             os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
             """ Minor function to create ascii graph label """
             a = Tree.step_ascii_score(node.name,main_player)
-            a_r = a.replace('\n','\l')+'\l\n'
+            a_r = a.replace('\n','\l')+'\l'
             style = ['rounded','filled']
             if not (node.name.action is None):
                 if node.name.action.player == main_player:
                     style.append('solid')
                 else:
                     style.append('dotted')
-            format_str = 'label="%s" shape=box style="%s" fontname="Computer Modern" labeljust=l'  % ( a_r,",".join(style))
+            format_str = 'label="%s" shape=box style="%s" fontName="Bookman Old Style" labeljust=l'  % ( a_r,",".join(style))
             if node.name.score is None:
                 format_str += ' fillcolor="#e4e4e4"'
             else:
@@ -109,19 +109,15 @@ class Tree:
         """
         if step.score:
             if step.action != None:
-                return "Score:({})\n{}".format(step.score,
+                return "〔score {}〕\n{}".format(step.score,
                                                           step.ascii)
             else:
                 if(step.state.is_terminal):
-                    return ("Terminal:({})\n{}".format(step.score,step.ascii))
+                    # return ("Terminal:({})\n{}".format(step.score,step.ascii))
+                    return ("〔score {}〕".format(step.score))
                 else:
-                    if main_player=="a":
-                        
-                        return (("minimax:({},{})\n"+"(a,b):(max,min)\n"+
-                            "{}").format("a",step.score, step.ascii))
-                    else:
-                        return (("minimax:({},{})\n"+"(b,a):(max,min)\n"+
-                            "{}").format("b",step.score, step.ascii))
-
+                    other_player = "b" if main_player=="a" else "a"
+                    s ="〔score {}〕\nmax:{}\nmin:{}\n{}".format(step.score,main_player,other_player,step.ascii)
+                    return s
         else:
             return ""
