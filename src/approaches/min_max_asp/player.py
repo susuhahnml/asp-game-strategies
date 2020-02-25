@@ -28,12 +28,12 @@ class MinmaxASPPlayer(Player):
         """
         name = "Min max asp pruned player"
         super().__init__(game_def, name, main_player)
-        apply_rules_rule="{does(P,A,T):best_do(P,A,T)}=1:-time(T),not holds(goal(_,_),T),{best_do(P,A,T)}>0,true(control(P)).\n"
+        apply_rules_rule="{does(P,A):best_do(P,A)}=1:-not terminal,{best_do(P,A)}>0,true(control(P)).\n"
         rules_file = "./approaches/min_max_asp/learned_rules/{}/{}".format(game_def.name,name_style[12:])
         with open(rules_file, "r") as text_file:
             rules = text_file.readlines()
-            rules.append(apply_rules_rule)
-            self.learned = "\n".join(rules)
+            rules = [apply_rules_rule,"\n"] + rules
+            self.learned = rules
 
     @classmethod
     def get_name_style_description(cls):
@@ -151,7 +151,8 @@ class MinmaxASPPlayer(Player):
             action (Action): The selected action. Should be one from the list of state.legal_actions
         """
         initial = fluents_to_asp_syntax(state.fluents,0)
-        match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed=self.learned)
+        match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed="\n".join(self.learned), learning_rules = True)
+        self.learned.extend(ls)
         action_name = str(match.steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
                   if str(l_a.action) == action_name][0]

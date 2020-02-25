@@ -2,7 +2,7 @@
 
 ## Description
 
-This approach to find the best action by constructing the relevant parts of the min-max tree. The construction is performed similarly to a DFS while using optimization statements from *clingo*.
+This approach finds the best action by constructing the relevant parts of the min-max tree. The construction is performed similarly as a DFS while using optimization statements from *clingo*. Results are expressed in the form of ASP rules and generalized for other instances.
 
 #### Explicit time encoding
 
@@ -72,7 +72,7 @@ best_do(a,remove(2,2),T):- holds(control(a),T),
 
 This rules state under which state context, described by predicate `holds\2` is it better to perform a certain action. In this case, for the game on Nim we are stating that: In a state where player `a` has control and only pile `2` has 2 sticks. It would be best for player `a` to remove from pile `2` both sticks. These rules can easily be transformed back to GDL syntax.
 
-In order enforce the use of these actions as an strategy we need to add the following rule:
+In order enforce the use of these preferred actions as an strategy we need to add the following rule:
 
 ```
 1{does(P,A,T):best_do(P,A,T)}1:- time(T),
@@ -95,4 +95,5 @@ With this generalization we can apply the strategy to any permutation over the p
 
 It is important to notice that this will only work when the set of fluents defining the state does not imply also a different one.
 
-## Commands
+During game play, we can use the learned rules as the strategy. These rules will correspond to an abstract representation of the search tree. By running the construction algorithm when a decision must be made, we can take the learned rules and use them in further steps or even in different matches. We this approach we are both abstracting and combining minmax trees for different instances. Since this trees are represented by ASP rules we avoid the need for indexing the tree.
+

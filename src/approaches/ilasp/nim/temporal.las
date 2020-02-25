@@ -32,30 +32,6 @@ binary(5,1,0,1).
 binary(6,1,1,0).
 binary(7,1,1,1).
 
-% % Expected strategy
-% b1(P1,B1):-next(has(P1,N1)), binary(N1,B4,B2,B1).
-% b2(P1,B2):-next(has(P1,N1)), binary(N1,B4,B2,B1).
-% b4(P1,B4):-next(has(P1,N1)), binary(N1,B4,B2,B1).
-
-% b1(P2,B1):-next(has(P2,N1)), binary(N1,B4,B2,B1).
-% b2(P2,B2):-next(has(P2,N1)), binary(N1,B4,B2,B1).
-% b4(P2,B4):-next(has(P2,N1)), binary(N1,B4,B2,B1).
-
-% b1(P3,B1):-next(has(P3,N1)), binary(N1,B4,B2,B1).
-% b2(P3,B2):-next(has(P3,N1)), binary(N1,B4,B2,B1).
-% b4(P3,B4):-next(has(P3,N1)), binary(N1,B4,B2,B1).
-
-% tb1(B11+B12+B13) :- b1(P1,B11), b1(P2,B12), b1(P3,B13), P1<P2, P2<P3.
-% tb2(B21+B22+B23) :- b2(P1,B21), b2(P2,B22), b2(P3,B23), P1<P2, P2<P3.
-% tb4(B41+B42+B43) :- b4(P1,B41), b4(P2,B42), b4(P3,B43), P1<P2, P2<P3.
-
-% odd(1) :- tb1(T), T\2!=0.
-% odd(2) :- tb2(T), T\2!=0.
-% odd(3) :- tb4(T), T\2!=0.
-
-% :~ odd(V).[1@1,1,V]
-% :~ odd_b2.[1@1,2]
-% :~ odd_b4.[1@1,4]
 
 % Expected strategy
 % b(1,P1,B1):-next(has(P1,N1)), binary(N1,B3,B2,B1).
@@ -76,19 +52,14 @@ binary(7,1,1,1).
 
 % :~ odd(V).[1@1,1,V]
 
-%
 %------------------------------- LANGUAGE BIAS --------------------------------------
 #constant(pos,1).
 #constant(pos,2).
 #constant(pos,3).
 
 #modeh(b(const(pos),var(pile),var(bin))).
-% #modeh(b2(var(pile),var(bin))).
-% #modeh(b3(var(pile),var(bin))).
 #modeb(1,binary(var(num),var(bin),var(bin),var(bin))).
 #modeb(3,b(var(n),var(pile),var(bin))).
-% #modeb(3,b2(var(pile),var(bin))).
-% #modeb(3,b3(var(pile),var(bin))).
 #modeh(tb(var(n),var(bin)+var(bin)+var(bin))).
 #modeb(2,var(pile)<var(pile),(symmetric,anti_reflexive)).
 #modeh(odd(var(n))).

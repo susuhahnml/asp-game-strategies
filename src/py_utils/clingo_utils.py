@@ -211,18 +211,26 @@ def generate_rule(learned_rules, game_def, state_context,sel_action):
     if learned_rules is None:
         return
     #TODO make it general for variable context
-    subst_var = game_def.subst_var
-    variables = set([])
-    rule = "best_do({},{},T):-".format("V"+sel_action.player,
-                                          edit_vars(sel_action.action,
-                                                    subst_var,variables))
-    for fluent in state_context.fluents:
-        rule+="holds({},T),".format(edit_vars(fluent,subst_var,variables))
-    variables =  list(variables)
-    n_variables = len(variables)
-    for i in range(n_variables):
-        for j in range(i+1,n_variables):
-            rule += "{}!={},".format(variables[i],variables[j])
+    if not hasattr(game_def, 'subst_var'):
+        #Use constant formula
+        rule = "best_do({},{},T):-".format(sel_action.player,sel_action.action)
+        for fluent in state_context.fluents:
+            rule+="holds({},T),".format(fluent)
+
+    else:
+        #Use substitution for generalization
+        subst_var = game_def.subst_var
+        variables = set([])
+        rule = "best_do({},{},T):-".format("V"+sel_action.player,
+                                            edit_vars(sel_action.action,
+                                                        subst_var,variables))
+        for fluent in state_context.fluents:
+            rule+="holds({},T),".format(edit_vars(fluent,subst_var,variables))
+        variables =  list(variables)
+        n_variables = len(variables)
+        for i in range(n_variables):
+            for j in range(i+1,n_variables):
+                rule += "{}!={},".format(variables[i],variables[j])
     learned_rules.append(rule[:-1] + ".")
 
 
@@ -240,7 +248,7 @@ def rules_file_to_gdl(file_path):
         data = file.read()
         data = data.replace(',T)',')')
         data = data.replace('holds','true')
-        text_file = open(file_path[:-4]+'_gdl.lp', "wt")
+        text_file = open(file_path[:-3]+'_gdl.lp', "wt")
         text_file.write(data)
         text_file.close()
 

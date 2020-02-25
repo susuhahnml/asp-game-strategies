@@ -91,7 +91,8 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     ctl.load(game_def.full_time)
     ctl.add("base",[],fixed_atoms)
     if not (learned_rules is None):
-        ctl.add("base",[],"".join(learned_rules))
+        apply_rules_rule="{does(P,A,T):best_do(P,A,T)}=1:-not terminal(T),{best_do(P,A,T)}>0,holds(control(P),T).\n"
+        ctl.add("base",[],"".join([apply_rules_rule]+learned_rules))
     ctl.add("base",[],optimization)
     ctl.ground([("base", [])], context=Context())
     with ctl.solve(yield_=True) as handle:
@@ -241,6 +242,6 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         
         #Update minmax match
         minmax_match = opt_minmax
-    t=Tree(node_top)
-    t.print_in_file("mm_{}_{}.png".format(top_step,level))
+    # t=Tree(node_top)
+    # t.print_in_file("mm_{}_{}.png".format(top_step,level))
     return minmax_match, node_top
