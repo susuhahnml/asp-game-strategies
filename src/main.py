@@ -7,7 +7,7 @@ import inspect
 import random
 import os
 import re
-from py_utils import arg_metav_formatter
+from py_utils import arg_metav_formatter, CustomHelpFormatter
 from structures.game_def import GameDef
 import argparse
 from py_utils.logger import log
@@ -22,17 +22,17 @@ def add_default_params(parser):
     parser.add_argument("--const", type=str, action='append',
         help="A constant for the game definition that will passed to clingo on every call. Must of the form <id>=<value>, can appear multiple times")
     initial_group = parser.add_mutually_exclusive_group()
-    initial_group.add_argument("--random-initial-state-seed", type=int, default=None,
+    initial_group.add_argument("--random-initial-state-seed", "--rand", type=int, default=None,
         help="The initial state for each repetition will be generated randomly using this seed. One will be generated for each repetition. This requires the game definition to have a file named rand_initial.lp as part of its definition to generate random states.")
-    initial_group.add_argument("--initial-state-full-path", type=str, default=None,
+    initial_group.add_argument("--initial-state-full-path","--init", type=str, default=None,
         help="The full path starting from src to the file considered for the initial state. Must have .lp extension")
-    parser.add_argument("--num-repetitions", type=int, default=1,
+    parser.add_argument("--num-repetitions","--n", type=int, default=1,
         help="Number of times the process will be repeated")
-    parser.add_argument("--benchmark-output-file", type=str, default="console",
+    parser.add_argument("--benchmark-output-file", "--out",type=str, default="console",
         help="Output file to save the benchmarks of the process that was runned")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=CustomHelpFormatter)
     # ---------------------------- Default parser ----------------------------
     add_default_params(parser)
     subs = parser.add_subparsers(help="Approach to build. Use 'vs' to play previously built players against each other",dest="selected_approach")
@@ -40,25 +40,25 @@ if __name__ == "__main__":
     
     # ---------------------------- VS parser ----------------------------
     parser_vs = subs.add_parser('vs', 
-        help="Plays one player approach against other and generates benchmarks",conflict_handler='resolve')
+        help="Plays one player approach against other and generates benchmarks",conflict_handler='resolve',formatter_class=CustomHelpFormatter)
     add_default_params(parser_vs)
     
     # ----- Get help for player styles
     player_name_style_options = []
     for n,pc in player_classes.items():
-        player_name_style_options.append(getattr(pc,"get_name_style_description")())
+        player_name_style_options.append("{}:\t{}".format(n.upper(),getattr(pc,"get_name_style_description")()))
 
     parser_vs.add_argument("--pA-style", type=str, default="random",
-        help="Playing style name for player a;"+ ",\n".join(player_name_style_options))
+        help="R|Playing style name for player a:\n• "+ "\n•  ".join(player_name_style_options))
     parser_vs.add_argument("--pB-style", type=str, default="random",
-        help="Playing style name for player b;"+ ",\n".join(player_name_style_options))
+        help="R|Playing style name for player b:\n• "+ "\n•  ".join(player_name_style_options))
     parser_vs.add_argument("--play-symmetry", default=False, action='store_true',
         help="When this flag is passed, all games will be played twice, one with player a starting and one with player b starting to increase fairness")
 
     # ---------------------------- Parser for each approach ----------------------------
     
     for n, pc in player_classes.items():
-        approach_parser = subs.add_parser(n,help=pc.description)
+        approach_parser = subs.add_parser(n,help=pc.description,formatter_class=CustomHelpFormatter)
         add_default_params(approach_parser)
         getattr(pc,"add_parser_build_args")(approach_parser)
     
