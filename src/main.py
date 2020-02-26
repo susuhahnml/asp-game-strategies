@@ -7,7 +7,7 @@ import inspect
 import random
 import os
 import re
-from py_utils import arg_metav_formatter, CustomHelpFormatter
+from py_utils import CustomHelpFormatter
 from structures.game_def import GameDef
 import argparse
 from py_utils.logger import log
