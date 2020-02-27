@@ -80,7 +80,7 @@ class StateExpanded(State):
         List of possible actions from the current state
     """
     def __init__(self, legal_actions, fluents, goals, game_def, is_terminal):
-        super().__init__(fluents,goals,is_terminal,game_def)
+        super().__init__(fluents,goals,game_def,is_terminal)
         self.legal_actions = legal_actions
 
     @classmethod
@@ -92,7 +92,7 @@ class StateExpanded(State):
         is_terminal = model.contains(clingo.Function("terminal", []))
         fluents = [a.arguments[0] for a in atoms if a.name=='true']
         goals = [a for a in atoms if a.name=='goal']
-        return cls([],fluents,goals,is_terminal,game_def)
+        return cls([],fluents,goals,game_def,is_terminal)
 
     @classmethod
     def from_game_def(cls, game_def, current_fluents, strategy=None):

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import json
+import numpy as np
 import sys
 from tqdm import tqdm
 import time
@@ -103,26 +105,9 @@ if __name__ == "__main__":
             Player.from_name_style(game_def,style_b,'a'),
             Player.from_name_style(game_def,style_a,'b')
         ])
-        global_scores = [{'wins':0,'draws':0,'points':0,'response_times':[]},{'wins':0,'draws':0,'points':0,'response_times':[]}]
-        def scores_string(s):
-            return """
-                {}:
-                    wins: {} 
-                    points: {} 
-                    response_times(ms): {}
-                {}:
-                    wins: {} 
-                    points: {} 
-                    response_times(ms): {}
-                """.format(style_a,s[0]['wins'],s[0]['points'],s[0]['response_times'],
-                           style_b,s[1]['wins'],s[1]['points'],s[1]['response_times'])
-        benckmarks_results= ""
+        
+        scores = [{'wins':0,'draws':0,'points':0,'response_times':[]},{'wins':0,'draws':0,'points':0,'response_times':[]}]
         for i in tqdm(range(n)):
-            if(not using_random):
-                scores = global_scores
-            else:
-                scores = [{'wins':0,'draws':0,'points':0,'response_times':[]},{'wins':0,'draws':0,'points':0,'response_times':[]}]
-
             for turn, vs in enumerate(player_encounters):
                 idx = {'a':0+turn,'b':1-turn}
                 game_def.initial = initial_states[i%len(initial_states)]
@@ -136,73 +121,61 @@ if __name__ == "__main__":
                         scores[idx[l]]['draws']+=1
                 scores[idx['a']]['response_times'].append(metrics['a'])
                 scores[idx['b']]['response_times'].append(metrics['b'])
-            
-            if(using_random):
-                for p_i, p in enumerate(global_scores):
-                    for k,v in p.items():
-                        if k!='response_times':
-                            global_scores[p_i][k]+=scores[p_i][k]
-                        else:
-                            global_scores[p_i][k].extend(scores[p_i][k])
-            
-            if(i==n-1 or using_random):
-                initial_ascii = game_def.get_initial_state().ascii
-                benckmarks_results+= """
-Initial state: \n{}\n{}""".format(initial_ascii,scores_string(scores))
+        benchmarks = {}
+        
+        styles = [style_a,style_b]
+        players = ['a','b']
+        for i,p in enumerate(players):
+            benchmarks[p]={} 
+            benchmarks[p]['style_name']=styles[i]
+            benchmarks[p]['wins']=scores[i]['wins']
+            benchmarks[p]['wins']=scores[i]['wins']
+            benchmarks[p]['total_reward']=scores[i]['points']
+            response_times_np = np.array(scores[i]['response_times'])
+            benchmarks[p]['average_response']=round(np.mean(response_times_np),3)
+            benchmarks[p]['std']=round(np.std(response_times_np),3)
+            benchmarks[p]['response_times']=scores[i]['response_times']
 
-        if(using_random and n>1):
-            benckmarks_results+= """\n
-Global scores: \n{}""".format(scores_string(global_scores))
+
 
     # ---------------------------- Computing Build for Approach ----------------------------
 
     else :
-        global_build_times = []
         p_cls = player_classes[args.selected_approach]
-        benckmarks_results = ""
+        build_times = []
         for i in tqdm(range(n)):
-            build_times = []
-            if(not using_random):
-                build_times = global_build_times
             game_def.initial = initial_states[i%len(initial_states)]
             t0 = time.time()
             p_cls.build(game_def,args)
             t1 = time.time()
             build_times.append(round((t1-t0)*1000,3))
-            if(i==n-1 or using_random):
-                initial_ascii = game_def.get_initial_state().ascii
-                benckmarks_results+= """
-Initial state: \n{}\t Build times(ms):{}\n""".format(initial_ascii,build_times)
 
-            if(using_random):
-                global_build_times.extend(build_times)
-        if(using_random and n>1):
-            benckmarks_results+= """\n
-Global build times: \n{}""".format(global_build_times)
+        build_times_np = np.array(build_times)
+        benchmarks= {
+                    'player': args.selected_approach,
+                    'build':build_times,
+                    'average_build':round(np.mean(build_times),3),
+                    'std':round(np.std(build_times),3)}
 
     # ---------------------------- Saving Benchamarks ----------------------------
+    command = ' '.join(sys.argv[1:])
+    benchmarks_final= {
+        'command':command,
+        'args':vars(args),
+        'initial_state': ".".join(game_def.get_initial_state().fluents_str) if not using_random else 'RANDOM',
+        'results': benchmarks
+    }
+    json_benchmarks = json.dumps(benchmarks_final, indent=2)
 
-    benckmark_file = args.benchmark_output_file
-    if(benckmark_file == 'console'):
-        log.info(benckmarks_results)
+    benchmark_file = args.benchmark_output_file
+    if(benchmark_file == 'console'):
+        log.info(json_benchmarks)
     else:
-        benckmark_file = "benchmarks/{}/{}/{}".format(args.selected_approach,game_def.name,benckmark_file)
-        os.makedirs(os.path.dirname(benckmark_file), exist_ok=True)
-        with open(benckmark_file, "w") as text_file:
-            command = ' '.join(sys.argv[1:])
-            benckmarks_final= """
-COMMAND: {}
-Game name: {}
-Repetitions: {}
-
-{}
-        """.format(command,game_def.name,n,benckmarks_results)
-
-            text_file.write(benckmarks_final)
-            log.info("Results saved in " + benckmark_file)
-
-
-   
+        benchmark_file = "benchmarks/{}/{}/{}".format(args.selected_approach,game_def.name,benchmark_file)
+        os.makedirs(os.path.dirname(benchmark_file), exist_ok=True)
+        with open(benchmark_file, "w") as text_file:
+            text_file.write(json_benchmarks)
+            log.info("Results saved in " + benchmark_file)   
 
 
     
