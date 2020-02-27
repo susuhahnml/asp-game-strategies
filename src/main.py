@@ -27,8 +27,8 @@ def add_default_params(parser):
     initial_group = parser.add_mutually_exclusive_group()
     initial_group.add_argument("--random-initial-state-seed", "--rand", type=int, default=None,
         help="The initial state for each repetition will be generated randomly using this seed. One will be generated for each repetition. This requires the game definition to have a file named rand_initial.lp as part of its definition to generate random states.")
-    initial_group.add_argument("--initial-state-full-path","--init", type=str, default=None,
-        help="The full path starting from src to the file considered for the initial state. Must have .lp extension")
+    initial_group.add_argument("--initial","--init", type=str, default=None,
+        help="The name of the file with the initial state inside the game definition.")
     parser.add_argument("--num-repetitions","--n", type=int, default=1,
         help="Number of times the process will be repeated")
     parser.add_argument("--benchmark-output-file", "--out",type=str, default="console",
@@ -51,9 +51,9 @@ if __name__ == "__main__":
     for n,pc in player_classes.items():
         player_name_style_options.append("{}:\t{}".format(n.upper(),getattr(pc,"get_name_style_description")()))
 
-    parser_vs.add_argument("--pA-style", type=str, default="random",
+    parser_vs.add_argument("--pA-style","--a", type=str, default="random",
         help="R|Playing style name for player a:\n• "+ "\n•  ".join(player_name_style_options))
-    parser_vs.add_argument("--pB-style", type=str, default="random",
+    parser_vs.add_argument("--pB-style","--b", type=str, default="random",
         help="R|Playing style name for player b:\n• "+ "\n•  ".join(player_name_style_options))
     parser_vs.add_argument("--play-symmetry", default=False, action='store_true',
         help="When this flag is passed, all games will be played twice, one with player a starting and one with player b starting to increase fairness")
@@ -77,15 +77,15 @@ if __name__ == "__main__":
 
     game_def = GameDef.from_name(args.game_name,constants=constants)
     using_random = not args.random_initial_state_seed is None
-    using_fixed_initial = not args.initial_state_full_path is None
+    using_fixed_initial = not args.initial is None
     if(using_random):
         log.info("Using random seed {} for initial states".format(args.random_initial_state_seed))
         game_def.get_random_initial()
         initial_states = game_def.random_init
         random.Random(args.random_initial_state_seed).shuffle(initial_states)
     elif(using_fixed_initial):
-        log.info("Using fixed initial state {}".format(args.initial_state_full_path))
-        initial_states = [args.initial_state_full_path]
+        log.info("Using fixed initial state {}".format(args.initial))
+        initial_states = [game_def.path + "/"+args.initial]
     else:
         log.info("Using default initial state {}".format(game_def.initial))
         initial_states = [game_def.initial]

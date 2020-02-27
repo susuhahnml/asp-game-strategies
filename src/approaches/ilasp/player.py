@@ -1,6 +1,6 @@
 import subprocess
 from structures.players import Player
-from approaches.min_max_asp.player import MinmaxASPPlayer
+from approaches.pruned_minmax.player import PrunedMinmaxPlayer
 from py_utils.logger import log
 import os
 class ILASPPlayer(Player):
@@ -93,7 +93,7 @@ class ILASPPlayer(Player):
         if args.ilasp_examples_file_name is None:
             log.debug("Generating examples using min_max_asp algorithm")
             args.ilasp_examples_file_name = 'temp_examples.las'
-            MinmaxASPPlayer.build(game_def, args)
+            PrunedMinmaxPlayer.build(game_def, args)
         base_path = './approaches/ilasp/{}/'.format(game_def.name)
         lines = []
         with open(args.background_path,'r') as background_file:

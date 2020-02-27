@@ -1,666 +1,77 @@
 [
     {
-        "command": "vs --pA-style=min_max_asp-S --pA-style=min_max_asp-M --log=debug",
+        "command": "vs --game-name=ttt --n=10 --a=pruned_minmax-S.lp --b=random --initial=initial_L.lp --play-symmetry",
         "args": {
-            "log": "debug",
-            "game_name": "nim",
+            "log": "INFO",
+            "game_name": "ttt",
             "const": null,
             "random_initial_state_seed": null,
-            "initial_state_full_path": null,
-            "num_repetitions": 1,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-M",
-            "pB_style": "random",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,2).has(4,0).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-M",
-                "wins": 1,
-                "total_reward": 1,
-                "average_response": 333.107,
-                "std": 0.0,
-                "response_times": [
-                    333.107
-                ]
-            },
-            "b": {
-                "style_name": "random",
-                "wins": 0,
-                "total_reward": -1,
-                "average_response": 0.017,
-                "std": 0.0,
-                "response_times": [
-                    0.017
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pA-style=min_max_asp-M --log=debug --n=10",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": null,
+            "initial": "initial_L.lp",
             "num_repetitions": 10,
             "benchmark_output_file": "console",
             "selected_approach": "vs",
-            "pA_style": "min_max_asp-M",
+            "pA_style": "pruned_minmax-S.lp",
             "pB_style": "random",
-            "play_symmetry": false
+            "play_symmetry": true
         },
-        "initial_state": "has(1,1).has(2,2).has(3,2).has(4,0).control(a)",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).free(cell(1,2)).free(cell(3,1)).free(cell(1,1)).free(cell(3,3))",
         "results": {
             "a": {
-                "style_name": "min_max_asp-M",
-                "wins": 10,
-                "total_reward": 10,
-                "average_response": 397.201,
-                "std": 9.703,
+                "style_name": "pruned_minmax-S.lp",
+                "wins": 11,
+                "total_reward": 5,
+                "average_response": 2424.006,
+                "std": 368.618,
                 "response_times": [
-                    414.566,
-                    406.393,
-                    407.136,
-                    396.085,
-                    387.366,
-                    381.03,
-                    396.623,
-                    387.768,
-                    399.495,
-                    395.548
+                    2696.989,
+                    1922.23,
+                    2327.382,
+                    2106.04,
+                    1800.382,
+                    2044.627,
+                    2681.324,
+                    2116.07,
+                    2195.967,
+                    2847.975,
+                    2395.249,
+                    2691.123,
+                    2779.97,
+                    2268.744,
+                    2392.873,
+                    3110.894,
+                    2463.937,
+                    2568.512,
+                    3088.257,
+                    1981.575
                 ]
             },
             "b": {
                 "style_name": "random",
-                "wins": 0,
-                "total_reward": -10,
-                "average_response": 0.017,
-                "std": 0.005,
+                "wins": 6,
+                "total_reward": -5,
+                "average_response": 0.022,
+                "std": 0.007,
                 "response_times": [
+                    0.045,
+                    0.032,
                     0.029,
+                    0.03,
+                    0.016,
+                    0.016,
+                    0.018,
+                    0.019,
+                    0.019,
+                    0.018,
+                    0.019,
+                    0.018,
+                    0.02,
+                    0.017,
+                    0.02,
                     0.021,
-                    0.015,
-                    0.015,
-                    0.015,
-                    0.014,
-                    0.015,
-                    0.013,
-                    0.015,
-                    0.014
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": null,
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,2).has(4,0).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 10,
-                "total_reward": 10,
-                "average_response": 106.501,
-                "std": 2.414,
-                "response_times": [
-                    107.48,
-                    102.949,
-                    109.632,
-                    106.454,
-                    107.817,
-                    105.531,
-                    104.864,
-                    104.611,
-                    111.184,
-                    104.489
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 0,
-                "total_reward": -10,
-                "average_response": 286.174,
-                "std": 3.067,
-                "response_times": [
-                    291.991,
-                    281.952,
-                    287.156,
-                    285.026,
-                    286.099,
-                    289.307,
-                    284.714,
-                    282.042,
-                    289.015,
-                    284.438
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10 --init=./game_definitions/nim/initial_M.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 10,
-                "total_reward": 10,
-                "average_response": 1914.219,
-                "std": 3941.811,
-                "response_times": [
-                    13739.584,
-                    617.535,
-                    601.153,
-                    609.626,
-                    593.454,
-                    627.384,
-                    587.448,
-                    585.032,
-                    587.587,
-                    593.39
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 0,
-                "total_reward": -10,
-                "average_response": 496.659,
-                "std": 13.228,
-                "response_times": [
-                    502.714,
-                    526.695,
-                    502.338,
-                    510.008,
-                    492.932,
-                    491.236,
-                    485.437,
-                    480.836,
-                    486.233,
-                    488.158
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10 --init=./game_definitions/nim/initial_M.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 10,
-                "total_reward": 10,
-                "average_response": 486.042,
-                "std": 206.716,
-                "response_times": [
-                    1106.032,
-                    419.408,
-                    423.803,
-                    413.622,
-                    414.162,
-                    414.319,
-                    423.812,
-                    408.715,
-                    415.179,
-                    421.368
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 0,
-                "total_reward": -10,
-                "average_response": 519.822,
-                "std": 81.718,
-                "response_times": [
-                    764.682,
-                    490.695,
-                    490.726,
-                    486.624,
-                    487.397,
-                    495.053,
-                    493.039,
-                    491.962,
-                    498.577,
-                    499.466
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10 --init=./game_definitions/nim/initial_M.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 9,
-                "total_reward": 8,
-                "average_response": 668.106,
-                "std": 248.129,
-                "response_times": [
-                    1158.377,
-                    1124.468,
-                    410.933,
-                    411.811,
-                    562.899,
-                    604.804,
-                    584.543,
-                    569.286,
-                    629.844,
-                    624.094
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 1,
-                "total_reward": -8,
-                "average_response": 508.648,
-                "std": 80.279,
-                "response_times": [
-                    433.115,
-                    615.512,
-                    379.505,
-                    375.644,
-                    507.812,
-                    547.343,
-                    537.5,
-                    536.581,
-                    559.827,
-                    593.642
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10 --init=./game_definitions/nim/initial_M.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 9,
-                "total_reward": 8,
-                "average_response": 490.19,
-                "std": 221.725,
-                "response_times": [
-                    1148.516,
-                    345.721,
-                    368.143,
-                    449.342,
-                    432.388,
-                    417.857,
-                    433.618,
-                    438.979,
-                    432.081,
-                    435.26
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 1,
-                "total_reward": -8,
-                "average_response": 491.329,
-                "std": 27.832,
-                "response_times": [
-                    497.902,
-                    413.128,
-                    484.564,
-                    510.85,
-                    483.947,
-                    493.37,
-                    507.638,
-                    510.196,
-                    500.436,
-                    511.263
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10 --init=./game_definitions/nim/initial_M.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 0,
-                "total_reward": -10,
-                "average_response": 1200.066,
-                "std": 21.649,
-                "response_times": [
-                    1147.528,
-                    1182.65,
-                    1216.698,
-                    1205.706,
-                    1182.934,
-                    1203.198,
-                    1215.572,
-                    1215.51,
-                    1220.924,
-                    1209.939
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 10,
-                "total_reward": 10,
-                "average_response": 589.753,
-                "std": 46.515,
-                "response_times": [
-                    493.771,
-                    619.608,
-                    591.792,
-                    568.207,
-                    661.363,
-                    567.873,
-                    612.551,
-                    569.886,
-                    561.525,
-                    650.958
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S --pB-style=min_max_asp-M --log=debug --n=10 --init=./game_definitions/nim/initial_L.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_L.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S",
-            "pB_style": "min_max_asp-M",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,3).has(3,5).has(4,7).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S",
-                "wins": 3,
-                "total_reward": -4,
-                "average_response": 1914.787,
-                "std": 402.27,
-                "response_times": [
-                    2070.06,
-                    1630.775,
-                    2133.449,
-                    1698.736,
-                    1277.415,
-                    1250.144,
-                    2109.249,
-                    2362.457,
-                    2198.658,
-                    2416.927
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M",
-                "wins": 7,
-                "total_reward": 4,
-                "average_response": 1604.278,
-                "std": 307.57,
-                "response_times": [
-                    1193.792,
-                    1545.562,
-                    1915.348,
-                    2108.555,
-                    1297.404,
-                    1345.028,
-                    1259.39,
-                    1756.515,
-                    1679.54,
-                    1941.644
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S.lp --pB-style=min_max_asp-M.lp --log=debug --n=10 --init=./game_definitions/nim/initial_L.lp",
-        "args": {
-            "log": "debug",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_L.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S.lp",
-            "pB_style": "min_max_asp-M.lp",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,3).has(3,5).has(4,7).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S.lp",
-                "wins": 2,
-                "total_reward": -6,
-                "average_response": 1697.404,
-                "std": 322.291,
-                "response_times": [
-                    1565.152,
-                    1260.856,
-                    1727.975,
-                    1992.836,
-                    1163.44,
-                    2116.157,
-                    1708.441,
-                    2187.399,
-                    1500.357,
-                    1751.431
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M.lp",
-                "wins": 8,
-                "total_reward": 6,
-                "average_response": 1374.006,
-                "std": 454.34,
-                "response_times": [
-                    589.294,
-                    1957.649,
-                    1200.428,
-                    1615.286,
-                    891.144,
-                    1307.046,
-                    1208.771,
-                    1582.572,
-                    2197.097,
-                    1190.778
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S.lp --pB-style=min_max_asp-M.lp --n=10 --init=./game_definitions/nim/initial_L.lp",
-        "args": {
-            "log": "INFO",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_L.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S.lp",
-            "pB_style": "min_max_asp-M.lp",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,3).has(3,5).has(4,7).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S.lp",
-                "wins": 2,
-                "total_reward": -6,
-                "average_response": 1827.304,
-                "std": 364.5,
-                "response_times": [
-                    1622.431,
-                    2080.034,
-                    2124.089,
-                    2166.862,
-                    1674.102,
-                    1590.794,
-                    1453.633,
-                    2417.227,
-                    1973.121,
-                    1170.745
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M.lp",
-                "wins": 8,
-                "total_reward": 6,
-                "average_response": 1489.415,
-                "std": 459.762,
-                "response_times": [
-                    1096.665,
-                    1626.625,
-                    1358.053,
-                    1054.61,
-                    1655.075,
-                    1378.938,
-                    1806.839,
-                    1779.358,
-                    2434.233,
-                    703.753
-                ]
-            }
-        }
-    },
-    {
-        "command": "vs --pA-style=min_max_asp-S.lp --pB-style=min_max_asp-M.lp --n=10 --init=./game_definitions/nim/initial_L.lp",
-        "args": {
-            "log": "INFO",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_L.lp",
-            "num_repetitions": 10,
-            "benchmark_output_file": "console",
-            "selected_approach": "vs",
-            "pA_style": "min_max_asp-S.lp",
-            "pB_style": "min_max_asp-M.lp",
-            "play_symmetry": false
-        },
-        "initial_state": "has(1,1).has(2,3).has(3,5).has(4,7).control(a)",
-        "results": {
-            "a": {
-                "style_name": "min_max_asp-S.lp",
-                "wins": 3,
-                "total_reward": -4,
-                "average_response": 1677.974,
-                "std": 302.476,
-                "response_times": [
-                    1641.424,
-                    1635.639,
-                    2099.618,
-                    1376.057,
-                    2049.366,
-                    1574.244,
-                    1698.814,
-                    1155.348,
-                    1456.882,
-                    2092.351
-                ]
-            },
-            "b": {
-                "style_name": "min_max_asp-M.lp",
-                "wins": 7,
-                "total_reward": 4,
-                "average_response": 1373.752,
-                "std": 191.368,
-                "response_times": [
-                    1574.677,
-                    1148.107,
-                    1360.291,
-                    1212.783,
-                    1700.16,
-                    1018.286,
-                    1454.425,
-                    1460.664,
-                    1408.605,
-                    1399.523
+                    0.025,
+                    0.021,
+                    0.018,
+                    0.018
                 ]
             }
         }

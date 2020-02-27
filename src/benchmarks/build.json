@@ -1,225 +1,168 @@
 [
     {
-        "command": "min_max --tree-image-file-name=tree221.png --game-name=ttt --init=./game_definitions/ttt/initial_S.lp",
+        "command": "minmax --game-name=nim --initial=initial_S.lp --n=10",
+        "args": {
+            "log": "INFO",
+            "game_name": "nim",
+            "const": null,
+            "random_initial_state_seed": null,
+            "initial": "initial_S.lp",
+            "num_repetitions": 10,
+            "benchmark_output_file": "console",
+            "selected_approach": "minmax",
+            "tree_image_file_name": null,
+            "main_player": "a"
+        },
+        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,0).control(a)",
+        "results": {
+            "player": "minmax",
+            "build": [
+                1117.632,
+                1108.789,
+                1109.398,
+                1082.954,
+                1112.319,
+                1108.326,
+                1104.794,
+                1107.629,
+                1104.822,
+                1097.685
+            ],
+            "average_build": 1105.435,
+            "std": 8.958,
+            "special_results": {
+                "number_of_nodes": 208
+            }
+        }
+    },
+    {
+        "command": "minmax --game-name=ttt --initial=initial_S.lp --n=10",
         "args": {
             "log": "INFO",
             "game_name": "ttt",
             "const": null,
             "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/ttt/initial_S.lp",
-            "num_repetitions": 1,
+            "initial": "initial_S.lp",
+            "num_repetitions": 10,
             "benchmark_output_file": "console",
-            "selected_approach": "min_max",
-            "tree_image_file_name": "tree221.png",
+            "selected_approach": "minmax",
+            "tree_image_file_name": null,
             "main_player": "a"
         },
         "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
-            "player": "min_max",
+            "player": "minmax",
             "build": [
-                1290.524
+                1196.625,
+                1165.539,
+                1179.978,
+                1158.752,
+                1181.617,
+                1173.22,
+                1183.737,
+                1201.355,
+                1198.431,
+                1181.919
             ],
-            "average_build": 1290.524,
-            "std": 0.0,
+            "average_build": 1182.117,
+            "std": 13.244,
             "special_results": {
                 "number_of_nodes": 185
             }
         }
     },
     {
-        "command": "min_max --tree-image-file-name=tree221.png --game-name=ttt --init=./game_definitions/ttt/initial_M.lp",
+        "command": "pruned_minmax --game-name=ttt --initial=initial_S.lp --n=10",
         "args": {
             "log": "INFO",
             "game_name": "ttt",
             "const": null,
             "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/ttt/initial_M.lp",
-            "num_repetitions": 1,
+            "initial": "initial_S.lp",
+            "num_repetitions": 10,
             "benchmark_output_file": "console",
-            "selected_approach": "min_max",
-            "tree_image_file_name": "tree221.png",
-            "main_player": "a"
-        },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).free(cell(1,2)).free(cell(1,1)).has(a,cell(3,1)).has(b,cell(3,3))",
-        "results": {
-            "player": "min_max",
-            "build": [
-                85945.786
-            ],
-            "average_build": 85945.786,
-            "std": 0.0,
-            "special_results": {
-                "number_of_nodes": 7583
-            }
-        }
-    },
-    {
-        "command": "min_max_asp --tree-image-file-name=tree221.png --game-name=ttt --init=./game_definitions/ttt/initial_M.lp",
-        "args": {
-            "log": "INFO",
-            "game_name": "ttt",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/ttt/initial_M.lp",
-            "num_repetitions": 1,
-            "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
-            "tree_image_file_name": "tree221.png",
+            "selected_approach": "pruned_minmax",
+            "tree_image_file_name": null,
             "main_player": "a",
             "ilasp_examples_file_name": null,
             "rules_file_name": null,
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).free(cell(1,2)).free(cell(1,1)).has(a,cell(3,1)).has(b,cell(3,3))",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
-            "player": "min_max_asp",
+            "player": "pruned_minmax",
             "build": [
-                1365.9
+                469.804,
+                457.114,
+                460.678,
+                461.158,
+                458.211,
+                454.756,
+                455.57,
+                455.734,
+                448.597,
+                459.987
             ],
-            "average_build": 1365.9,
-            "std": 0.0,
+            "average_build": 458.161,
+            "std": 5.206,
             "special_results": {
-                "number_of_nodes": 82
+                "number_of_nodes": 31
             }
         }
     },
     {
-        "command": "min_max_asp --tree-image-file-name=tree221.png --game-name=ttt --init=./game_definitions/ttt/initial_M.lp --rules=M",
+        "command": "pruned_minmax --game-name=ttt --initial=initial_S.lp --n=10 --rules=S.lp",
         "args": {
             "log": "INFO",
             "game_name": "ttt",
             "const": null,
             "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/ttt/initial_M.lp",
-            "num_repetitions": 1,
+            "initial": "initial_S.lp",
+            "num_repetitions": 10,
             "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
-            "tree_image_file_name": "tree221.png",
+            "selected_approach": "pruned_minmax",
+            "tree_image_file_name": null,
             "main_player": "a",
             "ilasp_examples_file_name": null,
-            "rules_file_name": "M",
+            "rules_file_name": "S.lp",
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).free(cell(1,2)).free(cell(1,1)).has(a,cell(3,1)).has(b,cell(3,3))",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
-            "player": "min_max_asp",
+            "player": "pruned_minmax_learning",
             "build": [
-                2584.141
+                881.626,
+                490.025,
+                507.352,
+                522.066,
+                521.067,
+                516.658,
+                499.748,
+                508.228,
+                509.37,
+                487.073
             ],
-            "average_build": 2584.141,
-            "std": 0.0,
+            "average_build": 544.321,
+            "std": 112.995,
             "special_results": {
-                "number_of_nodes": 76
+                "number_of_nodes": 26
             }
         }
     },
     {
-        "command": "min_max_asp --tree-image-file-name=tree221.png --game-name=nim --init=./game_definitions/nim/initial_M.lp --rules=M",
+        "command": "pruned_minmax --game-name=nim --initial=initial_S.lp --n=10 --rules=S.lp",
         "args": {
             "log": "INFO",
             "game_name": "nim",
             "const": null,
             "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 1,
+            "initial": "initial_S.lp",
+            "num_repetitions": 10,
             "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
-            "tree_image_file_name": "tree221.png",
-            "main_player": "a",
-            "ilasp_examples_file_name": null,
-            "rules_file_name": "M",
-            "train_file_name": null,
-            "first_build": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
-        "results": {
-            "player": "min_max_asp",
-            "build": [
-                45448.274
-            ],
-            "average_build": 45448.274,
-            "std": 0.0,
-            "special_results": {
-                "number_of_nodes": 399
-            }
-        }
-    },
-    {
-        "command": "min_max_asp --tree-image-file-name=tree221S.png --game-name=nim --init=./game_definitions/nim/initial_S.lp --rules=S",
-        "args": {
-            "log": "INFO",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_S.lp",
-            "num_repetitions": 1,
-            "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
-            "tree_image_file_name": "tree221S.png",
-            "main_player": "a",
-            "ilasp_examples_file_name": null,
-            "rules_file_name": "S",
-            "train_file_name": null,
-            "first_build": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,0).control(a)",
-        "results": {
-            "player": "min_max_asp",
-            "build": [
-                1606.201
-            ],
-            "average_build": 1606.201,
-            "std": 0.0,
-            "special_results": {
-                "number_of_nodes": 50
-            }
-        }
-    },
-    {
-        "command": "min_max_asp --tree-image-file-name=tree221S.png --game-name=nim --init=./game_definitions/nim/initial_S.lp --rules=S",
-        "args": {
-            "log": "INFO",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_S.lp",
-            "num_repetitions": 1,
-            "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
-            "tree_image_file_name": "tree221S.png",
-            "main_player": "a",
-            "ilasp_examples_file_name": null,
-            "rules_file_name": "S",
-            "train_file_name": null,
-            "first_build": false
-        },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,0).control(a)",
-        "results": {
-            "player": "min_max_asp_learning",
-            "build": [
-                2301.54
-            ],
-            "average_build": 2301.54,
-            "std": 0.0,
-            "special_results": {
-                "number_of_nodes": 50
-            }
-        }
-    },
-    {
-        "command": "min_max_asp --tree-image-file-name=tree221S.png --game-name=nim --init=./game_definitions/nim/initial_S.lp --rules=S.lp",
-        "args": {
-            "log": "INFO",
-            "game_name": "nim",
-            "const": null,
-            "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_S.lp",
-            "num_repetitions": 1,
-            "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
-            "tree_image_file_name": "tree221S.png",
+            "selected_approach": "pruned_minmax",
+            "tree_image_file_name": null,
             "main_player": "a",
             "ilasp_examples_file_name": null,
             "rules_file_name": "S.lp",
@@ -228,45 +171,63 @@
         },
         "initial_state": "has(1,1).has(2,2).has(3,3).has(4,0).control(a)",
         "results": {
-            "player": "min_max_asp_learning",
+            "player": "pruned_minmax_learning",
             "build": [
-                2999.858
+                2073.654,
+                2059.512,
+                2062.966,
+                1948.631,
+                1851.035,
+                1811.224,
+                1803.202,
+                1841.081,
+                1840.84,
+                1861.539
             ],
-            "average_build": 2999.858,
-            "std": 0.0,
+            "average_build": 1915.368,
+            "std": 105.005,
             "special_results": {
                 "number_of_nodes": 50
             }
         }
     },
     {
-        "command": "min_max_asp --game-name=nim --init=./game_definitions/nim/initial_M.lp --rules=M.lp",
+        "command": "pruned_minmax --game-name=nim --initial=initial_S.lp --n=10",
         "args": {
             "log": "INFO",
             "game_name": "nim",
             "const": null,
             "random_initial_state_seed": null,
-            "initial_state_full_path": "./game_definitions/nim/initial_M.lp",
-            "num_repetitions": 1,
+            "initial": "initial_S.lp",
+            "num_repetitions": 10,
             "benchmark_output_file": "console",
-            "selected_approach": "min_max_asp",
+            "selected_approach": "pruned_minmax",
             "tree_image_file_name": null,
             "main_player": "a",
             "ilasp_examples_file_name": null,
-            "rules_file_name": "M.lp",
+            "rules_file_name": null,
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,5).control(a)",
+        "initial_state": "has(1,1).has(2,2).has(3,3).has(4,0).control(a)",
         "results": {
-            "player": "min_max_asp_learning",
+            "player": "pruned_minmax",
             "build": [
-                49445.988
+                4276.103,
+                4091.887,
+                4856.319,
+                4835.152,
+                4432.124,
+                4328.505,
+                4378.877,
+                4068.561,
+                4167.039,
+                4185.765
             ],
-            "average_build": 49445.988,
-            "std": 0.0,
+            "average_build": 4362.033,
+            "std": 266.47,
             "special_results": {
-                "number_of_nodes": 380
+                "number_of_nodes": 134
             }
         }
     }
