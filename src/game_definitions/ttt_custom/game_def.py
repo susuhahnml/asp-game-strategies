@@ -1,6 +1,6 @@
 from structures.game_def import GameDef
 import re
-class GameTTTFixedDef(GameDef):
+class GameTTTDef(GameDef):
 
     def __init__(self,name,initial=None,constants={}):
         """
@@ -24,11 +24,10 @@ class GameTTTFixedDef(GameDef):
         to_sub = [["•"]*self.grid_size for i in range(self.grid_size)]
         fluents = state.fluents
         for fluent in fluents:
-            if fluent.name == "has":
-                p = str(fluent.arguments[0])
-                x = fluent.arguments[1].arguments[0].number
-                y = fluent.arguments[1].arguments[1].number
-                to_sub[x-1][y-1]=p
+            if re.search("has\((a|b)",str(fluent)):
+                hold = re.sub("\)","",re.sub(r"has\(","",
+                                             str(fluent))).split(",")
+                to_sub[int(hold[1])-1][int(hold[2])-1]=hold[0]
         return "\n".join([" ".join(x) for x in to_sub])
 
     def step_to_ascii(self, step):
@@ -47,8 +46,8 @@ class GameTTTFixedDef(GameDef):
         a_split = self.state_to_ascii(step.state).splitlines(True)
         if(not step.action):
             return "".join(a_split)
-        x = step.action.action.arguments[0].arguments[0].number -1
-        y = step.action.action.arguments[0].arguments[1].number -1
+        x = step.action.action.arguments[0].number -1
+        y = step.action.action.arguments[1].number -1
         a_split[x] = a_split[x][0:y*2] + step.action.player + a_split[x][y*2+1:]
 
         return "".join(a_split)

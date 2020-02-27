@@ -7,6 +7,7 @@ from tqdm import tqdm
 from anytree import Node, RenderTree
 from anytree.exporter import UniqueDotExporter, DotExporter
 from anytree.iterators.levelorderiter import LevelOrderIter
+from anytree.search import findall
 from .state import State, StateExpanded
 from .match import Match
 from .step import Step
@@ -21,6 +22,9 @@ class Tree:
         self.root = root
         self.game = game
 
+    def get_number_of_nodes(self):
+        nodes = findall(self.root, filter_=lambda node: not node.name.action is None and not node.name.score is None)
+        return len(nodes)
 
     def print_in_file(self,
                       file_name="tree_test.png",main_player="a"):

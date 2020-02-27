@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
+from random import randint
 from py_utils.logger import log
 from collections import defaultdict
 from structures.state import State, StateExpanded
 from structures.action import ActionExpanded, Action
 from structures.step import Step
 from py_utils.colors import *
-
+import signal
 class Match:
     """
     Class to represent a match, this match is defined by a list of steps
@@ -85,6 +86,10 @@ class Match:
                 - n: Generate until depth n or terminal state reached
         """
 
+        def handler(signum, frame):
+            raise TimeoutError("Action time out")
+        
+        signal.signal(signal.SIGALRM, handler)
         if(ran_init):
             initial = game_def.get_random_initial()
         else:
@@ -102,8 +107,15 @@ class Match:
         letters = ['a','b']
         response_times = {'a':[],'b':[]}
         while(not state.is_terminal and continue_depth):
+            signal.alarm(3)
             t0 = time.time()
-            selected_action = players[time_step%2].choose_action(state)
+            try:
+                selected_action = players[time_step%2].choose_action(state)
+            except TimeoutError as ex:
+                log.info("Time out for player {}, choosing random action".format(letters[time_step%2]))
+                index = randint(0,len(state.legal_actions)-1)
+                selected_action = state.legal_actions[index]
+            signal.alarm(0)
             t1 = time.time()
             response_times[letters[time_step%2]].append(round((t1-t0)*1000,3))
             step = Step(state,selected_action,time_step)

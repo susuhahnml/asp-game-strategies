@@ -91,7 +91,7 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     ctl.load(game_def.full_time)
     ctl.add("base",[],fixed_atoms)
     if not (learned_rules is None):
-        apply_rules_rule="{does(P,A,T):best_do(P,A,T)}=1:-not terminal(T),{best_do(P,A,T)}>0,holds(control(P),T).\n"
+        apply_rules_rule="{does(P,A,T):best_do(P,A,T),legal(P,A,T)}=1:-not terminal(T),#count{1:best_do(P,A,T),legal(P,A,T)}>0,holds(control(P),T).\n"
         ctl.add("base",[],"".join([apply_rules_rule]+learned_rules))
     ctl.add("base",[],optimization)
     ctl.ground([("base", [])], context=Context())
@@ -129,11 +129,15 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
     learned_rules = [] if learning_rules else None
     training_list = [] if generating_training else None
     node = Tree.node_from_match_initial(match)
-    minmax_match, minmax_tree = get_minmax_rec(game_def,match,node,0,
-                                               main_player,
-                                               learned_rules=learned_rules,
-                                               list_examples=examples_list,
-                                               training_list=training_list, old_fixed=extra_fixed)
+    try:
+        minmax_match, minmax_tree = get_minmax_rec(game_def,match,node,0,
+                                                main_player,
+                                                learned_rules=learned_rules,
+                                                list_examples=examples_list,
+                                                training_list=training_list, old_fixed=extra_fixed)
+    except TimeoutError as ex:
+        return None, None, examples_list, learned_rules, training_list
+     
     minmax_tree=Tree(minmax_tree.parent)
     final_score = minmax_match.goals[main_player]
     minmax_match.steps[0].set_score(final_score)

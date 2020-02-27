@@ -127,7 +127,6 @@ class ILASPPlayer(Player):
             startegy.close()
         log.debug("Strategy saved in {}/strategies/{}".format(base_path,args.strategy_name))
 
-        pass
 
     def choose_action(self,state):
         """

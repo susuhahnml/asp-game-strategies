@@ -15,6 +15,7 @@ import argparse
 from py_utils.logger import log
 from structures.players import player_approaches_sub_classes, Player
 from structures.match import Match
+import signal
 
 def add_default_params(parser):
     parser.add_argument("--log", type=str, default="INFO",
@@ -146,7 +147,7 @@ if __name__ == "__main__":
         for i in tqdm(range(n)):
             game_def.initial = initial_states[i%len(initial_states)]
             t0 = time.time()
-            p_cls.build(game_def,args)
+            results= p_cls.build(game_def,args)
             t1 = time.time()
             build_times.append(round((t1-t0)*1000,3))
 
@@ -155,8 +156,11 @@ if __name__ == "__main__":
                     'player': args.selected_approach,
                     'build':build_times,
                     'average_build':round(np.mean(build_times),3),
-                    'std':round(np.std(build_times),3)}
-
+                    'std':round(np.std(build_times),3),
+                    'special_results':results}
+        if "rules_file_name" in args:
+            if not args.rules_file_name is None:
+                benchmarks['player'] = benchmarks['player']+'_learning'
     # ---------------------------- Saving Benchamarks ----------------------------
     command = ' '.join(sys.argv[1:])
     benchmarks_final= {
@@ -165,7 +169,7 @@ if __name__ == "__main__":
         'initial_state': ".".join(game_def.get_initial_state().fluents_str) if not using_random else 'RANDOM',
         'results': benchmarks
     }
-    json_benchmarks = json.dumps(benchmarks_final, indent=2)
+    json_benchmarks = json.dumps(benchmarks_final, indent=4)
 
     benchmark_file = args.benchmark_output_file
     if(benchmark_file == 'console'):
@@ -176,6 +180,11 @@ if __name__ == "__main__":
         with open(benchmark_file, "w") as text_file:
             text_file.write(json_benchmarks)
             log.info("Results saved in " + benchmark_file)   
-
-
+    json_file = "benchmarks/vs.json" if args.selected_approach == 'vs' else 'benchmarks/build.json'
     
+    with open(json_file) as feedsjson:
+        full_arr = json.load(feedsjson)
+    full_arr.append(benchmarks_final)
+    with open(json_file, mode='w') as feedsjson:
+        json.dump(full_arr, feedsjson, indent=4)
+

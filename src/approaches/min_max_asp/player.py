@@ -26,10 +26,11 @@ class MinmaxASPPlayer(Player):
             main_player (str): The name of the player either a or b
             name_style (str): The name style used to create the built player. 
         """
-        name = "Min max asp pruned player"
+        rules_name = name_style[12:]
+        name = "Min max asp pruned player from "+rules_name
         super().__init__(game_def, name, main_player)
-        apply_rules_rule="{does(P,A):best_do(P,A)}=1:-not terminal,{best_do(P,A)}>0,true(control(P)).\n"
-        rules_file = "./approaches/min_max_asp/learned_rules/{}/{}".format(game_def.name,name_style[12:])
+        apply_rules_rule="{does(P,A):best_do(P,A),legal(P,A)}=1:-not terminal,{best_do(P,A)}>0,true(control(P)).\n"
+        rules_file = "./approaches/min_max_asp/learned_rules/{}/{}".format(game_def.name,rules_name)
         with open(rules_file, "r") as text_file:
             rules = text_file.readlines()
             rules = [apply_rules_rule,"\n"] + rules
@@ -69,13 +70,13 @@ class MinmaxASPPlayer(Player):
             approach_parser (argparser): An argparser used from the command line for
                 this specific approach. 
         """
-        approach_parser.add_argument("--tree-image-file-name", type=str, default=None,
+        approach_parser.add_argument("--tree-image-file-name", "--tree",type=str, default=None,
             help="Name of the file save an image of the computed tree")
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
-        approach_parser.add_argument("--ilasp-examples-file-name", type=str, default=None,
+        approach_parser.add_argument("--ilasp-examples-file-name","--ilasp", type=str, default=None,
             help="File name on which to save the order ilasp examples generated during the computation of the asp pruned min max tree. The file will be saved in the directory approaches/ilasp/game_name/examples. Extension .las")
-        approach_parser.add_argument("--rules-file-name", type=str, default=None,
+        approach_parser.add_argument("--rules-file-name", "--rules", type=str, default=None,
             help="File name to save rules learned during the computation of the asp pruned min max tree. Passing this argument implies the use of such rules during the computation to find similarities. IMPORTANT: The game definition used must have the subst_var attribute and the encoding of the game definition must be total regarding fluents (No information is encoded in unprovable fluents) Extension .lp")
         approach_parser.add_argument("--train-file-name", type=str, default=None,
             help="File name to save training information computed during the calculations. The information is encoded in hot-one encoding according to the ml-agent approach. The file is saved in approaches/ml-agent/training. Extension .csv")
@@ -139,6 +140,8 @@ class MinmaxASPPlayer(Player):
             image_file_name = '{}/{}'.format(args.game_name,args.tree_image_file_name)
             min_max_tree.print_in_file(file_name=image_file_name,main_player=args.main_player)
 
+        return {
+            'number_of_nodes':min_max_tree.get_number_of_nodes()}
 
     def choose_action(self,state):
         """
@@ -153,7 +156,11 @@ class MinmaxASPPlayer(Player):
         initial = fluents_to_asp_syntax(state.fluents,0)
         match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed="\n".join(self.learned), learning_rules = True)
         self.learned.extend(ls)
+        if(len(ls)>0):
+            log.info("{} learned new rules during game play".format(self.name))
+        if match is None:
+            raise TimeoutError
         action_name = str(match.steps[0].action.action)
         action = [l_a for l_a in state.legal_actions
-                  if str(l_a.action) == action_name][0]
+                if str(l_a.action) == action_name][0]
         return action

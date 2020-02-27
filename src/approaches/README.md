@@ -107,7 +107,9 @@
 
     def choose_action(self,state):
         """
-        The player chooses an action given a current state.
+        The player chooses an action given a current state. 
+        A TimeOutError might be raised during this execution to indicate that the time
+        for choosing an action is finished. In this case a random action will be selected.
 
         Args:
             state (State): The current state

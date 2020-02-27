@@ -1,7 +1,7 @@
 % Removable configuration
 #const max_removable = 6.
 #const max_sticks = 7.
-#const num_piles = 3.
+#const num_piles = 4.
 
 % Roles
 role(a). role(b).

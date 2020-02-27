@@ -65,7 +65,7 @@ class MinMaxPlayer(Player):
             approach_parser (argparser): An argparser used from the command line for
                 this specific approach. 
         """
-        approach_parser.add_argument("--tree-image-file-name", type=str, default=None,
+        approach_parser.add_argument("--tree-image-file-name", "--tree",type=str, default=None,
             help="Name of the file save an image of the computed tree")
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
@@ -87,7 +87,7 @@ class MinMaxPlayer(Player):
             file_name = '{}/{}'.format(game_def.name,args.tree_image_file_name)
             tree.print_in_file(file_name=file_name,main_player=args.main_player)
             log.debug("Tree image saved in {}".format(file_name))
-        pass
+        return {'number_of_nodes':tree.get_number_of_nodes()}
 
     def choose_action(self,state):
         """
