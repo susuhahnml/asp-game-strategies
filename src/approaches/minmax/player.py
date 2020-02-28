@@ -4,7 +4,7 @@ from structures.tree import Tree
 from approaches.minmax.minmax import minmax_from_game_def
 from py_utils.logger import log
 from structures.players import Player
-
+from random import randint
 class MinmaxPlayer(Player):
     """
     Creates the full minmax tree
@@ -29,6 +29,8 @@ class MinmaxPlayer(Player):
             name_style (str): The name style used to create the built player. 
         """
         super().__init__(game_def, "Min max tree", main_player)
+        file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,name_style[7:])
+        self.tree = Tree.load_from_file(file_path,game_def)
 
     @classmethod
     def get_name_style_description(cls):
@@ -39,7 +41,7 @@ class MinmaxPlayer(Player):
         Returns: 
             String for the description
         """
-        return "minmax"
+        return "minmax-<tree-file>: where tree-file is the name of the file saved in the folder trees during build"
 
     @staticmethod
     def match_name_style(name_style):
@@ -52,7 +54,7 @@ class MinmaxPlayer(Player):
         Returns: 
             Boolean value indicating if the name_style is a match
         """
-        return name_style=="minmax"
+        return name_style[:7]=="minmax-"
 
 
     @staticmethod
@@ -65,8 +67,10 @@ class MinmaxPlayer(Player):
             approach_parser (argparser): An argparser used from the command line for
                 this specific approach. 
         """
-        approach_parser.add_argument("--tree-image-file-name", "--tree",type=str, default=None,
-            help="Name of the file save an image of the computed tree")
+        approach_parser.add_argument("--tree-image-file-name", "--tree-img",type=str, default=None,
+            help="Name of the file to save an image of the computed tree")
+        approach_parser.add_argument("--tree-name", "--tree-name",type=str, default=None,
+            help="Name of the file to save the computed tree, must have .json extention")
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
 
@@ -87,7 +91,12 @@ class MinmaxPlayer(Player):
             file_name = '{}/{}'.format(game_def.name,args.tree_image_file_name)
             tree.print_in_file(file_name=file_name,main_player=args.main_player)
             log.debug("Tree image saved in {}".format(file_name))
-        return {'number_of_nodes':tree.get_number_of_nodes()}
+        n_nodes = tree.get_number_of_nodes()
+        if(not args.tree_name is None):
+            file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,args.tree_name)
+            tree.save_in_file(file_path)
+            log.debug("Tree saved in {}".format(file_path))
+        return {'number_of_nodes':n_nodes}
 
     def choose_action(self,state):
         """
@@ -99,6 +108,14 @@ class MinmaxPlayer(Player):
         Returns:
             action (Action): The selected action. Should be one from the list of state.legal_actions
         """
-        log.error("Minmax not implemented for choosing action")
-        return state.legal_actions[0]
+        action = self.tree.best_action(state,self.main_player)
+        if action is None:
+            log.info("Minmax has no information in tree for current step, choosing random")
+            index = randint(0,len(state.legal_actions)-1)
+            return state.legal_actions[index]
+        
+        action_name = str(action)
+        action = [l_a for l_a in state.legal_actions
+                if str(l_a.action) == action_name][0]
+        return action
 

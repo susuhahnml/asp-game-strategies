@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import clingo 
+from py_utils.clingo_utils import get_new_control, Context
 class Action:
     """
     A class used to represent an action in the game
@@ -16,6 +17,10 @@ class Action:
         self.player = player
         self.action = action
 
+    def __eq__(self, other):
+        return self.to_facts() == other.to_facts()
+
+        
     @property
     def str_expanded(self):
         return """
@@ -23,6 +28,19 @@ class Action:
         DOES: {}   PLAYER: {}
         ---------------------------------------
         """.format(str(self.action), self.player)
+    
+    @classmethod
+    def from_facts(cls,facts,game_def):
+        ctl = get_new_control(game_def)
+        ctl.add("base",[],facts)
+        ctl.ground([("base", [])], context=Context())
+        with ctl.solve(yield_=True) as handle:
+            for model in handle:
+                atoms = model.symbols(atoms=True)
+                return cls(atoms[0].arguments[0].name,atoms[0].arguments[1])
+
+    def to_facts(self):
+        return "does({},{}).".format(self.player,self.action)
 
     def __str__(self):
         return "({}):{}".format(self.player,str(self.action))

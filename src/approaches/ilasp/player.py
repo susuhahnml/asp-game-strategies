@@ -75,6 +75,9 @@ class ILASPPlayer(Player):
             help="The full path for the background definition of the game rooted in src")
         approach_parser.add_argument("--strategy-name", type=str, default="strategy.lp",
             help="File name on which to save the strategy computed by ILASP. The file will be saved in the directory approaches/ilasp/game_name/strategies. Can be latter used as parte of name_style")
+        approach_parser.add_argument("--ilasp-arg", type=str, action='append',
+            help="An argument to pass to ilasp without --. Must of the form <id>=<value>, can appear multiple times")
+
 
 
     @staticmethod
@@ -106,14 +109,14 @@ class ILASPPlayer(Player):
         with open('{}temporal.las'.format(base_path),'w') as complete_file:
             complete_file.write("".join(lines))
             complete_file.close()
-        command = ["ILASP ","--clingo5 ","--version=2i",'{}temporal.las'.format(base_path ),"--multi-wc ","--max-wc-length=8 ","-q"]
-        if not log.is_disabled_for("debug"):
-            string_command = " ".join(command+["-s"])
-            result = subprocess.check_output(string_command, shell=True).decode("utf-8") 
-            log.debug("Search space:{}".format(result))
+        
+        ilasp_args = ["--"+a for a in args.ilasp_arg]
+
+        command = ["ILASP ","--clingo5 ","--version=2i",'{}temporal.las'.format(base_path ),"--multi-wc ","--simple","-q"]
+        command.extend(ilasp_args)
 
         string_command = " ".join(command)
-        log.debug("Running ilasp command: \n{}".format(" ".join(command)))
+        log.info("Running ilasp command: \n{}".format(" ".join(command)))
         result = subprocess.check_output(string_command, shell=True).decode("utf-8") 
         log.debug("Found strategy: \n{}".format(result))
         

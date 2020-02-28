@@ -19,7 +19,7 @@ next(has(P,N-M)) :- does(_,remove(P,M)), true(has(P,N)).
 next(has(P,N)) :- not does(_,remove(P,_)), true(has(P,N)).
 
 % Define goal and terminal states
-goal(X,-1):- true(has(1,0)), true(has(2,0)), true(has(3,0)), true(control(X)).
+goal(X,-1):- true(has(1,0)), true(has(2,0)), true(has(3,0)), true(has(4,0)), true(control(X)).
 terminal :- goal(_,_).
 
 % #show does/2.

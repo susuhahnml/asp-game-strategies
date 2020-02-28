@@ -138,7 +138,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
     except TimeoutError as ex:
         return None, None, examples_list, learned_rules, training_list
      
-    minmax_tree=Tree(minmax_tree.parent)
+    minmax_tree=Tree(minmax_tree.parent,main_player=main_player)
     final_score = minmax_match.goals[main_player]
     minmax_match.steps[0].set_score(final_score)
     minmax_tree.root.name.set_score(final_score)
