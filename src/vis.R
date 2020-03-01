@@ -6,7 +6,6 @@ library(rjson)
 library(ggplot2)
 library(tikzDevice)
 library(reshape2)
-library(optparse)
 
 plot_build <- function(){
   # get main data
@@ -37,6 +36,7 @@ plot_build <- function(){
   names(hold) <- c("size","game","approach","mean","sd")
   hold[,4] <- as.numeric(levels(hold[,4])[hold[,4]])
   hold[,5] <- as.numeric(levels(hold[,5])[hold[,5]])
+  hold$size <- factor(hold$size, levels=rev(levels(hold$size)))
   # change naming for latex
   levels(hold$approach) <- gsub("\\_","\\\\_",levels(hold$approach))
   # make first variant
@@ -75,6 +75,7 @@ plot_build <- function(){
   file.rename("bar_build_2.pdf","./img/bar_build_2.pdf")
 }
 
+# main command
 if(file.exists("./benchmarks/build.json")){
   plot_build()
 }
