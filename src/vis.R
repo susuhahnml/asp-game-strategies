@@ -67,12 +67,30 @@ plot_build <- function(){
     theme(text = element_text(size=25),
           plot.title = element_text(hjust=0.5),
           legend.position = "none") +
-    facet_grid(game ~ approach,scales="free_y")
+    facet_grid(game ~ approach, scales="free_y")
   print(g)
   dev.off()
   texi2pdf("bar_build_2.tex",clean=TRUE)
   file.remove("bar_build_2.tex")
   file.rename("bar_build_2.pdf","./img/bar_build_2.pdf")
+  # make third variant
+  tikz("bar_build_3.tex", width=18, height=12, standAlone = TRUE)
+  g <- ggplot(hold,aes(x=approach,y=mean,group=1)) +
+    geom_bar(stat="identity",fill="red",color="black",width=0.4,alpha=0.6) +
+    geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd),color="black",width=0.1) +
+    stat_summary(fun.y=sum, geom="line",alpha=0.6,linetype="dashed") +
+    xlab("\nLearning Approach") +
+    ylab("Build Time [ms]\n") +  theme_bw() +
+    scale_x_discrete(labels=c("Minimax","Pruned\nMinimax","Pruned Minimax\n+\nLearning Rules")) +
+    theme(text = element_text(size=25),
+          plot.title = element_text(hjust=0.5),
+          legend.position = "none") +
+    facet_grid(size ~ game, scales="free_y")
+  print(g)
+  dev.off()
+  texi2pdf("bar_build_3.tex",clean=TRUE)
+  file.remove("bar_build_3.tex")
+  file.rename("bar_build_3.pdf","./img/bar_build_3.pdf")
 }
 
 # main command
