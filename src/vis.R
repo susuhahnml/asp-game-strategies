@@ -216,6 +216,8 @@ plot_vs <- function(name="vs.json"){
   texi2pdf("bar_vs_3.tex",clean=TRUE)
   file.remove("bar_vs_3.tex")
   file.rename("bar_vs_3.pdf","./img/bar_vs_3.pdf")
+  # clear pngs
+  lapply(list.files(pattern="ras\\d+\\.png$"),file.remove)
 }
 
 # main command
@@ -223,5 +225,5 @@ if(file.exists("./benchmarks/build.json")){
   plot_build()
 }
 if(file.exists("./benchmarks/vs.json")){
-  plot_build()
+  plot_vs()
 }
