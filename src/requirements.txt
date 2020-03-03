@@ -1,8 +1,8 @@
-tensorflow==2.0.1
-tqdm==4.28.1
 pandas==1.0.1
-numpy==1.18.1
 anytree==2.8.0
-gym==0.16.0
+tqdm==4.43.0
+numpy==1.18.1
+tensorflow==2.0.1
+gym==0.17.0
 rl==3.0
 urwid==2.1.0
