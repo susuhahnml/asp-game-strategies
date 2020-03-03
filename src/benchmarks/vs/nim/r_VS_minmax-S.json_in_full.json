@@ -1,0 +1,33 @@
+{
+    "command": "vs --log=error --n=10 --game-name=nim --init=initial_full.lp --out=r_VS_minmax-S.json_in_full.json --play-symmetry --a=random --b=minmax-S.json",
+    "args": {
+        "log": "error",
+        "game_name": "nim",
+        "const": null,
+        "random_initial_state_seed": null,
+        "initial": "initial_full.lp",
+        "num_repetitions": 10,
+        "benchmark_output_file": "r_VS_minmax-S.json_in_full.json",
+        "selected_approach": "vs",
+        "pA_style": "random",
+        "pB_style": "minmax-S.json",
+        "play_symmetry": true
+    },
+    "initial_state": "control(a).has(1,1).has(2,3).has(3,5).has(4,7)",
+    "results": {
+        "a": {
+            "style_name": "random",
+            "wins": 11,
+            "total_reward": 2,
+            "average_response": 0.011,
+            "std": 0.003
+        },
+        "b": {
+            "style_name": "minmax-S.json",
+            "wins": 9,
+            "total_reward": -2,
+            "average_response": 0.059,
+            "std": 0.037
+        }
+    }
+}

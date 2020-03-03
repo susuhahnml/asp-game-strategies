@@ -18,6 +18,8 @@ class Action:
         self.action = action
 
     def __eq__(self, other):
+        if other is None:
+            return False
         return self.to_facts() == other.to_facts()
 
         

@@ -135,7 +135,7 @@ if __name__ == "__main__":
             response_times_np = np.array(scores[i]['response_times'])
             benchmarks[p]['average_response']=round(np.mean(response_times_np),3)
             benchmarks[p]['std']=round(np.std(response_times_np),3)
-            benchmarks[p]['response_times']=scores[i]['response_times']
+            # benchmarks[p]['response_times']=scores[i]['response_times']
 
 
 

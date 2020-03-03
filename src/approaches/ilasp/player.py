@@ -69,8 +69,8 @@ class ILASPPlayer(Player):
             help="The player for which to maximize; either a or b")
         approach_parser.add_argument("--ilasp-examples-file-name", type=str, default=None,
             help="File name where the ilasp examples have already been generated during the computation of the asp pruned min max tree. ")
-        approach_parser.add_argument("--language-bias-name", type=str, default=None, required=True,
-            help="File name encoding the language bias for ILASP. The file must be in the directory approaches/ilasp/game_name. Any ASP rules defined in this file will also be saved as part of the strategy")
+        approach_parser.add_argument("--language-bias-name", type=str, default="final.las",
+            help="File name encoding the language bias for ILASP. The file must be in the directory approaches/ilasp/game_name/languages. Any ASP rules defined in this file will also be saved as part of the strategy")
         approach_parser.add_argument("--background-path", type=str, default=None, required=True,
             help="The full path for the background definition of the game rooted in src")
         approach_parser.add_argument("--strategy-name", type=str, default="strategy.lp",
@@ -93,6 +93,7 @@ class ILASPPlayer(Player):
         args.rules_file_name = None
         args.tree_image_file_name = None
         args.train_file_name = None
+        args.tree_name = None
         if args.ilasp_examples_file_name is None:
             log.debug("Generating examples using min_max_asp algorithm")
             args.ilasp_examples_file_name = 'temp_examples.las'
@@ -110,9 +111,12 @@ class ILASPPlayer(Player):
             complete_file.write("".join(lines))
             complete_file.close()
         
-        ilasp_args = ["--"+a for a in args.ilasp_arg]
+        if not args.ilasp_arg is None:
+            ilasp_args = ["--"+a for a in args.ilasp_arg]
+        else:
+            ilasp_args = []
 
-        command = ["ILASP ","--clingo5 ","--version=2i",'{}temporal.las'.format(base_path ),"--multi-wc ","--simple","-q"]
+        command = ["ILASP ","--clingo5 ","--version=2i",'{}temporal.las'.format(base_path ),"--multi-wc ","--simple","--max-rule-length=6","--max-wc-length=5","-ml=5","-q"]
         command.extend(ilasp_args)
 
         string_command = " ".join(command)

@@ -1,12 +1,12 @@
 {
-    "command": "pruned_minmax --log=error --n=6 --game-name=ttt --init=initial_S.lp --out=S.json --rules=S.lp",
+    "command": "pruned_minmax --log=error --n=1 --game-name=ttt --init=initial_S.lp --out=S.json --rules=S.lp",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_S.lp",
-        "num_repetitions": 6,
+        "num_repetitions": 1,
         "benchmark_output_file": "S.json",
         "selected_approach": "pruned_minmax",
         "tree_image_file_name": null,
@@ -21,15 +21,10 @@
     "results": {
         "player": "pruned_minmax_learning",
         "build": [
-            494.641,
-            476.347,
-            481.882,
-            470.553,
-            476.842,
-            474.046
+            412.284
         ],
-        "average_build": 479.052,
-        "std": 7.752,
+        "average_build": 412.284,
+        "std": 0.0,
         "special_results": {
             "number_of_nodes": 26
         }

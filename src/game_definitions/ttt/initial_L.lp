@@ -1,5 +1,5 @@
-true(control(a)).
-true(free(cell(1,3))).
+true(control(b)).
+true(has(a,cell(1,3))).
 true(free(cell(2,1))).
 true(free(cell(2,2))).
 true(free(cell(2,3))).

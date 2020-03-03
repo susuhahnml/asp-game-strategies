@@ -6,6 +6,7 @@ import os
 from approaches.ml_agent.train_utils import training_data_to_csv, remove_duplicates_training
 from random import randint
 from structures.tree import Tree
+from structures.action import Action
 class PrunedMinmaxPlayer(Player):
     """
     Player that choses an action using the minmax of asp
@@ -41,9 +42,11 @@ class PrunedMinmaxPlayer(Player):
                 rules = [apply_rules_rule,"\n"] + rules
                 self.learned = rules
         elif style == "tree":
-            self.tree = Tree.load_from_file(file_path,game_def)
+            f = Tree.get_scores_from_file(file_path)
+            self.tree_scores = f["tree_scores"]
+            self.scores_main_player = f["main_player"]
         else:
-            return RuntimeError("Invalid style for pruned minmax :{}".format(style))
+            raise RuntimeError("Invalid style for pruned minmax :{}".format(style))
 
     @classmethod
     def get_name_style_description(cls):
@@ -153,7 +156,7 @@ class PrunedMinmaxPlayer(Player):
         n_nodes = min_max_tree.get_number_of_nodes()
         if(not args.tree_name is None):
             file_path = "./approaches/pruned_minmax/trees/{}/{}".format(game_def.name,args.tree_name)
-            min_max_tree.save_in_file(file_path)
+            min_max_tree.save_scores_in_file(file_path)
             log.debug("Tree saved in {}".format(file_path))
 
         return {
@@ -171,11 +174,22 @@ class PrunedMinmaxPlayer(Player):
         """
         if self.style == "tree":
             # Using tree
-            action = self.tree.best_action(state,self.main_player)
-            if action is None:
-                log.info("Pruned minmax has no information in tree for current step, choosing random")
+            state_facts = state.to_facts()
+            if state_facts in self.tree_scores:
+                opt = self.tree_scores[state_facts].items()
+                if self.scores_main_player == self.main_player:
+                    best = max(opt, key = lambda i : i[1])
+                else:
+                    best = min(opt, key = lambda i : i[1])
+                action = Action.from_facts(best[0],self.game_def)
+            else:
+                log.debug("Minmax has no information in tree for current step, choosing random")
                 index = randint(0,len(state.legal_actions)-1)
                 return state.legal_actions[index]
+
+            action = [l_a for l_a in state.legal_actions
+                    if l_a == action][0]
+            return action
         
         else:
             # Using rules

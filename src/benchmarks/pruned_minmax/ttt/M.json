@@ -1,35 +1,32 @@
 {
-    "command": "pruned_minmax --log=error --n=4 --game-name=ttt --init=initial_M.lp --out=M.json --rules=M.lp",
+    "command": "pruned_minmax --log=error --n=1 --game-name=ttt --init=initial_M.lp --out=M.json --tree-name=M.json",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_M.lp",
-        "num_repetitions": 4,
+        "num_repetitions": 1,
         "benchmark_output_file": "M.json",
         "selected_approach": "pruned_minmax",
         "tree_image_file_name": null,
-        "tree_name": null,
+        "tree_name": "M.json",
         "main_player": "a",
         "ilasp_examples_file_name": null,
-        "rules_file_name": "M.lp",
+        "rules_file_name": null,
         "train_file_name": null,
         "first_build": false
     },
     "initial_state": "control(a).free(cell(1,1)).free(cell(1,2)).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(3,1)).has(b,cell(3,3))",
     "results": {
-        "player": "pruned_minmax_learning",
+        "player": "pruned_minmax",
         "build": [
-            1669.19,
-            1635.966,
-            1634.406,
-            1623.718
+            1003.914
         ],
-        "average_build": 1640.82,
-        "std": 17.044,
+        "average_build": 1003.914,
+        "std": 0.0,
         "special_results": {
-            "number_of_nodes": 66
+            "number_of_nodes": 82
         }
     }
 }

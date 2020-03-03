@@ -39,6 +39,16 @@ class Tree:
         t = cls(root)
         return t
 
+    @staticmethod
+    def get_scores_from_file(file_path):
+        """
+        Gets the dictionary wth all the scores from a file
+        Args:
+            file_path: Path to the json file
+        """
+        with open(file_path) as feedsjson:
+            return json.load(feedsjson)
+
 
     def find_by_state(self, state):
         """
@@ -94,6 +104,26 @@ class Tree:
         exporter = DictExporter()
         tree_json = exporter.export(self.root)
         final_json = {'main_player':self.main_player,'tree':tree_json}
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w') as feedsjson:
+            json.dump(final_json, feedsjson, indent=4)
+
+    def save_scores_in_file(self,file_path):
+        """
+        Saves the tree states as a dictionary to dinf best scores
+        """
+        state_dic = {}
+        for n in PreOrderIter(self.root):
+            if n.name.action is None:
+                continue
+            if n.name.score is None:
+                continue
+            state_facts = n.name.state.to_facts()
+            if not state_facts in state_dic:
+                state_dic[state_facts] = {}
+            state_dic[state_facts][n.name.action.to_facts()] = n.name.score
+
+        final_json = {'main_player':self.main_player,'tree_scores':state_dic}
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w') as feedsjson:
             json.dump(final_json, feedsjson, indent=4)
@@ -184,7 +214,7 @@ class Tree:
         Used for printing
         """
         if step.score:
-            if step.action != None:
+            if not step.action is None:
                 return "〔score {}〕\n{}".format(step.score,
                                                           step.ascii)
             else:

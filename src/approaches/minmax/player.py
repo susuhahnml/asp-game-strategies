@@ -5,6 +5,7 @@ from approaches.minmax.minmax import minmax_from_game_def
 from py_utils.logger import log
 from structures.players import Player
 from random import randint
+from structures.action import Action
 class MinmaxPlayer(Player):
     """
     Creates the full minmax tree
@@ -30,7 +31,10 @@ class MinmaxPlayer(Player):
         """
         super().__init__(game_def, "Min max tree", main_player)
         file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,name_style[7:])
-        self.tree = Tree.load_from_file(file_path,game_def)
+        # self.tree = Tree.load_from_file(file_path,game_def)
+        f = Tree.get_scores_from_file(file_path)
+        self.tree_scores = f["tree_scores"]
+        self.scores_main_player = f["main_player"]
 
     @classmethod
     def get_name_style_description(cls):
@@ -94,8 +98,9 @@ class MinmaxPlayer(Player):
         n_nodes = tree.get_number_of_nodes()
         if(not args.tree_name is None):
             file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,args.tree_name)
-            tree.save_in_file(file_path)
+            tree.save_scores_in_file(file_path)
             log.debug("Tree saved in {}".format(file_path))
+
         return {'number_of_nodes':n_nodes}
 
     def choose_action(self,state):
@@ -108,14 +113,22 @@ class MinmaxPlayer(Player):
         Returns:
             action (Action): The selected action. Should be one from the list of state.legal_actions
         """
-        action = self.tree.best_action(state,self.main_player)
-        if action is None:
-            log.info("Minmax has no information in tree for current step, choosing random")
+        state_facts = state.to_facts()
+        
+        
+        if state_facts in self.tree_scores:
+            opt = self.tree_scores[state_facts].items()
+            if self.scores_main_player == self.main_player:
+                best = max(opt, key = lambda i : i[1])
+            else:
+                best = min(opt, key = lambda i : i[1])
+            action = Action.from_facts(best[0],self.game_def)
+        else:
+            log.debug("Minmax has no information in tree for current step, choosing random")
             index = randint(0,len(state.legal_actions)-1)
             return state.legal_actions[index]
-        
-        action_name = str(action)
+
         action = [l_a for l_a in state.legal_actions
-                if str(l_a.action) == action_name][0]
+                if l_a == action][0]
         return action
 
