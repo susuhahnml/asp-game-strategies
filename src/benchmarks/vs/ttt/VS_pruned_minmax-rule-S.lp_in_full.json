@@ -1,0 +1,33 @@
+{
+    "command": "vs --log=error --n=100 --game-name=ttt --init=initial_full.lp --out=VS_pruned_minmax-rule-S.lp_in_full.json --play-symmetry --a=random --b=pruned_minmax-rule-S.lp",
+    "args": {
+        "log": "error",
+        "game_name": "ttt",
+        "const": null,
+        "random_initial_state_seed": null,
+        "initial": "initial_full.lp",
+        "num_repetitions": 100,
+        "benchmark_output_file": "VS_pruned_minmax-rule-S.lp_in_full.json",
+        "selected_approach": "vs",
+        "pA_style": "random",
+        "pB_style": "pruned_minmax-rule-S.lp",
+        "play_symmetry": true
+    },
+    "initial_state": "control(a).free(cell(1,1)).free(cell(1,2)).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).free(cell(3,3))",
+    "results": {
+        "a": {
+            "style_name": "random",
+            "wins": 46,
+            "total_reward": -81,
+            "average_response": 0.012,
+            "std": 0.002
+        },
+        "b": {
+            "style_name": "pruned_minmax-rule-S.lp",
+            "wins": 127,
+            "total_reward": 81,
+            "average_response": 2674.613,
+            "std": 321.764
+        }
+    }
+}

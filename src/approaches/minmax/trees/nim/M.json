@@ -1,30 +1,297 @@
 {
     "main_player": "a",
     "tree_scores": {
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,5)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,4)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,2)).": -1,
             "does(a,remove(3,2)).": -1,
             "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,5)).": 1,
-            "does(a,remove(4,4)).": -1,
+            "does(a,remove(4,4)).": 1,
             "does(a,remove(2,2)).": -1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(3,3)).": -1,
             "does(a,remove(4,1)).": -1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,5)).": {
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,4)).": {
             "does(b,remove(4,2)).": 1,
             "does(b,remove(3,3)).": 1,
             "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,5)).": 1,
             "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(4,3)).": -1,
             "does(b,remove(2,2)).": 1,
             "does(b,remove(3,1)).": 1,
             "does(b,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,2)).": {
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(3,3)).": 1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1,
+            "does(a,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(3,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
+            "does(a,remove(3,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
+            "does(a,remove(4,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,0)).": {
+            "does(b,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
+            "does(b,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,0)).": {
+            "does(a,remove(3,3)).": 1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,0)).": {
+            "does(b,remove(3,2)).": -1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,0)).": {
+            "does(a,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(3,2)).": 1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,0)).": {
+            "does(b,remove(3,3)).": -1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,0)).": {
+            "does(a,remove(3,2)).": 1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,1)).": {
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
+            "does(b,remove(3,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,0)).": {
+            "does(b,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,2)).": {
+            "does(b,remove(3,1)).": -1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,0)).": {
+            "does(a,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,0)).": {
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
+            "does(b,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
+            "does(b,remove(2,2)).": -1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,2)).": {
+            "does(a,remove(2,1)).": 1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,0)).": {
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
+            "does(a,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,2)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(3,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(3,2)).": -1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,1)).": {
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,0)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(3,2)).": 1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,0)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,3)).": 1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,1)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(3,2)).": -1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,4)).": {
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,4)).": -1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
+            "does(a,remove(4,3)).": 1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,0)).": {
+            "does(b,remove(2,2)).": -1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,1)).": {
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,0)).": {
+            "does(a,remove(2,2)).": 1,
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,3)).": {
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": -1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,1)).": {
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
+            "does(b,remove(4,3)).": -1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,4)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(4,3)).": -1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,4)).": 1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": -1
         },
         "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,3)).": {
             "does(a,remove(2,2)).": 1,
@@ -38,52 +305,11 @@
             "does(b,remove(3,2)).": 1,
             "does(b,remove(3,1)).": 1
         },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
-            "does(b,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
-            "does(a,remove(4,1)).": 1
-        },
         "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,3)).": {
             "does(a,remove(3,1)).": -1,
             "does(a,remove(4,2)).": 1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,0)).": {
-            "does(b,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,0)).": {
-            "does(a,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
-            "does(a,remove(3,1)).": -1
         },
         "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,3)).": {
             "does(a,remove(4,2)).": -1,
@@ -92,80 +318,11 @@
             "does(a,remove(3,1)).": -1,
             "does(a,remove(4,1)).": 1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,1)).": {
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,0)).": {
-            "does(a,remove(3,2)).": 1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,0)).": {
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,1)).": 1
-        },
         "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,3)).": {
             "does(b,remove(3,1)).": 1,
             "does(b,remove(4,2)).": -1,
             "does(b,remove(4,3)).": 1,
             "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,3)).": {
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,0)).": {
-            "does(a,remove(2,2)).": 1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,0)).": {
-            "does(b,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,1)).": {
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,0)).": {
-            "does(b,remove(2,2)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,0)).": {
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
         },
         "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,3)).": {
             "does(b,remove(3,1)).": 1,
@@ -182,20 +339,6 @@
             "does(a,remove(4,1)).": 1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,1)).": {
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": 1
-        },
         "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
             "does(b,remove(2,1)).": 1,
             "does(b,remove(4,2)).": -1,
@@ -207,32 +350,15 @@
             "does(a,remove(2,2)).": -1,
             "does(a,remove(2,1)).": 1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,0)).": {
-            "does(b,remove(2,1)).": 1
-        },
         "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,1)).": {
             "does(a,remove(3,1)).": -1,
             "does(a,remove(2,2)).": 1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
-            "does(b,remove(2,1)).": -1
-        },
         "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,2)).": {
             "does(a,remove(3,1)).": 1,
             "does(a,remove(2,2)).": -1,
             "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,0)).": {
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
-            "does(a,remove(2,1)).": 1
         },
         "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,3)).": {
             "does(a,remove(2,1)).": -1,
@@ -251,11 +377,6 @@
             "does(a,remove(2,2)).": -1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,0)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": -1
-        },
         "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,1)).": {
             "does(a,remove(4,1)).": 1,
             "does(a,remove(2,2)).": -1,
@@ -270,16 +391,6 @@
             "does(a,remove(3,2)).": -1,
             "does(a,remove(3,1)).": 1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,1)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,1)).": {
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": 1
-        },
         "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
             "does(a,remove(2,2)).": 1,
             "does(a,remove(2,1)).": -1
@@ -288,15 +399,6 @@
             "does(b,remove(2,1)).": -1,
             "does(b,remove(3,2)).": 1,
             "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,1)).": -1
         },
         "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,3)).": {
             "does(a,remove(2,1)).": -1,
@@ -330,27 +432,14 @@
             "does(a,remove(3,2)).": -1,
             "does(a,remove(3,1)).": -1
         },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,5)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,5)).": {
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,5)).": -1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,4)).": {
+            "does(a,remove(3,1)).": -1,
             "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": 1,
+            "does(a,remove(4,4)).": -1,
             "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(4,1)).": 1,
+            "does(a,remove(2,1)).": -1
         },
         "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,4)).": {
             "does(b,remove(2,2)).": 1,
@@ -367,290 +456,21 @@
             "does(a,remove(4,3)).": 1,
             "does(a,remove(4,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,5)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,0)). true(has(4,5)).": {
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,5)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,4)).": {
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,2)).": {
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(3,3)).": -1,
-            "does(b,remove(3,2)).": 1,
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,1)).": {
             "does(b,remove(3,1)).": 1,
-            "does(b,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,0)).": {
-            "does(b,remove(3,3)).": -1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,0)).": {
-            "does(a,remove(3,3)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,2)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(3,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,2)).": 1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,0)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,3)).": -1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,1)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(3,2)).": 1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,3)).": {
             "does(b,remove(2,2)).": -1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,1)).": 1,
             "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,3)).": {
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(2,1)).": -1
         },
         "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,0)).": {
             "does(b,remove(3,1)).": 1,
             "does(b,remove(2,2)).": 1,
             "does(b,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,1)).": {
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(2,2)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,2)).": {
-            "does(b,remove(3,1)).": -1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,3)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,1)).": {
-            "does(b,remove(4,1)).": -1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
-            "does(b,remove(2,2)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,2)).": {
-            "does(a,remove(2,1)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,3)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,3)).": {
-            "does(a,remove(2,1)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,4)).": {
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(4,1)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,4)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,4)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
         "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
             "does(b,remove(3,1)).": 1,
             "does(b,remove(4,2)).": 1,
             "does(b,remove(4,4)).": 1,
             "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,0)).": {
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,0)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(3,2)).": 1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,1)).": {
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,0)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": 1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,3)).": 1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,4)).": {
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": -1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,4)).": {
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,4)).": {
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,4)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,4)).": {
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1,
             "does(b,remove(4,1)).": 1
         },
         "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
@@ -660,14 +480,55 @@
             "does(b,remove(4,3)).": 1,
             "does(b,remove(4,1)).": 1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,4)).": {
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
+            "does(a,remove(3,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(4,3)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,0)).": {
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": 1,
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,0)).": {
             "does(b,remove(2,1)).": 1,
+            "does(b,remove(3,2)).": -1,
             "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,4)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,1)).": {
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(3,1)).": -1,
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,0)).": {
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(3,3)).": 1,
             "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,1)).": 1,
+            "does(b,remove(3,1)).": -1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,1)).": {
+            "does(b,remove(4,1)).": -1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,1)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(3,2)).": 1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,3)).": -1,
             "does(b,remove(3,1)).": 1
         },
         "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,4)).": {
@@ -679,187 +540,109 @@
             "does(a,remove(4,1)).": 1,
             "does(a,remove(3,1)).": -1
         },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,1)). true(has(4,5)).": {
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,5)).": -1,
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,4)).": {
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,4)).": {
             "does(a,remove(2,2)).": -1,
+            "does(a,remove(4,4)).": 1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,2)).": -1,
             "does(a,remove(4,1)).": -1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,0)). true(has(2,2)). true(has(3,0)). true(has(4,5)).": {
-            "does(b,remove(2,2)).": 1,
+        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,4)).": {
+            "does(b,remove(2,1)).": 1,
+            "does(b,remove(4,3)).": 1,
             "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,3)).": -1,
+            "does(b,remove(3,2)).": 1,
             "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1,
+            "does(b,remove(3,1)).": 1,
+            "does(b,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,4)).": {
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,4)).": 1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,4)).": {
+            "does(a,remove(2,1)).": -1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,4)).": {
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": -1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,2)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(3,1)).": 1,
+            "does(b,remove(3,2)).": -1,
+            "does(b,remove(2,2)).": -1,
             "does(b,remove(2,1)).": 1
         },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,0)). true(has(4,5)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,4)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,5)).": {
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,5)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": -1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,1)). true(has(4,5)).": {
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,4)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,1)).": {
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,2)).": -1,
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": 1,
             "does(a,remove(2,2)).": -1,
-            "does(a,remove(3,1)).": -1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,3)). true(has(4,2)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(3,3)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,2)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,5)).": {
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,5)).": {
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,2)). true(has(3,2)). true(has(4,5)).": {
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,5)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,1)). true(has(3,2)). true(has(4,5)).": {
-            "does(b,remove(2,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,0)). true(has(3,2)). true(has(4,5)).": {
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,1)). true(has(4,5)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": 1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,0)). true(has(2,1)). true(has(3,3)). true(has(4,5)).": {
-            "does(a,remove(2,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,0)). true(has(2,0)). true(has(3,3)). true(has(4,5)).": {
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,3)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
             "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,3)).": -1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,3)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,0)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": -1
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,1)).": -1
         },
         "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,0)).": {
             "does(a,remove(1,1)).": 1
         },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
+            "does(a,remove(1,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(4,1)).": 1
+        },
         "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,0)).": {
             "does(a,remove(1,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
+            "does(a,remove(1,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
             "does(b,remove(1,1)).": -1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1
         },
         "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
             "does(a,remove(1,1)).": -1,
@@ -872,6 +655,22 @@
         "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
             "does(b,remove(1,1)).": 1
         },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,0)).": {
+            "does(b,remove(1,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
+            "does(b,remove(1,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,2)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
         "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,2)).": 1,
@@ -883,72 +682,21 @@
         "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
             "does(b,remove(1,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,1)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(2,2)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,1)).": {
-            "does(a,remove(1,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,1)).": {
-            "does(a,remove(1,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,3)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
             "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(2,2)).": 1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,0)).": {
-            "does(b,remove(1,1)).": -1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,0)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,0)).": {
-            "does(b,remove(1,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,0)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,2)).": 1,
-            "does(a,remove(3,1)).": -1
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": 1
         },
         "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,0)).": {
             "does(b,remove(1,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": -1
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
+            "does(b,remove(1,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": -1
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(2,1)).": -1
         },
         "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
             "does(b,remove(1,1)).": 1,
@@ -961,16 +709,6 @@
         "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
             "does(a,remove(1,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
         "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(4,2)).": 1,
@@ -982,66 +720,84 @@
         "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
             "does(a,remove(1,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,1)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
             "does(b,remove(1,1)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,3)).": -1,
+            "does(b,remove(3,1)).": 1
         },
         "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,1)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(3,2)).": 1,
             "does(a,remove(3,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,1)).": {
-            "does(b,remove(1,1)).": -1
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,0)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(3,2)).": -1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,0)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": 1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(3,2)).": -1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(3,1)).": 1
         },
         "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,1)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(3,2)).": -1,
             "does(a,remove(3,1)).": 1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,1)).": {
-            "does(b,remove(1,1)).": 1
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,0)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,3)).": -1,
+            "does(b,remove(3,1)).": 1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,3)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,0)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(3,2)).": 1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,4)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(4,3)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": 1
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,3)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,1)).": {
             "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,1)).": -1
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(2,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,0)).": {
             "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,3)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,1)).": -1
+            "does(a,remove(2,2)).": 1,
+            "does(a,remove(2,1)).": -1
         },
         "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,3)).": {
             "does(a,remove(1,1)).": 1,
@@ -1061,16 +817,6 @@
             "does(b,remove(2,2)).": 1,
             "does(b,remove(2,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": 1
-        },
         "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,1)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(2,2)).": 1,
@@ -1088,114 +834,28 @@
             "does(b,remove(4,3)).": 1,
             "does(b,remove(4,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,3)).": {
-            "does(a,remove(1,1)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,3)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,5)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,1)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,4)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": -1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,1)). true(has(4,0)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(2,2)).": 1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,5)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": 1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,5)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": -1,
             "does(a,remove(4,4)).": 1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(4,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,5)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(4,3)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,4)).": {
             "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": -1,
+            "does(b,remove(4,3)).": -1,
+            "does(b,remove(4,4)).": 1,
             "does(b,remove(4,1)).": 1,
             "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
             "does(b,remove(2,2)).": 1,
             "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": -1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
         },
         "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,1)).": {
             "does(a,remove(1,1)).": -1,
@@ -1212,23 +872,6 @@
             "does(b,remove(3,2)).": 1,
             "does(b,remove(3,1)).": -1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,4)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(2,2)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
         "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,0)).": {
             "does(a,remove(1,1)).": 1,
             "does(a,remove(2,2)).": -1,
@@ -1244,117 +887,122 @@
             "does(b,remove(3,2)).": -1,
             "does(b,remove(3,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,3)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,3)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(2,2)).": 1,
+            "does(a,remove(2,1)).": -1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,3)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,0)).": {
+            "does(b,remove(1,1)).": -1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,2)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": -1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,2)).": {
             "does(a,remove(1,1)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": 1,
-            "does(a,remove(4,2)).": -1,
             "does(a,remove(3,2)).": -1,
             "does(a,remove(3,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,4)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,2)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,2)). true(has(4,1)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,3)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,2)).": 1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,3)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,3)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,3)).": {
+            "does(b,remove(1,1)).": -1,
+            "does(b,remove(4,3)).": 1,
             "does(b,remove(4,1)).": -1,
             "does(b,remove(4,2)).": 1,
             "does(b,remove(3,2)).": 1,
             "does(b,remove(3,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": -1,
             "does(a,remove(4,3)).": 1,
             "does(a,remove(4,1)).": -1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,3)).": {
             "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": 1,
+            "does(a,remove(4,2)).": 1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(4,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,4)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,4)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": 1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,5)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,2)). true(has(4,4)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(4,4)).": -1,
             "does(a,remove(3,1)).": -1,
             "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,5)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,4)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,4)).": -1,
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(4,3)).": -1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,4)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(3,1)).": -1,
+            "does(a,remove(3,2)).": -1,
             "does(a,remove(4,2)).": 1,
             "does(a,remove(4,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,1)). true(has(4,5)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,4)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": -1,
             "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,3)).": -1,
             "does(b,remove(4,1)).": 1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,5)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,4)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
             "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,2)). true(has(4,5)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,3)).": 1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(4,5)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,1)). true(has(4,5)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,5)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": -1,
-            "does(b,remove(4,4)).": 1,
             "does(b,remove(4,3)).": 1,
             "does(b,remove(4,1)).": 1
         },
@@ -1383,6 +1031,41 @@
             "does(a,remove(3,3)).": 1,
             "does(a,remove(3,1)).": -1
         },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,4)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(3,3)).": 1,
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,1)).": 1,
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(4,4)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(3,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(4,4)).": -1,
+            "does(a,remove(4,3)).": 1,
+            "does(a,remove(4,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,3)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(4,2)).": -1,
+            "does(b,remove(4,3)).": 1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,3)).": 1,
+            "does(a,remove(3,1)).": -1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,3)).": {
+            "does(a,remove(1,1)).": 1,
+            "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,3)).": -1,
+            "does(a,remove(3,1)).": 1
+        },
         "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,1)).": {
             "does(b,remove(1,1)).": -1,
             "does(b,remove(3,3)).": 1,
@@ -1396,238 +1079,77 @@
             "does(a,remove(2,2)).": 1,
             "does(a,remove(2,1)).": -1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,3)).": 1,
-            "does(a,remove(3,1)).": -1
-        },
         "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(3,2)).": 1,
             "does(a,remove(3,3)).": -1,
             "does(a,remove(3,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,5)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,4)).": {
             "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,5)).": 1,
+            "does(b,remove(4,3)).": 1,
             "does(b,remove(4,4)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
+            "does(b,remove(4,1)).": -1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
         },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,5)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,3)).": {
+            "does(a,remove(1,1)).": -1,
+            "does(a,remove(4,3)).": -1,
+            "does(a,remove(4,1)).": -1,
+            "does(a,remove(4,2)).": -1,
+            "does(a,remove(2,2)).": -1,
+            "does(a,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,0)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": -1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
+            "does(b,remove(1,1)).": -1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,1)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(2,2)).": -1,
+            "does(b,remove(2,1)).": 1
+        },
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,3)).": {
+            "does(b,remove(1,1)).": 1,
+            "does(b,remove(4,2)).": 1,
+            "does(b,remove(4,3)).": -1,
+            "does(b,remove(4,1)).": 1
+        },
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,4)).": {
             "does(a,remove(1,1)).": -1,
             "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": -1,
             "does(a,remove(4,4)).": 1,
             "does(a,remove(4,3)).": -1,
             "does(a,remove(4,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,0)). true(has(4,4)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,3)).": {
             "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,3)).": -1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,1)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,2)).": 1,
             "does(b,remove(3,3)).": -1,
-            "does(b,remove(3,1)).": 1
+            "does(b,remove(3,1)).": 1,
+            "does(b,remove(3,2)).": 1,
+            "does(b,remove(2,2)).": 1,
+            "does(b,remove(2,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,0)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,4)).": {
+        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,3)).": {
             "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": 1,
-            "does(a,remove(4,4)).": -1,
             "does(a,remove(3,2)).": -1,
+            "does(a,remove(3,3)).": -1,
             "does(a,remove(3,1)).": -1
         },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": -1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,0)). true(has(3,3)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(2,2)).": -1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": 1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": 1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,1)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,2)).": -1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,0)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,3)).": -1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,5)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,4)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,5)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,4)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,1)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,0)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,4)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,0)). true(has(4,5)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,5)).": 1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,4)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": 1,
-            "does(b,remove(4,4)).": -1,
-            "does(b,remove(2,2)).": 1,
-            "does(b,remove(4,3)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(2,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,2)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(3,2)).": 1,
-            "does(a,remove(2,2)).": 1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,2)).": {
-            "does(b,remove(1,1)).": -1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,0)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,1)).": {
-            "does(a,remove(1,1)).": 1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(3,1)).": 1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": -1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,2)). true(has(3,3)). true(has(4,3)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,3)).": 1,
-            "does(a,remove(3,1)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(2,2)).": -1,
-            "does(a,remove(2,1)).": 1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,3)).": {
-            "does(b,remove(1,1)).": 1,
-            "does(b,remove(3,2)).": 1,
-            "does(b,remove(3,3)).": 1,
-            "does(b,remove(3,1)).": 1
-        },
-        "true(control(a)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,4)).": {
-            "does(a,remove(1,1)).": -1,
-            "does(a,remove(3,3)).": -1,
-            "does(a,remove(4,3)).": -1,
-            "does(a,remove(4,1)).": 1,
-            "does(a,remove(4,2)).": -1,
-            "does(a,remove(4,4)).": -1,
-            "does(a,remove(3,2)).": -1,
-            "does(a,remove(3,1)).": -1
-        },
-        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,5)).": {
+        "true(control(b)). true(has(1,1)). true(has(2,1)). true(has(3,3)). true(has(4,4)).": {
             "does(b,remove(1,1)).": 1,
             "does(b,remove(3,3)).": 1,
             "does(b,remove(4,3)).": 1,
-            "does(b,remove(4,1)).": 1,
-            "does(b,remove(4,2)).": -1,
-            "does(b,remove(4,5)).": 1,
+            "does(b,remove(4,1)).": -1,
+            "does(b,remove(4,2)).": 1,
             "does(b,remove(4,4)).": 1,
             "does(b,remove(3,2)).": 1,
             "does(b,remove(3,1)).": 1

@@ -21,9 +21,9 @@
     "results": {
         "player": "pruned_minmax_learning",
         "build": [
-            84683.42
+            70282.511
         ],
-        "average_build": 84683.42,
+        "average_build": 70282.511,
         "std": 0.0,
         "special_results": {
             "number_of_nodes": 481
