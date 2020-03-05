@@ -31,14 +31,23 @@ binary(7,1,1).
 binary(7,2,1).
 binary(7,4,1).
 
+%------------------------------- LANGUAGE BIAS --------------------------------------
 
-% binary(1,0,0,1).
-% binary(2,0,1,0).
-% binary(3,0,1,1).
-% binary(4,1,0,0).
-% binary(5,1,0,1).
-% binary(6,1,1,0).
-% binary(7,1,1,1).
+#modeh(b(var(n),var(pile),var(bin))).
+#modeb(1,binary(var(num),var(n),var(bin)),(positive)).
+#modeb(1,next(has(var(pile),var(num))),(positive)).
+#modeb(3,b(var(n),var(pile),var(bin)),(positive)).
+#modeh(tb(var(n),var(bin)+var(bin)+var(bin))).
+#modeb(1,tb(var(n),var(t)),(positive)).
+#modeb(1,var(t)\2!=0).
+#modeb(2,var(pile)<var(pile),(symmetric,anti_reflexive)).
+#modeh(odd(var(n))).
+#modeo(1,odd(var(n))).
+
+#weight(-1).
+#weight(1).
+#maxv(7).
+#maxhl(2).
 
 
 % Expected strategy
@@ -50,24 +59,3 @@ binary(7,4,1).
 % % 3 ~ odd(V0) :- tb(V0,V1), V1\2 != 0.
 % :~ odd(V).[1@1,1,V]
 % % 1 ~ :~ odd(V0).[1@1, 108581, V0]
-%------------------------------- LANGUAGE BIAS --------------------------------------
-#constant(pos,1).
-#constant(pos,2).
-#constant(pos,3).
-
-#modeh(b(var(n),var(pile),var(bin))).
-#modeb(1,binary(var(num),var(n),var(bin)),(positive)).
-#modeb(1,next(has(var(pile),var(num))),(positive)).
-#modeb(3,b(var(n),var(pile),var(bin)),(positive)).
-#modeh(tb(var(n),var(bin)+var(bin)+var(bin))).
-#modeb(1,tb(var(n),var(t)),(positive)).
-#modeb(1,var(t)\2!=0).
-#modeb(2,var(pile)<var(pile),(symmetric,anti_reflexive)).
-#modeh(odd(var(n))).
-
-#modeo(1,odd(var(n))).
-
-#weight(-1).
-#weight(1).
-#maxv(7).
-#maxhl(2).

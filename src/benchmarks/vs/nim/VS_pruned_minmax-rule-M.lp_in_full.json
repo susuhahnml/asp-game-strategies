@@ -1,0 +1,33 @@
+{
+    "command": "vs --log=error --n=100 --game-name=nim --init=initial_full.lp --out=VS_pruned_minmax-rule-M.lp_in_full.json --play-symmetry --a=random --b=pruned_minmax-rule-M.lp",
+    "args": {
+        "log": "error",
+        "game_name": "nim",
+        "const": null,
+        "random_initial_state_seed": null,
+        "initial": "initial_full.lp",
+        "num_repetitions": 100,
+        "benchmark_output_file": "VS_pruned_minmax-rule-M.lp_in_full.json",
+        "selected_approach": "vs",
+        "pA_style": "random",
+        "pB_style": "pruned_minmax-rule-M.lp",
+        "play_symmetry": true
+    },
+    "initial_state": "control(a).has(1,1).has(2,3).has(3,5).has(4,7)",
+    "results": {
+        "a": {
+            "style_name": "random",
+            "wins": 8,
+            "total_reward": -184,
+            "average_response": 0.011,
+            "std": 0.001
+        },
+        "b": {
+            "style_name": "pruned_minmax-rule-M.lp",
+            "wins": 192,
+            "total_reward": 184,
+            "average_response": 1200.841,
+            "std": 334.095
+        }
+    }
+}

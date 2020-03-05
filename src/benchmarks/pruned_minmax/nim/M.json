@@ -1,0 +1,33 @@
+{
+    "command": "pruned_minmax --log=error --n=2 --game-name=nim --init=initial_M.lp --out=M.json --rules=M.lp",
+    "args": {
+        "log": "error",
+        "game_name": "nim",
+        "const": null,
+        "random_initial_state_seed": null,
+        "initial": "initial_M.lp",
+        "num_repetitions": 2,
+        "benchmark_output_file": "M.json",
+        "selected_approach": "pruned_minmax",
+        "tree_image_file_name": null,
+        "tree_name": null,
+        "main_player": "a",
+        "ilasp_examples_file_name": null,
+        "rules_file_name": "M.lp",
+        "train_file_name": null,
+        "first_build": false
+    },
+    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
+    "results": {
+        "player": "pruned_minmax_learning",
+        "build": [
+            21783.913,
+            21061.189
+        ],
+        "average_build": 21422.551,
+        "std": 361.362,
+        "special_results": {
+            "number_of_nodes": 233
+        }
+    }
+}

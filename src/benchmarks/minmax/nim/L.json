@@ -1,0 +1,28 @@
+{
+    "command": "minmax --log=error --n=1 --game-name=nim --init=initial_L.lp --out=L.json --tree-name=L.json",
+    "args": {
+        "log": "error",
+        "game_name": "nim",
+        "const": null,
+        "random_initial_state_seed": null,
+        "initial": "initial_L.lp",
+        "num_repetitions": 1,
+        "benchmark_output_file": "L.json",
+        "selected_approach": "minmax",
+        "tree_image_file_name": null,
+        "tree_name": "L.json",
+        "main_player": "a"
+    },
+    "initial_state": "control(a).has(1,1).has(2,3).has(3,4).has(4,5)",
+    "results": {
+        "player": "minmax",
+        "build": [
+            7606048.325
+        ],
+        "average_build": 7606048.325,
+        "std": 0.0,
+        "special_results": {
+            "number_of_nodes": 1366704
+        }
+    }
+}

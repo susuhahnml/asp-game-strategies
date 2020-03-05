@@ -4,27 +4,129 @@ import os
 import re
 import anytree
 from tqdm import tqdm
-from anytree import Node, RenderTree
-from anytree.exporter import UniqueDotExporter, DotExporter
+from anytree import Node, RenderTree, PreOrderIter
+from anytree.exporter import UniqueDotExporter, DotExporter, DictExporter
+from anytree.importer import DictImporter
 from anytree.iterators.levelorderiter import LevelOrderIter
 from anytree.search import findall
 from .state import State, StateExpanded
 from .match import Match
 from .step import Step
 from py_utils.logger import log
-
+import json
 class Tree:
     """
     Tree class to handle search trees for games
     """
-    def __init__(self,root=None,game=None):
+    def __init__(self,root=None,main_player="a"):
         """ Initialize with empty root node and game class """
         self.root = root
-        self.game = game
+        self.main_player = main_player
+    
+    @classmethod
+    def load_from_file(cls, file_path, game_def):
+        """
+        Creates a Tree from a file with the tree in json format
+        Args:
+            file_path: Path to the json file
+        """
+        with open(file_path) as feedsjson:
+            tree_dic = json.load(feedsjson)
+        importer = DictImporter()
+        root = importer.import_(tree_dic['tree'])
+        for n in PreOrderIter(root):
+            n.name=Step.from_dic(n.name,game_def)
+        t = cls(root)
+        return t
+
+    @staticmethod
+    def get_scores_from_file(file_path):
+        """
+        Gets the dictionary wth all the scores from a file
+        Args:
+            file_path: Path to the json file
+        """
+        with open(file_path) as feedsjson:
+            return json.load(feedsjson)
+
+
+    def find_by_state(self, state):
+        """
+        Finds all nodes from tree matching a state
+        """
+        return findall(self.root, lambda n: n.name.state==state)
+
 
     def get_number_of_nodes(self):
+        """
+        Gets the number of nodes of the tree
+        """
         nodes = findall(self.root, filter_=lambda node: not node.name.action is None and not node.name.score is None)
         return len(nodes)
+    
+    def best_action(self, state, main_player):
+        """
+        Finds the best action for the player in the given state 
+        Args:
+            state: The state of the game
+            main_player: The player for which the action must be the best
+        Returns:
+            The best action, or none if there is no information in the tree
+        """
+        node_steps = self.find_by_state(state)
+        if len(node_steps) == 0:
+            return None
+        else:
+            best_node = None
+            for node in node_steps:
+                if(best_node is None):
+                    best_node = node
+                    continue
+                score=node.name.score
+                if(main_player == self.main_player):
+                    if(score>best_node.name.score):
+                        best_node = node
+                        continue
+                    continue
+                if(main_player != self.main_player):
+                    if(score<best_node.name.score):
+                        best_node = node
+                        continue
+                    continue
+            return best_node.name.action.action
+            
+    def save_in_file(self,file_path):
+        """
+        Saves the tree in a json file
+        """
+        for n in PreOrderIter(self.root):
+            n.name=n.name.to_dic()
+        exporter = DictExporter()
+        tree_json = exporter.export(self.root)
+        final_json = {'main_player':self.main_player,'tree':tree_json}
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w') as feedsjson:
+            json.dump(final_json, feedsjson, indent=4)
+
+    def save_scores_in_file(self,file_path):
+        """
+        Saves the tree states as a dictionary to dinf best scores
+        """
+        state_dic = {}
+        for n in PreOrderIter(self.root):
+            if n.name.action is None:
+                continue
+            if n.name.score is None:
+                continue
+            state_facts = n.name.state.to_facts()
+            if not state_facts in state_dic:
+                state_dic[state_facts] = {}
+            state_dic[state_facts][n.name.action.to_facts()] = n.name.score
+
+        final_json = {'main_player':self.main_player,'tree_scores':state_dic}
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w') as feedsjson:
+            json.dump(final_json, feedsjson, indent=4)
 
     def print_in_file(self,
                       file_name="tree_test.png",main_player="a"):
@@ -112,7 +214,7 @@ class Tree:
         Used for printing
         """
         if step.score:
-            if step.action != None:
+            if not step.action is None:
                 return "〔score {}〕\n{}".format(step.score,
                                                           step.ascii)
             else:

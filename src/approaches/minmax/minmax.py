@@ -26,7 +26,7 @@ def minmax_from_game_def(game_def, initial_state = None, main_player="a"):
     # Tree.expand_rec(root_node,0)
     expand_root(tree = root_node, main_player=main_player)
     root_node = build_minimax(root_node,main_player=main_player)
-    return Tree(root=root_node,game=game_def)
+    return Tree(root=root_node,main_player=main_player)
 
 def expand_root(tree, main_player="a"):
     """
