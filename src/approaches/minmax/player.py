@@ -1,6 +1,7 @@
 import time
 from structures.players import Player
 from structures.tree import Tree
+from structures.treeMinmax import TreeMinmax
 from approaches.minmax.minmax import minmax_from_game_def
 from py_utils.logger import log
 from structures.players import Player
@@ -32,7 +33,7 @@ class MinmaxPlayer(Player):
         super().__init__(game_def, "Min max tree", main_player)
         file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,name_style[7:])
         # self.tree = Tree.load_from_file(file_path,game_def)
-        f = Tree.get_scores_from_file(file_path)
+        f = TreeMinmax.get_scores_from_file(file_path)
         self.tree_scores = f["tree_scores"]
         self.scores_main_player = f["main_player"]
 
@@ -94,7 +95,7 @@ class MinmaxPlayer(Player):
         t0 = time.time()
         if(not args.tree_image_file_name is None):
             file_name = '{}/{}'.format(game_def.name,args.tree_image_file_name)
-            tree.print_in_file(file_name=file_name,main_player=args.main_player)
+            tree.print_in_file(file_name=file_name)
             log.debug("Tree image saved in {}".format(file_name))
         n_nodes = tree.get_number_of_nodes()
         if(not args.tree_name is None):
