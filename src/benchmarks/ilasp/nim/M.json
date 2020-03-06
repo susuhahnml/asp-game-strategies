@@ -21,15 +21,17 @@
         "tree_name": null,
         "first_build": false
     },
-    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
+    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,3)",
     "results": {
         "player": "ilasp",
         "build": [
-            95758.168,
-            12050.299
+            18223.785,
+            2325.132
         ],
-        "average_build": 53904.234,
-        "std": 41853.934,
-        "special_results": null
+        "average_build": 10274.458,
+        "std": 7949.326,
+        "special_results": {
+            "save_time": 0.48
+        }
     }
 }

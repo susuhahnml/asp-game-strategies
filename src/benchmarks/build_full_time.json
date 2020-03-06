@@ -14,22 +14,21 @@
             "tree_name": "S.json",
             "main_player": "a"
         },
-        "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
         "results": {
             "player": "minmax",
             "build": [
-                1729.676,
-                1714.663,
-                1853.941,
-                1647.915,
-                1531.341,
-                1701.414
+                761.549,
+                759.026,
+                744.004,
+                764.477,
+                758.934,
+                745.738
             ],
-            "average_build": 1696.492,
-            "std": 96.506,
+            "average_build": 755.621,
+            "std": 7.84,
             "special_results": {
-                "number_of_nodes": 390,
-                "save_time": 4.502
+                "number_of_nodes": 208
             }
         }
     },
@@ -52,22 +51,21 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
         "results": {
             "player": "pruned_minmax",
             "build": [
-                3216.365,
-                3132.338,
-                3075.469,
-                2822.316,
-                2682.965,
-                2844.86
+                3413.101,
+                3349.197,
+                3337.197,
+                3393.016,
+                3380.72,
+                3371.767
             ],
-            "average_build": 2962.386,
-            "std": 190.475,
+            "average_build": 3374.166,
+            "std": 25.528,
             "special_results": {
-                "number_of_nodes": 87,
-                "save_time": 3.34
+                "number_of_nodes": 134
             }
         }
     },
@@ -90,22 +88,21 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
         "results": {
             "player": "pruned_minmax_learning",
             "build": [
-                1757.086,
-                1757.732,
-                1752.189,
-                1638.245,
-                1504.893,
-                1507.924
+                2143.434,
+                2028.204,
+                1772.417,
+                1756.925,
+                1779.663,
+                1754.835
             ],
-            "average_build": 1653.011,
-            "std": 111.685,
+            "average_build": 1872.58,
+            "std": 154.643,
             "special_results": {
-                "number_of_nodes": 39,
-                "save_time": 6.372
+                "number_of_nodes": 50
             }
         }
     },
@@ -132,22 +129,20 @@
             "tree_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
         "results": {
             "player": "ilasp",
             "build": [
-                3422.371,
-                521.78,
-                518.297,
-                520.826,
-                515.883,
-                535.53
+                4092.506,
+                707.734,
+                706.548,
+                704.942,
+                716.888,
+                703.625
             ],
-            "average_build": 1005.781,
-            "std": 1080.75,
-            "special_results": {
-                "save_time": 0.451
-            }
+            "average_build": 1272.04,
+            "std": 1261.358,
+            "special_results": null
         }
     },
     {
@@ -165,18 +160,17 @@
             "tree_name": "M.json",
             "main_player": "a"
         },
-        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,3)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
         "results": {
             "player": "minmax",
             "build": [
-                19823.733,
-                21551.193
+                126383.326,
+                138691.193
             ],
-            "average_build": 20687.463,
-            "std": 863.73,
+            "average_build": 132537.259,
+            "std": 6153.933,
             "special_results": {
-                "number_of_nodes": 4630,
-                "save_time": 49.832
+                "number_of_nodes": 28092
             }
         }
     },
@@ -199,18 +193,17 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,3)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
         "results": {
             "player": "pruned_minmax",
             "build": [
-                13979.405,
-                13718.355
+                76412.627,
+                80404.108
             ],
-            "average_build": 13848.88,
-            "std": 130.525,
+            "average_build": 78408.368,
+            "std": 1995.74,
             "special_results": {
-                "number_of_nodes": 389,
-                "save_time": 5.826
+                "number_of_nodes": 1784
             }
         }
     },
@@ -233,18 +226,17 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,3)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
         "results": {
             "player": "pruned_minmax_learning",
             "build": [
-                4889.236,
-                4897.009
+                21783.913,
+                21061.189
             ],
-            "average_build": 4893.122,
-            "std": 3.887,
+            "average_build": 21422.551,
+            "std": 361.362,
             "special_results": {
-                "number_of_nodes": 92,
-                "save_time": 7.201
+                "number_of_nodes": 233
             }
         }
     },
@@ -271,18 +263,16 @@
             "tree_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,3)",
+        "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
         "results": {
             "player": "ilasp",
             "build": [
-                18223.785,
-                2325.132
+                95758.168,
+                12050.299
             ],
-            "average_build": 10274.458,
-            "std": 7949.326,
-            "special_results": {
-                "save_time": 0.48
-            }
+            "average_build": 53904.234,
+            "std": 41853.934,
+            "special_results": null
         }
     },
     {
@@ -300,17 +290,16 @@
             "tree_name": "L.json",
             "main_player": "a"
         },
-        "initial_state": "control(a).has(1,1).has(2,3).has(3,3).has(4,4)",
+        "initial_state": "control(a).has(1,1).has(2,3).has(3,4).has(4,5)",
         "results": {
             "player": "minmax",
             "build": [
-                302747.921
+                7606048.325
             ],
-            "average_build": 302747.921,
+            "average_build": 7606048.325,
             "std": 0.0,
             "special_results": {
-                "number_of_nodes": 61023,
-                "save_time": 531.429
+                "number_of_nodes": 1366704
             }
         }
     },
@@ -333,17 +322,16 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,1).has(2,3).has(3,3).has(4,4)",
+        "initial_state": "control(a).has(1,1).has(2,3).has(3,4).has(4,5)",
         "results": {
             "player": "pruned_minmax",
             "build": [
-                136422.348
+                7484329.048
             ],
-            "average_build": 136422.348,
+            "average_build": 7484329.048,
             "std": 0.0,
             "special_results": {
-                "number_of_nodes": 2958,
-                "save_time": 40.538
+                "number_of_nodes": 121431
             }
         }
     },
@@ -366,17 +354,16 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,1).has(2,3).has(3,3).has(4,4)",
+        "initial_state": "control(a).has(1,1).has(2,3).has(3,4).has(4,5)",
         "results": {
             "player": "pruned_minmax_learning",
             "build": [
-                31144.642
+                70282.511
             ],
-            "average_build": 31144.642,
+            "average_build": 70282.511,
             "std": 0.0,
             "special_results": {
-                "number_of_nodes": 303,
-                "save_time": 7.596
+                "number_of_nodes": 481
             }
         }
     },
@@ -403,17 +390,15 @@
             "tree_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).has(1,1).has(2,3).has(3,3).has(4,4)",
+        "initial_state": "control(a).has(1,1).has(2,3).has(3,4).has(4,5)",
         "results": {
             "player": "ilasp",
             "build": [
-                160971.504
+                9927619.628
             ],
-            "average_build": 160971.504,
+            "average_build": 9927619.628,
             "std": 0.0,
-            "special_results": {
-                "save_time": 1.037
-            }
+            "special_results": null
         }
     },
     {
@@ -431,22 +416,21 @@
             "tree_name": "S.json",
             "main_player": "a"
         },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).has(a,cell(1,2)).has(b,cell(1,1)).has(b,cell(3,3))",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
             "player": "minmax",
             "build": [
-                4394.403,
-                4347.589,
-                4435.416,
-                4369.774,
-                4354.51,
-                4381.274
+                947.786,
+                920.011,
+                985.251,
+                934.255,
+                888.917,
+                905.201
             ],
-            "average_build": 4380.494,
-            "std": 29.107,
+            "average_build": 930.237,
+            "std": 31.063,
             "special_results": {
-                "number_of_nodes": 896,
-                "save_time": 11.36
+                "number_of_nodes": 185
             }
         }
     },
@@ -469,22 +453,21 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).has(a,cell(1,2)).has(b,cell(1,1)).has(b,cell(3,3))",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
             "player": "pruned_minmax",
             "build": [
-                1296.379,
-                1289.857,
-                1285.884,
-                1354.305,
-                1320.763,
-                1288.081
+                354.312,
+                358.804,
+                373.943,
+                350.147,
+                324.632,
+                325.445
             ],
-            "average_build": 1305.878,
-            "std": 24.597,
+            "average_build": 347.88,
+            "std": 17.743,
             "special_results": {
-                "number_of_nodes": 119,
-                "save_time": 2.847
+                "number_of_nodes": 31
             }
         }
     },
@@ -507,22 +490,21 @@
             "train_file_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).has(a,cell(1,2)).has(b,cell(1,1)).has(b,cell(3,3))",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
             "player": "pruned_minmax_learning",
             "build": [
-                4214.537,
-                4160.903,
-                4175.775,
-                4237.432,
-                4151.813,
-                4207.014
+                407.781,
+                414.826,
+                471.849,
+                421.352,
+                412.884,
+                405.812
             ],
-            "average_build": 4191.246,
-            "std": 30.657,
+            "average_build": 422.417,
+            "std": 22.668,
             "special_results": {
-                "number_of_nodes": 126,
-                "save_time": 15.364
+                "number_of_nodes": 26
             }
         }
     },
@@ -549,22 +531,20 @@
             "tree_name": null,
             "first_build": false
         },
-        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).has(a,cell(1,2)).has(b,cell(1,1)).has(b,cell(3,3))",
+        "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
         "results": {
             "player": "ilasp",
             "build": [
-                49684.627,
-                51749.237,
-                53020.975,
-                50766.404,
-                54627.79,
-                49133.715
+                24407.147,
+                24548.072,
+                23908.032,
+                23839.182,
+                23638.968,
+                24559.767
             ],
-            "average_build": 51497.125,
-            "std": 1896.996,
-            "special_results": {
-                "save_time": 0.471
-            }
+            "average_build": 24150.195,
+            "std": 367.152,
+            "special_results": null
         }
     },
     {
@@ -586,14 +566,13 @@
         "results": {
             "player": "minmax",
             "build": [
-                35555.241,
-                32449.492
+                33452.88,
+                31325.096
             ],
-            "average_build": 34002.366,
-            "std": 1552.875,
+            "average_build": 32388.988,
+            "std": 1063.892,
             "special_results": {
-                "number_of_nodes": 7583,
-                "save_time": 97.168
+                "number_of_nodes": 7583
             }
         }
     },
@@ -620,14 +599,13 @@
         "results": {
             "player": "pruned_minmax",
             "build": [
-                968.294,
-                1365.849
+                1226.705,
+                1018.344
             ],
-            "average_build": 1167.072,
-            "std": 198.777,
+            "average_build": 1122.524,
+            "std": 104.18,
             "special_results": {
-                "number_of_nodes": 82,
-                "save_time": 2.624
+                "number_of_nodes": 82
             }
         }
     },
@@ -654,14 +632,13 @@
         "results": {
             "player": "pruned_minmax_learning",
             "build": [
-                1796.295,
-                1481.166
+                1687.439,
+                1526.16
             ],
-            "average_build": 1638.731,
-            "std": 157.565,
+            "average_build": 1606.8,
+            "std": 80.64,
             "special_results": {
-                "number_of_nodes": 66,
-                "save_time": 7.15
+                "number_of_nodes": 66
             }
         }
     },
@@ -692,14 +669,12 @@
         "results": {
             "player": "ilasp",
             "build": [
-                23327.26,
-                20671.86
+                20002.054,
+                18743.401
             ],
-            "average_build": 21999.56,
-            "std": 1327.7,
-            "special_results": {
-                "save_time": 0.524
-            }
+            "average_build": 19372.728,
+            "std": 629.326,
+            "special_results": null
         }
     },
     {
@@ -721,13 +696,12 @@
         "results": {
             "player": "minmax",
             "build": [
-                290532.149
+                252150.442
             ],
-            "average_build": 290532.149,
+            "average_build": 252150.442,
             "std": 0.0,
             "special_results": {
-                "number_of_nodes": 59704,
-                "save_time": 779.487
+                "number_of_nodes": 59704
             }
         }
     },
@@ -754,13 +728,12 @@
         "results": {
             "player": "pruned_minmax",
             "build": [
-                49398.273
+                40904.73
             ],
-            "average_build": 49398.273,
+            "average_build": 40904.73,
             "std": 0.0,
             "special_results": {
-                "number_of_nodes": 3138,
-                "save_time": 69.916
+                "number_of_nodes": 3138
             }
         }
     },
@@ -787,14 +760,48 @@
         "results": {
             "player": "pruned_minmax_learning",
             "build": [
-                1173697.364
+                1104140.948
             ],
-            "average_build": 1173697.364,
+            "average_build": 1104140.948,
             "std": 0.0,
             "special_results": {
-                "number_of_nodes": 2649,
-                "save_time": 18.904
+                "number_of_nodes": 2649
             }
+        }
+    },
+    {
+        "command": "ilasp --log=error --n=2 --game-name=ttt --init=initial_L.lp --out=L.json --strategy-name=L.lp --background-path=./game_definitions/ttt/background.lp",
+        "args": {
+            "log": "error",
+            "game_name": "ttt",
+            "const": null,
+            "random_initial_state_seed": null,
+            "initial": "initial_L.lp",
+            "num_repetitions": 2,
+            "benchmark_output_file": "L.json",
+            "selected_approach": "ilasp",
+            "main_player": "a",
+            "ilasp_examples_file_name": "temp_examples.las",
+            "language_bias_name": "final.las",
+            "background_path": "./game_definitions/ttt/background.lp",
+            "strategy_name": "L.lp",
+            "ilasp_arg": null,
+            "rules_file_name": null,
+            "tree_image_file_name": null,
+            "train_file_name": null,
+            "tree_name": null,
+            "first_build": false
+        },
+        "initial_state": "control(a).free(cell(1,1)).free(cell(1,2)).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(3,1)).has(b,cell(3,3))",
+        "results": {
+            "player": "ilasp",
+            "build": [
+                20002.054,
+                18743.401
+            ],
+            "average_build": 19372.728,
+            "std": 629.326,
+            "special_results": null
         }
     }
 ]

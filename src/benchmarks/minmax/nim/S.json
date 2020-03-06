@@ -13,21 +13,22 @@
         "tree_name": "S.json",
         "main_player": "a"
     },
-    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
+    "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
     "results": {
         "player": "minmax",
         "build": [
-            761.549,
-            759.026,
-            744.004,
-            764.477,
-            758.934,
-            745.738
+            1729.676,
+            1714.663,
+            1853.941,
+            1647.915,
+            1531.341,
+            1701.414
         ],
-        "average_build": 755.621,
-        "std": 7.84,
+        "average_build": 1696.492,
+        "std": 96.506,
         "special_results": {
-            "number_of_nodes": 208
+            "number_of_nodes": 390,
+            "save_time": 4.502
         }
     }
 }

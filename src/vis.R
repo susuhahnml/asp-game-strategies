@@ -8,7 +8,7 @@ library(tikzDevice)
 library(reshape2)
 library(optparse)
 
-plot_build <- function(name="build.json"){
+plot_build <- function(name="build_full_time.json"){
   # get main data
   hold <- fromJSON(file=paste0("./benchmarks/",name))
   hold <- lapply(hold, function(x) {
@@ -23,9 +23,9 @@ plot_build <- function(name="build.json"){
     if(approach == "minmax"){
       approach <- "Minimax"
     } else if(approach == "pruned_minmax"){
-      approach <- "Pruned Minimax"
+      approach <- "Pruned\nMinimax\nTree"
     } else if(approach == "pruned_minmax_learning"){
-      approach <- "Pruned Minimax + Learning Rules"
+      approach <- "Pruned\nMinimax\nRules"
     } else if(approach == "ilasp"){
       approach <- "ILASP"
     }
@@ -38,17 +38,15 @@ plot_build <- function(name="build.json"){
   hold[,4] <- as.numeric(levels(hold[,4])[hold[,4]])/1000
   hold[,5] <- as.numeric(levels(hold[,5])[hold[,5]])/1000
   hold$size <- factor(hold$size, levels=rev(levels(hold$size)))
-  # change naming for latex
-  levels(hold$approach) <- gsub("\\_","\\\\_",levels(hold$approach))
   # make third variant
   tikz("bar_build_3.tex", width=18, height=12, standAlone = TRUE)
+  print(aes(x=approach,y=mean,group=1))
   g <- ggplot(hold,aes(x=approach,y=mean,group=1)) +
     geom_bar(stat="identity",fill="red",color="black",width=0.4,alpha=0.6) +
     geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd),color="black",width=0.1) +
     stat_summary(fun.y=sum, geom="line",alpha=0.6,linetype="dashed") +
     xlab("\nLearning Approach") +
     ylab("Build Time [s]\n") +  theme_bw() +
-    scale_x_discrete(labels=c("Minimax","Pruned\nMinimax\nTree","Pruned\nMinimax\nRules","ILASP")) +
     theme(text = element_text(size=25),
           plot.title = element_text(hjust=0.5),
           legend.position = "none") +
@@ -60,7 +58,7 @@ plot_build <- function(name="build.json"){
   file.rename("bar_build_3.pdf","./img/bar_build_3.pdf")
 }
 
-plot_vs <- function(name="vs.json"){
+plot_vs <- function(name="vs_full_time.json"){
   # get main data
   hold <- fromJSON(file=paste0("./benchmarks/",name))
   hold <- lapply(hold, function(x) {
@@ -82,9 +80,9 @@ plot_vs <- function(name="vs.json"){
       if(pB_style == "minmax"){
         approach <- "Minimax"
       } else if(pB_style == "pruned_minmax-tree"){
-        approach <- "Pruned Minimax"
+        approach <- "Pruned\nMinimax\nTree"
       } else if(pB_style == "pruned_minmax-rule"){
-        approach <- "Pruned Minimax + Learning Rules"
+        approach <- "Pruned\nMinimax\nRules"
       } else if(pB_style == "ilasp"){
         approach <- "ILASP"
       } else{
@@ -118,7 +116,7 @@ plot_vs <- function(name="vs.json"){
   hold$size <- factor(hold$size, levels=c("S","M","L"))
   # change naming for latex
   levels(hold$pB) <- gsub("\\_","\\\\_",levels(hold$pB))
-  hold[,3] <- factor(hold[,3], levels = c("Minimax", "Pruned Minimax", "Pruned Minimax + Learning Rules"))
+#  hold[,3] <- factor(hold[,3], levels = c("Minimax", "Pruned Minimax", "Pruned Minimax + Learning Rules"))
   
   # make third variant
   tikz("bar_vs_3.tex", width=26, height=12, standAlone = TRUE)
@@ -129,10 +127,9 @@ plot_vs <- function(name="vs.json"){
     theme_bw() +
     theme(text = element_text(size=25),
           plot.title = element_text(hjust=0.5)) +
-    scale_fill_viridis_c("Mean Response\nTime [ms]",guide = "colourbar") +
+    scale_fill_viridis_c("Mean Response\nTime [ms]",guide = "colourbar",alpha=0.6) +
     scale_fill_gradient(low= "#FBDFDF", high= "#F90303")+
     scale_color_manual("Bar-plot\norder",values=c("black"),labels=c("Approach")) +
-    scale_x_discrete(labels=c("Minimax","Pruned\nMinimax\nTree","Pruned\nMinimax\nRules","ILASP")) +
     guides(fill = guide_colourbar(barwidth = 2.0, barheight = 20)) +
     facet_grid(game ~ size,scales="free_y")
   print(g)
@@ -145,9 +142,9 @@ plot_vs <- function(name="vs.json"){
 }
 
 # main command
-if(file.exists("./benchmarks/build.json")){
+if(file.exists("./benchmarks/build_full_time.json")){
   plot_build()
 }
-if(file.exists("./benchmarks/vs.json")){
+if(file.exists("./benchmarks/vs_full_time.json")){
   plot_vs()
 }

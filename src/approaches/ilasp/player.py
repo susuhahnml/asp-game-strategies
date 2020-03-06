@@ -1,3 +1,4 @@
+import time
 import subprocess
 from structures.players import Player
 from approaches.pruned_minmax.player import PrunedMinmaxPlayer
@@ -123,16 +124,22 @@ class ILASPPlayer(Player):
         log.info("Running ilasp command: \n{}".format(" ".join(command)))
         result = subprocess.check_output(string_command, shell=True).decode("utf-8") 
         log.debug("Found strategy: \n{}".format(result))
+        t0 = time.time()
         
         strategy_file_path = '{}/strategies/{}'.format(base_path,args.strategy_name)
         os.makedirs(os.path.dirname(strategy_file_path), exist_ok=True)
-
+        
         langauage_bias_predicates = [l for l in langauage_bias_lines if l[0]!="#"]
         result = result + "".join(langauage_bias_predicates)
         with open(strategy_file_path,'w') as startegy:
             startegy.write(result)
             startegy.close()
         log.debug("Strategy saved in {}/strategies/{}".format(base_path,args.strategy_name))
+
+        t1 = time.time()
+        save_time = round((t1-t0)*1000,3)
+        return {
+            'save_time':save_time}
 
 
     def choose_action(self,state):

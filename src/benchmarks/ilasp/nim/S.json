@@ -21,19 +21,21 @@
         "tree_name": null,
         "first_build": false
     },
-    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
+    "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
     "results": {
         "player": "ilasp",
         "build": [
-            4092.506,
-            707.734,
-            706.548,
-            704.942,
-            716.888,
-            703.625
+            3422.371,
+            521.78,
+            518.297,
+            520.826,
+            515.883,
+            535.53
         ],
-        "average_build": 1272.04,
-        "std": 1261.358,
-        "special_results": null
+        "average_build": 1005.781,
+        "std": 1080.75,
+        "special_results": {
+            "save_time": 0.451
+        }
     }
 }

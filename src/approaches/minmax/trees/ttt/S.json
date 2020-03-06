@@ -1,224 +1,632 @@
 {
     "main_player": "a",
     "tree_scores": {
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,2))).": 1,
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 0,
             "does(a,mark(cell(2,3))).": -1,
             "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,1))).": -1,
             "does(a,mark(cell(1,3))).": -1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
             "does(b,mark(cell(2,3))).": 1,
-            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(3,2))).": 0,
+            "does(b,mark(cell(3,1))).": 1,
             "does(b,mark(cell(2,1))).": 1,
             "does(b,mark(cell(1,3))).": 1
         },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,1))).": -1,
             "does(a,mark(cell(1,3))).": 1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
             "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,1))).": 1,
             "does(b,mark(cell(1,3))).": -1
         },
-        "true(control(a)). true(free(cell(1,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,1))).": -1,
             "does(a,mark(cell(1,3))).": 1
         },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,3))).": 1,
-            "does(a,mark(cell(2,1))).": 1,
-            "does(a,mark(cell(1,3))).": 1
+        "true(control(b)). true(free(cell(1,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(1,3))).": -1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,1))).": 1,
-            "does(b,mark(cell(1,3))).": 1
-        },
-        "true(control(a)). true(free(cell(1,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(1,3))).": 1
-        },
-        "true(control(a)). true(free(cell(2,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,1))).": 1
-        },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,3))).": 1,
-            "does(b,mark(cell(1,3))).": 1
-        },
-        "true(control(a)). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,3))).": 1
-        },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(3,2))).": 1,
-            "does(a,mark(cell(2,3))).": 1,
             "does(a,mark(cell(1,3))).": 1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(3,2))).": 1,
-            "does(b,mark(cell(1,3))).": 1
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(1,3))).": -1
         },
-        "true(control(a)). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(3,2))).": 1
-        },
-        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(3,2))).": 1,
-            "does(a,mark(cell(2,3))).": 1,
-            "does(a,mark(cell(2,1))).": -1
+            "does(a,mark(cell(1,3))).": -1
         },
-        "true(control(b)). true(free(cell(2,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
             "does(b,mark(cell(3,2))).": 1,
             "does(b,mark(cell(2,1))).": 1
         },
-        "true(control(b)). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": 1,
+            "does(a,mark(cell(3,2))).": 1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(3,1))).": 0,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,1))).": 0,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": 0,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(1,3))).": 0
+        },
+        "true(control(b)). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": 0,
+            "does(a,mark(cell(2,1))).": 1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,1))).": 0
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,1))).": 1,
+            "does(b,mark(cell(1,3))).": 0
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": 0,
+            "does(a,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": 0,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,3))).": 1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(a)). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": 1,
+            "does(a,mark(cell(2,3))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,1))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(2,1))).": 1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(2,3))).": 1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(3,1))).": 1,
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(2,3))).": 0
+        },
+        "true(control(b)). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": 0
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(3,2))).": 0,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": 0,
+            "does(a,mark(cell(3,2))).": 1
+        },
+        "true(control(b)). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": 1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,3))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": 0,
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(b)). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
             "does(b,mark(cell(3,2))).": 1,
             "does(b,mark(cell(2,3))).": -1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
             "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(3,2))).": 1,
-            "does(b,mark(cell(2,1))).": 1,
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,1))).": -1,
             "does(b,mark(cell(1,3))).": 1
         },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,2))).": 1,
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,1))).": -1,
             "does(a,mark(cell(1,3))).": -1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 0,
+            "does(b,mark(cell(1,3))).": 0
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 0,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 0,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
             "does(b,mark(cell(2,2))).": -1,
             "does(b,mark(cell(1,3))).": 1
         },
-        "true(control(a)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,2))).": 1
         },
-        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,2))).": 1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": 1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": 0,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": 0
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,2))).": 0
+        },
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
             "does(b,mark(cell(2,2))).": -1,
             "does(b,mark(cell(2,1))).": 1
         },
-        "true(control(a)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": 0,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 0
+        },
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(2,1))).": 1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 1,
+            "does(b,mark(cell(1,3))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,2))).": 1
         },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,2))).": 1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": 1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,2))).": 1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": 1,
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(3,2))).": 0,
+            "does(b,mark(cell(2,1))).": 1,
+            "does(b,mark(cell(1,3))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,2))).": 1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,2))).": 0,
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,1))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(1,3))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,2))).": -1
+        },
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(2,3))).": 1,
+            "does(b,mark(cell(2,2))).": -1,
+            "does(b,mark(cell(2,1))).": 1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,2))).": 1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
             "does(a,mark(cell(3,2))).": -1,
             "does(a,mark(cell(2,2))).": 1,
             "does(a,mark(cell(1,3))).": -1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(1,3))).": 1
-        },
-        "true(control(a)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,2))).": 1
-        },
-        "true(control(b)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
             "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(2,3))).": 1,
             "does(b,mark(cell(2,2))).": -1
         },
-        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
             "does(a,mark(cell(3,2))).": -1,
-            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(2,2))).": -1,
             "does(a,mark(cell(2,1))).": -1
         },
-        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(2,1))).": 1
-        },
-        "true(control(b)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(2,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(3,2))).": 1,
-            "does(b,mark(cell(2,2))).": -1
-        },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(2,3))).": 1,
-            "does(b,mark(cell(2,1))).": 1,
-            "does(b,mark(cell(1,3))).": 1
-        },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,2))).": 1,
-            "does(a,mark(cell(2,1))).": -1,
-            "does(a,mark(cell(1,3))).": -1
-        },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(1,3))).": -1
-        },
-        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(2,1))).": 1
-        },
-        "true(control(a)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,2))).": 1
-        },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,3))).": -1,
-            "does(a,mark(cell(2,2))).": 1,
-            "does(a,mark(cell(1,3))).": -1
-        },
-        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,3))).": 1,
-            "does(b,mark(cell(2,2))).": -1
-        },
-        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,3))).": -1,
-            "does(a,mark(cell(2,2))).": 1,
-            "does(a,mark(cell(2,1))).": -1
-        },
-        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(a,cell(3,2))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
             "does(b,mark(cell(2,3))).": -1,
             "does(b,mark(cell(2,2))).": -1
         },
-        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
             "does(b,mark(cell(2,3))).": -1,
-            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(3,1))).": -1,
             "does(b,mark(cell(2,2))).": -1,
             "does(b,mark(cell(1,3))).": -1
         },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(1,3))).": -1
+        },
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,1))).": -1,
+            "does(b,mark(cell(2,3))).": -1,
+            "does(b,mark(cell(2,2))).": -1
+        },
+        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(2,3))).": -1,
             "does(a,mark(cell(3,2))).": -1,
             "does(a,mark(cell(2,2))).": -1,
             "does(a,mark(cell(1,3))).": -1
         },
-        "true(control(b)). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(3,2))).": 1,
+        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(2,3))).": -1,
             "does(b,mark(cell(2,2))).": -1
         },
-        "true(control(a)). true(free(cell(2,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,2))).": 1
-        },
-        "true(control(a)). true(free(cell(1,3))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(2,3))).": -1,
-            "does(a,mark(cell(2,2))).": 1,
-            "does(a,mark(cell(1,3))).": -1
-        },
-        "true(control(b)). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
-            "does(b,mark(cell(2,3))).": 1,
-            "does(b,mark(cell(2,2))).": -1
-        },
-        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(2,1))). true(has(b,cell(1,1))). true(has(b,cell(1,3))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,3))).": -1,
             "does(a,mark(cell(2,2))).": -1
         },
-        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
+        "true(control(b)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(b,cell(1,1))). true(has(b,cell(3,3))).": {
             "does(b,mark(cell(2,3))).": 1,
-            "does(b,mark(cell(3,2))).": 1,
+            "does(b,mark(cell(3,2))).": -1,
+            "does(b,mark(cell(3,1))).": -1,
             "does(b,mark(cell(2,2))).": -1,
-            "does(b,mark(cell(2,1))).": 1
+            "does(b,mark(cell(2,1))).": -1
         },
-        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(b,cell(1,1))). true(has(b,cell(2,3))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
             "does(a,mark(cell(2,2))).": 1,
             "does(a,mark(cell(2,1))).": -1
         },
-        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(b,cell(1,1))). true(has(b,cell(3,2))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(2,3))).": -1,
-            "does(a,mark(cell(2,2))).": 1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,2))).": -1,
             "does(a,mark(cell(2,1))).": -1
         },
-        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(a,cell(3,1))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
-            "does(a,mark(cell(3,2))).": -1,
+        "true(control(a)). true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(b,cell(1,1))). true(has(b,cell(3,1))). true(has(b,cell(3,3))).": {
             "does(a,mark(cell(2,3))).": -1,
-            "does(a,mark(cell(2,2))).": 1
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(2,2))).": -1,
+            "does(a,mark(cell(2,1))).": -1
+        },
+        "true(control(a)). true(free(cell(2,2))). true(free(cell(2,3))). true(free(cell(3,1))). true(free(cell(3,2))). true(has(a,cell(1,2))). true(has(a,cell(1,3))). true(has(b,cell(1,1))). true(has(b,cell(2,1))). true(has(b,cell(3,3))).": {
+            "does(a,mark(cell(3,2))).": -1,
+            "does(a,mark(cell(3,1))).": -1,
+            "does(a,mark(cell(2,3))).": -1,
+            "does(a,mark(cell(2,2))).": -1
         }
     }
 }

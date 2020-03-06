@@ -1,5 +1,7 @@
-:~ in_line(V0,V1,V2), next(free(V1)).[1@1, 1, V0, V1, V2]
-:~ next(has(V0,V1)), next(has(V0,V2)), next(has(V0,V3)), in_line(V2,V3,V1).[-1@2, 2, V0, V1, V2, V3]
+:~ next(has(V0,V1)), in_line(V1,V2,V3).[1@1, 1, V0, V1, V2, V3]
+:~ in_line(V0,V1,V2), next(free(V0)).[-1@2, 2, V0, V1, V2]
+:~ next(has(V0,V1)), in_line(V2,V3,V1), next(free(V2)).[1@2, 3, V0, V1, V2, V3]
+:~ next(has(V0,V1)), next(has(V0,V2)), next(has(V0,V3)), in_line(V1,V2,V3).[-1@2, 4, V0, V1, V2, V3]
 
 % Expected hypothesis
 % :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V2)), next(has(P,V3)).[-1@1]

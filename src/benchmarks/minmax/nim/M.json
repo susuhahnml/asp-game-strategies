@@ -13,17 +13,18 @@
         "tree_name": "M.json",
         "main_player": "a"
     },
-    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,4)",
+    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,3)",
     "results": {
         "player": "minmax",
         "build": [
-            126383.326,
-            138691.193
+            19823.733,
+            21551.193
         ],
-        "average_build": 132537.259,
-        "std": 6153.933,
+        "average_build": 20687.463,
+        "std": 863.73,
         "special_results": {
-            "number_of_nodes": 28092
+            "number_of_nodes": 4630,
+            "save_time": 49.832
         }
     }
 }

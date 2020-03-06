@@ -21,19 +21,21 @@
         "tree_name": null,
         "first_build": false
     },
-    "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
+    "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).has(a,cell(1,2)).has(b,cell(1,1)).has(b,cell(3,3))",
     "results": {
         "player": "ilasp",
         "build": [
-            24407.147,
-            24548.072,
-            23908.032,
-            23839.182,
-            23638.968,
-            24559.767
+            49684.627,
+            51749.237,
+            53020.975,
+            50766.404,
+            54627.79,
+            49133.715
         ],
-        "average_build": 24150.195,
-        "std": 367.152,
-        "special_results": null
+        "average_build": 51497.125,
+        "std": 1896.996,
+        "special_results": {
+            "save_time": 0.471
+        }
     }
 }

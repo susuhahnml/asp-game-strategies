@@ -17,16 +17,17 @@
         "train_file_name": null,
         "first_build": false
     },
-    "initial_state": "control(a).has(1,1).has(2,3).has(3,4).has(4,5)",
+    "initial_state": "control(a).has(1,1).has(2,3).has(3,3).has(4,4)",
     "results": {
         "player": "pruned_minmax_learning",
         "build": [
-            70282.511
+            31144.642
         ],
-        "average_build": 70282.511,
+        "average_build": 31144.642,
         "std": 0.0,
         "special_results": {
-            "number_of_nodes": 481
+            "number_of_nodes": 303,
+            "save_time": 7.596
         }
     }
 }

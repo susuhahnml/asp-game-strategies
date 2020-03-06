@@ -13,21 +13,22 @@
         "tree_name": "S.json",
         "main_player": "a"
     },
-    "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,2)).has(a,cell(1,2)).has(a,cell(3,1)).has(b,cell(1,1)).has(b,cell(3,3))",
+    "initial_state": "control(a).free(cell(1,3)).free(cell(2,1)).free(cell(2,2)).free(cell(2,3)).free(cell(3,1)).free(cell(3,2)).has(a,cell(1,2)).has(b,cell(1,1)).has(b,cell(3,3))",
     "results": {
         "player": "minmax",
         "build": [
-            947.786,
-            920.011,
-            985.251,
-            934.255,
-            888.917,
-            905.201
+            4394.403,
+            4347.589,
+            4435.416,
+            4369.774,
+            4354.51,
+            4381.274
         ],
-        "average_build": 930.237,
-        "std": 31.063,
+        "average_build": 4380.494,
+        "std": 29.107,
         "special_results": {
-            "number_of_nodes": 185
+            "number_of_nodes": 896,
+            "save_time": 11.36
         }
     }
 }

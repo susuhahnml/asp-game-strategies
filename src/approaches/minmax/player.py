@@ -1,4 +1,4 @@
-
+import time
 from structures.players import Player
 from structures.tree import Tree
 from approaches.minmax.minmax import minmax_from_game_def
@@ -91,6 +91,7 @@ class MinmaxPlayer(Player):
         """
         log.debug("Computing normal minmax for tree")
         tree = minmax_from_game_def(game_def,main_player=args.main_player)
+        t0 = time.time()
         if(not args.tree_image_file_name is None):
             file_name = '{}/{}'.format(game_def.name,args.tree_image_file_name)
             tree.print_in_file(file_name=file_name,main_player=args.main_player)
@@ -100,8 +101,11 @@ class MinmaxPlayer(Player):
             file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,args.tree_name)
             tree.save_scores_in_file(file_path)
             log.debug("Tree saved in {}".format(file_path))
-
-        return {'number_of_nodes':n_nodes}
+        t1 = time.time()
+        save_time = round((t1-t0)*1000,3)
+        return {
+            'number_of_nodes':n_nodes,
+            'save_time':save_time}
 
     def choose_action(self,state):
         """

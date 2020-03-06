@@ -21,13 +21,14 @@
     "results": {
         "player": "pruned_minmax_learning",
         "build": [
-            1687.439,
-            1526.16
+            1796.295,
+            1481.166
         ],
-        "average_build": 1606.8,
-        "std": 80.64,
+        "average_build": 1638.731,
+        "std": 157.565,
         "special_results": {
-            "number_of_nodes": 66
+            "number_of_nodes": 66,
+            "save_time": 7.15
         }
     }
 }

@@ -17,21 +17,22 @@
         "train_file_name": null,
         "first_build": false
     },
-    "initial_state": "control(a).has(1,1).has(2,2).has(3,3).has(4,0)",
+    "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
     "results": {
         "player": "pruned_minmax_learning",
         "build": [
-            2143.434,
-            2028.204,
-            1772.417,
-            1756.925,
-            1779.663,
-            1754.835
+            1757.086,
+            1757.732,
+            1752.189,
+            1638.245,
+            1504.893,
+            1507.924
         ],
-        "average_build": 1872.58,
-        "std": 154.643,
+        "average_build": 1653.011,
+        "std": 111.685,
         "special_results": {
-            "number_of_nodes": 50
+            "number_of_nodes": 39,
+            "save_time": 6.372
         }
     }
 }

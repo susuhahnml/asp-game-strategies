@@ -4,7 +4,7 @@ true(free(cell(2,1))).
 true(free(cell(2,2))).
 true(free(cell(2,3))).
 true(free(cell(3,2))).
+true(free(cell(3,1))).
 true(has(a,cell(1,2))).
-true(has(a,cell(3,1))).
 true(has(b,cell(1,1))).
 true(has(b,cell(3,3))).

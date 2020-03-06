@@ -1,3 +1,4 @@
+import time
 from structures.players import Player
 from py_utils.clingo_utils import fluents_to_asp_syntax, rules_file_to_gdl
 from approaches.pruned_minmax.pruned_minmax import get_minmax_init
@@ -127,7 +128,8 @@ class PrunedMinmaxPlayer(Player):
                                                             generating_training=generate_train,learning_rules=learn_rules, learning_examples=learn_examples)
         log.debug(minmax_match)
         
-                                                            
+        t0 = time.time()
+                                           
         if learn_examples:
             ilasp_examples_file_name = './approaches/ilasp/{}/examples/{}'.format(args.game_name,args.ilasp_examples_file_name)
             os.makedirs(os.path.dirname(ilasp_examples_file_name), exist_ok=True)
@@ -158,9 +160,12 @@ class PrunedMinmaxPlayer(Player):
             file_path = "./approaches/pruned_minmax/trees/{}/{}".format(game_def.name,args.tree_name)
             min_max_tree.save_scores_in_file(file_path)
             log.debug("Tree saved in {}".format(file_path))
+        t1 = time.time()
+        save_time = round((t1-t0)*1000,3)
 
         return {
-            'number_of_nodes':n_nodes}
+            'number_of_nodes':n_nodes,
+            'save_time':save_time}
 
     def choose_action(self,state):
         """
