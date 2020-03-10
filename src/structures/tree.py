@@ -10,14 +10,49 @@ from anytree.importer import DictImporter
 from anytree.iterators.levelorderiter import LevelOrderIter
 from anytree.search import findall
 from .state import State, StateExpanded
+from .action import Action
 from .match import Match
 from .step import Step
 from py_utils.logger import log
 import json
+class NodeBase:
+    def __init__(self, step, main_player):
+        self.step = step
+        self.main_player = main_player
+
+    @classmethod
+    def from_dic(cls, dic, game_def, main_player):
+        time_step = dic['time_step']
+        state = State.from_facts(dic['step']['state'],game_def)
+        action = None if dic['step']['action'] is None else Action.from_facts(dic['step']['action'],game_def)
+        s = cls(Step(state, action, time_step),main_player)
+        return s
+
+    def style(self):
+        style = ['rounded','filled']
+        if not (self.step.action is None):
+            if self.step.action.player == self.main_player:
+                style.append('solid')
+            else:
+                style.append('dotted')
+        format_str = 'shape="box" style="%s" fontName="Bookman Old Style" labeljust=l'  % ( ",".join(style))
+        return format_str
+
+    @property
+    def ascii(self):
+        """
+        Generate a label for the tree printing
+        """
+        raise NotImplementedError
+        return self.step.ascii
+
+
 class Tree:
     """
     Tree class to handle search trees for games
     """
+    node_class = NodeBase
+
     def __init__(self,root=None,main_player="a"):
         """ Initialize with empty root node and game class """
         self.root = root
@@ -35,65 +70,29 @@ class Tree:
         importer = DictImporter()
         root = importer.import_(tree_dic['tree'])
         for n in PreOrderIter(root):
-            n.name=Step.from_dic(n.name,game_def)
+            n.name= cls.node_class.from_dic(n.name,game_def,tree_dic['main_player'])
         t = cls(root)
         return t
 
-    @staticmethod
-    def get_scores_from_file(file_path):
+    def create_node(self, step, *argv):
         """
-        Gets the dictionary wth all the scores from a file
-        Args:
-            file_path: Path to the json file
+        Creates a new node from the current class
         """
-        with open(file_path) as feedsjson:
-            return json.load(feedsjson)
-
+        return self.__class__.node_class(step,self.main_player,*argv) 
 
     def find_by_state(self, state):
         """
         Finds all nodes from tree matching a state
         """
-        return findall(self.root, lambda n: n.name.state==state)
-
+        return findall(self.root, lambda n: n.name.step.state==state)
 
     def get_number_of_nodes(self):
         """
         Gets the number of nodes of the tree
         """
-        nodes = findall(self.root, filter_=lambda node: not node.name.action is None and not node.name.score is None)
+        nodes = findall(self.root)
         return len(nodes)
     
-    def best_action(self, state, main_player):
-        """
-        Finds the best action for the player in the given state 
-        Args:
-            state: The state of the game
-            main_player: The player for which the action must be the best
-        Returns:
-            The best action, or none if there is no information in the tree
-        """
-        node_steps = self.find_by_state(state)
-        if len(node_steps) == 0:
-            return None
-        else:
-            best_node = None
-            for node in node_steps:
-                if(best_node is None):
-                    best_node = node
-                    continue
-                score=node.name.score
-                if(main_player == self.main_player):
-                    if(score>best_node.name.score):
-                        best_node = node
-                        continue
-                    continue
-                if(main_player != self.main_player):
-                    if(score<best_node.name.score):
-                        best_node = node
-                        continue
-                    continue
-            return best_node.name.action.action
             
     def save_in_file(self,file_path):
         """
@@ -108,28 +107,8 @@ class Tree:
         with open(file_path, 'w') as feedsjson:
             json.dump(final_json, feedsjson, indent=4)
 
-    def save_scores_in_file(self,file_path):
-        """
-        Saves the tree states as a dictionary to dinf best scores
-        """
-        state_dic = {}
-        for n in PreOrderIter(self.root):
-            if n.name.action is None:
-                continue
-            if n.name.score is None:
-                continue
-            state_facts = n.name.state.to_facts()
-            if not state_facts in state_dic:
-                state_dic[state_facts] = {}
-            state_dic[state_facts][n.name.action.to_facts()] = n.name.score
-
-        final_json = {'main_player':self.main_player,'tree_scores':state_dic}
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        with open(file_path, 'w') as feedsjson:
-            json.dump(final_json, feedsjson, indent=4)
-
     def print_in_file(self,
-                      file_name="tree_test.png",main_player="a"):
+                      file_name="tree_test.png"):
         """
         Function to plot generated tree as an image file
 
@@ -139,40 +118,18 @@ class Tree:
         base_dir="./img/"
         image_file_name = base_dir + file_name
         # define local functions
-        def to_label(node):
-            os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
-            """ Minor function to create ascii graph label """
-            a = Tree.step_ascii_score(node.name,main_player)
-            a_r = a.replace('\n','\l')+'\l'
-            style = ['rounded','filled']
-            if not (node.name.action is None):
-                if node.name.action.player == main_player:
-                    style.append('solid')
-                else:
-                    style.append('dotted')
-            format_str = 'label="%s" shape=box style="%s" fontName="Bookman Old Style" labeljust=l'  % ( a_r,",".join(style))
-            if node.name.score is None:
-                format_str += ' fillcolor="#e4e4e4"'
-            else:
-                if node.name.score<0:
-                    format_str += ' fillcolor="#fbe7e6"'
-                elif node.name.score>0:
-                    format_str += ' fillcolor="#e6fbea"'
-            return format_str
+        
+        def aux(n):
+            a = 'label="{}" {}'.format(n.name.ascii, n.name.style(parent=n.parent))
+            return a
+        os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
         UniqueDotExporter(self.root,
-                          nodeattrfunc=to_label,
+                          nodeattrfunc=aux,
                           edgeattrfunc=lambda parent, child: 'arrowhead=vee').to_picture(image_file_name)
         log.info("Tree image saved in {}".format(image_file_name))
 
-    def print_in_console(self):
-        """
-        Function to plot generated tree within the console
-        """
-        for pre, fill, node in RenderTree(self.root):
-            print("%s%s" % (pre, node.name))
-
-    @staticmethod
-    def node_from_match_initial(match):
+    @classmethod
+    def node_from_match_initial(cls,match,main_player):
         """
         Function to construct a tree from a match class.
         It will create a tree with one branch representing the match
@@ -183,14 +140,14 @@ class Tree:
         Returns:
             root_node (anytree.Node): tree corresponding to match
         """
-        initial = Step(match.steps[0].state,None,-1)
+        initial = cls.node_class(Step(match.steps[0].state,None,-1),main_player)
         root_node = Node(initial)
-        rest = Tree.node_from_match(match)
+        rest = cls.node_from_match(match,main_player)
         rest.parent = root_node
         return root_node
 
-    @staticmethod
-    def node_from_match(match):
+    @classmethod
+    def node_from_match(cls,match,main_player):
         """
         Function to construct a tree from a match class.
         It will create a tree with one branch representing the match
@@ -200,30 +157,9 @@ class Tree:
         Returns:
             root_node (anytree.Node): tree corresponding to match
         """
-        root_node = Node(match.steps[0],children=[])
+        root_node = Node(cls.node_class(match.steps[0],main_player=main_player),children=[])
         current_node = root_node
         for s in match.steps[1:]:
-            new = Node(s,parent=current_node)
+            new = Node(cls.node_class(s,main_player=main_player),parent=current_node)
             current_node = new
         return root_node
-
-    @staticmethod
-    def step_ascii_score(step,main_player="a"):
-        """
-        Returns the ascii representation of the step including the score
-        Used for printing
-        """
-        if step.score:
-            if not step.action is None:
-                return "〔score {}〕\n{}".format(step.score,
-                                                          step.ascii)
-            else:
-                if(step.state.is_terminal):
-                    # return ("Terminal:({})\n{}".format(step.score,step.ascii))
-                    return ("〔score {}〕".format(step.score))
-                else:
-                    other_player = "b" if main_player=="a" else "a"
-                    s ="〔score {}〕\nmax:{}\nmin:{}\n{}".format(step.score,main_player,other_player,step.ascii)
-                    return s
-        else:
-            return ""

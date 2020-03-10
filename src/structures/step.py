@@ -16,21 +16,19 @@ class Step:
         the action taken in the step. For terminal states, action is None.
     time_step : int
         the time number in which the step was taken
-    score : int
-        the score for taking the action. It is set to the goals in the last
-        timestep and calculated for the internal steps
     """
-    def __init__(self,state,action,time_step,score=None):
+    def __init__(self,state,action,time_step):
         self.state = state
         self.action = action
         self.time_step = time_step
-        self.score = score
+
+    def __hash__(self):
+        a_f = 0 if self.action is None else self.action.to_facts()
+        return hash((self.state.to_facts(),a_f))
 
     def __eq__(self, other):
-        eq = True
         eq = self.state == other.state
         eq = eq and self.action == other.action
-        eq = eq and self.score == other.score
         return eq
 
     @classmethod
@@ -51,7 +49,6 @@ class Step:
         Returns a serializable dictionary to dump on a json
         """
         return {
-            "score": self.score,
             "time_step": self.time_step,
             "state": self.state.to_facts(),
             "action": None if self.action is None else self.action.to_facts()
@@ -79,15 +76,6 @@ class Step:
             fluents_str += action_str
         return fluents_str
 
-    def set_score(self, score):
-        """
-        Sets the score of the step
-
-        Args:
-            score: The new score
-        """
-        self.score = score
-
     def set_score_player(self, player_name):
         """
         Sets the score for an specific player
@@ -103,12 +91,7 @@ class Step:
         """
         Returns a condensed string representation of the step
         """
-        s=""
-        if self.action:
-            s= "*{}* score:{}, {}".format(self.time_step,self.score,self.action)
-        else:
-            return "NO ACTION"
-        return s
+        return self.ascii
 
     @property
     def str_expanded(self):

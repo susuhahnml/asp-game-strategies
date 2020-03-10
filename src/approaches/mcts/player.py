@@ -1,15 +1,18 @@
+import os
 import time
 from structures.players import Player
 from structures.tree import Tree
-from structures.treeMinmax import TreeMinmax
-from approaches.minmax.minmax import minmax_from_game_def
+from structures.treeMCTS import TreeMCTS
 from py_utils.logger import log
 from structures.players import Player
 from random import randint
 from structures.action import Action
-class MinmaxPlayer(Player):
+from structures.step import Step
+from approaches.ml_agent.train_utils import training_data_to_csv
+
+class MCTSPlayer(Player):
     """
-    Creates the full minmax tree
+    Creates the full mcts tree
 
     Attributes
     ----------
@@ -17,7 +20,7 @@ class MinmaxPlayer(Player):
     main_player: The name of the player to optimize
     """
 
-    description = "Generates the full minmax tree"
+    description = "Generates a mcts tree"
 
     def __init__(self, game_def, name_style, main_player):
         """
@@ -31,11 +34,6 @@ class MinmaxPlayer(Player):
             name_style (str): The name style used to create the built player. 
         """
         super().__init__(game_def, "Min max tree", main_player)
-        file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,name_style[7:])
-        # self.tree = Tree.load_from_file(file_path,game_def)
-        f = TreeMinmax.get_scores_from_file(file_path)
-        self.tree_scores = f["tree_scores"]
-        self.scores_main_player = f["main_player"]
 
     @classmethod
     def get_name_style_description(cls):
@@ -46,7 +44,7 @@ class MinmaxPlayer(Player):
         Returns: 
             String for the description
         """
-        return "minmax-<tree-file>: where tree-file is the name of the file saved in the folder trees during build"
+        return "mcts"
 
     @staticmethod
     def match_name_style(name_style):
@@ -59,7 +57,7 @@ class MinmaxPlayer(Player):
         Returns: 
             Boolean value indicating if the name_style is a match
         """
-        return name_style[:7]=="minmax-"
+        return name_style[:4]=="mcts"
 
 
     @staticmethod
@@ -76,6 +74,10 @@ class MinmaxPlayer(Player):
             help="Name of the file to save an image of the computed tree")
         approach_parser.add_argument("--tree-name", "--tree-name",type=str, default=None,
             help="Name of the file to save the computed tree, must have .json extention")
+        approach_parser.add_argument("--train-file",type=str, default=None,
+            help="Name of the file to save the training data with mcts probabilites, must have .cvs extention")
+        approach_parser.add_argument("--iter", type= int, default=100,
+            help="Number of iteration to transverse the tree")
         approach_parser.add_argument("--main-player", type= str, default="a",
             help="The player for which to maximize; either a or b")
 
@@ -90,8 +92,19 @@ class MinmaxPlayer(Player):
             game_def (GameDef): The game definition used for the creation
             args (NameSpace): A name space with all the attributes defined in add_parser_build_args
         """
-        log.debug("Computing normal minmax for tree")
-        tree = minmax_from_game_def(game_def,main_player=args.main_player)
+        if not 'first_build' in args:
+            log.debug("Creating new files")
+            new_files = 'w'
+            args.first_build = False
+        else:
+            log.debug("Appending to existent files")
+            new_files = 'a'
+
+        log.debug("Computing mcts for tree")
+        state = game_def.get_initial_state()
+        root = TreeMCTS.node_class(Step(state,None,0),args.main_player)
+        tree = TreeMCTS(root,game_def,args.main_player)
+        tree.run_mcts(args.iter)
         t0 = time.time()
         if(not args.tree_image_file_name is None):
             file_name = '{}/{}'.format(game_def.name,args.tree_image_file_name)
@@ -99,9 +112,16 @@ class MinmaxPlayer(Player):
             log.debug("Tree image saved in {}".format(file_name))
         n_nodes = tree.get_number_of_nodes()
         if(not args.tree_name is None):
-            file_path = "./approaches/minmax/trees/{}/{}".format(game_def.name,args.tree_name)
-            tree.save_scores_in_file(file_path)
+            file_path = "./approaches/mcts/trees/{}/{}".format(game_def.name,args.tree_name)
+            tree.save_values_in_file(file_path)
             log.debug("Tree saved in {}".format(file_path))
+        if(not args.train_file is None):
+            file_path = "./approaches/mcts/train/{}/{}".format(game_def.name,args.train_file)
+            l = tree.get_train_list()
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            training_data_to_csv(file_path,l,game_def,new_files,extra_array=['p','n'])
+            log.debug("Training data saved in {}".format(file_path))
+
         t1 = time.time()
         save_time = round((t1-t0)*1000,3)
         return {
@@ -118,22 +138,17 @@ class MinmaxPlayer(Player):
         Returns:
             action (Action): The selected action. Should be one from the list of state.legal_actions
         """
-        state_facts = state.to_facts()
-        
-        
-        if state_facts in self.tree_scores:
-            opt = self.tree_scores[state_facts].items()
-            if self.scores_main_player == self.main_player:
-                best = max(opt, key = lambda i : i[1])
-            else:
-                best = min(opt, key = lambda i : i[1])
-            action = Action.from_facts(best[0],self.game_def)
-        else:
-            log.debug("Minmax has no information in tree for current step, choosing random")
-            index = randint(0,len(state.legal_actions)-1)
-            return state.legal_actions[index]
+        step = Step(state,None,0)
 
-        action = [l_a for l_a in state.legal_actions
+        tree = TreeMCTS(TreeMCTS.node_class(step,self.main_player),self.game_def,self.main_player)
+        try:
+            tree.run_mcts(10000)
+        except TimeoutError:
+            log.debug("Reached timeout error for mcts, computation will stop")
+
+        
+        action = tree.get_best_action(tree.root)
+        action_ex = [l_a for l_a in state.legal_actions
                 if l_a == action][0]
-        return action
+        return action_ex
 

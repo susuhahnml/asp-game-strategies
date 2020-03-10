@@ -1,0 +1,33 @@
+{
+    "command": "pruned_minmax --log=debug --n=1 --game-name=nim --init=initial_S.lp --out=test.json --tree-name=S.json --tree-img=test.png",
+    "args": {
+        "log": "debug",
+        "game_name": "nim",
+        "const": null,
+        "random_initial_state_seed": null,
+        "initial": "initial_S.lp",
+        "num_repetitions": 1,
+        "benchmark_output_file": "test.json",
+        "selected_approach": "pruned_minmax",
+        "tree_image_file_name": "test.png",
+        "tree_name": "S.json",
+        "main_player": "a",
+        "ilasp_examples_file_name": null,
+        "rules_file_name": null,
+        "train_file_name": null,
+        "first_build": false
+    },
+    "initial_state": "control(a).has(1,2).has(2,2).has(3,3).has(4,0)",
+    "results": {
+        "player": "pruned_minmax",
+        "build": [
+            2892.513
+        ],
+        "average_build": 2892.513,
+        "std": 0.0,
+        "special_results": {
+            "number_of_nodes": 87,
+            "save_time": 291.503
+        }
+    }
+}

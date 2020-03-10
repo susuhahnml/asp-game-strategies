@@ -4,7 +4,7 @@ from collections import defaultdict
 import clingo
 import operator
 from structures.match import Match
-from structures.tree import Tree
+from structures.treeMinmax import TreeMinmax
 from anytree import RenderTree
 from py_utils.clingo_utils import Context, generate_example, generate_rule, get_new_control
 from py_utils.logger import log
@@ -74,7 +74,7 @@ def match_from_time_model(model, game_def, main_player = None):
         step = Step(state,action,i)
         steps.append(step)
     steps[-1].state.is_terminal = True
-    steps[-1].set_score_player(main_player)
+    # steps[-1].set_score_player(main_player)
     # steps[-2].set_score_player(main_player)
     # steps[-2].state.goals = steps[-1].state.goals
     # steps =steps[:-1]
@@ -128,7 +128,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
     examples_list = [] if learning_examples else None
     learned_rules = [] if learning_rules else None
     training_list = [] if generating_training else None
-    node = Tree.node_from_match_initial(match)
+    node = TreeMinmax.node_from_match_initial(match,main_player)
     try:
         minmax_match, minmax_tree = get_minmax_rec(game_def,match,node,0,
                                                 main_player,
@@ -138,9 +138,9 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
     except TimeoutError as ex:
         return None, None, examples_list, learned_rules, training_list
      
-    minmax_tree=Tree(minmax_tree.parent,main_player=main_player)
+    minmax_tree=TreeMinmax(minmax_tree.parent,main_player=main_player)
     final_score = minmax_match.goals[main_player]
-    minmax_match.steps[0].set_score(final_score)
+    # minmax_match.steps[0].set_score(final_score)
     minmax_tree.root.name.set_score(final_score)
     return minmax_match, minmax_tree, examples_list, learned_rules, training_list
 
@@ -185,7 +185,7 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
             minmax_match.generate_train(training_list,i) #Orange
             continue
         #Compute tree for optimal match
-        opt_node = Tree.node_from_match(Match(opt_match.steps[i:]))
+        opt_node = TreeMinmax.node_from_match(Match(opt_match.steps[i:]),main_player)
         opt_node.parent = node_top.parent
         if not (main_player in opt_match.goals):
             log.error("No goals reached for match")
@@ -246,6 +246,4 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         
         #Update minmax match
         minmax_match = opt_minmax
-    # t=Tree(node_top)
-    # t.print_in_file("mm_{}_{}.png".format(top_step,level))
     return minmax_match, node_top

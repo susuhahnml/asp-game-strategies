@@ -9,7 +9,8 @@ from structures.state import State, StateExpanded
 from structures.match import Match
 from structures.step import Step
 from py_utils.logger import log
-from structures.tree import Tree
+from structures.tree import Tree, NodeBase
+from structures.treeMinmax import TreeMinmax, NodeMinmax
 
 def minmax_from_game_def(game_def, initial_state = None, main_player="a"):
     """
@@ -22,11 +23,13 @@ def minmax_from_game_def(game_def, initial_state = None, main_player="a"):
     """
     if initial_state is None:
         initial_state = StateExpanded.from_game_def(game_def,game_def.initial)
-    root_node = Node(Step(initial_state,None,0))
+    tree = TreeMinmax(main_player=main_player)
+    root_node = Node(tree.create_node(Step(initial_state,None,0)))
+    
     # Tree.expand_rec(root_node,0)
     expand_root(tree = root_node, main_player=main_player)
     root_node = build_minimax(root_node,main_player=main_player)
-    return Tree(root=root_node,main_player=main_player)
+    return TreeMinmax(root_node,main_player)
 
 def expand_root(tree, main_player="a"):
     """
@@ -36,10 +39,10 @@ def expand_root(tree, main_player="a"):
         tree (anytree.Node): a tree to expand till its terminal leaves
     """
     disable_tqdm = log.is_disabled_for('debug')
-    valid_moves = tree.name.state.legal_actions
+    valid_moves = tree.name.step.state.legal_actions
     for legal_action in valid_moves:
-        step = Step(tree.name.state,legal_action,1)
-        Node(step,parent=tree)
+        step = Step(tree.name.step.state,legal_action,1)
+        Node(TreeMinmax.node_class(step,main_player),parent=tree)
     expand_further = True
     time_step = 2
     while expand_further:
@@ -48,15 +51,15 @@ def expand_root(tree, main_player="a"):
         # starting iteration to fill branches
         log.debug("Depth: %s" % (time_step))
         for leaf in tqdm(tree.leaves,disable=disable_tqdm):
-            current_state = leaf.name.state
+            current_state = leaf.name.step.state
             if current_state.is_terminal:
                 continue
 
-            next_state = current_state.get_next(leaf.name.action)
+            next_state = current_state.get_next(leaf.name.step.action)
             valid_moves = next_state.legal_actions
             for legal_action in valid_moves:
                 step = Step(next_state,legal_action,time_step)
-                Node(step,parent=leaf)
+                Node(TreeMinmax.node_class(step,main_player),parent=leaf)
                 expand_further = True
 
             if next_state.is_terminal:
@@ -85,7 +88,7 @@ def build_minimax(tree,main_player="a"):
         scores = [child.name.score
                     for child in node.children if child != ()]
         if node.name.score == None:
-            if node.children[0].name.state.control == main_player:
+            if node.children[0].name.step.state.control == main_player:
                 node.name.score = max(scores)
             else:
                 node.name.score = min(scores)

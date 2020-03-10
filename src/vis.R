@@ -8,7 +8,7 @@ library(tikzDevice)
 library(reshape2)
 library(optparse)
 
-plot_build <- function(name="build_full_time.json"){
+plot_build <- function(name="build.json"){
   # get main data
   hold <- fromJSON(file=paste0("./benchmarks/",name))
   hold <- lapply(hold, function(x) {

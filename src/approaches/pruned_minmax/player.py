@@ -7,6 +7,7 @@ import os
 from approaches.ml_agent.train_utils import training_data_to_csv, remove_duplicates_training
 from random import randint
 from structures.tree import Tree
+from structures.treeMinmax import TreeMinmax
 from structures.action import Action
 class PrunedMinmaxPlayer(Player):
     """
@@ -43,7 +44,7 @@ class PrunedMinmaxPlayer(Player):
                 rules = [apply_rules_rule,"\n"] + rules
                 self.learned = rules
         elif style == "tree":
-            f = Tree.get_scores_from_file(file_path)
+            f = TreeMinmax.get_scores_from_file(file_path)
             self.tree_scores = f["tree_scores"]
             self.scores_main_player = f["main_player"]
         else:
@@ -154,7 +155,7 @@ class PrunedMinmaxPlayer(Player):
                 
         if(not (args.tree_image_file_name is None)):
             image_file_name = '{}/{}'.format(args.game_name,args.tree_image_file_name)
-            min_max_tree.print_in_file(file_name=image_file_name,main_player=args.main_player)
+            min_max_tree.print_in_file(file_name=image_file_name)
         n_nodes = min_max_tree.get_number_of_nodes()
         if(not args.tree_name is None):
             file_path = "./approaches/pruned_minmax/trees/{}/{}".format(game_def.name,args.tree_name)
