@@ -1,0 +1,1 @@
+   true(free(cell(2,1))). true(free(cell(2,2))). true(free(cell(3,2))). true(free(cell(3,1))). true(control(b)). true(has(a,cell(1,2))). true(has(a,cell(3,3))). true(has(b,cell(2,3))). true(has(b,cell(1,1))). true(has(a,cell(1,3))).

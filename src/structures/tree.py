@@ -43,6 +43,7 @@ class NodeBase:
         """
         Generate a label for the tree printing
         """
+        raise NotImplementedError
         return self.step.ascii
 
 
@@ -89,19 +90,9 @@ class Tree:
         """
         Gets the number of nodes of the tree
         """
-        nodes = findall(self.root, filter_=lambda node: not node.name.step.action is None and not node.name.score is None)
+        nodes = findall(self.root)
         return len(nodes)
     
-    def best_action(self, state, main_player):
-        """
-        Finds the best action for the player in the given state 
-        Args:
-            state: The state of the game
-            main_player: The player for which the action must be the best
-        Returns:
-            The best action, or none if there is no information in the tree
-        """
-        raise NotImplementedError
             
     def save_in_file(self,file_path):
         """
@@ -129,7 +120,7 @@ class Tree:
         # define local functions
         
         def aux(n):
-            a = 'label="{}" {}'.format(n.name.ascii, n.name.style())
+            a = 'label="{}" {}'.format(n.name.ascii, n.name.style(parent=n.parent))
             return a
         os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
         UniqueDotExporter(self.root,

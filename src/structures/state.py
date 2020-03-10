@@ -57,6 +57,7 @@ class State:
             for model in handle:
                 return cls.from_model(model,game_def)
 
+
     def __eq__(self, other):
         return self.to_facts() == other.to_facts()
                 

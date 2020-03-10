@@ -2,7 +2,7 @@ import os.path
 import csv
 from .game import Game
 from py_utils.logger import log
-def training_data_to_csv(file_name, training_list, game_def, new_files):
+def training_data_to_csv(file_name, training_list, game_def, new_files,extra_array=['reward','win']):
     games = {'a': Game(game_def,player_name="a"),
     "b": Game(game_def,player_name="b")}
 
@@ -11,7 +11,7 @@ def training_data_to_csv(file_name, training_list, game_def, new_files):
     COLUMN_NAMES = ["'INIT:{}'".format(o) for o in obs]
     COLUMN_NAMES.extend(act)
     COLUMN_NAMES.extend(["'NEXT:{}'".format(o) for o in obs])
-    COLUMN_NAMES.extend(["reward","win"])
+    COLUMN_NAMES.extend(extra_array)
     
     try:
 
@@ -29,10 +29,12 @@ def training_data_to_csv(file_name, training_list, game_def, new_files):
                 row.extend(games[control].mask_action(str(l['action'].action)))
                 games[control].current_state = l['s_next']
                 row.extend(games[control].current_observation)
-                row.extend([l['reward'],l['win']])
-                writer.writerow([int(r) for r in row])
-    except IOError:
+                for k in extra_array:
+                    row.extend([l[k]])
+                writer.writerow([int(r) for r in row[:-len(extra_array)]]+[r for r in row[-len(extra_array):]])
+    except IOError as e:
         log.error("Error saving csv")
+        log.error(e)
 
 def remove_duplicates_training(file_name):
     csv_file = open(file_name, "r")

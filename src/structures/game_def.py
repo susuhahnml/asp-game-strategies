@@ -175,10 +175,18 @@ class GameDef():
         """
         content = self.get_initial_str()
         ctl = get_new_control(self)
+        ctl.load(self.background)
         ctl.add("base",[],content)
         ctl.ground([("base", [])], context=Context())
         with ctl.solve(yield_=True) as handle:
+            state = None
+            has_initialized = False
             for model in handle:
-                state = StateExpanded.from_model(model,self)
+                if not has_initialized:
+                    state = StateExpanded.from_model(model,self)
+                    has_initialized = True
+                state.add_action_from_clingo_model(model)
+            state.legal_actions_to_idx = {str(a.action):i for
+                                          i,a in enumerate(state.legal_actions)}
             
         return state

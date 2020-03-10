@@ -75,7 +75,7 @@ class Match:
             'win':-1 if control_goal<0 else 1})
 
     @staticmethod
-    def simulate(game_def, players, depth=None, ran_init=False):
+    def simulate(game_def, players, depth=None, ran_init=False, signal_on=True):
         """
         Call it with the path to the game definition
 
@@ -89,7 +89,7 @@ class Match:
         def handler(signum, frame):
             raise TimeoutError("Action time out")
         
-        signal.signal(signal.SIGALRM, handler)
+        if signal_on: signal.signal(signal.SIGALRM, handler)
         if(ran_init):
             initial = game_def.get_random_initial()
         else:
@@ -107,7 +107,7 @@ class Match:
         letters = ['a','b']
         response_times = {'a':[],'b':[]}
         while(not state.is_terminal and continue_depth):
-            signal.alarm(3)
+            if signal_on: signal.alarm(3)
             t0 = time.time()
             try:
                 selected_action = players[time_step%2].choose_action(state)
@@ -115,7 +115,7 @@ class Match:
                 log.info("Time out for player {}, choosing random action".format(letters[time_step%2]))
                 index = randint(0,len(state.legal_actions)-1)
                 selected_action = state.legal_actions[index]
-            signal.alarm(0)
+            if signal_on: signal.alarm(0)
             t1 = time.time()
             response_times[letters[time_step%2]].append(round((t1-t0)*1000,3))
             step = Step(state,selected_action,time_step)

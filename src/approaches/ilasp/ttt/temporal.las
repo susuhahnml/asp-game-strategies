@@ -53,16 +53,20 @@ terminal :- goal(_,_).
 #modeo(1,in_line(var(cell),var(cell),var(cell)),(positive)).
 #modeo(1,next(free(var(cell))),(positive)).
 #modeo(1,next(control(var(player))),(positive)).
+#modeo(1,true(control(var(player))),(positive)).
 #weight(-1).
 #weight(1).
-#maxp(2).
+#maxp(3).
 #maxv(4).
 
 % Expected hypothesis
-% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V2)), next(has(P,V3)).[-1@1]
-% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V2)), next(free(V3)), next(control(P)).[1@1]
-% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V3)), next(free(V2)), next(control(P)).[1@1]
-% :~ in_line(V1,V2,V3), next(has(P,V3)), next(has(P,V2)), next(free(V1)), next(control(P)).[1@1]
+% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V2)), next(has(P,V3)).[-1@3]
+% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V2)), next(free(V3)), next(control(P)).[1@2]
+% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V3)), next(free(V2)), next(control(P)).[1@2]
+% :~ in_line(V1,V2,V3), next(has(P,V3)), next(has(P,V2)), next(free(V1)), next(control(P)).[1@2]
+% :~ in_line(V1,V2,V3), next(has(P,V1)), next(has(P,V3)), next(free(V2)), true(control(P)).[-1@1,V1,V2,V3]
+
+
 
 #pos(e0,{}, {}, {
  true(free(cell(3,2))). true(free(cell(1,1))). true(control(b)). true(has(a,cell(3,3))). true(has(a,cell(1,2))). true(has(a,cell(2,2))). true(has(b,cell(3,1))). true(has(b,cell(2,3))). true(has(b,cell(2,1))). true(has(a,cell(1,3))). does(b,mark(cell(1,1))). 
