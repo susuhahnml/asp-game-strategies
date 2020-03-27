@@ -202,7 +202,7 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
             
             minmax_match.generate_train(training_list,i) #Green 
             # Minmax was fixed, set score without minimizing
-            opt_node.name.set_score(new_goal)
+            # opt_node.name.set_score(new_goal)
             continue
         if new_goal == current_goal:
             # Other action is as best as good as this one,

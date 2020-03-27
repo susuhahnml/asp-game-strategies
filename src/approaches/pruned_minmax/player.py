@@ -201,7 +201,7 @@ class PrunedMinmaxPlayer(Player):
             # Using rules
             initial = fluents_to_asp_syntax(state.fluents,0)
             match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed="\n".join(self.learned), learning_rules = True)
-            self.learned.extend(ls)
+            # self.learned.extend(ls)
             if(len(ls)>0):
                 log.info("{} learned new rules during game play".format(self.name))
             if match is None:

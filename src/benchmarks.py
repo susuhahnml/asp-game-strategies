@@ -10,7 +10,7 @@ if __name__ == "__main__":
     game_names = ['nim','ttt']
     backgrounds = ['./approaches/ilasp/nim/background.lp','./game_definitions/ttt/background.lp']
     # initial_names = [('S',6),('M',3),('L',1)]
-    initial_names = [('S',6),('M',2),('L',1)]
+    initial_names = [('S',2)]
     print("--------------- Building --------------------")
     for g_i, g in enumerate(game_names):
         print(paint("Game: {}".format(g),bcolors.OKBLUE))
@@ -23,7 +23,7 @@ if __name__ == "__main__":
             run(base.format('ilasp','--strategy-name={}.lp --background-path="{}"'.format(i,backgrounds[g_i])))
     
     print("--------------- Testing --------------------")
-    initial_names = [('full',100)]
+    initial_names = [('full',150)]
     players = ['pruned_minmax-rule-S.lp','pruned_minmax-rule-M.lp','pruned_minmax-rule-L.lp']
     players.extend(['pruned_minmax-tree-S.json','pruned_minmax-tree-M.json','pruned_minmax-tree-L.json'])
     players.extend(['minmax-S.json','minmax-M.json','minmax-L.json'])
