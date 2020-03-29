@@ -17,13 +17,13 @@
     "results": {
         "player": "minmax",
         "build": [
-            302747.921
+            269259.488
         ],
-        "average_build": 302747.921,
+        "average_build": 269259.488,
         "std": 0.0,
         "special_results": {
             "number_of_nodes": 61023,
-            "save_time": 531.429
+            "save_time": 570.819
         }
     }
 }

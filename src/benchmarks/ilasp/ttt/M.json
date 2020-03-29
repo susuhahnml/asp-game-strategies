@@ -1,12 +1,12 @@
 {
-    "command": "ilasp --log=error --n=2 --game-name=ttt --init=initial_M.lp --out=M.json --strategy-name=M.lp --background-path=./game_definitions/ttt/background.lp",
+    "command": "ilasp --log=error --n=3 --game-name=ttt --init=initial_M.lp --out=M.json --strategy-name=M.lp --background-path=./game_definitions/ttt/background.lp",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_M.lp",
-        "num_repetitions": 2,
+        "num_repetitions": 3,
         "benchmark_output_file": "M.json",
         "selected_approach": "ilasp",
         "main_player": "a",
@@ -25,13 +25,14 @@
     "results": {
         "player": "ilasp",
         "build": [
-            23327.26,
-            20671.86
+            19815.501,
+            18338.106,
+            18699.646
         ],
-        "average_build": 21999.56,
-        "std": 1327.7,
+        "average_build": 18951.084,
+        "std": 628.803,
         "special_results": {
-            "save_time": 0.524
+            "save_time": 0.49
         }
     }
 }

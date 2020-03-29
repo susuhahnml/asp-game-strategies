@@ -1,12 +1,12 @@
 {
-    "command": "vs --log=error --n=100 --game-name=ttt --init=initial_full.lp --out=VS_pruned_minmax-tree-M.json_in_full.json --play-symmetry --a=random --b=pruned_minmax-tree-M.json",
+    "command": "vs --log=error --n=150 --game-name=ttt --init=initial_full.lp --out=VS_pruned_minmax-tree-M.json_in_full.json --play-symmetry --a=random --b=pruned_minmax-tree-M.json",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_full.lp",
-        "num_repetitions": 100,
+        "num_repetitions": 150,
         "benchmark_output_file": "VS_pruned_minmax-tree-M.json_in_full.json",
         "selected_approach": "vs",
         "pA_style": "random",
@@ -17,16 +17,16 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 78,
+            "wins": 118,
             "total_reward": -20,
-            "average_response": 0.013,
-            "std": 0.004
+            "average_response": 0.007,
+            "std": 0.001
         },
         "b": {
             "style_name": "pruned_minmax-tree-M.json",
-            "wins": 98,
+            "wins": 138,
             "total_reward": 20,
-            "average_response": 0.04,
+            "average_response": 0.023,
             "std": 0.019
         }
     }

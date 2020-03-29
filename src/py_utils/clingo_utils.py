@@ -249,6 +249,7 @@ def rules_file_to_gdl(file_path):
         data = data.replace(',T)',')')
         data = data.replace('holds','true')
         text_file = open(file_path[:-3]+'_gdl.lp', "wt")
+        data =  "{does(P,A):best_do(P,A),legal(P,A)}=1:-not terminal,{best_do(P,A)}>0,true(control(P)).\n" + data
         text_file.write(data)
         text_file.close()
 

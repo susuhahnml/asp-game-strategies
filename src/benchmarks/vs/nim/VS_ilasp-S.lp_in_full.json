@@ -1,12 +1,12 @@
 {
-    "command": "vs --log=error --n=100 --game-name=nim --init=initial_full.lp --out=VS_ilasp-S.lp_in_full.json --play-symmetry --a=random --b=ilasp-S.lp",
+    "command": "vs --log=error --n=150 --game-name=nim --init=initial_full.lp --out=VS_ilasp-S.lp_in_full.json --play-symmetry --a=random --b=ilasp-S.lp",
     "args": {
         "log": "error",
         "game_name": "nim",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_full.lp",
-        "num_repetitions": 100,
+        "num_repetitions": 150,
         "benchmark_output_file": "VS_ilasp-S.lp_in_full.json",
         "selected_approach": "vs",
         "pA_style": "random",
@@ -17,17 +17,17 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 68,
-            "total_reward": -64,
-            "average_response": 0.013,
-            "std": 0.004
+            "wins": 109,
+            "total_reward": -82,
+            "average_response": 0.01,
+            "std": 0.003
         },
         "b": {
             "style_name": "ilasp-S.lp",
-            "wins": 132,
-            "total_reward": 64,
-            "average_response": 0.005,
-            "std": 0.001
+            "wins": 191,
+            "total_reward": 82,
+            "average_response": 0.004,
+            "std": 0.002
         }
     }
 }

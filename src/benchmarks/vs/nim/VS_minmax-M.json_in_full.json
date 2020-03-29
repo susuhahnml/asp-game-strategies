@@ -1,12 +1,12 @@
 {
-    "command": "vs --log=error --n=100 --game-name=nim --init=initial_full.lp --out=VS_minmax-M.json_in_full.json --play-symmetry --a=random --b=minmax-M.json",
+    "command": "vs --log=error --n=150 --game-name=nim --init=initial_full.lp --out=VS_minmax-M.json_in_full.json --play-symmetry --a=random --b=minmax-M.json",
     "args": {
         "log": "error",
         "game_name": "nim",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_full.lp",
-        "num_repetitions": 100,
+        "num_repetitions": 150,
         "benchmark_output_file": "VS_minmax-M.json_in_full.json",
         "selected_approach": "vs",
         "pA_style": "random",
@@ -17,17 +17,17 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 47,
-            "total_reward": -106,
-            "average_response": 0.014,
-            "std": 0.004
+            "wins": 90,
+            "total_reward": -120,
+            "average_response": 0.007,
+            "std": 0.001
         },
         "b": {
             "style_name": "minmax-M.json",
-            "wins": 153,
-            "total_reward": 106,
-            "average_response": 0.193,
-            "std": 0.069
+            "wins": 210,
+            "total_reward": 120,
+            "average_response": 0.11,
+            "std": 0.047
         }
     }
 }

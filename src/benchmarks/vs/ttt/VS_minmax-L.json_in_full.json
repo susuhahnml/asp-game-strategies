@@ -1,12 +1,12 @@
 {
-    "command": "vs --log=error --n=100 --game-name=ttt --init=initial_full.lp --out=VS_minmax-L.json_in_full.json --play-symmetry --a=random --b=minmax-L.json",
+    "command": "vs --log=error --n=150 --game-name=ttt --init=initial_full.lp --out=VS_minmax-L.json_in_full.json --play-symmetry --a=random --b=minmax-L.json",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_full.lp",
-        "num_repetitions": 100,
+        "num_repetitions": 150,
         "benchmark_output_file": "VS_minmax-L.json_in_full.json",
         "selected_approach": "vs",
         "pA_style": "random",
@@ -17,17 +17,17 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 57,
-            "total_reward": -64,
-            "average_response": 0.013,
-            "std": 0.004
+            "wins": 78,
+            "total_reward": -103,
+            "average_response": 0.007,
+            "std": 0.001
         },
         "b": {
             "style_name": "minmax-L.json",
-            "wins": 121,
-            "total_reward": 64,
-            "average_response": 0.134,
-            "std": 0.141
+            "wins": 181,
+            "total_reward": 103,
+            "average_response": 0.091,
+            "std": 0.091
         }
     }
 }

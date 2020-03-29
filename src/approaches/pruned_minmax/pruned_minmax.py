@@ -37,6 +37,8 @@ case = {
     },
 }
 
+gdl_rule = "{does(P,A):best_do(P,A),legal(P,A)}=1:-not terminal,{best_do(P,A)}>0,true(control(P)).\n"
+holds_rule = "{does(P,A,T):best_do(P,A,T),legal(P,A,T)}=1:-not terminal(T),#count{1:best_do(P,A,T),legal(P,A,T)}>0,holds(control(P),T).\n"
 def match_from_time_model(model, game_def, main_player = None):
     """
     Given a stabel model for the full time representation of the game,
@@ -91,7 +93,7 @@ def get_match(game_def, optimization, fixed_atoms, learned_rules, main_player):
     ctl.load(game_def.full_time)
     ctl.add("base",[],fixed_atoms)
     if not (learned_rules is None):
-        apply_rules_rule="{does(P,A,T):best_do(P,A,T),legal(P,A,T)}=1:-not terminal(T),#count{1:best_do(P,A,T),legal(P,A,T)}>0,holds(control(P),T).\n"
+        apply_rules_rule=holds_rule
         ctl.add("base",[],"".join([apply_rules_rule]+learned_rules))
     ctl.add("base",[],optimization)
     ctl.ground([("base", [])], context=Context())

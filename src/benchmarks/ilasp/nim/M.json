@@ -1,12 +1,12 @@
 {
-    "command": "ilasp --log=error --n=2 --game-name=nim --init=initial_M.lp --out=M.json --strategy-name=M.lp --background-path=./approaches/ilasp/nim/background.lp",
+    "command": "ilasp --log=error --n=3 --game-name=nim --init=initial_M.lp --out=M.json --strategy-name=M.lp --background-path=./approaches/ilasp/nim/background.lp",
     "args": {
         "log": "error",
         "game_name": "nim",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_M.lp",
-        "num_repetitions": 2,
+        "num_repetitions": 3,
         "benchmark_output_file": "M.json",
         "selected_approach": "ilasp",
         "main_player": "a",
@@ -25,13 +25,14 @@
     "results": {
         "player": "ilasp",
         "build": [
-            18223.785,
-            2325.132
+            14507.198,
+            1593.35,
+            1566.533
         ],
-        "average_build": 10274.458,
-        "std": 7949.326,
+        "average_build": 5889.027,
+        "std": 6093.977,
         "special_results": {
-            "save_time": 0.48
+            "save_time": 0.572
         }
     }
 }
