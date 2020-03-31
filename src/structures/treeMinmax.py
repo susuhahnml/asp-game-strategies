@@ -66,7 +66,7 @@ class NodeMinmax(NodeBase):
         else:
             return ""
 
-    def style(self):
+    def style(self,parent=None):
         format_str = NodeBase.style(self)
 
         if self.score is None:
@@ -75,9 +75,9 @@ class NodeMinmax(NodeBase):
             if self.score<0:
                 format_str += ' fillcolor="#FF000020"'
             elif self.score>0:
-                format_str += ' fillcolor="#00ff0020"'
+                format_str += ' fillcolor="#00ff0010"'
             elif self.score==0:
-                format_str += ' fillcolor="#4793C620"'
+                format_str += ' fillcolor="#FFFFFF05"'
         return format_str
 
 class TreeMinmax(Tree):

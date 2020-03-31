@@ -38,15 +38,15 @@ class PrunedMinmaxPlayer(Player):
         super().__init__(game_def, name, main_player)
         self.style = style
         if style == "rule":
-            apply_rules_rule="{does(P,A):best_do(P,A),legal(P,A)}=1:-not terminal,{best_do(P,A)}>0,true(control(P)).\n"
-            with open(file_path, "r") as text_file:
-                rules = text_file.readlines()
-                rules = [apply_rules_rule,"\n"] + rules
-                self.learned = rules
+            strategy = file_path[:-3] + "_gdl.lp"
+            self.strategy = strategy
         elif style == "tree":
             f = TreeMinmax.get_scores_from_file(file_path)
             self.tree_scores = f["tree_scores"]
             self.scores_main_player = f["main_player"]
+        elif style == "more":
+            with open(file_path, "r") as text_file:
+                self.learned = text_file.readlines()
         else:
             raise RuntimeError("Invalid style for pruned minmax :{}".format(style))
 
@@ -196,8 +196,10 @@ class PrunedMinmaxPlayer(Player):
             action = [l_a for l_a in state.legal_actions
                     if l_a == action][0]
             return action
-        
+        elif self.style == "rule":
+            return state.legal_actions[-1]
         else:
+            print("Learning")
             # Using rules
             initial = fluents_to_asp_syntax(state.fluents,0)
             match, tree, ex, ls, tl = get_minmax_init(self.game_def,self.main_player,initial,extra_fixed="\n".join(self.learned), learning_rules = True)

@@ -1,12 +1,12 @@
 {
-    "command": "vs --log=error --n=100 --game-name=ttt --init=initial_full.lp --out=VS_ilasp-M.lp_in_full.json --play-symmetry --a=random --b=ilasp-M.lp",
+    "command": "vs --log=error --n=150 --game-name=ttt --init=initial_full.lp --out=VS_ilasp-M.lp_in_full.json --play-symmetry --a=random --b=ilasp-M.lp",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_full.lp",
-        "num_repetitions": 100,
+        "num_repetitions": 150,
         "benchmark_output_file": "VS_ilasp-M.lp_in_full.json",
         "selected_approach": "vs",
         "pA_style": "random",
@@ -17,16 +17,16 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 47,
-            "total_reward": -103,
-            "average_response": 0.014,
-            "std": 0.003
+            "wins": 68,
+            "total_reward": -160,
+            "average_response": 0.008,
+            "std": 0.002
         },
         "b": {
             "style_name": "ilasp-M.lp",
-            "wins": 150,
-            "total_reward": 103,
-            "average_response": 0.005,
+            "wins": 228,
+            "total_reward": 160,
+            "average_response": 0.003,
             "std": 0.001
         }
     }

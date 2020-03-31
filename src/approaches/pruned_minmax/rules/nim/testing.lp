@@ -1,0 +1,3 @@
+best_do(Va,remove(V3,2),T):-holds(control(Va),T),holds(has(V1,0),T),holds(has(V3,2),T),holds(has(V4,0),T),holds(has(V2,0),T),Va!=V1,Va!=V3,Va!=V4,Va!=V2,V1!=V3,V1!=V4,V1!=V2,V3!=V4,V3!=V2,V4!=V2.
+best_do(Vb,remove(V3,1),T):-holds(control(Vb),T),holds(has(V4,0),T),holds(has(V3,2),T),holds(has(V1,0),T),holds(has(V2,1),T),Vb!=V1,Vb!=V3,Vb!=V4,Vb!=V2,V1!=V3,V1!=V4,V1!=V2,V3!=V4,V3!=V2,V4!=V2.
+best_do(Vb,remove(V3,1),T):-holds(control(Vb),T),holds(has(V4,0),T),holds(has(V3,2),T),holds(has(V1,0),T),holds(has(V2,1),T),Vb!=V1,Vb!=V3,Vb!=V4,Vb!=V2,V1!=V3,V1!=V4,V1!=V2,V3!=V4,V3!=V2,V4!=V2.

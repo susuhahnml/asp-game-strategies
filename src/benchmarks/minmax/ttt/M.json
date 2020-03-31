@@ -1,12 +1,12 @@
 {
-    "command": "minmax --log=error --n=2 --game-name=ttt --init=initial_M.lp --out=M.json --tree-name=M.json",
+    "command": "minmax --log=error --n=3 --game-name=ttt --init=initial_M.lp --out=M.json --tree-name=M.json",
     "args": {
         "log": "error",
         "game_name": "ttt",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_M.lp",
-        "num_repetitions": 2,
+        "num_repetitions": 3,
         "benchmark_output_file": "M.json",
         "selected_approach": "minmax",
         "tree_image_file_name": null,
@@ -17,14 +17,15 @@
     "results": {
         "player": "minmax",
         "build": [
-            35555.241,
-            32449.492
+            30624.496,
+            31502.358,
+            31299.235
         ],
-        "average_build": 34002.366,
-        "std": 1552.875,
+        "average_build": 31142.03,
+        "std": 375.229,
         "special_results": {
             "number_of_nodes": 7583,
-            "save_time": 97.168
+            "save_time": 85.296
         }
     }
 }

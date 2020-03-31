@@ -25,12 +25,12 @@
     "results": {
         "player": "ilasp",
         "build": [
-            160971.504
+            144289.398
         ],
-        "average_build": 160971.504,
+        "average_build": 144289.398,
         "std": 0.0,
         "special_results": {
-            "save_time": 1.037
+            "save_time": 0.527
         }
     }
 }

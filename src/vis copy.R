@@ -31,37 +31,34 @@ plot_build <- function(name="build.json"){
     }
     mean <- x$results$average_build
     sd <- x$results$std
-    nodes <- x$results$special_results$number_of_nodes_prop
-    return(c(size,game,approach,mean,sd,nodes))
+    return(c(size,game,approach,mean,sd))
   })
   hold <- data.frame(do.call(rbind,hold))
-  names(hold) <- c("size","game","approach","mean","sd","nodes")
+  names(hold) <- c("size","game","approach","mean","sd")
   hold[,4] <- as.numeric(levels(hold[,4])[hold[,4]])/1000
   hold[,5] <- as.numeric(levels(hold[,5])[hold[,5]])/1000
-  hold[,6] <- log10(as.numeric(levels(hold[,6])[hold[,6]])*100)
   hold$size <- factor(hold$size, levels=rev(levels(hold$size)))
   # make third variant
-  tikz("bar_build.tex", width=26, height=20, standAlone = TRUE)
+  tikz("bar_build_3.tex", width=18, height=12, standAlone = TRUE)
   print(aes(x=approach,y=mean,group=1))
-  g <- ggplot(hold,aes(x=approach,y=mean,group=1,fill=nodes)) +
-    geom_bar(stat="identity",color="black",width=0.4) +
+  g <- ggplot(hold,aes(x=approach,y=mean,group=1)) +
+    geom_bar(stat="identity",fill="red",color="black",width=0.4,alpha=0.3) +
     geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd),color="black",width=0.1) +
-    stat_summary(fun.y=sum, geom="line",linetype="dashed") +
+    stat_summary(fun.y=sum, geom="line",alpha=0.6,linetype="dashed") +
     xlab("\nLearning Approach") +
     ylab("Build Time [s]\n") +  theme_bw() +
     theme(text = element_text(size=25),
-          plot.title = element_text(hjust=0.5)) +
-    scale_fill_gradient(low= "#FFF4F4", high= "#FF7373")+
-    guides(fill = guide_colourbar(title = "Number of nodes,\n log base 10 \n of percentage", title.theme =element_text(size=20),barwidth = 2.0, barheight = 20)) +
+          plot.title = element_text(hjust=0.5),
+          legend.position = "none") +
     facet_grid(size ~ game, scales="free_y")
   print(g)
   dev.off()
-  texi2pdf("bar_build.tex",clean=TRUE)
-  file.remove("bar_build.tex")
-  file.rename("bar_build.pdf","./img/bar_build.pdf")
+  texi2pdf("bar_build_3.tex",clean=TRUE)
+  file.remove("bar_build_3.tex")
+  file.rename("bar_build_3.pdf","./img/bar_build_3.pdf")
 }
 
-plot_vs <- function(name="vs.json"){
+plot_vs <- function(name="vs_full_time.json"){
   # get main data
   hold <- fromJSON(file=paste0("./benchmarks/",name))
   hold <- lapply(hold, function(x) {
@@ -122,24 +119,24 @@ plot_vs <- function(name="vs.json"){
 #  hold[,3] <- factor(hold[,3], levels = c("Minimax", "Pruned Minimax", "Pruned Minimax + Learning Rules"))
   
   # make third variant
-  tikz("bar_vs.tex", width=26, height=20, standAlone = TRUE)
-  g <- ggplot(hold,aes(x=pB,y=wins,fill=response)) +
-    geom_bar(stat="identity",color="black",width=0.1) +
+  tikz("bar_vs_3.tex", width=26, height=12, standAlone = TRUE)
+  g <- ggplot(hold,aes(x=pB,y=wins,fill=response,color=wins_var)) +
+    geom_bar(stat="identity",width=0.1,alpha=0.6) +
     xlab("\nLearning Approach") +
     ylab("Wins vs Random\n") +
-    scale_y_continuous(limits=c(0,300),breaks=seq(0,300, by = 50)) +
-    geom_hline(yintercept=150,linetype="dashed",alpha=0.7) +
     theme_bw() +
     theme(text = element_text(size=25),
           plot.title = element_text(hjust=0.5)) +
-    scale_fill_gradient(low= "#FFF4F4", high= "#FF7373")+
-    guides(fill = guide_colourbar(title = "Mean Response\nTime [ms]", title.theme =element_text(size=20),barwidth = 2.0, barheight = 20)) +
-    facet_grid(size ~ game,scales="free_y")
+    scale_fill_viridis_c("Mean Response\nTime [ms]",guide = "colourbar",alpha=0.6) +
+    scale_fill_gradient(low= "#FBDFDF", high= "#F90303")+
+    scale_color_manual("Bar-plot\norder",values=c("black"),labels=c("Approach")) +
+    guides(fill = guide_colourbar(barwidth = 2.0, barheight = 20)) +
+    facet_grid(game ~ size,scales="free_y")
   print(g)
   dev.off()
-  texi2pdf("bar_vs.tex")
-  file.remove("bar_vs.tex")
-  file.rename("bar_vs.pdf","./img/bar_vs.pdf")
+  texi2pdf("bar_vs_3.tex",clean=TRUE)
+  file.remove("bar_vs_3.tex")
+  file.rename("bar_vs_3.pdf","./img/bar_vs_3.pdf")
   # clear pngs
   lapply(list.files(pattern="ras\\d+\\.png$"),file.remove)
 }

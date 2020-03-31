@@ -28,14 +28,14 @@ class NodeBase:
         s = cls(Step(state, action, time_step),main_player)
         return s
 
-    def style(self):
+    def style(self,parent=None):
         style = ['rounded','filled']
         if not (self.step.action is None):
             if self.step.action.player == self.main_player:
                 style.append('solid')
             else:
                 style.append('dotted')
-        format_str = 'shape="box" style="%s" fontName="Bookman Old Style" labeljust=l'  % ( ",".join(style))
+        format_str = 'shape="box" style="%s"  fillcolor="#00000007" fontName="Bookman Old Style" labeljust=l'  % ( ",".join(style))
         return format_str
 
     @property
@@ -43,8 +43,17 @@ class NodeBase:
         """
         Generate a label for the tree printing
         """
-        raise NotImplementedError
-        return self.step.ascii
+        if not self.step.action is None:
+            # l = "\n".join(["next({})".format(str(n)) for n in self.step.action.next_fluents])
+            # return l + "\n" + self.step.action.to_facts()
+            return self.step.ascii
+        else:
+            if(self.step.state.is_terminal):
+                return ("〔a:{} b:{}〕".format(self.step.state.goals['a'],self.step.state.goals['b']))
+            else:
+                other_player = "b" if self.main_player=="a" else "a"
+                s ="〔INITIAL〕\n{}".format(self.step.ascii)
+                return s
 
 
 class Tree:
@@ -122,6 +131,7 @@ class Tree:
         def aux(n):
             a = 'label="{}" {}'.format(n.name.ascii, n.name.style(parent=n.parent))
             return a
+        # self.remove_leaves()
         os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
         UniqueDotExporter(self.root,
                           nodeattrfunc=aux,
@@ -163,3 +173,7 @@ class Tree:
             new = Node(cls.node_class(s,main_player=main_player),parent=current_node)
             current_node = new
         return root_node
+
+    def remove_leaves(self):
+        leaves = self.root.leaves
+        for l in leaves: l.parent = None 

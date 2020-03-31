@@ -1,12 +1,12 @@
 {
-    "command": "vs --log=error --n=100 --game-name=nim --init=initial_full.lp --out=VS_pruned_minmax-tree-L.json_in_full.json --play-symmetry --a=random --b=pruned_minmax-tree-L.json",
+    "command": "vs --log=error --n=150 --game-name=nim --init=initial_full.lp --out=VS_pruned_minmax-tree-L.json_in_full.json --play-symmetry --a=random --b=pruned_minmax-tree-L.json",
     "args": {
         "log": "error",
         "game_name": "nim",
         "const": null,
         "random_initial_state_seed": null,
         "initial": "initial_full.lp",
-        "num_repetitions": 100,
+        "num_repetitions": 150,
         "benchmark_output_file": "VS_pruned_minmax-tree-L.json_in_full.json",
         "selected_approach": "vs",
         "pA_style": "random",
@@ -17,17 +17,17 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 22,
-            "total_reward": -156,
-            "average_response": 0.013,
-            "std": 0.004
+            "wins": 64,
+            "total_reward": -172,
+            "average_response": 0.007,
+            "std": 0.001
         },
         "b": {
             "style_name": "pruned_minmax-tree-L.json",
-            "wins": 178,
-            "total_reward": 156,
-            "average_response": 0.243,
-            "std": 0.073
+            "wins": 236,
+            "total_reward": 172,
+            "average_response": 0.121,
+            "std": 0.048
         }
     }
 }

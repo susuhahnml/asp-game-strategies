@@ -1,0 +1,32 @@
+
+#pos(e0,{}, {}, {
+ true(control(a)). true(has(1,0)). true(has(3,2)). true(has(4,0)). true(has(2,0)). does(a,remove(3,2)). 
+}).
+#pos(e1,{}, {}, {
+ true(control(a)). true(has(1,0)). true(has(3,2)). true(has(4,0)). true(has(2,0)). does(a,remove(3,1)). 
+}).
+#brave_ordering(e0,e1).
+
+#pos(e2,{}, {}, {
+ true(control(b)). true(has(4,0)). true(has(3,2)). true(has(1,0)). true(has(2,1)). does(b,remove(3,1)). 
+}).
+#pos(e3,{}, {}, {
+ true(control(b)). true(has(4,0)). true(has(3,2)). true(has(1,0)). true(has(2,1)). does(b,remove(3,2)). 
+}).
+#brave_ordering(e2,e3).
+
+#pos(e4,{}, {}, {
+ true(control(b)). true(has(4,0)). true(has(3,2)). true(has(1,0)). true(has(2,1)). does(b,remove(3,1)). 
+}).
+#pos(e5,{}, {}, {
+ true(control(b)). true(has(4,0)). true(has(3,2)). true(has(1,0)). true(has(2,1)). does(b,remove(2,1)). 
+}).
+#brave_ordering(e4,e5).
+
+#pos(e6,{}, {}, {
+ true(control(b)). true(has(4,0)). true(has(3,2)). true(has(1,0)). true(has(2,0)). does(b,remove(3,2)). 
+}).
+#pos(e7,{}, {}, {
+ true(control(b)). true(has(4,0)). true(has(3,2)). true(has(1,0)). true(has(2,0)). does(b,remove(3,1)). 
+}).
+#brave_ordering(e6,e7).
