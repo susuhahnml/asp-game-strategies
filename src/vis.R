@@ -127,6 +127,8 @@ plot_vs <- function(name="vs.json"){
     geom_bar(stat="identity",color="black",width=0.1) +
     xlab("\nLearning Approach") +
     ylab("Wins vs Random\n") +
+    scale_y_continuous(limits=c(0,300),breaks=seq(0,300, by = 50)) +
+    geom_hline(yintercept=150,linetype="dashed",alpha=0.7) +
     theme_bw() +
     theme(text = element_text(size=25),
           plot.title = element_text(hjust=0.5)) +
