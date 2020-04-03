@@ -15,18 +15,30 @@ from .match import Match
 from .step import Step
 from py_utils.logger import log
 import json
-class NodeBase:
-    def __init__(self, step, main_player):
+class NodeBase(Node):
+    def __init__(self, step, main_player, dic={}, parent = None, children = [], name=None):
+        super().__init__(name, parent=parent, children = children)
         self.step = step
         self.main_player = main_player
 
     @classmethod
-    def from_dic(cls, dic, game_def, main_player):
+    def from_dic(cls, dic, game_def, main_player, parent = None, children = []):
         time_step = dic['time_step']
         state = State.from_facts(dic['step']['state'],game_def)
         action = None if dic['step']['action'] is None else Action.from_facts(dic['step']['action'],game_def)
-        s = cls(Step(state, action, time_step),main_player)
+        s = cls(Step(state, action, time_step),main_player, dic = dic, parent=parent, children=children)
         return s
+
+    def to_dic(self):
+        d = {"step": self.step.to_dic()}
+        self.add_info_to_dic(d)
+        return d
+
+    def add_info_to_dic(self,dic):
+        """
+        Adds its additional information to a dic
+        """
+        pass
 
     def style(self,parent=None):
         style = ['rounded','filled']
@@ -79,7 +91,7 @@ class Tree:
         importer = DictImporter()
         root = importer.import_(tree_dic['tree'])
         for n in PreOrderIter(root):
-            n.name= cls.node_class.from_dic(n.name,game_def,tree_dic['main_player'])
+            n = cls.node_class.from_dic(n.name,game_def,tree_dic['main_player'],parent=n.parent,children=n.children)
         t = cls(root)
         return t
 
@@ -93,7 +105,7 @@ class Tree:
         """
         Finds all nodes from tree matching a state
         """
-        return findall(self.root, lambda n: n.name.step.state==state)
+        return findall(self.root, lambda n: n.step.state==state)
 
     def get_number_of_nodes(self):
         """
@@ -108,7 +120,7 @@ class Tree:
         Saves the tree in a json file
         """
         for n in PreOrderIter(self.root):
-            n.name=n.name.to_dic()
+            n.name=n.to_dic()
         exporter = DictExporter()
         tree_json = exporter.export(self.root)
         final_json = {'main_player':self.main_player,'tree':tree_json}
@@ -129,7 +141,7 @@ class Tree:
         # define local functions
         
         def aux(n):
-            a = 'label="{}" {}'.format(n.name.ascii, n.name.style(parent=n.parent))
+            a = 'label="{}" {}'.format(n.ascii, n.style(parent=n.parent))
             return a
         # self.remove_leaves()
         os.makedirs(os.path.dirname(image_file_name), exist_ok=True)
@@ -150,8 +162,7 @@ class Tree:
         Returns:
             root_node (anytree.Node): tree corresponding to match
         """
-        initial = cls.node_class(Step(match.steps[0].state,None,-1),main_player)
-        root_node = Node(initial)
+        root_node = cls.node_class(Step(match.steps[0].state,None,-1),main_player)
         rest = cls.node_from_match(match,main_player)
         rest.parent = root_node
         return root_node
@@ -167,10 +178,10 @@ class Tree:
         Returns:
             root_node (anytree.Node): tree corresponding to match
         """
-        root_node = Node(cls.node_class(match.steps[0],main_player=main_player),children=[])
+        root_node = cls.node_class(match.steps[0],main_player=main_player,children=[])
         current_node = root_node
         for s in match.steps[1:]:
-            new = Node(cls.node_class(s,main_player=main_player),parent=current_node)
+            new = cls.node_class(s,main_player=main_player,parent=current_node)
             current_node = new
         return root_node
 

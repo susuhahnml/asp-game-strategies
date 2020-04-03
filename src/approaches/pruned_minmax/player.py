@@ -4,7 +4,7 @@ from py_utils.clingo_utils import fluents_to_asp_syntax, rules_file_to_gdl
 from approaches.pruned_minmax.pruned_minmax import get_minmax_init
 from py_utils.logger import log
 import os
-from approaches.ml_agent.train_utils import training_data_to_csv, remove_duplicates_training
+from py_utils.train_utils import training_data_to_csv, remove_duplicates_training
 from random import randint
 from structures.tree import Tree
 from structures.treeMinmax import TreeMinmax

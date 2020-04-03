@@ -143,7 +143,7 @@ def get_minmax_init(game_def, main_player, initial, learning_rules = True, learn
     minmax_tree=TreeMinmax(minmax_tree.parent,main_player=main_player)
     final_score = minmax_match.goals[main_player]
     # minmax_match.steps[0].set_score(final_score)
-    minmax_tree.root.name.set_score(final_score)
+    minmax_tree.root.set_score(final_score)
     return minmax_match, minmax_tree, examples_list, learned_rules, training_list
 
 def get_minmax_rec(game_def, match, node_top, top_step, main_player,
@@ -181,7 +181,7 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         opt_match  = get_match(game_def,case[main_player][control]
                                ['optimization'],fixed,learned_rules,main_player)
         # Score is current goal unless proved other
-        node_top.name.set_score(current_goal)
+        node_top.set_score(current_goal)
         if(not opt_match):
             # No more actions possible
             minmax_match.generate_train(training_list,i) #Orange
@@ -204,7 +204,7 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
             
             minmax_match.generate_train(training_list,i) #Green 
             # Minmax was fixed, set score without minimizing
-            # opt_node.name.set_score(new_goal)
+            # opt_node.set_score(new_goal)
             continue
         if new_goal == current_goal:
             # Other action is as best as good as this one,
@@ -244,7 +244,7 @@ def get_minmax_rec(game_def, match, node_top, top_step, main_player,
         generate_rule(learned_rules, game_def,match.steps[i].state,
                                  opt_minmax.steps[i].action)
         minmax_match.generate_train(training_list,i) #Low blue
-        node_top.parent.name.set_score(new_goal)
+        node_top.parent.set_score(new_goal)
         
         #Update minmax match
         minmax_match = opt_minmax

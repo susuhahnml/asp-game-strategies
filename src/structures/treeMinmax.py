@@ -17,31 +17,15 @@ from py_utils.logger import log
 import json
 from structures.tree import Tree, NodeBase
 class NodeMinmax(NodeBase):
-    def __init__(self, step, main_player, score=None):
-        super().__init__(step,main_player=main_player)
-        self.score = score
+    def __init__(self, step, main_player, dic={}, parent = None, children = []):
+        super().__init__(step,main_player=main_player,parent=parent, children=children)
+        self.score = 0 if not "score" in dic else dic["score"]
 
-    @classmethod
-    def from_dic(cls, dic, game_def):
-        """
-        Constructs a Step from a dictionary
-        """
-        # from structures.state import State
-        score = dic['score']
-        time_step = dic['time_step']
-        state = State.from_facts(dic['step']['state'],game_def)
-        action = None if dic['step']['action'] is None else Action.from_facts(dic['step']['action'],game_def)
-        s = cls(Step(state, action, time_step),score)
-        return s
-
-    def to_dic(self):
+    def add_info_to_dic(self,dic):
         """
         Returns a serializable dictionary to dump on a json
         """
-        return {
-            "score": self.score,
-            "step": self.step.to_dic()
-        }
+        dic["score"] = self.score
 
     def set_score(self,score):
         self.score = score
@@ -68,7 +52,6 @@ class NodeMinmax(NodeBase):
 
     def style(self,parent=None):
         format_str = NodeBase.style(self)
-
         if self.score is None:
             format_str += ' fillcolor="#FEFEFE"'
         else:
@@ -103,7 +86,7 @@ class TreeMinmax(Tree):
         """
         Gets the number of nodes of the tree
         """
-        nodes = findall(self.root, filter_=lambda node: not node.name.step.action is None and not node.name.score is None)
+        nodes = findall(self.root, filter_=lambda node: not node.step.action is None and not node.score is None)
         return len(nodes)
     
     
@@ -113,14 +96,14 @@ class TreeMinmax(Tree):
         """
         state_dic = {}
         for n in PreOrderIter(self.root):
-            if n.name.step.action is None:
+            if n.step.action is None:
                 continue
-            if n.name.score is None:
+            if n.score is None:
                 continue
-            state_facts = n.name.step.state.to_facts()
+            state_facts = n.step.state.to_facts()
             if not state_facts in state_dic:
                 state_dic[state_facts] = {}
-            state_dic[state_facts][n.name.step.action.to_facts()] = n.name.score
+            state_dic[state_facts][n.step.action.to_facts()] = n.score
 
         final_json = {'main_player':self.main_player,'tree_scores':state_dic}
         os.makedirs(os.path.dirname(file_path), exist_ok=True)

@@ -20,39 +20,23 @@ import json
 from structures.tree import Tree, NodeBase
 
 class NodeMCTS(NodeBase):
-    def __init__(self, step, main_player, t=0, n=0):
+    def __init__(self, step, main_player, dic={}, parent = None, children = []):
         """
         Constructs a node
         Args:
             t: Value calculated with back prop
             n: Number of times it has been visited
         """
-        super().__init__(step,main_player=main_player)
-        self.t = t
-        self.n = n
+        super().__init__(step,main_player=main_player,parent=parent, children=children)
+        self.t = 0 if not "t" in dic else dic["t"]
+        self.n = 0 if not "n" in dic else dic["n"]
 
-    @classmethod
-    def from_dic(cls, dic, game_def):
-        """
-        Constructs a Node from a dictionary
-        """
-        t = dic['t']
-        n = dic['n']
-        time_step = dic['time_step']
-        state = State.from_facts(dic['step']['state'],game_def)
-        action = None if dic['step']['action'] is None else Action.from_facts(dic['step']['action'],game_def)
-        s = cls(Step(state, action, time_step),t,n)
-        return s
-
-    def to_dic(self):
+    def add_info_to_dic(self,dic):
         """
         Returns a serializable dictionary to dump on a json
         """
-        return {
-            "t": self.t,
-            "n": self.n,
-            "step": self.step.to_dic()
-        }
+        dic["t"] = self.t
+        dic["n"] = self.n
 
     def incremet_visits(self):
         self.n = self.n + 1
@@ -78,7 +62,7 @@ class NodeMCTS(NodeBase):
 
     def style(self,parent):
         format_str = NodeBase.style(self)
-        a = self.n if parent is None else self.n/parent.name.n
+        a = self.n if parent is None else self.n/parent.n
         base = ' fillcolor="#00FF00{}"' if a>0.5 else ' fillcolor="#FF0000{}"'
         final = 0.8-a if a<0.5 else a -0.2
         alpha = "{0:0=2d}".format(int(final*100))
@@ -95,53 +79,53 @@ class TreeMCTS(Tree):
     node_class = NodeMCTS
     def __init__(self,root,game_def,main_player="a"):
         """ Initialize with empty root node and game class """
-        super().__init__(Node(root),main_player)
+        super().__init__(root,main_player)
         self.game_def = game_def
         self.pa = RandomPlayer(game_def,"random",main_player)
         self.pb = RandomPlayer(game_def,"random",main_player)
 
     def get_best_action(self,node):
-        next_n =  max(node.children, key=lambda n: n.name.n)
-        return next_n.name.step.action
+        next_n =  max(node.children, key=lambda n: n.n)
+        return next_n.step.action
         
     def get_train_list(self):
         dic = {}
         for n in self.root.children:
-            self.add_to_training_dic(self.root.name.n,dic,n)
+            self.add_to_training_dic(self.root.n,dic,n)
         return dic.values()
 
     def add_to_training_dic(self,n_total,dic,node):
-        if node.name.step in dic:
+        if node.step in dic:
             log.info("Duplicated step")
-            log.info(node.name.step)
-            if dic[node.name.step]['n']>=node.name.n:
+            log.info(node.step)
+            if dic[node.step]['n']>=node.n:
                 return
         next_nodes = node.children
         if len(next_nodes) == 0:
             return
-        dic[node.name.step] = {'s_init':node.name.step.state,
-            'action':node.name.step.action,
-            's_next':next_nodes[0].name.step.state,
-            'p':node.name.n/n_total,
-            'n':node.name.n}
+        dic[node.step] = {'s_init':node.step.state,
+            'action':node.step.action,
+            's_next':next_nodes[0].step.state,
+            'p':node.n/n_total,
+            'n':node.n}
         
         for n in next_nodes:
-            self.add_to_training_dic(node.name.n,dic,n)
+            self.add_to_training_dic(node.n,dic,n)
         
 
     def run_mcts(self, n_iter, initial_node = None):
         node = self.root if initial_node is None else initial_node
-        current_state = node.name.step.state
+        current_state = node.step.state
         for a in current_state.legal_actions:
-            step =Step(current_state,a,node.name.step.time_step)
-            Node(NodeMCTS(step,self.main_player),node)
+            step =Step(current_state,a,node.step.time_step)
+            NodeMCTS(step,self.main_player,parent=node)
         
         for i in range(n_iter):
             self.tree_traverse(self.root)
 
     def tree_traverse(self, node, expl =2 ):
         if node.is_leaf:
-            if node.name.n == 0:
+            if node.n == 0:
                 next_node = node
             else:
                 self.expand(node)
@@ -153,12 +137,12 @@ class TreeMCTS(Tree):
             self.backprop(next_node,v)
         else:
             def ucb1(node):
-                if node.name.n == 0:
+                if node.n == 0:
                     return math.inf
-                r = (node.name.t/node.name.n) 
-                if node.name.step.state.control != self.main_player:
+                r = (node.t/node.n) 
+                if node.step.state.control != self.main_player:
                     r = -1*r
-                r += expl*(math.sqrt(math.log(node.parent.name.n)/node.name.n))
+                r += expl*(math.sqrt(math.log(node.parent.n)/node.n))
                 return r
 
             next_node = max(node.children,key= ucb1) 
@@ -166,15 +150,15 @@ class TreeMCTS(Tree):
     
     def expand(self, node):
         #Add one child per legal action
-        current_action = node.name.step.action
-        current_state = node.name.step.state.get_next(current_action)
+        current_action = node.step.action
+        current_state = node.step.state.get_next(current_action)
         for a in current_state.legal_actions:
-            step =Step(current_state,a,node.name.step.time_step)
-            Node(NodeMCTS(step,self.main_player),node)
+            step =Step(current_state,a,node.step.time_step)
+            NodeMCTS(step,self.main_player,parent=node)
         
 
     def rollout(self, node):
-        state = node.name.step.state
+        state = node.step.state
         if state.is_terminal:
             return state.goals[self.main_player]
         self.game_def.initial = state.to_facts()
@@ -184,8 +168,8 @@ class TreeMCTS(Tree):
 
     def backprop(self, node, v):
         while(not node is None):
-            node.name.incremet_visits()
-            node.name.incremet_value(v)
+            node.incremet_visits()
+            node.incremet_value(v)
             node = node.parent
         pass
 
@@ -196,12 +180,12 @@ class TreeMCTS(Tree):
         """
         state_dic = {}
         for n in PreOrderIter(self.root):
-            if n.name.step.action is None:
+            if n.step.action is None:
                 continue
-            state_facts = n.name.step.state.to_facts()
+            state_facts = n.step.state.to_facts()
             if not state_facts in state_dic:
                 state_dic[state_facts] = {}
-            state_dic[state_facts][n.name.step.action.to_facts()] = {'t':n.name.t,'n':n.name.n}
+            state_dic[state_facts][n.step.action.to_facts()] = {'t':n.t,'n':n.n}
 
         final_json = {'main_player':self.main_player,'tree_values':state_dic}
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
