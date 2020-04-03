@@ -1,1 +1,0 @@
-{"architecture": "dense", "agent": "dqn", "policy": "custom_eps_greedy", "epsilon": 0.3, "rewardf": "dom", "opponent_name": "strategy", "n_steps": 200000, "model_name": "dense-0.3", "game_name": "Dom", "strategy_path": null}

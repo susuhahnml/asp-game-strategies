@@ -17,15 +17,15 @@
     "results": {
         "a": {
             "style_name": "random",
-            "wins": 112,
-            "total_reward": -49,
-            "average_response": 0.007,
-            "std": 0.001
+            "wins": 97,
+            "total_reward": -80,
+            "average_response": 0.009,
+            "std": 0.003
         },
         "b": {
             "style_name": "ilasp-S.lp",
-            "wins": 161,
-            "total_reward": 49,
+            "wins": 177,
+            "total_reward": 80,
             "average_response": 0.003,
             "std": 0.001
         }

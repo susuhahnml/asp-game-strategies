@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Background Concepts}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Our Two-Player Games}{1}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Nim}{1}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Tic-Tac-Toe}{2}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}Game Description Language (GDL)}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Answer Set Programming (ASP)}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Inductive Learning of Answer Set Programs (ILASP)}{3}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Definitions and Syntaxes}{4}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}ILASP Framework}{5}{subsubsection.2.4.2}
+\contentsline {subsection}{\numberline {2.5}Game Tree}{5}{subsection.2.5}
+\contentsline {section}{\numberline {3}Methodologies}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Game simulation}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Learning Approaches}{9}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Minimax Algorithm}{9}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Pruned Minimax Algorithm}{10}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Weak Constraints from ILASP}{15}{subsubsection.3.2.3}
+\contentsline {subsection}{\numberline {3.3}Workflow Summary}{18}{subsection.3.3}
+\contentsline {section}{\numberline {4}Results}{19}{section.4}
+\contentsline {subsection}{\numberline {4.1}Learning phase}{19}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Approaches against Random-Agent}{21}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Framework}{23}{subsection.4.3}
+\contentsline {section}{\numberline {5}Discussion}{23}{section.5}
+\contentsline {section}{\numberline {6}Conclusions}{24}{section.6}
+\contentsline {section}{References}{25}{section.6}

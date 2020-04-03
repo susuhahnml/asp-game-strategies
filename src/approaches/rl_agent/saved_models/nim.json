@@ -1,1 +1,0 @@
-{"architecture": "dense", "agent": "dqn", "policy": "custom_eps_greedy", "epsilon": 0.1, "rewardf": "dom", "opponent_name": "strategy", "n_steps": 100000, "model_name": "nim", "game_name": "Nim", "strategy_path": "./ilasp/nim/strategy-best.lp"}

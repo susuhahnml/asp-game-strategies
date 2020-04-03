@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Background Concepts}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Our Two-Player Games}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Nim}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Tic-Tac-Toe}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Game Description Language \(GDL\)}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Answer Set Programming \(ASP\)}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Inductive Learning of Answer Set Programs \(ILASP\)}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Definitions and Syntaxes}{subsection.2.4}% 9
+\BOOKMARK [3][-]{subsubsection.2.4.2}{ILASP Framework}{subsection.2.4}% 10
+\BOOKMARK [2][-]{subsection.2.5}{Game Tree}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{Methodologies}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Game simulation}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Learning Approaches}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Minimax Algorithm}{subsection.3.2}% 15
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Pruned Minimax Algorithm}{subsection.3.2}% 16
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Weak Constraints from ILASP}{subsection.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.3}{Workflow Summary}{section.3}% 18
+\BOOKMARK [1][-]{section.4}{Results}{}% 19
+\BOOKMARK [2][-]{subsection.4.1}{Learning phase}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.2}{Approaches against Random-Agent}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.3}{Framework}{section.4}% 22
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 23
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 24
+\BOOKMARK [1][-]{section.6}{References}{}% 25

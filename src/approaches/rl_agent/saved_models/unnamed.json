@@ -1,1 +1,0 @@
-{"architecture": "dense", "agent": "dqn", "policy": "custom_eps_greedy", "epsilon": 0.1, "rewardf": "dom", "opponent_name": "strategy-approaches/rl_agent/none.lp", "n_steps": 50000, "model_name": "unnamed", "game_name": "nim", "strategy_path": null, "game_def": 

@@ -2,24 +2,22 @@
 
 ### Overview
 
-This project involves the creation of a framework to play two player games using Answer Set Programming for game description and dynamics. It allows an easy incorporation of new approaches to analyze a game and create strategies for game play. 
+With this framework, we want to encourage the use and research of Answer Ser Programming(ASP) in two-player games. Our implementation allows simple expansions for new games following the Game Description Language formalisms as well as new approaches for learning strategies. These expansions will automatically generate command-line tools to build strategies, create agents and compute benchmarks. We also make available the tree visualizations by simply defining an ASCII representation of the states for the new game. In the README we include a detailed explanation of how to extend it with new games and approaches. 
+
 
 #### Game description
 
 The description of the games is represented in ASP and it is called from python using Clingo API to compute the legal actions and successor states.
  
-To represent the game encoding we use [Game Description Language (GDL)](https://en.wikipedia.org/wiki/Game_Description_Language), allowing the formalization of any finite game with complete information. This framework only works with two player games with complete information where turns alternate after every move.
+To represent the game encoding we use [Game Description Language (GDL)](https://en.wikipedia.org/wiki/Game_Description_Language), allowing the formalization of any finite game with complete information. This framework only works with two-player games with complete information where turns alternate after every move.
 
-##### Nim 
-
-[Nim](https://en.wikipedia.org/wiki/Nim).
-
+Some of the already available games are [Nim](https://en.wikipedia.org/wiki/Nim) and TicTacToe. 
 
 ### Learning approaches
 
 We consider as a learning approach, a process that is capable of creating a strategy given a game description and use such strategy latter on to choose actions during game play. A strategy might involve an additional ASP file, a pre-computed tree search, a machine learning model among many other.
 
-All approaches can be found inside the [approaches](src/approaches) directory. Every folder in this directory will automatically generate command line arguments to run the building of the strategy and to play such approach against other, generating usefully benchmarks.
+All approaches can be found inside the [approaches](src/approaches) directory. Every folder in this directory will automatically generate command-line arguments to run the building of the strategy and to play such approach against other, generating usefully benchmarks.
 
 The instructions to create a new strategic approach can be found [here](src/approaches/README.md). Please refer to the README.md file in each approach for any specific information.
 
@@ -48,7 +46,6 @@ Gebser, Kaminski, Kaufmann and Schaub, 2019 (Clingo)
   publisher={Cambridge University Press}
 }
 ```
-<!-- 
 Law, Russo and Broda, 2015 (ILASP)
 
 ```
@@ -58,7 +55,7 @@ Law, Russo and Broda, 2015 (ILASP)
   year="2015",
   howpublished={\url{www.ilasp.com}}
 }
-``` -->
+```
 
 ### Authors
 

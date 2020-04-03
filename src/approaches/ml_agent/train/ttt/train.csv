@@ -1,5 +1,0 @@
-1;0;0;0;0;0;1;1;1;1;0;0;0;0;0;0;1;0;0;0;0;0;1;1;1;1;1;0;0;0;0;0;1;1
-
-'INIT:control(a)';'INIT:has(a,1,1)';'INIT:has(a,1,2)';'INIT:has(a,2,1)';'INIT:has(a,2,2)';'INIT:control(b)';'INIT:free(1,1)';'INIT:free(1,2)';'INIT:free(2,1)';'INIT:free(2,2)';'INIT:has(b,1,1)';'INIT:has(b,1,2)';'INIT:has(b,2,1)';'INIT:has(b,2,2)';mark(1,1);mark(2,1);mark(2,2);mark(1,2);'NEXT:control(a)';'NEXT:has(a,1,1)';'NEXT:has(a,1,2)';'NEXT:has(a,2,1)';'NEXT:has(a,2,2)';'NEXT:control(b)';'NEXT:free(1,1)';'NEXT:free(1,2)';'NEXT:free(2,1)';'NEXT:free(2,2)';'NEXT:has(b,1,1)';'NEXT:has(b,1,2)';'NEXT:has(b,2,1)';'NEXT:has(b,2,2)';reward;win
-1;0;0;0;0;0;1;1;1;0;0;0;0;1;1;0;0;0;0;1;0;0;0;1;0;1;1;0;0;0;0;1;-1;-1
-1;0;0;0;1;0;0;1;1;0;1;0;0;0;0;0;0;1;0;0;1;0;1;1;0;0;1;0;1;0;0;0;1;1

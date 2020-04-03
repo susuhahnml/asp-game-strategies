@@ -1,0 +1,115 @@
+% import packages
+\documentclass[12pt,a4paper]{article}
+\usepackage{varwidth}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{ragged2e}
+\usepackage[hidelinks]{hyperref}
+\usepackage[font=footnotesize]{caption}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage[round,sort]{natbib}
+\usepackage{tikz}
+\usepackage{listings}
+\usetikzlibrary{arrows,positioning,decorations.pathreplacing,shapes,calc,fit}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage{array,tabularx}
+
+% define global latex variables
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\captionsetup[algorithm]{labelsep=colon}
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+\geometry{top=2.5cm,
+		bottom=2.5cm}
+\graphicspath{{img/}}
+\newcommand\BibTeX{B\textsc{ib}\TeX}
+%\renewcommand{\contentsname}{Table of Contents}
+%\renewcommand{\refname}{Bibliography}
+\newcolumntype{L}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\RaggedLeft\hspace{0pt}}p{#1}}
+\captionsetup[figure]{font=footnotesize,labelfont=footnotesize,labelfont={bf},labelformat={default},labelsep=period,name={Fig.}, justification=centering,singlelinecheck=false, width = \linewidth}
+\captionsetup[table]{font=footnotesize,labelfont=footnotesize,labelfont={bf},labelformat={default},labelsep=period,name={Table},justification=centering, singlelinecheck=false, width = \linewidth}
+
+% define global tikz variables
+% From http://tex.stackexchange.com/questions/123760/draw-crosses-in-tikz
+\tikzset{cross/.style={cross out, draw=black, fill=none, minimum size=15pt, inner sep=0pt, outer sep=0pt}, cross/.default={2pt}}
+\tikzset{pblock/.style = {rectangle split, rectangle split horizontal,
+                      rectangle split parts=2, very thick,draw=black!60,fill=black!7, align=center}}
+\tikzset{recBlock/.style = {rectangle,very thick,draw=black!60,fill=black!7,align=center,
+                      minimum width = 3cm, minimum height = 2cm,
+                      text width = 2.5cm}}
+\tikzset{recBlock2/.style = {rectangle,very thick,draw=black!60,fill=black!7,align=center,
+                      minimum width = 2.5cm, minimum height = 2cm,
+                      text width = 2.5cm}}
+\tikzset{vblock/.style = {rectangle,very thick,draw=black!60,  fill = red!20, align=center,minimum width = 3.5cm, minimum height = 4cm,text width = 3.5cm}}
+\tikzset{vblock2/.style = {rectangle,very thick,draw=black!60,  fill = red!20, align=center,minimum width = 4cm, minimum height = 2.5cm,text width = 3.5cm}}
+\tikzset{vblock3/.style = {rectangle,very thick,draw=black!60,  fill = red!20, align=center,minimum width = 8cm, minimum height = 3cm,text width = 8cm}}
+\tikzset{vblock4/.style = {rectangle,very thick,draw=black!60,
+                      fill=red!20,align=center,
+                      minimum width = 2.5cm, minimum height = 2cm,
+                      text width = 2.5cm}}
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt}
+}
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    % Define arrow style
+    pil2/.style={
+           ->,
+           thick,
+           shorten >=2pt}
+}
+
+% define admin variables
+\title{Investigating the Utility of Answer Set Programming and Inductive Logic Techniques in Learning Two-Player Game Strategies}
+\author{Susana Hahn, Atreya Shankar\\
+\texttt{\{hahnmartinlu,shankar\}@uni-potsdam.de} \\
+PM: Computational Intelligence, WiSe 2019/20 \\
+Prof. Dr. Torsten Schaub \\
+Research Group: Knowledge Processing and Information Systems \\
+Institute of Computer Science, University of Potsdam}
+\date{\today}
+
+\begin{document}
+\newgeometry{}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+In the last decades, significant advancements have been made in optimizing artificially intelligent computer agents in two-player games. In this project, we aim to learn strategies from games encoded in Game Description Language (GDL) while simulating the gameplay using Answer Set Programming (ASP) in \textit{clingo}. We reformulate two common games, specifically \textit{Nim}, and \textit{Tic-Tac-Toe} and implement various techniques for learning explainable strategies. These approaches include flavours of the \textit{Minimax} algorithm to generate not only optimum decision trees but also ASP rules. Further, we use Inductive Learning Programming and the framework \textit{ILASP} to learn weak constraints from ordered examples. Finally, we benchmark the various learning techniques against one another in order to evaluate their effectiveness and scalability into bigger game instances. We were able to find strategies in the form of logic rules easily interpretable by humans. Our method represents a novel technique since we attempt to extend the utility of ASP from its traditional single-agent problem-solving setting to that of a dynamic dual-agent simulation setting. 
+\end{abstract}
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\restoregeometry
+\setcounter{page}{1}
+\thispagestyle{plain}
+\input{section_1}
+\input{section_2}
+\input{section_3}
+\input{section_4}
+\input{section_5}
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\bibliography{bibtex}
+\nocite{*}
+\end{document}

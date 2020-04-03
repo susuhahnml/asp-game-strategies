@@ -1,4 +1,4 @@
-# Min-max pruned by ASP
+# Minimax pruned by ASP
 
 ## Description
 

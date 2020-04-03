@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: apalike.bst
+Database file #1: bibtex.bib
+Warning--empty journal in abu2019tic
+Warning--empty journal in GlimpsASP
+You've used 17 entries,
+            1935 wiz_defined-function locations,
+            577 strings with 6452 characters,
+and the built_in function-call counts, 6853 in all, are:
+= -- 654
+> -- 338
+< -- 9
++ -- 125
+- -- 115
+* -- 579
+:= -- 1220
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 139
+chr.to.int$ -- 17
+cite$ -- 19
+duplicate$ -- 251
+empty$ -- 437
+format.name$ -- 138
+if$ -- 1314
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 17
+newline$ -- 86
+num.names$ -- 53
+pop$ -- 130
+preamble$ -- 1
+purify$ -- 141
+quote$ -- 0
+skip$ -- 196
+stack$ -- 0
+substring$ -- 406
+swap$ -- 31
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 98
+warning$ -- 2
+while$ -- 52
+width$ -- 0
+write$ -- 214
+(There were 2 warnings)

@@ -1,0 +1,120 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{Silver1140}
+\citation{Silver1140}
+\citation{DBLP:journals/corr/abs-1804-02477}
+\citation{love@ggp}
+\citation{GlimpsASP}
+\citation{bouton1901nim}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background Concepts}{1}{section.2}}
+\newlabel{back_con}{{2}{1}{Background Concepts}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Our Two-Player Games}{1}{subsection.2.1}}
+\newlabel{gameDescriptions}{{2.1}{1}{Our Two-Player Games}{subsection.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Nim}{1}{subsubsection.2.1.1}}
+\newlabel{nim}{{2.1.1}{1}{Nim}{subsubsection.2.1.1}{}}
+\citation{abu2019tic}
+\citation{genesereth2005general}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Sample game of \textit  {Nim} with a 2-pile starting configuration where player B wins by taking last counter; red indicates counter(s) taken. The binary representation is always done wrt the piles left.\relax }}{2}{figure.caption.2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:nim_sample}{{1}{2}{Sample game of \textit {Nim} with a 2-pile starting configuration where player B wins by taking last counter; red indicates counter(s) taken. The binary representation is always done wrt the piles left.\relax }{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Tic-Tac-Toe}{2}{subsubsection.2.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sample game of (3,3,3) \textit  {Tic-Tac-Toe} where player A wins by placing 3 consecutive objects a column; green indicates the winning column and red indicates the move made.\relax }}{2}{figure.caption.3}}
+\newlabel{nim_sample}{{2}{2}{Sample game of (3,3,3) \textit {Tic-Tac-Toe} where player A wins by placing 3 consecutive objects a column; green indicates the winning column and red indicates the move made.\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Game Description Language (GDL)}{2}{subsection.2.2}}
+\citation{lifschitz2019answer}
+\citation{Gelfond1991}
+\citation{gebser2014clingo}
+\citation{ILASP_system}
+\citation{ILASP_system}
+\citation{law2017inductive}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Answer Set Programming (ASP)}{3}{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Inductive Learning of Answer Set Programs (ILASP)}{3}{subsection.2.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Sample ILASP program; excerpt from ILASP v3.1.0 manual in \citet  {law2017inductive}\relax }}{4}{figure.caption.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Definitions and Syntaxes}{4}{subsubsection.2.4.1}}
+\citation{law2017inductive}
+\citation{law2017inductive}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}ILASP Framework}{5}{subsubsection.2.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Game Tree}{5}{subsection.2.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Complete game tree for Nim with initial configuration (3,1,0,0). The actions are represented as part of the nodes instead of the edges.\relax }}{6}{figure.caption.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodologies}{7}{section.3}}
+\newlabel{methods}{{3}{7}{Methodologies}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Game simulation}{7}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \texttt  {background.lp} encoding for dynamics of the game of Nim\relax }}{8}{figure.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces ASP encoding the initial state of Figure 4\relax }}{8}{figure.6}}
+\citation{russell2016artificial}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Learning Approaches}{9}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Minimax Algorithm}{9}{subsubsection.3.2.1}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Minimax\relax }}{9}{algorithm.1}}
+\citation{knuth1975analysis}
+\citation{shanahan1999event}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Tree resulting from applying the Mimimax algorithm to the complete tree in Figure 4. Green nodes have a positive score, implying a winning strategy for player $a$, while red nodes represent an position where player $b$ will win.\relax }}{10}{figure.caption.7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Pruned Minimax Algorithm}{10}{subsubsection.3.2.2}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Pruned minimax\relax }}{12}{algorithm.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Tree resulting from applying the Pruned Minimax algorithm to the complete tree in Figure4. White branches are those that remain only explored by clingo but never validated.\relax }}{12}{figure.caption.8}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Validate match\relax }}{13}{algorithm.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Pruned minimax tree without applying learned rules.\relax }}{15}{figure.9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Pruned minimax tree applying learned rules.\relax }}{15}{figure.10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Weak Constraints from ILASP}{15}{subsubsection.3.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Language bias for the game of TicTacToe\relax }}{16}{figure.11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Language bias for the game of Nim\relax }}{17}{figure.12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Workflow Summary}{18}{subsection.3.3}}
+\newlabel{summary}{{3.3}{18}{Workflow Summary}{subsection.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Summary of workflow/methodologies in this project separated into three different categories; namely learning approaches, strategies and evaluation\relax }}{18}{figure.caption.9}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{19}{section.4}}
+\newlabel{results}{{4}{19}{Results}{section.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Initial configurations for \textit  {Nim}.\relax }}{19}{figure.caption.10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Initial configurations for \textit  {TicTacToe}\relax }}{19}{figure.caption.11}}
+\newlabel{nim_sample}{{15}{19}{Initial configurations for \textit {TicTacToe}\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Learning phase}{19}{subsection.4.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Number of nodes in the computed tree for Nim\relax }}{19}{table.caption.13}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Number of nodes in the computed tree for TicTacToe\relax }}{19}{table.caption.15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Strategy found by ILASP for Nim instances \textit  {M} and \textit  {L}\relax }}{20}{figure.16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Strategy found by ILASP for TicTacToe instance \textit  {S}\relax }}{20}{figure.17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Strategy found by ILASP for TicTacToe instance \textit  {M}\relax }}{20}{figure.18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Learning times for each approach. The bar colors are computed applying $log_{10}$ to the proportion of nodes, with 100 being the tree with the most nodes for each game and size.\relax }}{21}{figure.caption.16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Approaches against Random-Agent}{21}{subsection.4.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Tabular summary of learned strategies\relax }}{22}{table.caption.18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Number of winning matches for each approach against a random agent including their mean response time.\relax }}{22}{figure.caption.19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Framework}{23}{subsection.4.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{23}{section.5}}
+\newlabel{discussion}{{5}{23}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{24}{section.6}}
+\newlabel{conclusions}{{6}{24}{Conclusions}{section.6}{}}
+\bibstyle{apalike}
+\bibdata{bibtex}
+\bibcite{abu2019tic}{{1}{2019}{{Abu~Dalffa et~al.}}{{}}}
+\bibcite{GlimpsASP}{{2}{2005}{{Anger et~al.}}{{}}}
+\bibcite{bouton1901nim}{{3}{1901}{{Bouton}}{{}}}
+\bibcite{10.1007/978-3-319-07890-8_12}{{4}{2014}{{Demaine et~al.}}{{}}}
+\bibcite{gebser2014clingo}{{5}{2014}{{Gebser et~al.}}{{}}}
+\bibcite{Gelfond1991}{{6}{1991}{{Gelfond and Lifschitz}}{{}}}
+\bibcite{genesereth2005general}{{7}{2005}{{Genesereth et~al.}}{{}}}
+\bibcite{kelly2006one}{{8}{2006}{{Kelly}}{{}}}
+\bibcite{knuth1975analysis}{{9}{1975}{{Knuth and Moore}}{{}}}
+\bibcite{ILASP_system}{{10}{2015}{{Law et~al.}}{{}}}
+\bibcite{law2017inductive}{{11}{2017}{{Law et~al.}}{{}}}
+\bibcite{lifschitz2019answer}{{12}{2019}{{Lifschitz}}{{}}}
+\bibcite{love@ggp}{{13}{2008}{{Love et~al.}}{{}}}
+\bibcite{russell2016artificial}{{14}{2016}{{Russell and Norvig}}{{}}}
+\bibcite{shanahan1999event}{{15}{1999}{{Shanahan}}{{}}}
+\bibcite{Silver1140}{{16}{2018}{{Silver et~al.}}{{}}}
+\bibcite{DBLP:journals/corr/abs-1804-02477}{{17}{2018}{{Verma et~al.}}{{}}}
+\citation{*}
+\@writefile{toc}{\contentsline {section}{References}{25}{section.6}}

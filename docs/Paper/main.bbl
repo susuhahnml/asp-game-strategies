@@ -1,0 +1,91 @@
+\begin{thebibliography}{}
+
+\bibitem[Abu~Dalffa et~al., 2019]{abu2019tic}
+Abu~Dalffa, M., Abu-Nasser, B.~S., and Abu-Naser, S.~S. (2019).
+\newblock Tic-tac-toe learning using artificial neural networks.
+
+\bibitem[Anger et~al., 2005]{GlimpsASP}
+Anger, C., Konczak, K., Linke, T., and Schaub, T. (2005).
+\newblock A glimpse of answer set programming.
+\newblock 19:12--.
+
+\bibitem[Bouton, 1901]{bouton1901nim}
+Bouton, C.~L. (1901).
+\newblock Nim, a game with a complete mathematical theory.
+\newblock {\em The Annals of Mathematics}, 3(1/4):35--39.
+
+\bibitem[Demaine et~al., 2014]{10.1007/978-3-319-07890-8_12}
+Demaine, E.~D., Ma, F., and Waingarten, E. (2014).
+\newblock Playing dominoes is hard, except by yourself.
+\newblock In Ferro, A., Luccio, F., and Widmayer, P., editors, {\em Fun with
+  Algorithms}, pages 137--146, Cham. Springer International Publishing.
+
+\bibitem[Gebser et~al., 2014]{gebser2014clingo}
+Gebser, M., Kaminski, R., Kaufmann, B., and Schaub, T. (2014).
+\newblock Clingo= asp+ control: Preliminary report.
+\newblock {\em arXiv preprint arXiv:1405.3694}.
+
+\bibitem[Gelfond and Lifschitz, 1991]{Gelfond1991}
+Gelfond, M. and Lifschitz, V. (1991).
+\newblock Classical negation in logic programs and disjunctive databases.
+\newblock {\em New Generation Computing}, 9(3):365--385.
+
+\bibitem[Genesereth et~al., 2005]{genesereth2005general}
+Genesereth, M., Love, N., and Pell, B. (2005).
+\newblock General game playing: Overview of the aaai competition.
+\newblock {\em AI magazine}, 26(2):62--62.
+
+\bibitem[Kelly, 2006]{kelly2006one}
+Kelly, A.~R. (2006).
+\newblock One-pile mis{\`e}re nim for three or more players.
+\newblock {\em International journal of mathematics and mathematical sciences},
+  2006.
+
+\bibitem[Knuth and Moore, 1975]{knuth1975analysis}
+Knuth, D.~E. and Moore, R.~W. (1975).
+\newblock An analysis of alpha-beta pruning.
+\newblock {\em Artificial intelligence}, 6(4):293--326.
+
+\bibitem[Law et~al., 2015]{ILASP_system}
+Law, M., Russo, A., and Broda, K. (2015).
+\newblock The {ILASP} system for learning answer set programs.
+\newblock \url{www.ilasp.com}.
+
+\bibitem[Law et~al., 2017]{law2017inductive}
+Law, M., Russo, A., and Broda, K. (2017).
+\newblock Inductive learning of answer set programs v3. 1.0.
+
+\bibitem[Lifschitz, 2019]{lifschitz2019answer}
+Lifschitz, V. (2019).
+\newblock {\em Answer set programming}.
+\newblock Springer International Publishing.
+
+\bibitem[Love et~al., 2008]{love@ggp}
+Love, N., Hinrichs, T., Haley, D., Schkufza, E., and Genesereth, M. (2008).
+\newblock General game playing: Game description language specification.
+\newblock {\em Stanford University}.
+
+\bibitem[Russell and Norvig, 2016]{russell2016artificial}
+Russell, S.~J. and Norvig, P. (2016).
+\newblock {\em Artificial intelligence: a modern approach}.
+\newblock Malaysia; Pearson Education Limited,.
+
+\bibitem[Shanahan, 1999]{shanahan1999event}
+Shanahan, M. (1999).
+\newblock The event calculus explained.
+\newblock In {\em Artificial intelligence today}, pages 409--430. Springer.
+
+\bibitem[Silver et~al., 2018]{Silver1140}
+Silver, D., Hubert, T., Schrittwieser, J., Antonoglou, I., Lai, M., Guez, A.,
+  Lanctot, M., Sifre, L., Kumaran, D., Graepel, T., Lillicrap, T., Simonyan,
+  K., and Hassabis, D. (2018).
+\newblock A general reinforcement learning algorithm that masters chess, shogi,
+  and go through self-play.
+\newblock {\em Science}, 362(6419):1140--1144.
+
+\bibitem[Verma et~al., 2018]{DBLP:journals/corr/abs-1804-02477}
+Verma, A., Murali, V., Singh, R., Kohli, P., and Chaudhuri, S. (2018).
+\newblock Programmatically interpretable reinforcement learning.
+\newblock {\em CoRR}, abs/1804.02477.
+
+\end{thebibliography}

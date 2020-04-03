@@ -1,0 +1,7 @@
+\section{Conclusions}
+\label{conclusions}
+With this project we were able to learn different strategies for two-player games. We defined a novel variant of the Minimax algorithm which makes use of optimization statements to speed the computation by pruning parts of the game tree. This technique also showed to be good at generalizing for bigger instances when symmetries in the game can be enforced. Even though the strategy it generates as ASP rules can be interpreted by a human, it is not as concise and generalizable as the one learned using ILASP.
+
+Employing Inductive Logic Programming with ILASP system helped us find explainable and scalable strategies. We believe this could be further investigated to tackle some of the downsides of the approach by using of its feature for noisy examples. If we add a weight factor to each example depending on how certain it is of the outcome of the game, we could prioritize strategies in the last stages of the game.
+
+By representing the games with GDL and computing the game dynamics using ASP we created a generalized framework that facilitates the inclusion of new games and techniques for further research. In this project we separated the generation of the strategies for the gameplay. It would also be interesting to explore the option of performing computations during gameplay to improve on the existent strategies.

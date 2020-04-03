@@ -161,6 +161,11 @@ The help will include the arguments specific for this approach:
                         The player for which to maximize; either a or b
 ```
 
+
+It will give benchmarks for build times and special results. Benchmarks are saved in JSON format in specific folders inside [benchamrks](/src/benchmarks) and appended into the [vs json](/src/benchmarks/build.json).
+
+
+
 #### Simulate a match
 
 This command can be used to simulate a match with one type of player against another in an specific game definition. It requires the following additional arguments to define the kind of players.
@@ -177,7 +182,8 @@ $ python main.py vs -h
                       twice, one with player a starting and one with player
                       b starting to increase fairness
 ```
-This command will generate games playing the approaches against each other. It will give benchmarks regarding, winning, points and response times.
+
+This command will generate games playing the approaches against each other. It will give benchmarks regarding, winning, points and response times. Benchmarks are saved in JSON format in specific folders inside [benchamrks](/src/benchmarks) and appended into the [vs json](/src/benchmarks/vs.json).
 
 Example:
 ```shell
