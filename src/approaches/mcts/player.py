@@ -8,7 +8,7 @@ from structures.players import Player
 from random import randint
 from structures.action import Action
 from structures.step import Step
-from approaches.ml_agent.train_utils import training_data_to_csv
+from py_utils.train_utils import training_data_to_csv
 
 class MCTSPlayer(Player):
     """
