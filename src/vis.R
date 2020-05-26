@@ -7,7 +7,6 @@ library(ggplot2)
 library(tikzDevice)
 library(reshape2)
 library(optparse)
-
 plot_build <- function(name="build.json"){
   # get main data
   hold <- fromJSON(file=paste0("./benchmarks/",name))
@@ -41,18 +40,18 @@ plot_build <- function(name="build.json"){
   hold[,6] <- log10(as.numeric(levels(hold[,6])[hold[,6]])*100)
   hold$size <- factor(hold$size, levels=rev(levels(hold$size)))
   # make third variant
-  tikz("bar_build.tex", width=36, height=20, standAlone = TRUE)
+  tikz("bar_build.tex", width=40, height=30, standAlone = TRUE)
   print(aes(x=approach,y=mean,group=1))
   g <- ggplot(hold,aes(x=approach,y=mean,group=1,fill=nodes)) +
-    geom_bar(stat="identity",color="black",width=0.4) +
+    geom_bar(stat="identity",color="black",width=0.3) +
     geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd),color="black",width=0.1) +
     stat_summary(fun.y=sum, geom="line",linetype="dashed") +
     xlab("\nLearning Approach") +
     ylab("Build Time [s]\n") +  theme_bw() +
-    theme(text = element_text(size=50),
-          plot.title = element_text(hjust=0.5)) +
-    scale_fill_gradient(low= "#FFF4F4", high= "#FF7373")+
-    guides(fill = guide_colourbar(title = "Number of nodes,\n log base 10 \n of percentage", title.theme =element_text(size=40),barwidth = 2.0, barheight = 20)) +
+    theme(text = element_text(size=60,family="Arial"),
+          plot.title = element_text(hjust=0.5,family="Arial")) +
+    scale_fill_gradient(low= "#10487130", high= "#104871")+
+    guides(fill = guide_colourbar(title = "Number\nof nodes", title.theme =element_text(size=30),barwidth = 2.0, barheight = 20)) +
     facet_grid(size ~ game, scales="free_y")
   print(g)
   dev.off()
@@ -122,18 +121,18 @@ plot_vs <- function(name="vs.json"){
 #  hold[,3] <- factor(hold[,3], levels = c("Minimax", "Pruned Minimax", "Pruned Minimax + Learning Rules"))
   
   # make third variant
-  tikz("bar_vs.tex", width=36, height=20, standAlone = TRUE)
-  g <- ggplot(hold,aes(x=pB,y=wins,fill=response)) +
-    geom_bar(stat="identity",color="black",width=0.1) +
+  tikz("bar_vs.tex", width=40, height=30, standAlone = TRUE)
+  g <- ggplot(hold,aes(x=pB,y=wins,fill=response),bg=NA) +
+    geom_bar(stat="identity",color="black",width=0.3) +
     xlab("\nLearning Approach") +
     ylab("Wins vs Random\n") +
     scale_y_continuous(limits=c(0,300),breaks=seq(0,300, by = 100)) +
     geom_hline(yintercept=150,linetype="dashed",alpha=0.7) +
     theme_bw() +
-    theme(text = element_text(size=50),
+    theme(text = element_text(size=60),
           plot.title = element_text(hjust=0.5)) +
-    scale_fill_gradient(low= "#FFF4F4", high= "#FF7373")+
-    guides(fill = guide_colourbar(title = "Mean Response\nTime [ms]", title.theme =element_text(size=40),barwidth = 2.0, barheight = 20)) +
+    scale_fill_gradient(low= "#10487130", high= "#104871")+
+    guides(fill = guide_colourbar(title = "Mean \nResponse\nTime [ms]", title.theme =element_text(size=30),barwidth = 2.0, barheight = 20)) +
     facet_grid(size ~ game,scales="free_y")
   print(g)
   dev.off()
@@ -146,8 +145,8 @@ plot_vs <- function(name="vs.json"){
 
 # main command
 if(file.exists("./benchmarks/build.json")){
-  plot_build()
+  plot_build("build_old.json")
 }
 if(file.exists("./benchmarks/vs.json")){
-  plot_vs("vs-old.json")
+  plot_vs("vs_old.json")
 }
