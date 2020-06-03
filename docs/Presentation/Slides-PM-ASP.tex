@@ -178,7 +178,7 @@
 \title{Investigating the Utility of Answer Set Programming and Inductive Logic Techniques in Learning Two-Player Game Strategies}
 \author{Susana Hahn, Atreya Shankar \\ Cognitive Systems: Language, Learning, and Reasoning (M.Sc.)}
 \institute{PM - Computational Intelligence \\ Knowledge Processing and Information Systems}
-\date{\today}
+\date{June 03, 2020}
 
 \begin{document}
 
@@ -260,7 +260,7 @@
         \setlength\itemsep{1.2em}
       \item \re{Logic-based methods} 
       \begin{itemize}
-        \item[\checkmark] Interperability of strategies learned
+        \item[\checkmark] Interpretability of strategies
         \item[$\bm{\times}$] Search large game spaces to learn strategies
       \end{itemize}
       \item Small two-player games: \textit{Nim} and \textit{Tic-Tac-Toe}
@@ -401,7 +401,7 @@
       \begin{itemize}[<+->]
         \setlength\itemsep{1.2em}
       \item Exploit ASP and python-clingo API to create a dynamic game system governed with GDL relations
-      \item Python \textit{anytree} module to represent the game trees which are annotated with scores
+      \item Python \textit{anytree} module to represent the game trees which are annotated with scores and produce pretty visualizations
       \item Flavours of the \textit{Minimax} algorithm in ASP to learn optimum game strategies
       \item Pipe optimum decisions as bravely ordered positive examples for ILASP
       \item Evaluate different methodologies by comparing build times and performance against a control (random) player
@@ -620,7 +620,7 @@ best_do(Va,remove(V2,1),T):- holds(control(Va),T),
   \pause
   \begin{itemize}[<+->]
     \item \re{Language bias}: Must be handcrafted to define the search space of the ILASP framework\\
-    \item[$\Longrightarrow$] \re{Hypothesys}: Weak constrains representing the strategy
+    \item[$\Longrightarrow$] \re{Hypotheses}: Weak constraints representing the strategy
   \end{itemize}
 \end{frame}
 
