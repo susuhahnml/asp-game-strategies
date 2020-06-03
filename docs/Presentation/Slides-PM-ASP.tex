@@ -553,13 +553,12 @@ next(free(2,3))
     \includegraphics<7>[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{tree-pruned-7.png}
     \includegraphics<8>[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{tree-pruned-8.png}
     \includegraphics<9>[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{tree-pruned-9.png}
-    \includegraphics<10>[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{tree-pruned-10.png}
 
   \end{frame}
 \end{framefont}
 
   \begin{frame}[fragile]
-    \frametitle{Pruned Minimax Algorithm}
+    \frametitle{Pruned Minimax Algorithm + Learning Rules}
     \footnotesize
     \setbeamertemplate{enumerate items}[default]
       \re{Learn Rules:} Create a representation of the best moves using ASP
@@ -624,39 +623,39 @@ best_do(Va,remove(V2,1),T):- holds(control(Va),T),
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-  \footnotesize
+% \begin{frame}[fragile]
+%   \footnotesize
   
   
-  \begin{example}[Language bias TicTacToe]
-    \begin{semiverbatim}
-#modeo(3,next(has(var(player),var(cell))),(positive)).
-#modeo(1,in\_line(var(cell),var(cell),var(cell)),(positive)).
-#modeo(1,next(free(var(cell))),(positive)).
-#modeo(1,next(control(var(player))),(positive)).
-#weight(-1). #weight(1).
-#maxp(2). #maxv(4). 
-  \end{semiverbatim}
-  \end{example}
-  \pause
-  \begin{example}[Language bias Nim]
-    \begin{semiverbatim}
-#constant(pile,1..4). 
-#modeh(b(var(pile),var(d),var(bool)),(positive)).
-#modeh(nim\_sum(var(d),var(total)+var(bool),var(pile)),(positive)).
-#modeh(nim_sum(var(d),0,0),(positive)).
-#modeb(1,b(var(pile),var(d),var(bool)),(positive)).
-#modeb(1,nim\_sum(var(d),var(total),var(pile)-1),(positive)).
-#modeb(1,binary(var(num),var(d),var(bool)),(positive)).
-#modeb(1,next(has(var(pile),var(num))),(positive)).
-#modeo(1,nim\_sum(var(d),var(t),const(pile))).
-#modeo(1,var(t)\\2 != 0).
-#weight(1). #weight(-1).
-#maxp(1). #maxv(4).
-  \end{semiverbatim}
-  \end{example}
+%   \begin{example}[Language bias TicTacToe]
+%     \begin{semiverbatim}
+% #modeo(3,next(has(var(player),var(cell))),(positive)).
+% #modeo(1,in\_line(var(cell),var(cell),var(cell)),(positive)).
+% #modeo(1,next(free(var(cell))),(positive)).
+% #modeo(1,next(control(var(player))),(positive)).
+% #weight(-1). #weight(1).
+% #maxp(2). #maxv(4). 
+%   \end{semiverbatim}
+%   \end{example}
+%   \pause
+%   \begin{example}[Language bias Nim]
+%     \begin{semiverbatim}
+% #constant(pile,1..4). 
+% #modeh(b(var(pile),var(d),var(bool)),(positive)).
+% #modeh(nim\_sum(var(d),var(total)+var(bool),var(pile)),(positive)).
+% #modeh(nim_sum(var(d),0,0),(positive)).
+% #modeb(1,b(var(pile),var(d),var(bool)),(positive)).
+% #modeb(1,nim\_sum(var(d),var(total),var(pile)-1),(positive)).
+% #modeb(1,binary(var(num),var(d),var(bool)),(positive)).
+% #modeb(1,next(has(var(pile),var(num))),(positive)).
+% #modeo(1,nim\_sum(var(d),var(t),const(pile))).
+% #modeo(1,var(t)\\2 != 0).
+% #weight(1). #weight(-1).
+% #maxp(1). #maxv(4).
+%   \end{semiverbatim}
+%   \end{example}
 
-\end{frame}
+% \end{frame}
 
 %=========================================================
 \section{Results}
@@ -669,9 +668,9 @@ best_do(Va,remove(V2,1),T):- holds(control(Va),T),
     \begin{itemize}[<+->]
       \item Time to learn strategy and its size
       \item Abstraction of strategy from a smaller instance
-      \item 2.6 GHz Quad- Core Intel Core i7 processor under MacOs
+      % \item 2.6 GHz Quad- Core Intel Core i7 processor under MacOs
     \end{itemize}
-    \includegraphics<4>[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{test-instances.png}
+    \includegraphics<3>[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{test-instances.png}
   \end{frame}
 \end{framefont}
 
@@ -708,27 +707,58 @@ best_do(Va,remove(V2,1),T):- holds(control(Va),T),
 \begin{frame}[fragile]
   \footnotesize
   \frametitle{Learning phase ILASP strategies}
-
-
-  \begin{example}[Nim instances \textit{M} and \textit{L}]
+  
+  \begin{example}[TicTacToe instance \textit{M}]
     \begin{semiverbatim}
-nim\_sum(V1,0,0) :- b(\_,V1,\_).
-nim\_sum(V1,V3+V2,V0) :- b(V0,V1,V2), nim\_sum(V1,V3,V0-1).
-b(V3,V1,V2) :- binary(V0,V1,V2), next(has(V3,V0)).
-:~ nim\_sum(V0,V1,4), V1\\2 != 0.[1@1, 4, V0, V1]
-  \end{semiverbatim}
+:~ next(has(V0,V1)), next(has(V0,V2)), next(has(V0,V3)),
+   in_line(V1,V2,V3).[-1@2, 2, V0, V1, V2, V3]
+:~ in_line(V0,V1,V2), next(free(V2)).[-1@1, 1, V0, V1, V2]
+    \end{semiverbatim}
   \end{example}
   \pause
-  \begin{example}[TicTacToe instance \textit{S}]
+  \begin{example}[Language bias TicTacToe]
     \begin{semiverbatim}
-:~ next(has(V0,V1)), in_line(V1,V2,V3).[1@1, 1, V0, V1, V2, V3]
-:~ in_line(V0,V1,V2), next(free(V0)).[-1@2, 2, V0, V1, V2]
-:~ next(has(V0,V1)), in_line(V2,V3,V1), 
-    next(free(V2)).[1@2, 3, V0, V1, V2, V3]
-:~ next(has(V0,V1)), next(has(V0,V2)), 
-    next(has(V0,V3)), in_line(V1,V2,V3).[-1@2, 4, V0, V1, V2, V3]
+#modeo(3,next(has(var(player),var(cell))),(positive)).
+#modeo(1,in\_line(var(cell),var(cell),var(cell)),(positive)).
+#modeo(1,next(free(var(cell))),(positive)).
+#modeo(1,next(control(var(player))),(positive)).
+#weight(-1). #weight(1).
+#maxp(2). #maxv(4). 
   \end{semiverbatim}
   \end{example}
+\end{frame}
+
+  \begin{frame}[fragile]
+    \footnotesize
+    \frametitle{Learning phase ILASP strategies}
+
+\begin{example}[Nim instances \textit{M} and \textit{L}]
+  \begin{semiverbatim}
+b_pile(V3,V1,V2) :- binary(V0,V1,V2), next(has(V3,V0)).
+nim\_sum(V1,0,0) :- b_pile(\_,V1,\_).
+nim\_sum(V1,V3+V2,V0) :- b_pile(V0,V1,V2), nim\_sum(V1,V3,V0-1).
+:~ nim\_sum(V0,V1,4), V1\\2 != 0.[1@1, 4, V0, V1]
+\end{semiverbatim}
+\end{example}
+\pause
+
+  \begin{example}[Language bias Nim]
+    \begin{semiverbatim}
+#constant(pile,1..4). 
+#modeh(b(var(pile),var(d),var(bool)),(positive)).
+#modeh(nim\_sum(var(d),var(total)+var(bool),var(pile)),(positive)).
+#modeh(nim_sum(var(d),0,0),(positive)).
+#modeb(1,b(var(pile),var(d),var(bool)),(positive)).
+#modeb(1,nim\_sum(var(d),var(total),var(pile)-1),(positive)).
+#modeb(1,binary(var(num),var(d),var(bool)),(positive)).
+#modeb(1,next(has(var(pile),var(num))),(positive)).
+#modeo(1,nim\_sum(var(d),var(t),const(pile))).
+#modeo(1,var(t)\\2 != 0).
+#weight(1). #weight(-1). #maxp(1). #maxv(4).
+  \end{semiverbatim}
+  \end{example}
+  
+
 
 \end{frame}
 
@@ -767,7 +797,13 @@ b(V3,V1,V2) :- binary(V0,V1,V2), next(has(V3,V0)).
       \item Pruned Minimax
       \begin{itemize}
         \item[\checkmark] Reduces tree search space
-        \item[\checkmark] Allow generalization based on symmetries
+      \end{itemize} 
+      \item Pruned Minimax Learning Rules
+        \begin{itemize}
+        \item[\checkmark] Reduces tree search space 
+        \item[\checkmark] Faster making decision
+        \item[\checkmark] Allows generalization
+        \item[$\times$] Requires symmetry specification
         \item[\checkmark] Novel approach
       \end{itemize}
       \item ILASP
