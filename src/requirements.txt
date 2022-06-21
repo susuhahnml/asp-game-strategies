@@ -1,7 +1,7 @@
 pandas==1.0.1
 anytree==2.8.0
 tqdm==4.43.0
-numpy==1.18.1
+numpy==1.22.0
 tensorflow==2.0.1
 gym==0.17.0
 rl==3.0
